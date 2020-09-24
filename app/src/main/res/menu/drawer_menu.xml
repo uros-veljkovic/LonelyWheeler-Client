@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_drawer_nome"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/nav_human_powered_vehicles"
+            android:icon="@drawable/ic_drawer_bycicle"
+            android:title="@string/human_powered_vehicles" />
+        <item
+            android:id="@+id/nav_equipment"
+            android:icon="@drawable/ic_drawer_equipment"
+            android:title="@string/equipment" />
+        <item
+            android:id="@+id/nav_all_sellers"
+            android:icon="@drawable/ic_drawer_store"
+            android:title="@string/all_sellers" />
+        <item
+            android:id="@+id/nav_advanced_search"
+            android:icon="@drawable/ic_drawer_advanced_search"
+            android:title="@string/advanced_search" />
+    </group>
+
+    <group
+        android:checkableBehavior="single"
+        android:enabled="false"
+        android:visible="false">
+        <item
+            android:id="@+id/empty1"
+            android:title="empty1" />
+        <item
+            android:id="@+id/empty2"
+            android:title="empty1" />
+        <item
+            android:id="@+id/empty3"
+            android:title="empty1" />
+        <item
+            android:id="@+id/empty4"
+            android:title="empty1" />
+    </group>
+
+    <item android:title="@string/action">
+        <menu>
+            <item
+                android:id="@+id/nav_my_offers"
+                android:icon="@drawable/ic_drawer_offer"
+                android:title="@string/my_offers" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_drawer_logout"
+                android:title="@string/logout" />
+        </menu>
+    </item>
+
+</menu>

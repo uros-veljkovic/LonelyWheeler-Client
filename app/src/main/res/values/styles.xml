@@ -1,10 +1,166 @@
-<resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- AppTheme -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+
+        <!--        Color primary and onPrimary-->
+        <item name="android:colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="android:textColorSecondary">@color/textColorPrimary</item>
+
+        <item name="android:textColorTertiary">@color/textColorPrimary</item>
+
+        <!--        Text primary color-->
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+
+        <!--        Color primary dark-->
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+
+        <!--        Color accent and onAccent-->
+        <item name="android:colorAccent">@color/colorTertiary</item>
+        <item name="colorAccent">@color/colorTertiary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+
+        <!--        Background color-->
+        <item name="backgroundColor">@color/defaultBackgroundColor</item>
+        <item name="android:colorBackground">@color/defaultBackgroundColor</item>
+
+        <!--        Font family-->
+        <item name="android:fontFamily">@font/droid_serif</item>
+        <item name="fontFamily">@font/droid_serif_normal</item>
+
+        <item name="android:textViewStyle">@style/Font.LonelyWheeler.AppTheme</item>
+        <item name="textInputStyle">@style/Widget.LonelyWheeler.TextInputEditText</item>
+        <item name="floatingActionButtonStyle">@style/Widget.LonelyWheeler.Fab.Normal</item>
+
+
+    </style>
+
+    <!-- AppTheme NoActionbar-->
+    <style name="AppTheme.NoActionbar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--    Font styling-->
+    <style name="Font.LonelyWheeler.AppTheme" parent="android:Widget">
+        <item name="android:fontFamily">@font/droid_serif</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
+    <!--    Toolbar styling-->
+    <style name="Widget.LonelyWheeler.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">?attr/colorAccent</item>
+        <item name="android:theme">@style/AppTheme</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="titleTextAppearance">@style/TextAppearance.LonelyWheeler.Toolbar</item>
+    </style>
+
+    <!--    Toolbar text styling-->
+    <style name="TextAppearance.LonelyWheeler.Toolbar" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!--    Title styling-->
+    <style name="TextAppearance.LonelyWheeler.Title" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:fontFamily">@font/droid_serif</item>
+        <item name="fontFamily">@font/droid_serif_normal</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.LonelyWheeler.Title.NavDrawer" >
+        <item name="android:textSize">24sp</item>
+    </style>
+
+
+    <!--    TextInputLayout styling-->
+    <style name="Widget.LonelyWheeler.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextAppearance">
+            @style/TextAppearance.LonelyWheeler.TextInputLayout.HintText
+        </item>
+        <item name="hintTextColor">@color/hintTextColor</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="boxStrokeColor">@color/textInputOutlineColor</item>
+    </style>
+
+    <!--        TextInputEditText styling-->
+    <style name="Widget.LonelyWheeler.TextInputEditText" parent="android:Widget.EditText">
+        <item name="shapeAppearance">@style/Widget.LonelyWheeler.SmallComponent.OutlinedBoxCut</item>
+        <item name="hintTextColor">@color/hintTextColor</item>
+        <item name="autoSizeMinTextSize">8dp</item>
+        <item name="autoSizeStepGranularity">1px</item>
+        <item name="autoSizeTextType">uniform</item>
+    </style>
+
+    <style name="TextAppearance.LonelyWheeler.TextInputLayout.HintText" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textColor">@color/textColorPrimary</item>
+    </style>
+
+    <!--    Outlined TextButton styling-->
+    <style name="Widget.LonelyWheeler.Button" parent="Widget.MaterialComponents.Button">
+        <item name="shapeAppearance">@style/Widget.LonelyWheeler.SmallComponent.SmallCut</item>
+        <item name="android:textColor">@color/colorOnPrimary</item>
+        <item name="backgroundTint">?attr/colorPrimaryDark</item>
+        <item name="android:stateListAnimator" tools:ignore="NewApi">
+            @animator/button_state_list_anim
+        </item>
+    </style>
+
+    <!--    TextButton styling-->
+    <style name="Widget.LonelyWheeler.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.LonelyWheeler.ClickableTextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:enabled">true</item>
+        <item name="android:textColor">@color/colorTertiary</item>
+    </style>
+
+    <!--    Fab styling (size NORMAL)-->
+    <style name="Widget.LonelyWheeler.Fab.Normal" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="srcCompat">@drawable/ic_add</item>
+        <item name="android:backgroundTint">@color/colorSecondary</item>
+        <item name="shapeAppearance">@style/Widget.LonelyWheeler.SmallComponent.BigCut</item>
+    </style>
+
+    <!--    Fab styling (size MINI)-->
+    <style name="Widget.LonelyWheeler.Fab.Mini" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="android:backgroundTint">@color/colorTertiary</item>
+        <item name="shapeAppearance">@style/Widget.LonelyWheeler.SmallComponent.SmallCut</item>
+    </style>
+
+    <!--    ShapeAppearance BIG CUT-->
+    <style name="Widget.LonelyWheeler.SmallComponent.BigCut" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSizeBottomRight">25dp</item>
+        <item name="cornerSizeBottomLeft">25dp</item>
+        <item name="cornerSizeTopRight">25dp</item>
+        <item name="cornerSizeTopLeft">25dp</item>
+    </style>
+
+    <!--    ShapeAppearance SMALL CUT-->
+    <style name="Widget.LonelyWheeler.SmallComponent.SmallCut" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSizeBottomRight">18dp</item>
+        <item name="cornerSizeBottomLeft">18dp</item>
+        <item name="cornerSizeTopRight">18dp</item>
+        <item name="cornerSizeTopLeft">18dp</item>
+    </style>
+
+    <!--    ShapeAppearance OutlinedBox CUT-->
+    <style name="Widget.LonelyWheeler.SmallComponent.OutlinedBoxCut" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSizeBottomRight">12dp</item>
+        <item name="cornerSizeBottomLeft">12dp</item>
+        <item name="cornerSizeTopRight">12dp</item>
+        <item name="cornerSizeTopLeft">12dp</item>
     </style>
 
 </resources>

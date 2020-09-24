@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.LonelyWheeler.TextInputEditText" parent="android:Widget.EditText">
+        <item name="hintTextColor">@color/hintTextColor</item>
+        <item name="android:paddingHorizontal">8dp</item>
+        <!--<item name="paddingStart">8dp</item>
+        <item name="paddingEnd">8dp</item>-->
+    </style>
+
+    <style name="Widget.LonelyWheeler.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="shapeAppearance">@style/Widget.LonelyWheeler.SmallComponent.OutlinedBoxCut</item>
+        <item name="hintTextAppearance">
+            @style/TextAppearance.LonelyWheeler.TextInputLayout.HintText
+        </item>
+        <item name="hintTextColor">@color/hintTextColor</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:layout_marginHorizontal">8dp</item>
+        <item name="boxStrokeColor">@color/textInputOutlineColor</item>
+    </style>
+</resources>
