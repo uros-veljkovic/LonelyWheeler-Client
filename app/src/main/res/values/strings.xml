@@ -26,4 +26,6 @@
     <string name="confirm_password">Confirm password</string>
     <string name="city">City</string>
     <string name="street">Street</string>
+    <string name="sign_in">Sign In</string>
+    <string name="lonely_wheeler_title">Lonely Wheeler</string>
 </resources>

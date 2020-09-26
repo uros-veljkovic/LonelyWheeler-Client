@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/defaultBackgroundColor"
-    tools:context=".ui.SignInActivity">
+    tools:context=".ui.view.SignInActivity">
 
     <ImageView
         android:id="@+id/activitySignIn_ivLonelyWheelerLogo"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="Lonely Wheeler"
+        android:text="@string/lonely_wheeler_title"
         app:layout_constraintBottom_toTopOf="@id/activitySignIn_tilEmail"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="16dp"
         android:text="@string/dont_have_account"
-        app:layout_constraintBottom_toTopOf="@id/activitySignIn_btnConfirm"
+        app:layout_constraintBottom_toTopOf="@id/activitySignIn_btnSignIn"
         app:layout_constraintEnd_toStartOf="@+id/activitySignIn_tvSignUp"
         app:layout_constraintTop_toBottomOf="@id/activitySignIn_tilPassword" />
 
@@ -87,18 +87,18 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="@string/sign_up"
-        app:layout_constraintBottom_toTopOf="@id/activitySignIn_btnConfirm"
+        app:layout_constraintBottom_toTopOf="@id/activitySignIn_btnSignIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activitySignIn_tilPassword" />
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/activitySignIn_btnConfirm"
+        android:id="@+id/activitySignIn_btnSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
-        android:text="@string/confirm"
+        android:text="@string/sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
