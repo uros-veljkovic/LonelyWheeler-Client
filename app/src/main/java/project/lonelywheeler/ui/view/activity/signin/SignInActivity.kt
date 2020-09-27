@@ -1,4 +1,4 @@
-package project.lonelywheeler.ui.view
+package project.lonelywheeler.ui.view.activity.signin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

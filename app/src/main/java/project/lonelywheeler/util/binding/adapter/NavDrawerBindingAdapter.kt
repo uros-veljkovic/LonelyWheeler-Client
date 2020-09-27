@@ -9,7 +9,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.shape.MaterialShapeDrawable
 import kotlinx.android.synthetic.main.activity_main.*
 import project.lonelywheeler.app.MyApplication
-import project.lonelywheeler.ui.bottomappbar.adapter.BottomAppBarCutCornersTopEdge
+import project.lonelywheeler.ui.view.activity.main.bottomappbar.adapter.BottomAppBarCutCornersTopEdge
 import project.lonelywheeler.util.FabAnimationProvider
 
 /*@BindingAdapter(value = ["drawerLayout", "navDrawer", "trigger"], requireAll = true)

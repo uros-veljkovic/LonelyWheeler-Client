@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/allOffersFragment">
+
+    <fragment
+        android:id="@+id/allOffersFragment"
+        android:name="project.lonelywheeler.ui.view.activity.main.fragment.AllOffersFragment"
+        android:label="fragment_all_offers"
+        tools:layout="@layout/fragment_all_offers" />
+</navigation>

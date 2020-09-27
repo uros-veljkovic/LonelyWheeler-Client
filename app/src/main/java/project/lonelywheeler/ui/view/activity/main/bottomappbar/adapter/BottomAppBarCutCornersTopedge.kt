@@ -1,4 +1,4 @@
-package project.lonelywheeler.ui.bottomappbar.adapter
+package project.lonelywheeler.ui.view.activity.main.bottomappbar.adapter
 
 import android.annotation.SuppressLint
 import com.google.android.material.bottomappbar.BottomAppBarTopEdgeTreatment

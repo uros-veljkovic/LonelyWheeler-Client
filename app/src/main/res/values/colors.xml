@@ -8,6 +8,7 @@
     <color name="navDrawerTextColor">@color/hintTextColor</color>
 
     <color name="textInputOutlineColor">#E2C08F</color>
+    <color name="searchBoxColor">#ffe0b2</color>
     <color name="toolbarIconColor">@color/textColorPrimary</color>
 
     <color name="hintTextColor">#787878</color>

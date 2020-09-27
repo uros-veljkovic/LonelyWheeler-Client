@@ -28,4 +28,28 @@
     <string name="street">Street</string>
     <string name="sign_in">Sign In</string>
     <string name="lonely_wheeler_title">Lonely Wheeler</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sort">Sort</string>
+    <string name="condition">"Condition: "</string>
+    <string name="brand">"Brand: "</string>
+    <string name="model">"Model: "</string>
+    <string name="year_of_production">"Year of production: "</string>
+    <string name="fixed_value">"Fixed value ? "</string>
+    <string name="first_owner">"First owner ? "</string>
+    <string name="owner_in">"Owner is in for exchange ? "</string>
+    <string name="exterior_color">"Exterior color: "</string>
+    <string name="interior_color">"Interior color: "</string>
+    <string name="other_info">"Other infor: "</string>
+    <string name="lorem_ipsum">It is a long established fact that a reader will be distracted by the readable content of a page  when looking at its layout. The point of using  Lorem Ipsum is that it has a more-or-less normal  distribution of letters, as opposed to using  \'Content here, content here\', making it look  like readable English.</string>
+    <string name="car_body_type">"Car body type: "</string>
+    <string name="max_speed">"Max speed: "</string>
+    <string name="mileage">"Mileage: "</string>
+    <string name="cubic_capacity">"Cubic capacity: "</string>
+    <string name="horse_power">"Horse power: "</string>
+    <string name="registered_until">"Registered until: "</string>
+    <string name="fuel_type">"Fule type: "</string>
+    <string name="emission_standard">"Emission standard: "</string>
+    <string name="gearbox_type">"Gearbox type: "</string>
+    <string name="steering_wheel_side">"Steering wheel side: "</string>
 </resources>

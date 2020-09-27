@@ -2,14 +2,12 @@
 <resources>
 
     <style name="Widget.LonelyWheeler.TextInputEditText" parent="android:Widget.EditText">
-        <item name="hintTextColor">@color/hintTextColor</item>
         <item name="android:paddingHorizontal">8dp</item>
-        <!--<item name="paddingStart">8dp</item>
-        <item name="paddingEnd">8dp</item>-->
     </style>
 
     <style name="Widget.LonelyWheeler.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="shapeAppearance">@style/Widget.LonelyWheeler.SmallComponent.OutlinedBoxCut</item>
+        <item name="shapeAppearance">@style/Widget.LonelyWheeler.SmallComponent.OutlinedBoxCut
+        </item>
         <item name="hintTextAppearance">
             @style/TextAppearance.LonelyWheeler.TextInputLayout.HintText
         </item>
@@ -17,5 +15,36 @@
         <item name="android:paddingBottom">8dp</item>
         <item name="android:layout_marginHorizontal">8dp</item>
         <item name="boxStrokeColor">@color/textInputOutlineColor</item>
+    </style>
+
+    <!--        TextInputLayout SEARCH styling-->
+    <style name="Widget.LonelyWheeler.TextInputLayout.Search">
+        <item name="hintTextAppearance">
+            @style/TextAppearance.LonelyWheeler.TextInputLayout.HintText
+        </item>
+        <item name="endIconDrawable">@drawable/ic_search_orange</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
+        <item name="hintTextColor">@android:color/transparent</item>        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxBackgroundColor">@color/searchBoxColor</item>
+    </style>
+
+    <!--        TextInputEditText SEARCH styling-->
+    <style name="Widget.LonelyWheeler.TextInputEditText.Search">
+
+        <item name="shapeAppearance">@style/Widget.LonelyWheeler.SmallComponent.OutlinedBoxCut
+        </item>
+        <item name="autoSizeMinTextSize">8dp</item>
+        <item name="autoSizeStepGranularity">1px</item>
+        <item name="autoSizeTextType">uniform</item>
+    </style>
+
+    <!--    ShapeAppearance SearchBox-->
+    <style name="Widget.LonelyWheeler.SmallComponent.SearchEditText" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">30dp</item>
+        <item name="cornerSizeTopLeft">30dp</item>
+        <item name="cornerSizeTopRight">30dp</item>
+        <item name="cornerSizeBottomLeft">30dp</item>
+        <item name="cornerSizeBottomRight">30dp</item>
     </style>
 </resources>
