@@ -102,6 +102,15 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <!--   User full name styling-->
+    <style name="TextAppearance.LonelyWheeler.User.FullName" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/hintTextColor</item>
+        <item name="android:fontFamily">@font/droid_serif</item>
+        <item name="fontFamily">@font/droid_serif</item>
+    </style>
+
     <style name="TextAppearance.LonelyWheeler.Title.NavDrawer">
         <item name="android:textSize">24sp</item>
     </style>
@@ -200,6 +209,14 @@
         <item name="cornerSizeBottomLeft">18dp</item>
         <item name="cornerSizeTopRight">18dp</item>
         <item name="cornerSizeTopLeft">18dp</item>
+    </style>
+
+    <style name="ShapeAppearance.LonelyWheeler.UserPicture" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">15dp</item>
+        <item name="cornerFamily">cut</item>
+        <item name="backgroundColor">@color/defaultBackgroundColor</item>
+        <item name="backgroundTint">@color/defaultBackgroundColor</item>
+        <item name="boxBackgroundColor">@color/defaultBackgroundColor</item>
     </style>
 
     <!--    ShapeAppearance OutlinedBox CUT-->

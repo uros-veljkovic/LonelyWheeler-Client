@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:hint="@string/first_name"
-                app:startIconDrawable="@drawable/ic_person_round">
+                app:startIconDrawable="@drawable/ic_person_round_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/activitySignUp_etFirstName"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:hint="@string/last_name"
-                app:startIconDrawable="@drawable/ic_person_round">
+                app:startIconDrawable="@drawable/ic_person_round_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/activitySignUp_etLastName"
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:hint="@string/username"
-                app:startIconDrawable="@drawable/ic_person_round">
+                app:startIconDrawable="@drawable/ic_person_round_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/activitySignUp_etUsername"
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:hint="@string/mobile_number"
-                app:startIconDrawable="@drawable/ic_person_round">
+                app:startIconDrawable="@drawable/ic_person_round_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/activitySignUp_etMobileNumber"
@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:hint="@string/email"
-                app:startIconDrawable="@drawable/ic_email">
+                app:startIconDrawable="@drawable/ic_email_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/activitySignUp_etEmail"
