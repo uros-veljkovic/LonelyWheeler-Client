@@ -73,4 +73,6 @@
     <string name="street_example">Zaplanjska 24</string>
     <string name="preview_offers">Preview offers</string>
     <string name="personal_info_placeholder">Personal info</string>
+    <string name="good_seller_indicator">Good seller indicator</string>
+    <string name="bad_seller_indicator">Bad seller indicator</string>
 </resources>

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+TODO: u dataBinding ubaciti ObservableBoolean koji ce, u zavisnosti
+      od vrednosti, prikazivati button EDIT, postavljati editable i focusable za polja
+      i disableovati ili enablovati like i dislike button-->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,12 +15,26 @@
         android:layout_height="match_parent"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             tools:context=".ui.view.activity.signup.SignUpActivity">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fragmentPreviewOffer_btnEditOrSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:contentDescription="Edit or Save"
+                android:drawableEnd="@drawable/ic_edit"
+                android:drawableTint="@color/colorOnPrimary"
+                android:text="Edit"
+                app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvGeneralInfoPlaceholder"
+                app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvGeneralInfoPlaceholder"
+                app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvGeneralInfoPlaceholder" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/fragmentPreviewProfile_ivUserPicture"
@@ -58,10 +76,10 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/fragmentPreviewProfile_tilUsername"
-                android:layout_marginTop="32dp"
                 style="@style/Widget.LonelyWheeler.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -174,7 +192,6 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
             <ImageButton
                 android:id="@+id/fragmentPreviewProfile_btnLike"
                 android:layout_width="70dp"
@@ -182,6 +199,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:clickable="true"
+                android:contentDescription="@string/good_seller_indicator"
                 android:focusable="true"
                 android:src="@drawable/ic_like"
                 app:layout_constraintEnd_toStartOf="@+id/fragmentPreviewProfile_btnDislike"
@@ -207,6 +225,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:clickable="true"
+                android:contentDescription="@string/bad_seller_indicator"
                 android:focusable="true"
                 android:src="@drawable/ic_dislike"
                 app:layout_constraintEnd_toEndOf="parent"
