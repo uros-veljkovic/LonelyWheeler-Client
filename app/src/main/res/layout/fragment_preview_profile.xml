@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 TODO: u dataBinding ubaciti ObservableBoolean koji ce, u zavisnosti
       od vrednosti, prikazivati button EDIT, postavljati editable i focusable za polja
       i disableovati ili enablovati like i dislike button-->

@@ -36,7 +36,7 @@
     <string name="model">"Model: "</string>
     <string name="year_of_production">"Year of production: "</string>
     <string name="fixed_value">"Fixed value ? "</string>
-    <string name="first_owner">"First owner ? "</string>
+    <string name="first_owner">"You are the first owner ? "</string>
     <string name="owner_in">"Owner is in for exchange ? "</string>
     <string name="exterior_color">"Exterior color: "</string>
     <string name="interior_color">"Interior color: "</string>
@@ -75,4 +75,13 @@
     <string name="personal_info_placeholder">Personal info</string>
     <string name="good_seller_indicator">Good seller indicator</string>
     <string name="bad_seller_indicator">Bad seller indicator</string>
+    <string name="general_info_placeholder">General info</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="fixed_price">Fixed price ?</string>
+    <string name="in_for_exchange">Are you in for exchange ?</string>
+    <string name="product_specific_info_placeholder">Product specific info</string>
+    <string name="number_of">"Number of: "</string>
+    <string name="doors">Doors</string>
+    <string name="seats_placeholder">Seats</string>
 </resources>
