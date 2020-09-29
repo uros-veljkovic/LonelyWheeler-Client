@@ -27,7 +27,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/fragmentUpdateOffer_tvGeneralInfoPlaceholder"
+                android:id="@+id/fragmentUpdateOffer_tvProductGeneralInfoPlaceholder"
                 style="@style/TextAppearance.LonelyWheeler.Title.Product.GeneralInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
                 android:layout_marginBottom="8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_tvGeneralInfoPlaceholder">
+                app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_tvProductGeneralInfoPlaceholder">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/fragmentUpdateOffer_etProductTitle"
@@ -330,9 +330,9 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/fragmentPreviewProduct_tvProductOtherInfo"
                 android:layout_width="match_parent"
-                android:textColor="@color/hintTextColor"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
+                android:textColor="@color/hintTextColor"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_spnrProductCondition"
@@ -495,10 +495,10 @@
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                app:layout_constraintStart_toEndOf="@id/fragmentUpdateOffer_tvNumberOfPlaceholder"
-                app:layout_constraintTop_toTopOf="@id/fragmentUpdateOffer_tvNumberOfPlaceholder"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_tvNumberOfPlaceholder"
-                android:layout_marginBottom="8dp">
+                app:layout_constraintStart_toEndOf="@id/fragmentUpdateOffer_tvNumberOfPlaceholder"
+                app:layout_constraintTop_toTopOf="@id/fragmentUpdateOffer_tvNumberOfPlaceholder">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/fragmentUpdateOffer_etNumberOfDoors"
@@ -527,10 +527,9 @@
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                app:layout_constraintStart_toEndOf="@id/fragmentUpdateOffer_tilNumberOfDoors"
-                app:layout_constraintTop_toTopOf="@id/fragmentUpdateOffer_tilNumberOfDoors"
                 app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_tilNumberOfDoors"
-                >
+                app:layout_constraintStart_toEndOf="@id/fragmentUpdateOffer_tilNumberOfDoors"
+                app:layout_constraintTop_toTopOf="@id/fragmentUpdateOffer_tilNumberOfDoors">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/fragmentUpdateOffer_etNumberOfSeats"
@@ -542,46 +541,78 @@
                     android:textColor="@color/hintTextColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragmentUpdateOffer_tvCarHasMultimedia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="48dp"
+                android:text="@string/has_multimedia"
+                android:textColor="@color/hintTextColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_tvNumberOfPlaceholder" />
+
+            <RadioGroup
+                android:id="@+id/fragmentUpdateOffer_rbtnGroupCarHasMultimedia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:buttonTint="@color/colorPrimary"
+                android:checkedButton="@id/fragmentUpdateOffer_rbtnProductHasFirstOwnerYes"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_tvCarHasMultimedia"
+                app:layout_constraintEnd_toEndOf="@+id/fragmentUpdateOffer_rbtnGroupFixedPrice"
+                app:layout_constraintTop_toTopOf="@id/fragmentUpdateOffer_tvCarHasMultimedia">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/fragmentUpdateOffer_rbtnGroupCarHasMultimediaYes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/yes"
+                    android:textColor="@color/hintTextColor" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/fragmentUpdateOffer_rbtnGroupCarHasMultimediaNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no"
+                    android:textColor="@color/hintTextColor" />
+            </RadioGroup>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fragmentUpdateOffer_btnUpdate"
+                style="@style/Widget.LonelyWheeler.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
+                android:paddingHorizontal="8dp"
+                android:text="@string/update"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/fragmentUpdateOffer_btnCancel"
+                app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_rbtnGroupCarHasMultimedia" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fragmentUpdateOffer_btnCancel"
+                style="@style/Widget.LonelyWheeler.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:text="@string/cancel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/fragmentUpdateOffer_btnUpdate"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragmentUpdateOffer_rbtnGroupCarHasMultimedia" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/fragmentUpdateOffer_tvCarHasMultimedia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:text="@string/has_multimedia"
-            android:textColor="@color/hintTextColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_tvNumberOfPlaceholder" />
 
-        <RadioGroup
-            android:id="@+id/fragmentUpdateOffer_rbtnGroupCarHasMultimedia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:buttonTint="@color/colorPrimary"
-            android:checkedButton="@id/fragmentUpdateOffer_rbtnProductHasFirstOwnerYes"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_tvCarHasMultimedia"
-            app:layout_constraintEnd_toEndOf="@+id/fragmentUpdateOffer_rbtnGroupFixedPrice"
-            app:layout_constraintTop_toTopOf="@id/fragmentUpdateOffer_tvCarHasMultimedia">
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/fragmentUpdateOffer_rbtnGroupCarHasMultimediaYes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="@string/yes"
-                android:textColor="@color/hintTextColor" />
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/fragmentUpdateOffer_rbtnGroupCarHasMultimediaNo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/no"
-                android:textColor="@color/hintTextColor" />
-        </RadioGroup>
     </ScrollView>
 
 </FrameLayout>

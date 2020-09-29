@@ -84,4 +84,6 @@
     <string name="number_of">"Number of: "</string>
     <string name="doors">Doors</string>
     <string name="seats_placeholder">Seats</string>
+    <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
 </resources>

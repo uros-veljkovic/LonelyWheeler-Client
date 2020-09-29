@@ -159,7 +159,7 @@
 
     <!--    Outlined TextButton styling-->
     <style name="Widget.LonelyWheeler.Button" parent="Widget.MaterialComponents.Button">
-        <item name="shapeAppearance">@style/Widget.LonelyWheeler.SmallComponent.SmallCut</item>
+        <item name="shapeAppearance">@style/Widget.LonelyWheeler.SmallComponent.ButtonCut</item>
         <item name="android:textColor">@color/colorOnPrimary</item>
         <item name="backgroundTint">?attr/colorPrimaryDark</item>
         <item name="android:stateListAnimator" tools:ignore="NewApi">
@@ -209,6 +209,14 @@
         <item name="cornerSizeBottomLeft">18dp</item>
         <item name="cornerSizeTopRight">18dp</item>
         <item name="cornerSizeTopLeft">18dp</item>
+    </style>
+
+    <style name="Widget.LonelyWheeler.SmallComponent.ButtonCut" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSizeBottomRight">4dp</item>
+        <item name="cornerSizeBottomLeft">4dp</item>
+        <item name="cornerSizeTopRight">4dp</item>
+        <item name="cornerSizeTopLeft">4dp</item>
     </style>
 
     <style name="ShapeAppearance.LonelyWheeler.UserPicture" parent="ShapeAppearance.MaterialComponents.SmallComponent">
