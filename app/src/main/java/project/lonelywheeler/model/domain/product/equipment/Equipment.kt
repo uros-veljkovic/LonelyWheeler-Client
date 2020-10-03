@@ -4,6 +4,9 @@ import android.graphics.Bitmap
 import project.lonelywheeler.model.domain.product.Condition
 import project.lonelywheeler.model.domain.product.Product
 import project.lonelywheeler.model.domain.product.ProductBasicInfo
+import project.lonelywheeler.model.domain.product.toEntity
+import project.lonelywheeler.repository.entity.product.equipment.EquipmentEntity
+import project.lonelywheeler.util.toListOfByteArrays
 import javax.inject.Inject
 
 class Equipment
@@ -36,3 +39,21 @@ constructor(
     colorInterior,
     materialInterior
 )
+
+fun Equipment.toEntity() : EquipmentEntity{
+    return EquipmentEntity(
+        id = this.id,
+        sellerId = this.sellerId,
+        basicInfo = this.basicInfo.toEntity(),
+        condition = this.condition,
+        picturesListByteArray = pictures.toListOfByteArrays(),
+        valueFixed = this.valueFixed,
+        firstOwner = this.firstOwner,
+        sellerInForExchange = this.sellerInForExchange,
+        otherInfo = this.otherInfo,
+        colorExterior = this.colorExterior,
+        colorInterior = this.colorInterior,
+        materialInterior = this.materialInterior,
+        equipmentType = this.equipmentType
+    )
+}

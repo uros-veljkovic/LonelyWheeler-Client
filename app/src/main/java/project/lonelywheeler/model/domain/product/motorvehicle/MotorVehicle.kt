@@ -4,6 +4,9 @@ import android.graphics.Bitmap
 import project.lonelywheeler.model.domain.product.Condition
 import project.lonelywheeler.model.domain.product.Product
 import project.lonelywheeler.model.domain.product.ProductBasicInfo
+import project.lonelywheeler.model.domain.product.toEntity
+import project.lonelywheeler.repository.entity.product.motorvehicle.MotorVehicleEntity
+import project.lonelywheeler.repository.entity.product.toPojo
 import java.util.*
 import javax.inject.Inject
 
@@ -49,6 +52,35 @@ constructor(
     colorExterior,
     colorInterior,
     materialInterior
-) {
+)
 
+fun MotorVehicle.toEntity(): MotorVehicleEntity {
+    return MotorVehicleEntity(
+        id,
+        sellerId,
+        basicInfo = this.basicInfo.toEntity(),
+        condition,
+        pictures,
+        valueFixed,
+        firstOwner,
+        sellerInForExchange,
+        otherInfo,
+        colorExterior,
+        colorInterior,
+        materialInterior,
+        carBodyType,
+        fuelType,
+        emissionStandard,
+        gearboxType,
+        steeringWheelSide,
+        drivetrain,
+        maxSpeed,
+        maxHorsePower,
+        mileage,
+        cubicCapacity,
+        registeredUntil,
+        numberOfDoors,
+        numberOfSeats,
+        hasMultimedia
+    )
 }

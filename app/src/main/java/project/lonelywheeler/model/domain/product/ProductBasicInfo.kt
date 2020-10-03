@@ -1,5 +1,6 @@
 package project.lonelywheeler.model.domain.product
 
+import project.lonelywheeler.repository.entity.product.ProductBasicInfoEntity
 import java.util.*
 import javax.inject.Inject
 
@@ -13,3 +14,14 @@ constructor(
     var brand: String,
     var yearOfProduction: Int?
 )
+
+fun  ProductBasicInfo.toEntity(): ProductBasicInfoEntity {
+    return ProductBasicInfoEntity(
+        title = this.title,
+        value = this.value,
+        dateModified = this.dateModified.time,
+        model = this.model,
+        brand = this.brand,
+        yearOfProduction = this.yearOfProduction
+    )
+}

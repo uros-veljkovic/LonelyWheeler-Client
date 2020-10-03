@@ -88,5 +88,12 @@ dependencies {
     //KenBurnsView
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
 
+    //Retrofit
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    //Retrofit - Gson
+    implementation "com.google.code.gson:gson:2.8.6"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
 
 }
