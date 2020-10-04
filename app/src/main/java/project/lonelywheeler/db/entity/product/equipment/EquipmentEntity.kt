@@ -1,12 +1,12 @@
-package project.lonelywheeler.repository.entity.product.equipment
+package project.lonelywheeler.db.entity.product.equipment
 
 import com.google.gson.annotations.SerializedName
 import project.lonelywheeler.model.domain.product.Condition
 import project.lonelywheeler.model.domain.product.equipment.Equipment
 import project.lonelywheeler.model.domain.product.equipment.EquipmentType
-import project.lonelywheeler.repository.entity.product.ProductBasicInfoEntity
-import project.lonelywheeler.repository.entity.product.toPojo
-import project.lonelywheeler.util.toBitmapList
+import project.lonelywheeler.db.entity.product.ProductBasicInfoEntity
+import project.lonelywheeler.db.entity.product.toPojo
+import project.lonelywheeler.util.convertToBitmapList
 
 class EquipmentEntity
 constructor(
@@ -22,8 +22,8 @@ constructor(
     @SerializedName("condition")
     val condition: Condition?,
 
-    @SerializedName("pictures_byte_array")
-    val picturesListByteArray: List<ByteArray>,
+    @SerializedName("pictures")
+    val pictures: List<String>,
 
     @SerializedName("value_fixed")
     val valueFixed: Boolean?,
@@ -56,7 +56,7 @@ fun EquipmentEntity.toPojo() : Equipment{
         sellerId = this.sellerId,
         basicInfo = this.basicInfo.toPojo(),
         condition = this.condition,
-        pictures = picturesListByteArray.toBitmapList(),
+        pictures = pictures.convertToBitmapList(),
         valueFixed = this.valueFixed,
         firstOwner = this.firstOwner,
         sellerInForExchange = this.sellerInForExchange,

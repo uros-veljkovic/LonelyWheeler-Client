@@ -1,4 +1,4 @@
-package project.lonelywheeler.repository.entity.product
+package project.lonelywheeler.db.entity.product
 
 import com.google.gson.annotations.SerializedName
 import project.lonelywheeler.model.domain.product.ProductBasicInfo

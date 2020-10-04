@@ -1,40 +1,91 @@
-package project.lonelywheeler.repository.entity.product.motorvehicle
+package project.lonelywheeler.db.entity.product.motorvehicle
 
-import android.graphics.Bitmap
+import com.google.gson.annotations.SerializedName
+import project.lonelywheeler.db.entity.product.ProductBasicInfoEntity
+import project.lonelywheeler.db.entity.product.toPojo
 import project.lonelywheeler.model.domain.product.Condition
-import project.lonelywheeler.model.domain.product.ProductBasicInfo
 import project.lonelywheeler.model.domain.product.motorvehicle.*
-import project.lonelywheeler.repository.entity.product.ProductBasicInfoEntity
-import project.lonelywheeler.repository.entity.product.toPojo
+import project.lonelywheeler.util.convertToBitmapList
 import java.util.*
 
 class MotorVehicleEntity
 constructor(
+    @SerializedName("id")
     val id: Long?,
+
+    @SerializedName("seller_id")
     val sellerId: Long?,
+
+    @SerializedName("basic_info")
     val basicInfo: ProductBasicInfoEntity,
+
+    @SerializedName("condition")
     val condition: Condition?,
-    val pictures: List<Bitmap>,
+
+    @SerializedName("pictures")
+    val pictures: List<String>,
+
+    @SerializedName("value_fixed")
     val valueFixed: Boolean?,
+
+    @SerializedName("first_owner")
     val firstOwner: Boolean?,
+
+    @SerializedName("seller_in_for_exchange")
     val sellerInForExchange: Boolean?,
+
+    @SerializedName("other_info")
     val otherInfo: String?,
+
+    @SerializedName("color_exterior")
     val colorExterior: String?,
+
+    @SerializedName("color_interior")
     val colorInterior: String?,
+
+    @SerializedName("material_interior")
     val materialInterior: String?,
+
+    @SerializedName("car_body_type")
     val carBodyType: CarBodyType,
+
+    @SerializedName("fuel_type")
     val fuelType: FuelType,
+
+    @SerializedName("emission_standard")
     val emissionStandard: EmissionStandard,
+
+    @SerializedName("gearbox_type")
     val gearboxType: GearboxType,
+
+    @SerializedName("steering_wheel_side")
     val steeringWheelSide: SteeringWheelSide,
+
+    @SerializedName("drivetrain")
     val drivetrain: Drivetrain,
+
+    @SerializedName("max_speed")
     val maxSpeed: Int,
+
+    @SerializedName("max_horse_power")
     val maxHorsePower: Int,
+
+    @SerializedName("mileage")
     val mileage: Int,
+
+    @SerializedName("cubic_capacity")
     val cubicCapacity: Int,
-    val registeredUntil: Date,
+
+    @SerializedName("registered_until")
+    val registeredUntil: Long,
+
+    @SerializedName("number_of_doors")
     val numberOfDoors: Int,
+
+    @SerializedName("number_of_seats")
     val numberOfSeats: Int,
+
+    @SerializedName("has_multimedia")
     val hasMultimedia: Boolean,
 )
 
@@ -44,7 +95,7 @@ fun MotorVehicleEntity.toPojo(): MotorVehicle {
         sellerId,
         basicInfo = this.basicInfo.toPojo(),
         condition,
-        pictures,
+        pictures = this.pictures.convertToBitmapList(),
         valueFixed,
         firstOwner,
         sellerInForExchange,
@@ -62,9 +113,13 @@ fun MotorVehicleEntity.toPojo(): MotorVehicle {
         maxHorsePower,
         mileage,
         cubicCapacity,
-        registeredUntil,
+        registeredUntil.toDate(),
         numberOfDoors,
         numberOfSeats,
         hasMultimedia
     )
+}
+
+fun Long.toDate(): Date {
+    return Date(this);
 }

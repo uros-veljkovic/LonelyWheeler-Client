@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName
 
 enum class EquipmentType {
 
-    @SerializedName("motor vehicle part")
+    @SerializedName("MotorVehiclePart")
     MotorVehiclePart,
 
-    @SerializedName("human-powered vehicle part")
+    @SerializedName("HumanPoweredVehiclePart")
     HumanPoweredVehiclePart,
 
-    @SerializedName("other")
+    @SerializedName("Other")
     Other
 
 }

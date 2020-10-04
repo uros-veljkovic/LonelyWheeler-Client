@@ -1,12 +1,11 @@
-package project.lonelywheeler.repository.entity.product.humanvehicle
+package project.lonelywheeler.db.entity.product.humanvehicle
 
-import android.graphics.Bitmap
+import project.lonelywheeler.db.entity.product.ProductBasicInfoEntity
+import project.lonelywheeler.db.entity.product.toPojo
 import project.lonelywheeler.model.domain.product.Condition
-import project.lonelywheeler.model.domain.product.ProductBasicInfo
 import project.lonelywheeler.model.domain.product.humanvehicle.HumanPoweredVehicle
 import project.lonelywheeler.model.domain.product.humanvehicle.HumanPoweredVehicleType
-import project.lonelywheeler.repository.entity.product.ProductBasicInfoEntity
-import project.lonelywheeler.repository.entity.product.toPojo
+import project.lonelywheeler.util.convertToBitmapList
 
 class HumanPoweredVehicleEntity
 constructor(
@@ -14,7 +13,7 @@ constructor(
     val sellerId: Long?,
     val basicInfo: ProductBasicInfoEntity,
     val condition: Condition?,
-    val pictures: List<Bitmap>,
+    val pictures: List<String>,
     val valueFixed: Boolean?,
     val firstOwner: Boolean?,
     val sellerInForExchange: Boolean?,
@@ -31,7 +30,7 @@ fun HumanPoweredVehicleEntity.toPojo(): HumanPoweredVehicle {
         sellerId,
         basicInfo = this.basicInfo.toPojo(),
         condition,
-        pictures,
+        pictures = this.pictures.convertToBitmapList(),
         valueFixed,
         firstOwner,
         sellerInForExchange,

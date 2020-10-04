@@ -1,6 +1,6 @@
 package project.lonelywheeler.model.domain.product
 
-import project.lonelywheeler.repository.entity.product.ProductBasicInfoEntity
+import project.lonelywheeler.db.entity.product.ProductBasicInfoEntity
 import java.util.*
 import javax.inject.Inject
 

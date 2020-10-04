@@ -1,8 +1,8 @@
-package project.lonelywheeler.repository.entity.user
+package project.lonelywheeler.db.entity.user
 
 import com.google.gson.annotations.SerializedName
 import project.lonelywheeler.model.domain.user.UserAccountInfo
-import project.lonelywheeler.util.toBitmap
+import project.lonelywheeler.util.convertToBitmap
 
 class UserAccountInfoEntity(
 
@@ -16,7 +16,7 @@ class UserAccountInfoEntity(
     val password: String,
 
     @SerializedName("picture")
-    val pictureByteArray: ByteArray?,
+    val picture: String?,
 
     @SerializedName("times_supported")
     val timesSupported: Int,
@@ -26,7 +26,7 @@ class UserAccountInfoEntity(
 
     @SerializedName("offers_liked")
     val offersLiked: List<Long>,
-    
+
     @SerializedName("my_offers")
     val myOffers: List<Long>
 ) {
@@ -51,7 +51,7 @@ fun UserAccountInfoEntity.toPojo(): UserAccountInfo {
         username,
         email,
         password,
-        picture = this.pictureByteArray?.toBitmap(),
+        picture = this.picture?.convertToBitmap(),
         timesSupported,
         timesReported,
         offersLiked,

@@ -1,4 +1,4 @@
-package project.lonelywheeler.repository.entity.user
+package project.lonelywheeler.db.entity.user
 
 import com.google.gson.annotations.SerializedName
 import project.lonelywheeler.model.domain.user.User

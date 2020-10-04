@@ -1,9 +1,7 @@
 package project.lonelywheeler.model.domain.user
 
 import dagger.hilt.android.scopes.ActivityRetainedScoped
-import project.lonelywheeler.di.*
-import project.lonelywheeler.repository.entity.user.UserPersonalInfoEntity
-import project.lonelywheeler.repository.entity.user.toPojo
+import project.lonelywheeler.db.entity.user.UserPersonalInfoEntity
 import javax.inject.Inject
 
 @ActivityRetainedScoped
@@ -17,7 +15,7 @@ constructor(
     var mobileNumber: String
 )
 
-fun UserPersonalInfo.toEntity() : UserPersonalInfoEntity{
+fun UserPersonalInfo.toEntity() : UserPersonalInfoEntity {
     return UserPersonalInfoEntity(
         firstName = this.firstName,
         lastName = this.lastName,

@@ -2,35 +2,29 @@ package project.lonelywheeler.util
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Base64
 import java.io.ByteArrayOutputStream
 
-fun Bitmap.toByteArray(): ByteArray {
-    ByteArrayOutputStream().apply {
-        compress(Bitmap.CompressFormat.JPEG, 10, this)
-        return toByteArray()
-    }
+fun Bitmap.convertToString(): String {
+    val baos = ByteArrayOutputStream()
+    this.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+    val b = baos.toByteArray()
+    return Base64.encodeToString(b, Base64.DEFAULT)
 }
 
-fun List<Bitmap>.toListOfByteArrays(): List<ByteArray> {
-    val listOfByteArray = arrayListOf<ByteArray>()
-
-    for (bitmap in this) {
-        listOfByteArray.add(bitmap.toByteArray())
-    }
-
-    return listOfByteArray
+fun List<Bitmap>.convertToStringList(): List<String> {
+    return map {
+        it.convertToString()
+    };
 }
 
-fun ByteArray.toBitmap(): Bitmap {
-    return BitmapFactory.decodeByteArray(this, 0, size)
+fun String.convertToBitmap(): Bitmap {
+    val imageBytes = Base64.decode(this, 0)
+    return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
 }
 
-fun List<ByteArray>.toBitmapList(): List<Bitmap> {
-    val bitmapList = arrayListOf<Bitmap>()
-
-    for (byteArray in this) {
-        bitmapList.add(byteArray.toBitmap())
-    }
-
-    return bitmapList
+fun List<String>.convertToBitmapList(): List<Bitmap> {
+    return map {
+        it.convertToBitmap()
+    };
 }

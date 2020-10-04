@@ -2,8 +2,8 @@ package project.lonelywheeler.model.domain.user
 
 import android.graphics.Bitmap
 import dagger.hilt.android.scopes.ActivityRetainedScoped
-import project.lonelywheeler.repository.entity.user.UserAccountInfoEntity
-import project.lonelywheeler.util.toByteArray
+import project.lonelywheeler.db.entity.user.UserAccountInfoEntity
+import project.lonelywheeler.util.convertToString
 import javax.inject.Inject
 
 @ActivityRetainedScoped
@@ -20,12 +20,12 @@ constructor(
     var myOffers: List<Long>
 )
 
-fun UserAccountInfo.toEntity() : UserAccountInfoEntity{
+fun UserAccountInfo.toEntity() : UserAccountInfoEntity {
     return UserAccountInfoEntity(
         username = this.username,
         email = this.email,
         password = this.password,
-        pictureByteArray = this.picture?.toByteArray(),
+        picture = this.picture?.convertToString(),
         timesSupported = this.timesSupported,
         timesReported = this.timesReported,
         offersLiked = this.offersLiked,

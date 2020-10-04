@@ -1,7 +1,7 @@
 package project.lonelywheeler.model.domain.user
 
 import dagger.hilt.android.scopes.ActivityRetainedScoped
-import project.lonelywheeler.repository.entity.user.UserEntity
+import project.lonelywheeler.db.entity.user.UserEntity
 import javax.inject.Inject
 
 @ActivityRetainedScoped

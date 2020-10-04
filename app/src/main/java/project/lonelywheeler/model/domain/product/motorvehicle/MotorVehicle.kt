@@ -1,12 +1,12 @@
 package project.lonelywheeler.model.domain.product.motorvehicle
 
 import android.graphics.Bitmap
+import project.lonelywheeler.db.entity.product.motorvehicle.MotorVehicleEntity
 import project.lonelywheeler.model.domain.product.Condition
 import project.lonelywheeler.model.domain.product.Product
 import project.lonelywheeler.model.domain.product.ProductBasicInfo
 import project.lonelywheeler.model.domain.product.toEntity
-import project.lonelywheeler.repository.entity.product.motorvehicle.MotorVehicleEntity
-import project.lonelywheeler.repository.entity.product.toPojo
+import project.lonelywheeler.util.convertToStringList
 import java.util.*
 import javax.inject.Inject
 
@@ -60,7 +60,7 @@ fun MotorVehicle.toEntity(): MotorVehicleEntity {
         sellerId,
         basicInfo = this.basicInfo.toEntity(),
         condition,
-        pictures,
+        pictures = this.pictures.convertToStringList(),
         valueFixed,
         firstOwner,
         sellerInForExchange,

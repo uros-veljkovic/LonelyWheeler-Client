@@ -1,8 +1,8 @@
-package project.lonelywheeler.repository.entity.vehicle
+package project.lonelywheeler.db.entity.vehicle
 
 import android.graphics.Bitmap
 import project.lonelywheeler.model.domain.product.motorvehicle.*
-import project.lonelywheeler.repository.entity.product.ProductBasicInfoEntity
+import project.lonelywheeler.db.entity.product.ProductBasicInfoEntity
 import java.util.*
 import java.util.concurrent.locks.Condition
 

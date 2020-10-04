@@ -5,8 +5,8 @@ import project.lonelywheeler.model.domain.product.Condition
 import project.lonelywheeler.model.domain.product.Product
 import project.lonelywheeler.model.domain.product.ProductBasicInfo
 import project.lonelywheeler.model.domain.product.toEntity
-import project.lonelywheeler.repository.entity.product.equipment.EquipmentEntity
-import project.lonelywheeler.util.toListOfByteArrays
+import project.lonelywheeler.db.entity.product.equipment.EquipmentEntity
+import project.lonelywheeler.util.convertToStringList
 import javax.inject.Inject
 
 class Equipment
@@ -40,13 +40,13 @@ constructor(
     materialInterior
 )
 
-fun Equipment.toEntity() : EquipmentEntity{
+fun Equipment.toEntity() : EquipmentEntity {
     return EquipmentEntity(
         id = this.id,
         sellerId = this.sellerId,
         basicInfo = this.basicInfo.toEntity(),
         condition = this.condition,
-        picturesListByteArray = pictures.toListOfByteArrays(),
+        pictures = pictures.convertToStringList(),
         valueFixed = this.valueFixed,
         firstOwner = this.firstOwner,
         sellerInForExchange = this.sellerInForExchange,
