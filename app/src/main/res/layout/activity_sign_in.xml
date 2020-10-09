@@ -1,107 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/defaultBackgroundColor"
-    tools:context=".ui.view.activity.signin.SignInActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/activitySignIn_ivLonelyWheelerLogo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toTopOf="@id/activitySignIn_tvLonelyWheelerTitle"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+    <data>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/activitySignIn_tvLonelyWheelerTitle"
-        style="@style/TextAppearance.LonelyWheeler.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="@string/lonely_wheeler_title"
-        app:layout_constraintBottom_toTopOf="@id/activitySignIn_tilEmail"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        <variable
+            name="viewModel"
+            type="project.lonelywheeler.ui.viewmodel.auth.AuthViewModel" />
+    </data>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/activitySignIn_tilEmail"
-        style="@style/Widget.LonelyWheeler.TextInputLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/activitySignIn_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:startIconDrawable="@drawable/ic_email_24">
+        android:layout_height="match_parent"
+        android:background="@color/defaultBackgroundColor"
+        tools:context=".ui.view.activity.signin.SignInActivity">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activitySignIn_etEmail"
-            style="@style/Widget.LonelyWheeler.TextInputEditText"
+        <ImageView
+            android:id="@+id/activitySignIn_ivLonelyWheelerLogo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toTopOf="@id/activitySignIn_tvLonelyWheelerTitle"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/activitySignIn_tvLonelyWheelerTitle"
+            style="@style/TextAppearance.LonelyWheeler.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="@string/lonely_wheeler_title"
+            app:layout_constraintBottom_toTopOf="@id/activitySignIn_tilEmail"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/activitySignIn_tilEmail"
+            style="@style/Widget.LonelyWheeler.TextInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textEmailAddress"
-            android:maxLines="1" />
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/ic_email_24">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/activitySignIn_etEmail"
+                style="@style/Widget.LonelyWheeler.TextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:text="@={viewModel.user.accountInfo.email}" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/activitySignIn_tilPassword"
-        style="@style/Widget.LonelyWheeler.TextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/password"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activitySignIn_tilEmail"
-        app:passwordToggleEnabled="true"
-        app:startIconDrawable="@drawable/ic_lock">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activitySignIn_etPassword"
-            style="@style/Widget.LonelyWheeler.TextInputEditText"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/activitySignIn_tilPassword"
+            style="@style/Widget.LonelyWheeler.TextInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textPassword" />
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/activitySignIn_tilEmail"
+            app:passwordToggleEnabled="true"
+            app:startIconDrawable="@drawable/ic_lock">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/activitySignIn_etPassword"
+                style="@style/Widget.LonelyWheeler.TextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:text="@={viewModel.user.accountInfo.password}" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/activitySignIn_tvAlreadyHaveAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
-        android:text="@string/dont_have_account"
-        app:layout_constraintBottom_toTopOf="@id/activitySignIn_btnSignIn"
-        app:layout_constraintEnd_toStartOf="@+id/activitySignIn_tvSignUp"
-        app:layout_constraintTop_toBottomOf="@id/activitySignIn_tilPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/activitySignIn_tvSignUp"
-        style="@style/TextAppearance.LonelyWheeler.ClickableTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="@string/sign_up"
-        app:layout_constraintBottom_toTopOf="@id/activitySignIn_btnSignIn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activitySignIn_tilPassword" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/activitySignIn_tvAlreadyHaveAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:text="@string/dont_have_account"
+            app:layout_constraintBottom_toTopOf="@id/activitySignIn_btnSignIn"
+            app:layout_constraintEnd_toStartOf="@+id/activitySignIn_tvSignUp"
+            app:layout_constraintTop_toBottomOf="@id/activitySignIn_tilPassword" />
 
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/activitySignIn_btnSignIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/sign_in"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/activitySignIn_tvSignUp"
+            style="@style/TextAppearance.LonelyWheeler.ClickableTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/sign_up"
+            app:layout_constraintBottom_toTopOf="@id/activitySignIn_btnSignIn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/activitySignIn_tilPassword" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/activitySignIn_btnSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/sign_in"
+            android:onClick="@{() -> viewModel.signIn()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

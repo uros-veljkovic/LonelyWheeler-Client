@@ -8,7 +8,7 @@ import javax.inject.Inject
 class User
 @Inject
 constructor(
-    var id: Long?,
+    var id: String?,
     val personalInfo: UserPersonalInfo,
     val accountInfo: UserAccountInfo
 )

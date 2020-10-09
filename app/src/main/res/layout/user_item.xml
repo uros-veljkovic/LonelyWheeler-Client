@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?><?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -15,11 +14,11 @@
             android:id="@+id/productItem_ivUserImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:contentDescription="User image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@mipmap/ic_urkeev_foreground"
-            android:contentDescription="User image" />
+            tools:src="@mipmap/ic_urkeev_foreground" />
 
 
         <TextView

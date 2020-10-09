@@ -10,7 +10,6 @@ import project.lonelywheeler.di.defaults.primitives.DefaultNullableInt
 import project.lonelywheeler.di.defaults.primitives.DefaultString
 import project.lonelywheeler.model.domain.product.ProductBasicInfo
 import java.util.*
-import javax.inject.Qualifier
 
 @InstallIn(ActivityRetainedComponent::class)
 @Module
@@ -21,7 +20,7 @@ class ProductBasicInfoModule {
         @DefaultString title: String,
         @DefaultDouble value: Double,
         @DefaultDate dateModified: Date,
-        @DefaultString model: String?,
+        @DefaultString model: String,
         @DefaultString brand: String,
         @DefaultNullableInt yearOfProduction: Int?
     ): ProductBasicInfo {

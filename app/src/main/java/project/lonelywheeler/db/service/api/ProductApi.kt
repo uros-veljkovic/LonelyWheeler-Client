@@ -13,13 +13,13 @@ interface ProductApi {
     suspend fun getMotorVehicles(): Call<List<MotorVehicleEntity>>
 
     @GET("motor-vehicles/{id}")
-    suspend fun getMotorVehicleById(@Path("id") id: Long): Call<MotorVehicleEntity>
+    suspend fun getMotorVehicleById(@Path("id") id: String): Call<MotorVehicleEntity>
 
     @GET("human-powered-vehicles")
     suspend fun getHumanPoweredVehicles(): Call<List<HumanPoweredVehicleEntity>>
 
     @GET("human-powered-vehicles/{id}")
-    suspend fun getHumanPoweredVehicleById(@Path("id") id: Long): Call<HumanPoweredVehicleEntity>
+    suspend fun getHumanPoweredVehicleById(@Path("id") id: String): Call<HumanPoweredVehicleEntity>
 
     @GET("equipment")
     suspend fun getEquipment(): Call<List<EquipmentEntity>>

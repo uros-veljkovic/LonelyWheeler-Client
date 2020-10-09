@@ -86,4 +86,12 @@
     <string name="seats_placeholder">Seats</string>
     <string name="cancel">Cancel</string>
     <string name="update">Update</string>
+    <string name="enter_valid_email">Please enter valid email.</string>
+    <string name="passwords_not_match">Passwords do not match.</string>
+    <string name="error_username">User only alphabet characters !</string>
+    <string name="error_first_name">First name can only contain alphabet characters !</string>
+    <string name="error_last_name">Last name can only contain alphabet characters !</string>
+    <string name="error_email">Please enter valid email.</string>
+    <string name="error_city">Enter valid city name.</string>
+    <string name="error_street">Enter valid street name.</string>
 </resources>

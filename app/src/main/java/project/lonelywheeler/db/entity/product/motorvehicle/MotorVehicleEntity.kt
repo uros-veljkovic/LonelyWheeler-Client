@@ -8,43 +8,42 @@ import project.lonelywheeler.model.domain.product.motorvehicle.*
 import project.lonelywheeler.util.convertToBitmapList
 import java.util.*
 
-class MotorVehicleEntity
-constructor(
+class MotorVehicleEntity(
     @SerializedName("id")
-    val id: Long?,
+    val id: String?,
 
     @SerializedName("seller_id")
-    val sellerId: Long?,
+    val sellerId: String?,
 
     @SerializedName("basic_info")
     val basicInfo: ProductBasicInfoEntity,
 
     @SerializedName("condition")
-    val condition: Condition?,
+    val condition: Condition,
 
     @SerializedName("pictures")
     val pictures: List<String>,
 
     @SerializedName("value_fixed")
-    val valueFixed: Boolean?,
+    val valueFixed: Boolean,
 
     @SerializedName("first_owner")
-    val firstOwner: Boolean?,
+    val firstOwner: Boolean,
 
     @SerializedName("seller_in_for_exchange")
-    val sellerInForExchange: Boolean?,
+    val sellerInForExchange: Boolean,
 
     @SerializedName("other_info")
-    val otherInfo: String?,
+    val otherInfo: String,
 
     @SerializedName("color_exterior")
-    val colorExterior: String?,
+    val colorExterior: String,
 
     @SerializedName("color_interior")
-    val colorInterior: String?,
+    val colorInterior: String,
 
     @SerializedName("material_interior")
-    val materialInterior: String?,
+    val materialInterior: String,
 
     @SerializedName("car_body_type")
     val carBodyType: CarBodyType,

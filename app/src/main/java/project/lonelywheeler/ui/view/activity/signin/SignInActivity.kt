@@ -1,27 +1,71 @@
 package project.lonelywheeler.ui.view.activity.signin
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import project.lonelywheeler.R
-import project.lonelywheeler.ui.viewmodel.SignInViewModel
+import kotlinx.android.synthetic.main.activity_sign_in.*
+import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.activity_sign_up.activitySignUp_container
+import project.lonelywheeler.databinding.ActivitySignInBinding
+import project.lonelywheeler.ui.view.activity.main.MainActivity
+import project.lonelywheeler.ui.view.activity.signup.SignUpActivity
+import project.lonelywheeler.ui.viewmodel.auth.AuthViewModel
 
 @AndroidEntryPoint
 class SignInActivity : AppCompatActivity() {
 
-    private val TAG = "SignInActivity"
-    private val viewModel: SignInViewModel by viewModels()
+    private val viewModel: AuthViewModel by viewModels()
+    lateinit var binding: ActivitySignInBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
+        binding = ActivitySignInBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        Log.d(TAG, "onCreate: ${viewModel.user}")
-        Log.d(TAG, "onCreate: ${viewModel.user.accountInfo}")
-        Log.d(TAG, "onCreate: ${viewModel.user.personalInfo}")
+        binding.viewModel = viewModel
+    }
 
+    override fun onResume() {
+        super.onResume()
 
+        initOnClickListener()
+        observeAuthentication()
+    }
+
+    private fun initOnClickListener() {
+        binding.activitySignInTvSignUp.setOnClickListener {
+            startActivity(Intent(this, SignUpActivity::class.java))
+        }
+    }
+
+    private fun observeAuthentication() {
+        viewModel.authTrigger.observe(this, { successfulSignIn: Boolean? ->
+            if (successfulSignIn!!) {
+                startMainActivity()
+            } else {
+                showErrorMessage()
+            }
+        })
+    }
+
+    private fun showErrorMessage() {
+        Snackbar.make(
+            activitySignIn_container,
+            "${viewModel.authResponse?.message}",
+            Snackbar.LENGTH_LONG
+        ).show()
+    }
+
+    private fun startMainActivity() {
+        Snackbar.make(
+            activitySignIn_container,
+            "${viewModel.authResponse?.message}",
+            Snackbar.LENGTH_LONG
+        ).show()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }

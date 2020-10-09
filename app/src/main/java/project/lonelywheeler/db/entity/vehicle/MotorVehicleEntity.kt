@@ -8,8 +8,8 @@ import java.util.concurrent.locks.Condition
 
 class MotorVehicleEntity
 constructor(
-    val id : Long?,
-    val sellerID : Long?,
+    val id : String?,
+    val sellerID : String?,
     val basicInfo : ProductBasicInfoEntity,
     val condition: Condition?,
     val pictures: List<Bitmap>,

@@ -47,4 +47,12 @@
         <item name="cornerSizeBottomLeft">30dp</item>
         <item name="cornerSizeBottomRight">30dp</item>
     </style>
+
+    <style name="ShapeAppearance.LonelyWheeler.UserPicture" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">50%</item>
+        <item name="cornerFamily">cut</item>
+        <item name="backgroundColor">@color/defaultBackgroundColor</item>
+        <item name="backgroundTint">@color/defaultBackgroundColor</item>
+        <item name="boxBackgroundColor">@color/defaultBackgroundColor</item>
+    </style>
 </resources>

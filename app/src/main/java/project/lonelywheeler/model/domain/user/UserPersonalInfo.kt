@@ -8,19 +8,19 @@ import javax.inject.Inject
 class UserPersonalInfo
 @Inject
 constructor(
-    var firstName: String?,
-    var lastName: String?,
+    var firstName: String,
+    var lastName: String,
     var city: String,
     var street: String,
     var mobileNumber: String
 )
 
-fun UserPersonalInfo.toEntity() : UserPersonalInfoEntity {
+fun UserPersonalInfo.toEntity(): UserPersonalInfoEntity {
     return UserPersonalInfoEntity(
-        firstName = this.firstName,
-        lastName = this.lastName,
-        city = this.city,
-        street = this.street,
-        mobileNumber = this.mobileNumber
+        firstName.trim(),
+        lastName.trim(),
+        city.trim(),
+        street.trim(),
+        mobileNumber.trim()
     )
 }

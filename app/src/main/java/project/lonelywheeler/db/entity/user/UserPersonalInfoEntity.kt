@@ -5,20 +5,28 @@ import project.lonelywheeler.model.domain.user.UserPersonalInfo
 
 class UserPersonalInfoEntity
 constructor(
-    @SerializedName("first_name")
-    val firstName: String?,
-    @SerializedName("last_name")
-    val lastName: String?,
+    @SerializedName("firstName")
+    val firstName: String,
+
+    @SerializedName("lastName")
+    val lastName: String,
+
     @SerializedName("city")
     val city: String,
+
     @SerializedName("street")
     val street: String,
-    @SerializedName("mobile_number")
+
+    @SerializedName("mobileNumber")
     val mobileNumber: String
 )
 
 fun UserPersonalInfoEntity.toPojo(): UserPersonalInfo {
     return UserPersonalInfo(
-        firstName, lastName, city, street, mobileNumber
+        firstName.trim(),
+        lastName.trim(),
+        city.trim(),
+        street.trim(),
+        mobileNumber.trim()
     )
 }

@@ -13,6 +13,7 @@ constructor(
     var username: String,
     var email: String,
     var password: String,
+    var confirmPassword: String,
     var picture: Bitmap?,
     var timesSupported: Int,
     var timesReported: Int,
@@ -22,13 +23,13 @@ constructor(
 
 fun UserAccountInfo.toEntity() : UserAccountInfoEntity {
     return UserAccountInfoEntity(
-        username = this.username,
-        email = this.email,
-        password = this.password,
-        picture = this.picture?.convertToString(),
-        timesSupported = this.timesSupported,
-        timesReported = this.timesReported,
-        offersLiked = this.offersLiked,
-        myOffers = this.myOffers
+        username.trim(),
+        email.trim(),
+        password.trim(),
+        picture?.convertToString(),
+        timesSupported,
+        timesReported,
+        offersLiked,
+        myOffers
     )
 }

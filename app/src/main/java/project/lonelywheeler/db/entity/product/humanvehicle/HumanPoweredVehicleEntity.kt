@@ -9,18 +9,18 @@ import project.lonelywheeler.util.convertToBitmapList
 
 class HumanPoweredVehicleEntity
 constructor(
-    val id: Long?,
-    val sellerId: Long?,
+    val id: String?,
+    val sellerId: String?,
     val basicInfo: ProductBasicInfoEntity,
-    val condition: Condition?,
+    val condition: Condition,
     val pictures: List<String>,
-    val valueFixed: Boolean?,
-    val firstOwner: Boolean?,
-    val sellerInForExchange: Boolean?,
-    val otherInfo: String?,
-    val colorExterior: String?,
-    val colorInterior: String?,
-    val materialInterior: String?,
+    val valueFixed: Boolean,
+    val firstOwner: Boolean,
+    val sellerInForExchange: Boolean,
+    val otherInfo: String,
+    val colorExterior: String,
+    val colorInterior: String,
+    val materialInterior: String,
     var humanPoweredVehicleType: HumanPoweredVehicleType
 )
 

@@ -13,18 +13,18 @@ import javax.inject.Inject
 class MotorVehicle
 @Inject
 constructor(
-    id: Long?,
-    sellerId: Long?,
+    id: String?,
+    sellerId: String?,
     basicInfo: ProductBasicInfo,
-    condition: Condition?,
+    condition: Condition,
     pictures: List<Bitmap>,
-    valueFixed: Boolean?,
-    firstOwner: Boolean?,
-    sellerInForExchange: Boolean?,
-    otherInfo: String?,
-    colorExterior: String?,
-    colorInterior: String?,
-    materialInterior: String?,
+    valueFixed: Boolean,
+    firstOwner: Boolean,
+    sellerInForExchange: Boolean,
+    otherInfo: String,
+    colorExterior: String,
+    colorInterior: String,
+    materialInterior: String,
     var carBodyType: CarBodyType,
     var fuelType: FuelType,
     var emissionStandard: EmissionStandard,
@@ -58,9 +58,9 @@ fun MotorVehicle.toEntity(): MotorVehicleEntity {
     return MotorVehicleEntity(
         id,
         sellerId,
-        basicInfo = this.basicInfo.toEntity(),
+        basicInfo.toEntity(),
         condition,
-        pictures = this.pictures.convertToStringList(),
+        pictures.convertToStringList(),
         valueFixed,
         firstOwner,
         sellerInForExchange,
@@ -78,9 +78,13 @@ fun MotorVehicle.toEntity(): MotorVehicleEntity {
         maxHorsePower,
         mileage,
         cubicCapacity,
-        registeredUntil,
+        registeredUntil.toLong(),
         numberOfDoors,
         numberOfSeats,
         hasMultimedia
     )
+}
+
+fun Date.toLong(): Long {
+    return this.time;
 }

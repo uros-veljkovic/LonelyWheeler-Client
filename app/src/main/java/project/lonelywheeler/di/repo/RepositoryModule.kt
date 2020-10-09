@@ -64,10 +64,11 @@ class RepositoryModule {
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("OVDE MOJ URL")
+            .baseUrl("http://192.168.1.4:3000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
+//   "mongodb+srv://urkeev14:JKAr1brliXRVlugt@lonely-wheeler.ehdx9.mongodb.net/lonely-wheeler-db?retryWrites=true&w=majority"
 
 }

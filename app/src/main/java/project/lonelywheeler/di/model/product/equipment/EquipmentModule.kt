@@ -7,7 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import project.lonelywheeler.di.defaults.primitives.DefaultBoolean
 import project.lonelywheeler.di.defaults.primitives.DefaultNullableLong
-import project.lonelywheeler.di.defaults.primitives.DefaultNullableString
+import project.lonelywheeler.di.defaults.primitives.DefaultString
 import project.lonelywheeler.di.defaults.product.equipment.DefaultEquipmentType
 import project.lonelywheeler.di.defaults.product.vehicle.motorpowered.DefaultListOfCarPictures
 import project.lonelywheeler.di.defaults.product.vehicle.motorpowered.DefaultProductCondition
@@ -23,18 +23,18 @@ class EquipmentModule {
 
     @Provides
     fun provideEquipment(
-        @DefaultNullableLong id: Long?,
-        @DefaultNullableLong sellerId: Long?,
+        @DefaultNullableLong id: String?,
+        @DefaultNullableLong sellerId: String?,
         basicInfo: ProductBasicInfo,
-        @DefaultProductCondition condition: Condition?,
+        @DefaultProductCondition condition: Condition,
         @DefaultListOfCarPictures pictures: List<Bitmap>,
         @DefaultBoolean valueFixed: Boolean,
         @DefaultBoolean firstOwner: Boolean,
         @DefaultBoolean sellerInForExchange: Boolean,
-        @DefaultNullableString otherInfo: String?,
-        @DefaultNullableString colorExterior: String?,
-        @DefaultNullableString colorInterior: String?,
-        @DefaultNullableString materialInterior: String?,
+        @DefaultString otherInfo: String,
+        @DefaultString colorExterior: String,
+        @DefaultString colorInterior: String,
+        @DefaultString materialInterior: String,
         @DefaultEquipmentType equipmentType: EquipmentType
 
 

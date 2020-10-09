@@ -18,16 +18,16 @@ class UserAccountInfoEntity(
     @SerializedName("picture")
     val picture: String?,
 
-    @SerializedName("times_supported")
+    @SerializedName("timesSupported")
     val timesSupported: Int,
 
-    @SerializedName("times_reported")
+    @SerializedName("timesReported")
     val timesReported: Int,
 
-    @SerializedName("offers_liked")
+    @SerializedName("offersLiked")
     val offersLiked: List<Long>,
 
-    @SerializedName("my_offers")
+    @SerializedName("myOffers")
     val myOffers: List<Long>
 ) {
     override fun equals(other: Any?): Boolean {
@@ -51,7 +51,8 @@ fun UserAccountInfoEntity.toPojo(): UserAccountInfo {
         username,
         email,
         password,
-        picture = this.picture?.convertToBitmap(),
+        password,
+        this.picture?.convertToBitmap(),
         timesSupported,
         timesReported,
         offersLiked,

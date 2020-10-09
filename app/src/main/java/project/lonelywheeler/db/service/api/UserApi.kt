@@ -1,7 +1,9 @@
 package project.lonelywheeler.db.service.api
 
 import project.lonelywheeler.db.entity.user.UserEntity
+import project.lonelywheeler.db.response.MyResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 /*
@@ -11,21 +13,21 @@ import retrofit2.http.*
 interface UserApi {
 
     @GET("users/read")
-    suspend fun getUsers(): Call<List<UserEntity>>
+    suspend fun getUsers(): Call<MyResponse<List<UserEntity>>>
 
     @GET("users/read/{id}")
-    suspend fun getUserById(@Path("id") id: Long): Call<UserEntity>
+    suspend fun getUserById(@Path("id") id: String): Call<MyResponse<UserEntity>>
 
     @PATCH("users/update")
-    suspend fun updateUser(@Body userEntity: UserEntity): Call<UserEntity>
+    suspend fun updateUser(@Body userEntity: UserEntity): Call<MyResponse<UserEntity>>
 
     @DELETE("users/delete/{id}")
-    suspend fun deleteUser(@Path("id") id: Long): Call<Unit>
+    suspend fun deleteUser(@Path("id") id: String): Call<MyResponse<UserEntity>>
 
     @POST("users/sign-in")
-    suspend fun signInUser(@Body userEntity: UserEntity): Call<UserEntity>
+    fun signInUser(@Body userEntity: UserEntity): Call<MyResponse<UserEntity>>
 
     @POST("users/sign-up")
-    suspend fun signUpUser(@Body userEntity: UserEntity): Call<UserEntity>
+    fun signUpUser(@Body userEntity: UserEntity): Call<MyResponse<UserEntity>>
 
 }
