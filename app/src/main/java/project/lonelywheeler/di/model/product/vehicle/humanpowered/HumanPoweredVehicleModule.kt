@@ -7,14 +7,14 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import project.lonelywheeler.di.defaults.primitives.DefaultBoolean
 import project.lonelywheeler.di.defaults.primitives.DefaultString
-import project.lonelywheeler.di.defaults.product.vehicle.humanpowered.DefaultHumanPoweredVehicleType
-import project.lonelywheeler.di.defaults.product.vehicle.motorpowered.DefaultListOfCarPictures
-import project.lonelywheeler.di.defaults.product.vehicle.motorpowered.DefaultProductCondition
+import project.lonelywheeler.di.defaults.product.vehicle.pedestrian.DefaultHumanPoweredVehicleType
+import project.lonelywheeler.di.defaults.product.vehicle.motor.DefaultListOfCarPictures
+import project.lonelywheeler.di.defaults.product.vehicle.motor.DefaultProductCondition
 import project.lonelywheeler.model.domain.product.Condition
 import project.lonelywheeler.model.domain.product.Product
 import project.lonelywheeler.model.domain.product.ProductBasicInfo
-import project.lonelywheeler.model.domain.product.humanvehicle.HumanPoweredVehicle
-import project.lonelywheeler.model.domain.product.humanvehicle.HumanPoweredVehicleType
+import project.lonelywheeler.model.domain.product.vehicle.pedestrian.PedestrianVehicle
+import project.lonelywheeler.model.domain.product.vehicle.pedestrian.PedestrianVehicleType
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
@@ -34,10 +34,10 @@ class HumanPoweredVehicleModule {
         @DefaultString colorExterior: String,
         @DefaultString colorInterior: String,
         @DefaultString materialInterior: String,
-        @DefaultHumanPoweredVehicleType humanPoweredVehicleType: HumanPoweredVehicleType
+        @DefaultHumanPoweredVehicleType pedestrianVehicleType: PedestrianVehicleType
 
     ): Product {
-        return HumanPoweredVehicle(
+        return PedestrianVehicle(
             id,
             sellerId,
             basicInfo,
@@ -50,7 +50,7 @@ class HumanPoweredVehicleModule {
             colorExterior,
             colorInterior,
             materialInterior,
-            humanPoweredVehicleType
+            pedestrianVehicleType
         )
     }
 

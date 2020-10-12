@@ -1,4 +1,4 @@
-package project.lonelywheeler.di.defaults.product.vehicle.motorpowered
+package project.lonelywheeler.di.defaults.product.vehicle.motor
 
 import android.graphics.Bitmap
 import dagger.Module
@@ -6,7 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import project.lonelywheeler.model.domain.product.Condition
-import project.lonelywheeler.model.domain.product.motorvehicle.*
+import project.lonelywheeler.model.domain.product.vehicle.motor.*
 import javax.inject.Qualifier
 
 @Qualifier

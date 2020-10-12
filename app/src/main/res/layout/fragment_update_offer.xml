@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateOfferFragment">
+    tools:context=".ui.view.activity.main.fragment.UpdateOfferFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,6 +26,39 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/fragmentUpdateOffer_btnPreviousPicture"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:clickable="true"
+                android:foregroundGravity="center_horizontal"
+                android:src="@drawable/ic_arrow_ios"
+                app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_vfProductPictureFlipper"
+                app:layout_constraintStart_toStartOf="@id/fragmentUpdateOffer_vfProductPictureFlipper"
+                app:layout_constraintTop_toTopOf="@id/fragmentUpdateOffer_vfProductPictureFlipper" />
+
+            <ImageView
+                android:id="@+id/fragmentUpdateOffer_btnNextPicture"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:clickable="true"
+                android:rotation="180"
+                android:src="@drawable/ic_arrow_ios"
+                app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_vfProductPictureFlipper"
+                app:layout_constraintEnd_toEndOf="@id/fragmentUpdateOffer_vfProductPictureFlipper"
+                app:layout_constraintTop_toTopOf="@id/fragmentUpdateOffer_vfProductPictureFlipper" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                style="@style/Widget.LonelyWheeler.Fab.Mini"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
+                android:src="@drawable/ic_add_photo"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_vfProductPictureFlipper"
+                app:layout_constraintEnd_toEndOf="@id/fragmentUpdateOffer_vfProductPictureFlipper"
+                app:maxImageSize="20dp" />
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/fragmentUpdateOffer_tvProductGeneralInfoPlaceholder"
                 style="@style/TextAppearance.LonelyWheeler.Title.Product.GeneralInfo"
@@ -44,6 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="8dp"
+                android:hint="@string/product_title"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_tvProductGeneralInfoPlaceholder">
@@ -54,7 +88,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:maxLines="1"
-                    android:text="@string/username_example"
                     android:textColor="@color/hintTextColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,6 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
+                android:hint="@string/brand_placeholder"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_tilProductTitle">
@@ -75,7 +109,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:maxLines="1"
-                    android:text="@string/username_example"
                     android:textColor="@color/hintTextColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,6 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
+                android:hint="@string/model_placeholder"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_tilProductBrand">
@@ -96,7 +130,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:maxLines="1"
-                    android:text="@string/username_example"
                     android:textColor="@color/hintTextColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,6 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
+                android:hint="@string/year_of_production_placeholder"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_tilProductModel">
@@ -117,7 +151,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:maxLines="1"
-                    android:text="@string/username_example"
                     android:textColor="@color/hintTextColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -128,6 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="8dp"
+                android:hint="Price in $"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_tilProductYearOfProduction">
 
@@ -136,8 +170,8 @@
                     style="@style/Widget.LonelyWheeler.TextInputEditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:inputType="number"
                     android:maxLines="1"
-                    android:text="@string/username_example"
                     android:textColor="@color/hintTextColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -234,7 +268,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:buttonTint="@color/colorPrimary"
-                android:checkedButton="@id/fragmentUpdateOffer_rbtnProductHasFirstOwnerYes"
+                android:checkedButton="@id/fragmentUpdateOffer_rbtnSellerInForExchangeYes"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_tvSellerInForExchange"
                 app:layout_constraintEnd_toEndOf="@+id/fragmentUpdateOffer_rbtnGroupFirstOwner"
@@ -263,6 +297,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="8dp"
+                android:hint="@string/exterior_color_placeholder"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_tvSellerInForExchange">
@@ -273,7 +308,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:maxLines="1"
-                    android:text="@string/username_example"
                     android:textColor="@color/hintTextColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -284,6 +318,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
+                android:hint="@string/interior_color_placeholder"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_tilProductExteriorColor">
@@ -294,7 +329,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:maxLines="1"
-                    android:text="@string/username_example"
                     android:textColor="@color/hintTextColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -305,6 +339,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
+                android:hint="@string/interior_material_placeholder"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_tilProductInteriorColor">
@@ -315,7 +350,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:maxLines="1"
-                    android:text="@string/username_example"
                     android:textColor="@color/hintTextColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -323,6 +357,7 @@
                 android:id="@+id/fragmentUpdateOffer_spnrProductCondition"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_tilProductInteriorMaterial" />
@@ -333,6 +368,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:textColor="@color/hintTextColor"
+                android:layout_marginTop="16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_spnrProductCondition"

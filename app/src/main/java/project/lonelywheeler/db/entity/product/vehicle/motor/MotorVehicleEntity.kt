@@ -1,10 +1,10 @@
-package project.lonelywheeler.db.entity.product.motorvehicle
+package project.lonelywheeler.db.entity.product.vehicle.motor
 
 import com.google.gson.annotations.SerializedName
 import project.lonelywheeler.db.entity.product.ProductBasicInfoEntity
 import project.lonelywheeler.db.entity.product.toPojo
 import project.lonelywheeler.model.domain.product.Condition
-import project.lonelywheeler.model.domain.product.motorvehicle.*
+import project.lonelywheeler.model.domain.product.vehicle.motor.*
 import project.lonelywheeler.util.convertToBitmapList
 import java.util.*
 

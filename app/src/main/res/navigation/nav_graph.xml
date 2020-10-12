@@ -3,11 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/allOffersFragment">
+    app:startDestination="@id/previewEntitiesFragment">
 
     <fragment
-        android:id="@+id/allOffersFragment"
-        android:name="project.lonelywheeler.ui.view.activity.main.fragment.AllOffersFragment"
+        android:id="@+id/previewEntitiesFragment"
+        android:name="project.lonelywheeler.ui.view.activity.main.fragment.PreviewEntitiesFragment"
         android:label="fragment_all_offers"
-        tools:layout="@layout/fragment_all_offers" />
+        tools:layout="@layout/fragment_preview_entities" >
+        <action
+            android:id="@+id/action_allOffersFragment_to_previewOfferFragment"
+            app:destination="@id/previewOfferFragment" />
+        <argument
+            android:name="entityId"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+    <fragment
+        android:id="@+id/myOffersFragment"
+        android:name="project.lonelywheeler.ui.view.activity.main.fragment.MyOffersFragment"
+        android:label="fragment_my_offers"
+        tools:layout="@layout/fragment_my_offers" >
+        <action
+            android:id="@+id/action_myOffersFragment_to_previewOfferFragment"
+            app:destination="@id/previewOfferFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/previewProfileFragment"
+        android:name="project.lonelywheeler.ui.view.activity.main.fragment.PreviewProfileFragment"
+        android:label="fragment_preview_profile"
+        tools:layout="@layout/fragment_preview_profile" >
+        <action
+            android:id="@+id/action_previewProfileFragment_to_myOffersFragment"
+            app:destination="@id/myOffersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/previewOfferFragment"
+        android:name="project.lonelywheeler.ui.view.activity.main.fragment.PreviewOfferFragment"
+        android:label="fragment_preview_offer"
+        tools:layout="@layout/fragment_preview_offer" >
+        <action
+            android:id="@+id/action_previewOfferFragment_to_updateOfferFragment"
+            app:destination="@id/updateOfferFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateOfferFragment"
+        android:name="project.lonelywheeler.ui.view.activity.main.fragment.UpdateOfferFragment"
+        android:label="fragment_update_offer"
+        tools:layout="@layout/fragment_update_offer" >
+        <action
+            android:id="@+id/action_updateOfferFragment_to_previewOfferFragment"
+            app:destination="@id/previewOfferFragment" />
+    </fragment>
+    <action android:id="@+id/action_global_myOffersFragment" app:destination="@id/myOffersFragment" />
+    <action android:id="@+id/action_global_previewProfileFragment" app:destination="@id/previewProfileFragment" /><action android:id="@+id/action_global_previewEntitiesFragment" app:destination="@id/previewEntitiesFragment"/><action android:id="@+id/action_global_updateOfferFragment" app:destination="@id/updateOfferFragment"/>
 </navigation>

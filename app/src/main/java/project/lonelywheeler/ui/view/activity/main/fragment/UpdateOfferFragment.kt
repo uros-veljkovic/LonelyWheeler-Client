@@ -1,10 +1,11 @@
-package project.lonelywheeler
+package project.lonelywheeler.ui.view.activity.main.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import project.lonelywheeler.R
 
 class UpdateOfferFragment : Fragment() {
 

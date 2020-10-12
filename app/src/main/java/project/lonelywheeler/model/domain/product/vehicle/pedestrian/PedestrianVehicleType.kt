@@ -1,8 +1,8 @@
-package project.lonelywheeler.model.domain.product.humanvehicle
+package project.lonelywheeler.model.domain.product.vehicle.pedestrian
 
 import com.google.gson.annotations.SerializedName
 
-enum class HumanPoweredVehicleType {
+enum class PedestrianVehicleType {
     @SerializedName("bicycle")
     Bicycle,
 

@@ -57,9 +57,9 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/activitySignUp_sivPicture"
-                    style="@style/ShapeAppearance.LonelyWheeler.UserPicture"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    app:shapeAppearance="@style/ShapeAppearance.LonelyWheeler.UserPicture"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="16dp"
                     android:scaleType="centerCrop"

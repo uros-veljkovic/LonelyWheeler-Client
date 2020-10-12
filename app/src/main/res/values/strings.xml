@@ -94,4 +94,11 @@
     <string name="error_email">Please enter valid email.</string>
     <string name="error_city">Enter valid city name.</string>
     <string name="error_street">Enter valid street name.</string>
+    <string name="product_title">Title</string>
+    <string name="brand_placeholder">Brand</string>
+    <string name="model_placeholder">Model</string>
+    <string name="year_of_production_placeholder">Year of production</string>
+    <string name="exterior_color_placeholder">Exterior color</string>
+    <string name="interior_color_placeholder">Interior color</string>
+    <string name="interior_material_placeholder">Interior material</string>
 </resources>

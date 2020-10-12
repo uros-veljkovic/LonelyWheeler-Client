@@ -46,26 +46,21 @@ class SignInActivity : AppCompatActivity() {
             if (successfulSignIn!!) {
                 startMainActivity()
             } else {
-                showErrorMessage()
+                showSnackbar()
             }
         })
     }
 
-    private fun showErrorMessage() {
-        Snackbar.make(
-            activitySignIn_container,
-            "${viewModel.authResponse?.message}",
-            Snackbar.LENGTH_LONG
-        ).show()
+    private fun startMainActivity() {
+        showSnackbar()
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
-    private fun startMainActivity() {
+    private fun showSnackbar(){
         Snackbar.make(
             activitySignIn_container,
             "${viewModel.authResponse?.message}",
             Snackbar.LENGTH_LONG
         ).show()
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
     }
 }

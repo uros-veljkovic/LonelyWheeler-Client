@@ -9,8 +9,8 @@ import project.lonelywheeler.di.defaults.primitives.DefaultBoolean
 import project.lonelywheeler.di.defaults.primitives.DefaultNullableLong
 import project.lonelywheeler.di.defaults.primitives.DefaultString
 import project.lonelywheeler.di.defaults.product.equipment.DefaultEquipmentType
-import project.lonelywheeler.di.defaults.product.vehicle.motorpowered.DefaultListOfCarPictures
-import project.lonelywheeler.di.defaults.product.vehicle.motorpowered.DefaultProductCondition
+import project.lonelywheeler.di.defaults.product.vehicle.motor.DefaultListOfCarPictures
+import project.lonelywheeler.di.defaults.product.vehicle.motor.DefaultProductCondition
 import project.lonelywheeler.model.domain.product.Condition
 import project.lonelywheeler.model.domain.product.Product
 import project.lonelywheeler.model.domain.product.ProductBasicInfo

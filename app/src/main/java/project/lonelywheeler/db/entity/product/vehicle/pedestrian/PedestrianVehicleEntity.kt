@@ -1,13 +1,14 @@
-package project.lonelywheeler.db.entity.vehicle
+package project.lonelywheeler.db.entity.product.vehicle.pedestrian
 
-import android.graphics.Bitmap
 import com.google.gson.annotations.SerializedName
 import project.lonelywheeler.db.entity.product.ProductBasicInfoEntity
+import project.lonelywheeler.db.entity.product.toPojo
 import project.lonelywheeler.model.domain.product.Condition
-import project.lonelywheeler.model.domain.product.ProductBasicInfo
-import project.lonelywheeler.model.domain.product.humanvehicle.HumanPoweredVehicleType
+import project.lonelywheeler.model.domain.product.vehicle.pedestrian.PedestrianVehicle
+import project.lonelywheeler.model.domain.product.vehicle.pedestrian.PedestrianVehicleType
+import project.lonelywheeler.util.convertToBitmapList
 
-class HumanPoweredVehicleEntity
+class PedestrianVehicleEntity
 constructor(
     @SerializedName("id")
     val id: String?,
@@ -46,6 +47,23 @@ constructor(
     val materialInterior: String,
 
     @SerializedName("human_powered_vehicle_type")
-    val humanPoweredVehicleType: HumanPoweredVehicleType
-){
+    val pedestrianVehicleType: PedestrianVehicleType
+)
+
+fun PedestrianVehicleEntity.toPojo(): PedestrianVehicle {
+    return PedestrianVehicle(
+        id,
+        sellerId,
+        basicInfo = this.basicInfo.toPojo(),
+        condition,
+        pictures = this.pictures.convertToBitmapList(),
+        valueFixed,
+        firstOwner,
+        sellerInForExchange,
+        otherInfo,
+        colorExterior,
+        colorInterior,
+        materialInterior,
+        pedestrianVehicleType
+    )
 }

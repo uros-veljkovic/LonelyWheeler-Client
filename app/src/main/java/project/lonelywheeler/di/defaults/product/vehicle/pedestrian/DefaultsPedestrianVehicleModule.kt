@@ -1,10 +1,10 @@
-package project.lonelywheeler.di.defaults.product.vehicle.humanpowered
+package project.lonelywheeler.di.defaults.product.vehicle.pedestrian
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
-import project.lonelywheeler.model.domain.product.humanvehicle.HumanPoweredVehicleType
+import project.lonelywheeler.model.domain.product.vehicle.pedestrian.PedestrianVehicleType
 import javax.inject.Qualifier
 
 
@@ -18,8 +18,8 @@ class DefaultHumanPoweredVehicleAttributesModule {
 
     @DefaultHumanPoweredVehicleType
     @Provides
-    fun provideHumanPoweredVehicleType(): HumanPoweredVehicleType {
-        return HumanPoweredVehicleType.Other
+    fun provideHumanPoweredVehicleType(): PedestrianVehicleType {
+        return PedestrianVehicleType.Other
     }
 
 

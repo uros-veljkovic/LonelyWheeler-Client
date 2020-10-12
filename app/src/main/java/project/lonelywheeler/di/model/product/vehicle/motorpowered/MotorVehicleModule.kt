@@ -6,11 +6,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import project.lonelywheeler.di.defaults.primitives.*
-import project.lonelywheeler.di.defaults.product.vehicle.motorpowered.*
+import project.lonelywheeler.di.defaults.product.vehicle.motor.*
 import project.lonelywheeler.model.domain.product.Condition
 import project.lonelywheeler.model.domain.product.Product
 import project.lonelywheeler.model.domain.product.ProductBasicInfo
-import project.lonelywheeler.model.domain.product.motorvehicle.*
+import project.lonelywheeler.model.domain.product.vehicle.motor.*
 import java.util.*
 
 @Module

@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import project.lonelywheeler.R
 
-class AllOffersFragment : Fragment() {
+class PreviewEntitiesFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_offers, container, false)
+        return inflater.inflate(R.layout.fragment_preview_entities, container, false)
     }
 
 }

@@ -25,23 +25,24 @@ constructor(
 
     private val TAG = "UserService"
 
-    suspend fun getUsers(): Call<MyResponse<List<UserEntity>>> {
-        return userApi.getUsers()
+    suspend fun readAll(): Call<MyResponse<List<UserEntity>>> {
+        return userApi.readAll()
     }
 
-    suspend fun getUserById(userEntity: UserEntity): Call<MyResponse<UserEntity>> {
-        return userApi.getUserById(userEntity.id!!)
+    suspend fun read(entity: UserEntity): Call<MyResponse<UserEntity>> {
+        return userApi.read(entity.id!!)
     }
 
-    suspend fun updateUser(userEntity: UserEntity): Call<MyResponse<UserEntity>> {
-        return userApi.updateUser(userEntity)
+    suspend fun update(entity: UserEntity): Call<MyResponse<UserEntity>> {
+        return userApi.update(entity)
     }
 
-    suspend fun deleteUser(userEntity: UserEntity): Call<MyResponse<UserEntity>> {
-        return userApi.deleteUser(userEntity.id!!)
+    suspend fun delete(entity: UserEntity): Call<MyResponse<UserEntity>> {
+        return userApi.delete(entity.id!!)
     }
 
     fun signInUser(userEntity: UserEntity, authListener: AuthListener) {
+
         userApi.signInUser(userEntity).enqueue(object : Callback<MyResponse<UserEntity>> {
             override fun onResponse(
                 call: Call<MyResponse<UserEntity>>,

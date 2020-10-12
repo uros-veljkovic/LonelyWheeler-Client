@@ -1,4 +1,4 @@
-package project.lonelywheeler.model.domain.product.motorvehicle
+package project.lonelywheeler.model.domain.product.vehicle.motor
 
 import com.google.gson.annotations.SerializedName
 

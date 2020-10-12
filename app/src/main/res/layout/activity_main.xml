@@ -13,7 +13,7 @@
     </data>
 
     <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawerLayout"
+        android:id="@+id/activityMain_drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
@@ -24,19 +24,24 @@
             android:layout_height="match_parent"
             tools:context=".ui.view.activity.main.MainActivity">
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/nav_host_fragment_container"
+            <ProgressBar
+                android:id="@+id/activityMain_progressBar"
+                android:layout_width="100dp"
+                android:visibility="gone"
+                android:layout_height="100dp"
+                android:layout_gravity="center" />
+
+            <fragment
+                android:id="@+id/nav_graph_container"
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:elevation="1dp"
                 android:layout_marginBottom="56dp"
-                android:backgroundTint="@color/defaultBackgroundColor"
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/nav_graph" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab3"
+                android:id="@+id/activityMain_fabMotorVehicle"
                 style="@style/Widget.LonelyWheeler.Fab.Mini"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,13 +49,13 @@
                 android:src="@drawable/ic_car_black"
                 android:visibility="gone"
                 app:fabSize="mini"
-                app:layout_anchor="@id/fab2"
+                app:layout_anchor="@id/activityMain_fabHumanPoweredVehicle"
                 app:layout_anchorGravity="top|center_horizontal"
                 app:maxImageSize="20dp"
                 app:miniFabAnimation="@{fabTrigger}" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab2"
+                android:id="@+id/activityMain_fabHumanPoweredVehicle"
                 style="@style/Widget.LonelyWheeler.Fab.Mini"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,13 +63,13 @@
                 android:src="@drawable/ic_bycicle"
                 android:visibility="gone"
                 app:fabSize="mini"
-                app:layout_anchor="@id/fab1"
+                app:layout_anchor="@id/activityMain_fabEquipment"
                 app:layout_anchorGravity="top|center_horizontal"
                 app:maxImageSize="20dp"
                 app:miniFabAnimation="@{fabTrigger}" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab1"
+                android:id="@+id/activityMain_fabEquipment"
                 style="@style/Widget.LonelyWheeler.Fab.Mini"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,21 +77,21 @@
                 android:src="@drawable/ic_equipment"
                 android:visibility="gone"
                 app:fabSize="mini"
-                app:layout_anchor="@id/mainFab"
+                app:layout_anchor="@id/activityMain_fabMain"
                 app:layout_anchorGravity="top|center_horizontal"
                 app:maxImageSize="20dp"
                 app:miniFabAnimation="@{fabTrigger}" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/mainFab"
+                android:id="@+id/activityMain_fabMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_anchor="@id/bottomAppBar"
+                app:layout_anchor="@id/activityMain_bottomAppBar"
                 app:layout_anchorGravity="center"
                 app:mainFabAnimation="@{fabTrigger}" />
 
             <com.google.android.material.bottomappbar.BottomAppBar
-                android:id="@+id/bottomAppBar"
+                android:id="@+id/activityMain_bottomAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -99,7 +104,7 @@
                 app:fabCradleMargin="15dp"
                 app:fabCradleVerticalOffset="8dp"
                 app:hideOnScroll="true"
-                app:layout_anchorGravity="start">
+                app:layout_anchorGravity="center">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -107,7 +112,7 @@
                     android:weightSum="5">
 
                     <ImageButton
-                        android:id="@+id/ibtnNavDrawer"
+                        android:id="@+id/activityMain_ibtnNavDrawer"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -116,7 +121,7 @@
                         app:srcCompat="@drawable/ic_burger" />
 
                     <ImageButton
-                        android:id="@+id/ibtnAllSellers"
+                        android:id="@+id/activityMain_ibtnAllSellers"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -132,7 +137,7 @@
                         android:clickable="false" />
 
                     <ImageButton
-                        android:id="@+id/ibtnLiked"
+                        android:id="@+id/activityMain_btnMyOffersFragment"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -141,7 +146,7 @@
                         app:srcCompat="@drawable/ic_heart_black" />
 
                     <ImageButton
-                        android:id="@+id/ibtnProfile"
+                        android:id="@+id/activityMain_btnPreviewProfileFragment"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

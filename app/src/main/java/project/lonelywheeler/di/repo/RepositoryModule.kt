@@ -4,11 +4,12 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import project.lonelywheeler.db.service.ProductService
-import project.lonelywheeler.db.service.UserService
-import project.lonelywheeler.db.service.api.ProductApi
-import project.lonelywheeler.db.service.api.UserApi
 import project.lonelywheeler.db.repo.Repository
+import project.lonelywheeler.db.service.EquipmentService
+import project.lonelywheeler.db.service.PedestrianVehicleService
+import project.lonelywheeler.db.service.MotorVehicleService
+import project.lonelywheeler.db.service.UserService
+import project.lonelywheeler.db.service.api.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -17,22 +18,20 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 class RepositoryModule {
 
-
     @Singleton
     @Provides
     fun provideRepository(
         userService: UserService,
-        productService: ProductService
+        motorVehicleService: MotorVehicleService,
+        pedestrianVehicleService: PedestrianVehicleService,
+        equipmentService: EquipmentService
     ): Repository {
-        return Repository(userService, productService)
-    }
-
-    @Singleton
-    @Provides
-    fun provideProductService(
-        productApi: ProductApi
-    ): ProductService {
-        return ProductService(productApi)
+        return Repository(
+            userService,
+            motorVehicleService,
+            pedestrianVehicleService,
+            equipmentService
+        )
     }
 
     @Singleton
@@ -53,10 +52,50 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideProductApi(
+    fun provideMotorVehicleService(
+        motorVehicleApi: MotorVehicleApi
+    ): MotorVehicleService {
+        return MotorVehicleService(motorVehicleApi)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMotorVehicleApi(
         retrofit: Retrofit
-    ): ProductApi {
-        return retrofit.create(ProductApi::class.java)
+    ): MotorVehicleApi {
+        return retrofit.create(MotorVehicleApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideHumanPoweredVehicleService(
+        pedestrianVehicleApi: PedestrianVehicleApi
+    ): PedestrianVehicleService {
+        return PedestrianVehicleService(pedestrianVehicleApi)
+    }
+
+    @Singleton
+    @Provides
+    fun provideHumanPoweredVehicleApi(
+        retrofit: Retrofit
+    ): PedestrianVehicleApi {
+        return retrofit.create(PedestrianVehicleApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideEquipmentService(
+        equipmentApi: EquipmentApi
+    ): EquipmentService {
+        return EquipmentService(equipmentApi)
+    }
+
+    @Singleton
+    @Provides
+    fun provideEquipmentApi(
+        retrofit: Retrofit
+    ): EquipmentApi {
+        return retrofit.create(EquipmentApi::class.java)
     }
 
     //TODO: umesto baseUrl uneti moju IP adresu (valjda)
