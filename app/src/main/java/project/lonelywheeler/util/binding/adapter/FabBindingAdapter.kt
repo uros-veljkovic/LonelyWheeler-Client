@@ -21,9 +21,8 @@ fun miniFabAnimation(view: View, fabShouldAppear: Boolean) {
         view.visibility = View.VISIBLE
         view.startAnimation(FabAnimationProvider.fromBottom)
     } else {
-        \\TODO: Replace position of two lines below
-        view.visibility = View.GONE
         view.startAnimation(FabAnimationProvider.toBottom)
+        view.visibility = View.GONE
     }
     view.isClickable = fabShouldAppear
 }
