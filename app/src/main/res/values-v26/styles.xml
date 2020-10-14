@@ -23,9 +23,11 @@
             @style/TextAppearance.LonelyWheeler.TextInputLayout.HintText
         </item>
         <item name="endIconDrawable">@drawable/ic_search_orange</item>
-        <item name="android:textColorHint">@color/colorPrimary</item>
-        <item name="hintTextColor">@android:color/transparent</item>        <item name="boxStrokeWidth">0dp</item>
+        <item name="android:textColorHint">@color/colorOnSecondary</item>
+        <item name="hintTextColor">@color/colorOnSecondary</item>
+        <item name="boxStrokeWidth">1dp</item>
         <item name="boxBackgroundColor">@color/searchBoxColor</item>
+        <item name="boxStrokeColor">@color/colorPrimary</item>
     </style>
 
     <!--        TextInputEditText SEARCH styling-->

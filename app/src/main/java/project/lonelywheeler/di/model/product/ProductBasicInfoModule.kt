@@ -15,6 +15,26 @@ import java.util.*
 @Module
 class ProductBasicInfoModule {
 
+//    @Provides
+//    fun provideBasicInfo(
+//        @DefaultString title: String,
+//        @DefaultDouble value: Double,
+//        @DefaultDate dateModified: Date,
+//        @DefaultString model: String,
+//        @DefaultString brand: String,
+//        @DefaultNullableInt yearOfProduction: Int?
+//    ): ProductBasicInfo {
+//        return ProductBasicInfo(
+//            title,
+//            value,
+//            dateModified,
+//            model,
+//            brand,
+//            yearOfProduction
+//        )
+//    }
+
+
     @Provides
     fun provideBasicInfo(
         @DefaultString title: String,

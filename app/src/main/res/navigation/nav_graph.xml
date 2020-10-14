@@ -47,9 +47,9 @@
     </fragment>
     <fragment
         android:id="@+id/updateOfferFragment"
-        android:name="project.lonelywheeler.ui.view.activity.main.fragment.UpdateOfferFragment"
+        android:name="project.lonelywheeler.ui.view.activity.main.fragment.MotorVehicleFragment"
         android:label="fragment_update_offer"
-        tools:layout="@layout/fragment_update_offer" >
+        tools:layout="@layout/fragment_motor_vehicle" >
         <action
             android:id="@+id/action_updateOfferFragment_to_previewOfferFragment"
             app:destination="@id/previewOfferFragment" />

@@ -4,7 +4,7 @@
     <string name="advanced_search">Advanced search</string>
     <string name="home">Home</string>
     <string name="equipment">Equipment</string>
-    <string name="human_powered_vehicles">Human-powered vehicles</string>
+    <string name="pedestrian_vehicles">Pedestrian vehicles</string>
     <string name="all_sellers">All sellers</string>
     <string name="logout">Logout</string>
     <string name="action">Action</string>
@@ -101,4 +101,8 @@
     <string name="exterior_color_placeholder">Exterior color</string>
     <string name="interior_color_placeholder">Interior color</string>
     <string name="interior_material_placeholder">Interior material</string>
+    <string name="username_helper_text">Min. 6 characters | 1 number | 1 special character</string>
+    <string name="max_speed_placeholder">Max speed</string>
+    <string name="horse_power_placeholder">Horse power</string>
+    <string name="mileage_placeholder">Mileage</string>
 </resources>

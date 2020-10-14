@@ -57,13 +57,13 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/activitySignUp_sivPicture"
-                    app:shapeAppearance="@style/ShapeAppearance.LonelyWheeler.UserPicture"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="16dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_add_photo" />
+                    android:src="@drawable/ic_add_photo"
+                    app:shapeAppearance="@style/ShapeAppearance.LonelyWheeler.UserPicture" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/activitySignUp_tilFirstName"
@@ -73,8 +73,7 @@
                     android:layout_marginBottom="8dp"
                     android:hint="@string/first_name"
                     app:errorEnabled="true"
-                    app:helperText="Use only alphabet characters"
-                    app:helperTextEnabled="true"
+                    app:errorContentDescription="Use only alphabet characters"
                     app:startIconDrawable="@drawable/ic_person_round_24">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -96,8 +95,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:hint="@string/last_name"
-                    app:helperText="Use only alphabet characters"
-                    app:helperTextEnabled="true"
+                    app:errorEnabled="true"
+                    app:errorContentDescription="Use only alphabet characters"
                     app:startIconDrawable="@drawable/ic_person_round_24">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -118,8 +117,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:hint="@string/username"
-                    app:helperText="Min. 6 characters, 1 number, 1 special char"
-                    app:helperTextEnabled="true"
+                    app:errorEnabled="true"
+                    app:errorContentDescription="@string/username_helper_text"
+                    app:helperText="@string/username_helper_text"
                     app:startIconDrawable="@drawable/ic_person_round_24">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -139,6 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:hint="@string/mobile_number"
+                    app:errorEnabled="true"
                     app:startIconDrawable="@drawable/ic_person_round_24">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -159,7 +160,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:hint="@string/email"
-                    app:boxStrokeErrorColor="@android:color/holo_red_light"
+                    
                     app:errorContentDescription="@string/enter_valid_email"
                     app:errorEnabled="true"
                     app:startIconDrawable="@drawable/ic_email_24">
@@ -168,10 +169,14 @@
                         android:id="@+id/activitySignUp_etEmail"
                         style="@style/Widget.LonelyWheeler.TextInputEditText"
                         android:layout_width="match_parent"
+                        android:autoSizeStepGranularity="2sp"
+                        android:autoSizeMinTextSize="6sp"
+                        android:autoSizeMaxTextSize="12sp"
                         android:layout_height="match_parent"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
-                        android:text="@={viewModel.user.accountInfo.email}" />
+                        android:text="@={viewModel.user.accountInfo.email}"
+                        tools:targetApi="o" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -289,8 +294,8 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="32dp"
                     android:enabled="@{viewModel.user.accountInfo.password == viewModel.user.accountInfo.confirmPassword ? true : false}"
-                    android:text="@string/sign_up"
                     android:onClick="@{() -> viewModel.signUp()}"
+                    android:text="@string/sign_up"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent" />

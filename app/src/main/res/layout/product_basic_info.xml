@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="product"
+            type="project.lonelywheeler.model.domain.product.Product" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/vfProductPictureFlipper"
+            android:layout_width="match_parent"
+            android:layout_height="194dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/btnPreviousPicture"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@drawable/ic_arrow_ios"
+            app:layout_constraintBottom_toBottomOf="@id/vfProductPictureFlipper"
+            app:layout_constraintStart_toStartOf="@id/vfProductPictureFlipper"
+            app:layout_constraintTop_toTopOf="@id/vfProductPictureFlipper"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/btnNextPicture"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@android:color/transparent"
+            android:rotation="180"
+            android:src="@drawable/ic_arrow_ios"
+            app:layout_constraintBottom_toBottomOf="@id/vfProductPictureFlipper"
+            app:layout_constraintEnd_toEndOf="@id/vfProductPictureFlipper"
+            app:layout_constraintTop_toTopOf="@id/vfProductPictureFlipper"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            style="@style/Widget.LonelyWheeler.Fab.Mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/ic_add_photo"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@id/vfProductPictureFlipper"
+            app:layout_constraintEnd_toEndOf="@id/vfProductPictureFlipper"
+            app:maxImageSize="20dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductGeneralInfoPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Title.Product.GeneralInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/general_info_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vfProductPictureFlipper" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilProductTitle"
+            style="@style/Widget.LonelyWheeler.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/product_title"
+            app:hintAnimationEnabled="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductGeneralInfoPlaceholder">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductTitle"
+                style="@style/Widget.LonelyWheeler.TextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLines="1"
+                android:text="@={product.basicInfo.title}"
+                android:textColor="@color/hintTextColor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilProductBrand"
+            style="@style/Widget.LonelyWheeler.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/brand_placeholder"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilProductTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductBrand"
+                style="@style/Widget.LonelyWheeler.TextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLines="1"
+                android:text="@={product.basicInfo.brand}"
+                android:textColor="@color/hintTextColor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilProductModel"
+            style="@style/Widget.LonelyWheeler.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/model_placeholder"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilProductBrand">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductModel"
+                style="@style/Widget.LonelyWheeler.TextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLines="1"
+                android:text="@={product.basicInfo.model}"
+                android:textColor="@color/hintTextColor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilProductYearOfProduction"
+            style="@style/Widget.LonelyWheeler.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/year_of_production_placeholder"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilProductModel">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductYearOfProduction"
+                style="@style/Widget.LonelyWheeler.TextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLines="1"
+                android:text="@={`` + product.basicInfo.yearOfProduction}"
+                android:textColor="@color/hintTextColor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilProductPrice"
+            style="@style/Widget.LonelyWheeler.TextInputLayout"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
+            android:hint="Price in $"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilProductYearOfProduction">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductPrice"
+                style="@style/Widget.LonelyWheeler.TextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:maxLines="1"
+                android:text="@={`` + product.basicInfo.value}"
+                android:textColor="@color/hintTextColor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductHasFixedPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="@string/fixed_price"
+            android:textColor="@color/hintTextColor"
+            app:layout_constraintBottom_toBottomOf="@id/tilProductPrice"
+            app:layout_constraintStart_toEndOf="@id/tilProductPrice"
+            app:layout_constraintTop_toTopOf="@id/tilProductPrice" />
+
+        <RadioGroup
+            android:id="@+id/rgrpFixedPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:buttonTint="@color/colorPrimary"
+            android:checkedButton="@id/rbtnProductHasFixedPriceYes"
+            app:layout_constraintBottom_toBottomOf="@id/tvProductHasFixedPrice"
+            app:layout_constraintStart_toEndOf="@id/tvProductHasFixedPrice"
+            app:layout_constraintTop_toTopOf="@id/tvProductHasFixedPrice">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbtnProductHasFixedPriceYes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> product.setValueFixed(true)}"
+                android:text="@string/yes"
+                android:textColor="@color/hintTextColor" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbtnProductHasFixedPriceNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> product.setValueFixed(false)}"
+                android:text="@string/no"
+                android:textColor="@color/hintTextColor" />
+        </RadioGroup>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductIsFirstOwner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/first_owner"
+            android:textColor="@color/hintTextColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilProductPrice" />
+
+        <RadioGroup
+            android:id="@+id/rbtnGroupFirstOwner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimary"
+            android:checkedButton="@id/rbtnProductHasFirstOwnerYes"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/tvProductIsFirstOwner"
+            app:layout_constraintEnd_toEndOf="@+id/rgrpFixedPrice"
+            app:layout_constraintTop_toTopOf="@id/tvProductIsFirstOwner">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbtnProductHasFirstOwnerYes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:onClick="@{() -> product.setFirstOwner(true)}"
+                android:text="@string/yes"
+                android:textColor="@color/hintTextColor" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbtnProductHasFirstOwnerNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> product.setFirstOwner(false)}"
+                android:text="@string/no"
+                android:textColor="@color/hintTextColor" />
+        </RadioGroup>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvSellerInForExchange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/in_for_exchange"
+            android:textColor="@color/hintTextColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductIsFirstOwner" />
+
+        <RadioGroup
+            android:id="@+id/rgrpSellerInForExchange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimary"
+            android:checkedButton="@id/rbtnSellerInForExchangeYes"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/tvSellerInForExchange"
+            app:layout_constraintEnd_toEndOf="@+id/rbtnGroupFirstOwner"
+            app:layout_constraintTop_toTopOf="@id/tvSellerInForExchange">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbtnSellerInForExchangeYes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:onClick="@{() -> product.setSellerInForExchange(true)}"
+                android:text="@string/yes"
+                android:textColor="@color/hintTextColor" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbtnSellerInForExchangeNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> product.setSellerInForExchange(false)}"
+                android:text="@string/no"
+                android:textColor="@color/hintTextColor" />
+        </RadioGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilProductExteriorColor"
+            style="@style/Widget.LonelyWheeler.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/exterior_color_placeholder"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSellerInForExchange">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductExteriorColor"
+                style="@style/Widget.LonelyWheeler.TextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLines="1"
+                android:text="@={product.colorExterior}"
+                android:textColor="@color/hintTextColor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilProductInteriorColor"
+            style="@style/Widget.LonelyWheeler.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/interior_color_placeholder"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilProductExteriorColor">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductInteriorColor"
+                style="@style/Widget.LonelyWheeler.TextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLines="1"
+                android:text="@={product.colorInterior}"
+                android:textColor="@color/hintTextColor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilProductInteriorMaterial"
+            style="@style/Widget.LonelyWheeler.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/interior_material_placeholder"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilProductInteriorColor">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductInteriorMaterial"
+                style="@style/Widget.LonelyWheeler.TextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLines="1"
+                android:text="@={product.materialInterior}"
+                android:textColor="@color/hintTextColor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/spnrProductCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilProductInteriorMaterial"
+             />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilProductOtherInfo"
+            style="@style/Widget.LonelyWheeler.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/other_info"
+            android:isScrollContainer="true"
+            android:nestedScrollingEnabled="true"
+            android:textColor="@color/hintTextColor"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spnrProductCondition">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductOtherInfo"
+                style="@style/Widget.LonelyWheeler.TextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLines="50"
+                android:text="@={product.otherInfo}"
+                android:scrollbars="vertical"
+                android:textColor="@color/hintTextColor"
+                tools:text="@tools:sample/lorem" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

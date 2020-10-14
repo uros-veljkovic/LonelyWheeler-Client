@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home,
-            R.id.nav_human_powered_vehicles,
+            R.id.nav_pedestrian_vehicles,
             R.id.nav_equipment,
             R.id.nav_all_sellers -> {
                 val entityId = bundleOf("entityId" to item.itemId)

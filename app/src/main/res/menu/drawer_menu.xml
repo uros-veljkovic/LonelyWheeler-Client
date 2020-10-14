@@ -9,9 +9,9 @@
             android:icon="@drawable/ic_drawer_nome"
             android:title="@string/home" />
         <item
-            android:id="@+id/nav_human_powered_vehicles"
+            android:id="@+id/nav_pedestrian_vehicles"
             android:icon="@drawable/ic_drawer_bycicle"
-            android:title="@string/human_powered_vehicles" />
+            android:title="@string/pedestrian_vehicles" />
         <item
             android:id="@+id/nav_equipment"
             android:icon="@drawable/ic_drawer_equipment"

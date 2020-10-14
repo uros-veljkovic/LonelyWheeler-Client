@@ -15,8 +15,4 @@ abstract class Product(
     var colorExterior: String,
     var colorInterior: String,
     var materialInterior: String
-) {
-    init {
-        this.toString()
-    }
-}
+)

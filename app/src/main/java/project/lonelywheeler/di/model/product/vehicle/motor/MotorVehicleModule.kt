@@ -1,4 +1,4 @@
-package project.lonelywheeler.di.model.product.vehicle.motorpowered
+package project.lonelywheeler.di.model.product.vehicle.motor
 
 import android.graphics.Bitmap
 import dagger.Module
@@ -8,7 +8,6 @@ import dagger.hilt.android.components.ActivityRetainedComponent
 import project.lonelywheeler.di.defaults.primitives.*
 import project.lonelywheeler.di.defaults.product.vehicle.motor.*
 import project.lonelywheeler.model.domain.product.Condition
-import project.lonelywheeler.model.domain.product.Product
 import project.lonelywheeler.model.domain.product.ProductBasicInfo
 import project.lonelywheeler.model.domain.product.vehicle.motor.*
 import java.util.*
@@ -45,7 +44,7 @@ class MotorVehicleModule {
         @DefaultInt numberOfDoors: Int,
         @DefaultInt numberOfSeats: Int,
         @DefaultBoolean hasMultimedia: Boolean,
-    ): Product {
+    ): MotorVehicle {
         return MotorVehicle(
             id,
             sellerId,

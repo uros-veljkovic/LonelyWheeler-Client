@@ -1,6 +1,7 @@
 package project.lonelywheeler.model.domain.product.vehicle.motor
 
 import android.graphics.Bitmap
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 import project.lonelywheeler.db.entity.product.vehicle.motor.MotorVehicleEntity
 import project.lonelywheeler.model.domain.product.Condition
 import project.lonelywheeler.model.domain.product.Product
@@ -10,6 +11,7 @@ import project.lonelywheeler.util.convertToStringList
 import java.util.*
 import javax.inject.Inject
 
+@ActivityRetainedScoped
 class MotorVehicle
 @Inject
 constructor(
