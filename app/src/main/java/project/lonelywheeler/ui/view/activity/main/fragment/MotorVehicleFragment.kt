@@ -8,9 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import project.lonelywheeler.databinding.FragmentMotorVehicleBinding
-import project.lonelywheeler.model.domain.product.vehicle.motor.CarBodyType
-import project.lonelywheeler.model.domain.product.vehicle.motor.EmissionStandard
-import project.lonelywheeler.model.domain.product.vehicle.motor.FuelType
+import project.lonelywheeler.model.domain.product.Condition
+import project.lonelywheeler.model.domain.product.vehicle.motor.*
 import project.lonelywheeler.ui.viewmodel.main.MotorVehicleViewModel
 import project.lonelywheeler.util.binding.adapter.populateFrom
 
@@ -26,12 +25,20 @@ class MotorVehicleFragment : Fragment() {
     ): View? {
 
         binding = FragmentMotorVehicleBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        populateSpinners()
+
+        return binding.root
+    }
+
+    private fun populateSpinners() {
         binding.fragmentUpdateOfferSpnrCarBodyType.populateFrom(CarBodyType::class)
         binding.fragmentUpdateOfferSpnrCarEmissionStandard.populateFrom(EmissionStandard::class)
         binding.fragmentUpdateOfferSpnrCarFuelType.populateFrom(FuelType::class)
-        binding.viewModel = viewModel
-
-        return binding.root
+        binding.fragmentUpdateOfferSpnrCarDrivetrain.populateFrom(Drivetrain::class)
+        binding.fragmentUpdateOfferSpnrCarGearbox.populateFrom(GearboxType::class)
+        binding.fragmentUpdateOfferSpnrCarSteeringWheelType.populateFrom(SteeringWheelSide::class)
+        binding.fragmentUpdateOfferProductBasicInfo.spnrProductCondition.populateFrom(Condition::class)
     }
 
 }

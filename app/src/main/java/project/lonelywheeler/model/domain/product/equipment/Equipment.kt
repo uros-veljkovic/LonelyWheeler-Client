@@ -1,6 +1,7 @@
 package project.lonelywheeler.model.domain.product.equipment
 
 import android.graphics.Bitmap
+import androidx.databinding.ObservableField
 import project.lonelywheeler.db.entity.product.equipment.EquipmentEntity
 import project.lonelywheeler.model.domain.product.Condition
 import project.lonelywheeler.model.domain.product.Product
@@ -15,7 +16,7 @@ constructor(
     id: String?,
     sellerId: String?,
     basicInfo: ProductBasicInfo,
-    condition: Condition,
+    condition: ObservableField<String>,
     pictures: List<Bitmap>,
     valueFixed: Boolean,
     firstOwner: Boolean,
@@ -24,7 +25,7 @@ constructor(
     colorExterior: String,
     colorInterior: String,
     materialInterior: String,
-    var equipmentType: EquipmentType
+    var equipmentType: ObservableField<String>
 ) : Product(
     id,
     sellerId,
@@ -44,7 +45,7 @@ fun Equipment.toEntity(): EquipmentEntity {
     return EquipmentEntity(
         id, sellerId,
         basicInfo.toEntity(),
-        condition,
+        condition.get()!!,
         pictures.convertToStringList(),
         valueFixed,
         firstOwner,
@@ -53,6 +54,6 @@ fun Equipment.toEntity(): EquipmentEntity {
         colorExterior,
         colorInterior,
         materialInterior,
-        equipmentType
+        equipmentType.get()!!
     )
 }

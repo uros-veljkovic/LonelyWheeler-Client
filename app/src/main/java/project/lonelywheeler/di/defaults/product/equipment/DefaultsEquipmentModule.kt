@@ -1,5 +1,6 @@
 package project.lonelywheeler.di.defaults.product.equipment
 
+import androidx.databinding.ObservableField
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,8 +18,8 @@ class DefaultEquipmentAttributesModule {
 
     @DefaultEquipmentType
     @Provides
-    fun provideDefaultEquipmentType(): EquipmentType {
-        return EquipmentType.Other
+    fun provideDefaultEquipmentType(): ObservableField<EquipmentType> {
+        return ObservableField(EquipmentType.Other)
     }
 
 }

@@ -7,6 +7,7 @@ import project.lonelywheeler.db.entity.product.vehicle.motor.MotorVehicleEntity
 import project.lonelywheeler.db.repo.Repository
 import project.lonelywheeler.db.response.MyResponse
 import project.lonelywheeler.model.domain.product.vehicle.motor.MotorVehicle
+import project.lonelywheeler.model.domain.product.vehicle.motor.toEntity
 
 class MotorVehicleViewModel
 @ViewModelInject
@@ -15,4 +16,11 @@ constructor(
     val repository: Repository,
     val response: MutableLiveData<MyResponse<MotorVehicleEntity>>
 ) : ViewModel() {
+
+    fun printObject(){
+        println(motorVehicle.toString())
+        val entity = motorVehicle.toEntity()
+        println(entity)
+    }
+
 }

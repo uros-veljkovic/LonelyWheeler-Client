@@ -29,7 +29,6 @@
                 <include
                     android:id="@+id/fragmentUpdateOffer_productBasicInfo"
                     layout="@layout/product_basic_info"
-                    android:visibility="gone"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -61,8 +60,8 @@
                     android:id="@+id/fragmentUpdateOffer_spnrCarBodyType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/hintTextColor"
                     android:gravity="end"
+                    app:onSelected="@{viewModel.motorVehicle.carBodyType}"
                     app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_spnrCarBodyType_placeholder"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="@id/fragmentUpdateOffer_spnrCarBodyType_placeholder" />
@@ -82,6 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
+                    app:onSelected="@{viewModel.motorVehicle.emissionStandard}"
                     app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_spnrCarEmissionStandard_placeholder"
                     app:layout_constraintEnd_toEndOf="@+id/fragmentUpdateOffer_spnrCarBodyType"
                     app:layout_constraintTop_toTopOf="@id/fragmentUpdateOffer_spnrCarEmissionStandard_placeholder" />
@@ -100,38 +100,71 @@
                     android:id="@+id/fragmentUpdateOffer_spnrCarFuelType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:gravity="end"
+                    app:onSelected="@{viewModel.motorVehicle.fuelType}"
                     app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_spnrCarFuelType_placeholder"
                     app:layout_constraintEnd_toEndOf="@id/fragmentUpdateOffer_spnrCarEmissionStandard"
                     app:layout_constraintTop_toTopOf="@id/fragmentUpdateOffer_spnrCarFuelType_placeholder" />
 
+
+                <TextView
+                    android:id="@+id/fragmentUpdateOffer_spnrCarGearbox_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Gearbox type: "
+                    android:textColor="@color/hintTextColor"
+                    app:layout_constraintStart_toStartOf="@id/fragmentUpdateOffer_spnrCarFuelType_placeholder"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_spnrCarFuelType_placeholder" />
+
                 <Spinner
                     android:id="@+id/fragmentUpdateOffer_spnrCarGearbox"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_spnrCarFuelType" />
+                    android:gravity="end"
+                    app:onSelected="@{viewModel.motorVehicle.gearboxType}"
+                    app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_spnrCarGearbox_placeholder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fragmentUpdateOffer_spnrCarGearbox_placeholder" />
+
+                <TextView
+                    android:id="@+id/fragmentUpdateOffer_spnrCarSteeringWheelType_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Steering wheel side: "
+                    android:textColor="@color/hintTextColor"
+                    app:layout_constraintStart_toStartOf="@id/fragmentUpdateOffer_spnrCarGearbox_placeholder"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_spnrCarGearbox_placeholder" />
 
                 <Spinner
                     android:id="@+id/fragmentUpdateOffer_spnrCarSteeringWheelType"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_spnrCarGearbox" />
+                    app:onSelected="@{viewModel.motorVehicle.steeringWheelSide}"
+                    app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_spnrCarSteeringWheelType_placeholder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fragmentUpdateOffer_spnrCarSteeringWheelType_placeholder"
+                    />
+
+                <TextView
+                    android:id="@+id/fragmentUpdateOffer_spnrCarDrivetrain_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Drivetrain: "
+                    android:textColor="@color/hintTextColor"
+                    app:layout_constraintStart_toStartOf="@id/fragmentUpdateOffer_spnrCarSteeringWheelType_placeholder"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_spnrCarSteeringWheelType_placeholder" />
 
                 <Spinner
                     android:id="@+id/fragmentUpdateOffer_spnrCarDrivetrain"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_spnrCarSteeringWheelType" />
+                    app:onSelected="@{viewModel.motorVehicle.drivetrain}"
+                    app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_spnrCarDrivetrain_placeholder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fragmentUpdateOffer_spnrCarDrivetrain_placeholder"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/fragmentUpdateOffer_tilCarMaxSpeed"
@@ -150,6 +183,8 @@
                         style="@style/Widget.LonelyWheeler.TextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:inputType="number"
+                        android:text="@={`` + viewModel.motorVehicle.maxSpeed}"
                         android:maxLines="1"
                         android:textColor="@color/hintTextColor" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -162,6 +197,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
+                    app:errorEnabled="true"
                     android:hint="@string/horse_power_placeholder"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/fragmentUpdateOffer_tilCarMaxSpeed">
@@ -170,8 +206,10 @@
                         android:id="@+id/fragmentUpdateOffer_etCarHorsePower"
                         style="@style/Widget.LonelyWheeler.TextInputEditText"
                         android:layout_width="match_parent"
+                        android:inputType="number"
                         android:layout_height="match_parent"
                         android:maxLines="1"
+                        android:text="@={`` + viewModel.motorVehicle.maxHorsePower}"
                         android:textColor="@color/hintTextColor" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -183,6 +221,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
+                    app:errorEnabled="true"
                     android:hint="@string/mileage_placeholder"
                     app:layout_constraintBottom_toTopOf="@id/fragmentUpdateOffer_tilCarHorsePower"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -193,6 +232,8 @@
                         style="@style/Widget.LonelyWheeler.TextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:inputType="numberDecimal"
+                        android:text="@={`` + viewModel.motorVehicle.mileage}"
                         android:maxLines="1"
                         android:textColor="@color/hintTextColor" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -226,6 +267,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginBottom="8dp"
+                    app:errorEnabled="true"
                     app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_tvNumberOfPlaceholder"
                     app:layout_constraintStart_toEndOf="@id/fragmentUpdateOffer_tvNumberOfPlaceholder"
                     app:layout_constraintTop_toTopOf="@id/fragmentUpdateOffer_tvNumberOfPlaceholder">
@@ -235,6 +277,8 @@
                         style="@style/Widget.LonelyWheeler.TextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:inputType="number"
+                        android:text="@={`` + viewModel.motorVehicle.numberOfDoors}"
                         android:maxLines="1"
                         android:textColor="@color/hintTextColor" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -254,6 +298,7 @@
                     android:id="@+id/fragmentUpdateOffer_tilNumberOfSeats"
                     style="@style/Widget.LonelyWheeler.TextInputLayout"
                     android:layout_width="60dp"
+                    app:errorEnabled="true"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_tilNumberOfDoors"
@@ -266,6 +311,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:maxLines="1"
+                        android:inputType="number"
+                        android:text="@={`` + viewModel.motorVehicle.numberOfSeats}"
                         android:textColor="@color/hintTextColor" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -286,7 +333,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:buttonTint="@color/colorPrimary"
-                    android:checkedButton="@id/fragmentUpdateOffer_rbtnGroupCarHasMultimediaYes"
+                    android:checkedButton="@id/fragmentUpdateOffer_rbtnGroupCarHasMultimediaNo"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="@id/fragmentUpdateOffer_tvCarHasMultimedia"
                     app:layout_constraintStart_toEndOf="@+id/fragmentUpdateOffer_tvCarHasMultimedia"
@@ -297,6 +344,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
+                        android:onClick="@{() -> viewModel.motorVehicle.setHasMultimedia(true)}"
                         android:text="@string/yes"
                         android:textColor="@color/hintTextColor" />
 
@@ -304,6 +352,7 @@
                         android:id="@+id/fragmentUpdateOffer_rbtnGroupCarHasMultimediaNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:onClick="@{() -> viewModel.motorVehicle.setHasMultimedia(false)}"
                         android:text="@string/no"
                         android:textColor="@color/hintTextColor" />
                 </RadioGroup>
@@ -333,6 +382,7 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="32dp"
                     android:text="@string/cancel"
+                    android:onClick="@{() -> viewModel.printObject()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/fragmentUpdateOffer_btnUpdate"
                     app:layout_constraintHorizontal_bias="0.5"

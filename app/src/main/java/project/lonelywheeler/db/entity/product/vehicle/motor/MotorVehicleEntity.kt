@@ -1,10 +1,11 @@
 package project.lonelywheeler.db.entity.product.vehicle.motor
 
+import androidx.databinding.ObservableField
+import com.google.gson.GsonBuilder
 import com.google.gson.annotations.SerializedName
 import project.lonelywheeler.db.entity.product.ProductBasicInfoEntity
 import project.lonelywheeler.db.entity.product.toPojo
-import project.lonelywheeler.model.domain.product.Condition
-import project.lonelywheeler.model.domain.product.vehicle.motor.*
+import project.lonelywheeler.model.domain.product.vehicle.motor.MotorVehicle
 import project.lonelywheeler.util.convertToBitmapList
 import java.util.*
 
@@ -19,7 +20,7 @@ class MotorVehicleEntity(
     val basicInfo: ProductBasicInfoEntity,
 
     @SerializedName("condition")
-    val condition: Condition,
+    val condition: String,
 
     @SerializedName("pictures")
     val pictures: List<String>,
@@ -46,22 +47,22 @@ class MotorVehicleEntity(
     val materialInterior: String,
 
     @SerializedName("car_body_type")
-    val carBodyType: CarBodyType,
+    val carBodyType: String,
 
     @SerializedName("fuel_type")
-    val fuelType: FuelType,
+    val fuelType: String,
 
     @SerializedName("emission_standard")
-    val emissionStandard: EmissionStandard,
+    val emissionStandard: String,
 
     @SerializedName("gearbox_type")
-    val gearboxType: GearboxType,
+    val gearboxType: String,
 
     @SerializedName("steering_wheel_side")
-    val steeringWheelSide: SteeringWheelSide,
+    val steeringWheelSide: String,
 
     @SerializedName("drivetrain")
-    val drivetrain: Drivetrain,
+    val drivetrain: String,
 
     @SerializedName("max_speed")
     val maxSpeed: Int,
@@ -86,14 +87,19 @@ class MotorVehicleEntity(
 
     @SerializedName("has_multimedia")
     val hasMultimedia: Boolean,
-)
+) {
+    override fun toString(): String {
+        val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
+        return gsonBuilder.toJson(this)
+    }
+}
 
 fun MotorVehicleEntity.toPojo(): MotorVehicle {
     return MotorVehicle(
         id,
         sellerId,
         basicInfo = this.basicInfo.toPojo(),
-        condition,
+        ObservableField(condition),
         pictures = this.pictures.convertToBitmapList(),
         valueFixed,
         firstOwner,
@@ -102,12 +108,12 @@ fun MotorVehicleEntity.toPojo(): MotorVehicle {
         colorExterior,
         colorInterior,
         materialInterior,
-        carBodyType,
-        fuelType,
-        emissionStandard,
-        gearboxType,
-        steeringWheelSide,
-        drivetrain,
+        ObservableField(carBodyType),
+        ObservableField(fuelType),
+        ObservableField(emissionStandard),
+        ObservableField(gearboxType),
+        ObservableField(steeringWheelSide),
+        ObservableField(drivetrain),
         maxSpeed,
         maxHorsePower,
         mileage,

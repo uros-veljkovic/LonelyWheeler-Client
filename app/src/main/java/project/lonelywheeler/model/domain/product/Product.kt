@@ -1,12 +1,13 @@
 package project.lonelywheeler.model.domain.product
 
 import android.graphics.Bitmap
+import androidx.databinding.ObservableField
 
 abstract class Product(
     var id: String?,
     var sellerId: String?,
     var basicInfo: ProductBasicInfo,
-    var condition: Condition,
+    var condition: ObservableField<String>,
     var pictures: List<Bitmap>,
     var valueFixed: Boolean,
     var firstOwner: Boolean,

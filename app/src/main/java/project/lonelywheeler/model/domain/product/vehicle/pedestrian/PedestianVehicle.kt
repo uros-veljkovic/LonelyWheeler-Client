@@ -1,6 +1,7 @@
 package project.lonelywheeler.model.domain.product.vehicle.pedestrian
 
 import android.graphics.Bitmap
+import androidx.databinding.ObservableField
 import project.lonelywheeler.db.entity.product.vehicle.pedestrian.PedestrianVehicleEntity
 import project.lonelywheeler.model.domain.product.Condition
 import project.lonelywheeler.model.domain.product.Product
@@ -15,7 +16,7 @@ constructor(
     id: String?,
     sellerId: String?,
     basicInfo: ProductBasicInfo,
-    condition: Condition,
+    condition: ObservableField<String>,
     pictures: List<Bitmap>,
     valueFixed: Boolean,
     firstOwner: Boolean,
@@ -24,7 +25,7 @@ constructor(
     colorExterior: String,
     colorInterior: String,
     materialInterior: String,
-    var pedestrianVehicleType: PedestrianVehicleType
+    var pedestrianVehicleType: ObservableField<String>
 ) : Product(
     id,
     sellerId,
@@ -45,7 +46,7 @@ fun PedestrianVehicle.toEntity(): PedestrianVehicleEntity {
         id,
         sellerId,
         basicInfo.toEntity(),
-        condition,
+        condition.get()!!,
         pictures.convertToStringList(),
         valueFixed,
         firstOwner,
@@ -54,6 +55,6 @@ fun PedestrianVehicle.toEntity(): PedestrianVehicleEntity {
         colorExterior,
         colorInterior,
         materialInterior,
-        pedestrianVehicleType
+        pedestrianVehicleType.get()!!
     )
 }

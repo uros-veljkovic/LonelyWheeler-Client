@@ -1,6 +1,7 @@
 package project.lonelywheeler.di.defaults.product.vehicle.motor
 
 import android.graphics.Bitmap
+import androidx.databinding.ObservableField
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,8 +48,8 @@ class DefaultCarAttributesModule {
 
     @DefaultProductCondition
     @Provides
-    fun provideDefaultProductCondition(): Condition {
-        return Condition.Used
+    fun provideDefaultProductCondition(): ObservableField<Condition> {
+        return ObservableField(Condition.Used)
     }
 
     @DefaultListOfCarPictures
@@ -59,37 +60,37 @@ class DefaultCarAttributesModule {
 
     @DefaultCarBodyType
     @Provides
-    fun provideDefaultCarBodyType(): CarBodyType {
-        return CarBodyType.Coupe
+    fun provideDefaultCarBodyType(): ObservableField<CarBodyType> {
+        return ObservableField(CarBodyType.Coupe)
     }
 
     @DefaultCarFuelType
     @Provides
-    fun provideDefaultCarFuelType(): FuelType {
-        return FuelType.Diesel
+    fun provideDefaultCarFuelType(): ObservableField<FuelType> {
+        return ObservableField(FuelType.Diesel)
     }
 
     @DefaultCarEmissionStandard
     @Provides
-    fun provideDefaultCarEmissionStandard(): EmissionStandard {
-        return EmissionStandard.Euro3
+    fun provideDefaultCarEmissionStandard(): ObservableField<EmissionStandard> {
+        return ObservableField(EmissionStandard.Euro3)
     }
 
     @DefaultCarGearboxType
     @Provides
-    fun provideDefaultCarGearboxType(): GearboxType {
-        return GearboxType.Manual
+    fun provideDefaultCarGearboxType(): ObservableField<GearboxType> {
+        return ObservableField(GearboxType.Manual)
     }
 
     @DefaultCarSteeringWheelSide
     @Provides
-    fun provideDefaultCarSteeringWheelSide(): SteeringWheelSide {
-        return SteeringWheelSide.Left
+    fun provideDefaultCarSteeringWheelSide(): ObservableField<SteeringWheelSide> {
+        return ObservableField(SteeringWheelSide.Left)
     }
 
     @DefaultCarDrivetrain
     @Provides
-    fun provideDefaultCarDrivetrain(): Drivetrain {
-        return Drivetrain.RWD
+    fun provideDefaultCarDrivetrain(): ObservableField<Drivetrain> {
+        return ObservableField(Drivetrain.RWD)
     }
 }

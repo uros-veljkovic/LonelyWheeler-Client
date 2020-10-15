@@ -1,6 +1,8 @@
 package project.lonelywheeler.model.domain.product.vehicle.motor
 
 import android.graphics.Bitmap
+import androidx.databinding.ObservableField
+import com.google.gson.Gson
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import project.lonelywheeler.db.entity.product.vehicle.motor.MotorVehicleEntity
 import project.lonelywheeler.model.domain.product.Condition
@@ -18,7 +20,7 @@ constructor(
     id: String?,
     sellerId: String?,
     basicInfo: ProductBasicInfo,
-    condition: Condition,
+    condition: ObservableField<String>,
     pictures: List<Bitmap>,
     valueFixed: Boolean,
     firstOwner: Boolean,
@@ -27,12 +29,12 @@ constructor(
     colorExterior: String,
     colorInterior: String,
     materialInterior: String,
-    var carBodyType: CarBodyType,
-    var fuelType: FuelType,
-    var emissionStandard: EmissionStandard,
-    var gearboxType: GearboxType,
-    var steeringWheelSide: SteeringWheelSide,
-    var drivetrain: Drivetrain,
+    var carBodyType: ObservableField<String>,
+    var fuelType: ObservableField<String>,
+    var emissionStandard: ObservableField<String>,
+    var gearboxType: ObservableField<String>,
+    var steeringWheelSide: ObservableField<String>,
+    var drivetrain: ObservableField<String>,
     var maxSpeed: Int,
     var maxHorsePower: Int,
     var mileage: Int,
@@ -54,14 +56,18 @@ constructor(
     colorExterior,
     colorInterior,
     materialInterior
-)
+){
+    override fun toString(): String {
+        return Gson().toJson(this)
+    }
+}
 
 fun MotorVehicle.toEntity(): MotorVehicleEntity {
     return MotorVehicleEntity(
         id,
         sellerId,
         basicInfo.toEntity(),
-        condition,
+        condition.get()!!,
         pictures.convertToStringList(),
         valueFixed,
         firstOwner,
@@ -70,12 +76,12 @@ fun MotorVehicle.toEntity(): MotorVehicleEntity {
         colorExterior,
         colorInterior,
         materialInterior,
-        carBodyType,
-        fuelType,
-        emissionStandard,
-        gearboxType,
-        steeringWheelSide,
-        drivetrain,
+        carBodyType.get()!!,
+        fuelType.get()!!,
+        emissionStandard.get()!!,
+        gearboxType.get()!!,
+        steeringWheelSide.get()!!,
+        drivetrain.get()!!,
         maxSpeed,
         maxHorsePower,
         mileage,

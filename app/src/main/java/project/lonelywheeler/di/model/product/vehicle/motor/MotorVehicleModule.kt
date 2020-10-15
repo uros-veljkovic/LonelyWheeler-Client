@@ -1,6 +1,7 @@
 package project.lonelywheeler.di.model.product.vehicle.motor
 
 import android.graphics.Bitmap
+import androidx.databinding.ObservableField
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +22,7 @@ class MotorVehicleModule {
         @DefaultNullableString id: String?,
         @DefaultNullableString sellerId: String?,
         basicInfo: ProductBasicInfo,
-        @DefaultProductCondition condition: Condition,
+        @DefaultObservableString condition: ObservableField<String>,
         @DefaultListOfCarPictures pictures: List<Bitmap>,
         @DefaultBoolean valueFixed: Boolean,
         @DefaultBoolean firstOwner: Boolean,
@@ -30,12 +31,12 @@ class MotorVehicleModule {
         @DefaultString colorExterior: String,
         @DefaultString colorInterior: String,
         @DefaultString materialInterior: String,
-        @DefaultCarBodyType carBodyType: CarBodyType,
-        @DefaultCarFuelType fuelType: FuelType,
-        @DefaultCarEmissionStandard emissionStandard: EmissionStandard,
-        @DefaultCarGearboxType gearboxType: GearboxType,
-        @DefaultCarSteeringWheelSide steeringWheelSide: SteeringWheelSide,
-        @DefaultCarDrivetrain drivetrain: Drivetrain,
+        @DefaultObservableString carBodyType: ObservableField<String>,
+        @DefaultObservableString fuelType: ObservableField<String>,
+        @DefaultObservableString emissionStandard: ObservableField<String>,
+        @DefaultObservableString gearboxType: ObservableField<String>,
+        @DefaultObservableString steeringWheelSide: ObservableField<String>,
+        @DefaultObservableString drivetrain: ObservableField<String>,
         @DefaultInt maxSpeed: Int,
         @DefaultInt maxHorsePower: Int,
         @DefaultInt mileage: Int,

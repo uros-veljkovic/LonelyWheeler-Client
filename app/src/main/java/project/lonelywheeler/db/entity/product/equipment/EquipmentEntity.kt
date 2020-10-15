@@ -1,5 +1,6 @@
 package project.lonelywheeler.db.entity.product.equipment
 
+import androidx.databinding.ObservableField
 import com.google.gson.annotations.SerializedName
 import project.lonelywheeler.db.entity.product.ProductBasicInfoEntity
 import project.lonelywheeler.db.entity.product.toPojo
@@ -20,7 +21,7 @@ constructor(
     val basicInfo: ProductBasicInfoEntity,
 
     @SerializedName("condition")
-    val condition: Condition,
+    val condition: String,
 
     @SerializedName("pictures")
     val pictures: List<String>,
@@ -47,23 +48,23 @@ constructor(
     val materialInterior: String,
 
     @SerializedName("equipment_type")
-    val equipmentType: EquipmentType
+    val equipmentType: String
 )
 
 fun EquipmentEntity.toPojo(): Equipment {
     return Equipment(
-        id = this.id,
-        sellerId = this.sellerId,
-        basicInfo = this.basicInfo.toPojo(),
-        condition = this.condition,
-        pictures = pictures.convertToBitmapList(),
-        valueFixed = this.valueFixed,
-        firstOwner = this.firstOwner,
-        sellerInForExchange = this.sellerInForExchange,
-        otherInfo = this.otherInfo,
-        colorExterior = this.colorExterior,
-        colorInterior = this.colorInterior,
-        materialInterior = this.materialInterior,
-        equipmentType = this.equipmentType
+        id,
+        sellerId,
+        basicInfo.toPojo(),
+        ObservableField(condition),
+        pictures.convertToBitmapList(),
+        valueFixed,
+        firstOwner,
+        sellerInForExchange,
+        otherInfo,
+        colorExterior,
+        colorInterior,
+        materialInterior,
+        ObservableField(equipmentType)
     )
 }

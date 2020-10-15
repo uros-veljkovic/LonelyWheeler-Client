@@ -1,5 +1,6 @@
 package project.lonelywheeler.di.defaults.product.vehicle.pedestrian
 
+import androidx.databinding.ObservableField
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,8 +19,8 @@ class DefaultHumanPoweredVehicleAttributesModule {
 
     @DefaultHumanPoweredVehicleType
     @Provides
-    fun provideHumanPoweredVehicleType(): PedestrianVehicleType {
-        return PedestrianVehicleType.Other
+    fun provideHumanPoweredVehicleType(): ObservableField<PedestrianVehicleType> {
+        return ObservableField(PedestrianVehicleType.Other)
     }
 
 }

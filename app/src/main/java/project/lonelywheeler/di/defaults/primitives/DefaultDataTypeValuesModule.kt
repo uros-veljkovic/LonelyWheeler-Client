@@ -1,6 +1,7 @@
 package project.lonelywheeler.di.defaults.primitives
 
 import android.graphics.Bitmap
+import androidx.databinding.ObservableField
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -53,10 +54,20 @@ annotation class DefaultBoolean
 @Retention(AnnotationRetention.BINARY)
 annotation class DefaultDate
 
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class DefaultObservableString
+
 
 @InstallIn(ActivityRetainedComponent::class)
 @Module
 class DefaultDataTypeValuesModule {
+
+    @DefaultObservableString
+    @Provides
+    fun provideDefaultObservableString() : ObservableField<String>{
+        return ObservableField("")
+    }
 
     @DefaultString
     @Provides

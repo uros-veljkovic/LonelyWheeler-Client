@@ -1,10 +1,15 @@
 package project.lonelywheeler.di.model.product.equipment
 
 import android.graphics.Bitmap
+import androidx.databinding.ObservableField
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
+import project.lonelywheeler.di.defaults.primitives.DefaultBoolean
+import project.lonelywheeler.di.defaults.primitives.DefaultNullableString
+import project.lonelywheeler.di.defaults.primitives.DefaultObservableString
+import project.lonelywheeler.di.defaults.primitives.DefaultString
 import project.lonelywheeler.di.defaults.product.equipment.DefaultEquipmentType
 import project.lonelywheeler.di.defaults.product.vehicle.motor.DefaultListOfCarPictures
 import project.lonelywheeler.di.defaults.product.vehicle.motor.DefaultProductCondition
@@ -20,19 +25,19 @@ class EquipmentModule {
 
     @Provides
     fun provideEquipment(
-        id: String?,
-        sellerId: String?,
+        @DefaultNullableString id: String?,
+        @DefaultNullableString sellerId: String?,
         basicInfo: ProductBasicInfo,
-        @DefaultProductCondition condition: Condition,
+        @DefaultObservableString condition: ObservableField<String>,
         @DefaultListOfCarPictures pictures: List<Bitmap>,
-        valueFixed: Boolean,
-        firstOwner: Boolean,
-        sellerInForExchange: Boolean,
-        otherInfo: String,
-        colorExterior: String,
-        colorInterior: String,
-        materialInterior: String,
-        @DefaultEquipmentType equipmentType: EquipmentType
+        @DefaultBoolean valueFixed: Boolean,
+        @DefaultBoolean firstOwner: Boolean,
+        @DefaultBoolean sellerInForExchange: Boolean,
+        @DefaultString otherInfo: String,
+        @DefaultString colorExterior: String,
+        @DefaultString colorInterior: String,
+        @DefaultString materialInterior: String,
+        @DefaultObservableString equipmentType: ObservableField<String>
     ): Product {
         return Equipment(
             id,
