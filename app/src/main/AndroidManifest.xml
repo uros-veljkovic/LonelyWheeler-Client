@@ -22,11 +22,11 @@
             android:name=".ui.view.activity.signin.SignInActivity"
             android:theme="@style/AppTheme.NoActionbar" >
 
+
         </activity>
         <activity
             android:name=".ui.view.activity.main.MainActivity"
             android:theme="@style/AppTheme.NoActionbar" >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

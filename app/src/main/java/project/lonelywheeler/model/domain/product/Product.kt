@@ -8,7 +8,7 @@ abstract class Product(
     var sellerId: String?,
     var basicInfo: ProductBasicInfo,
     var condition: ObservableField<String>,
-    var pictures: List<Bitmap>,
+    var pictures: MutableList<Bitmap>,
     var valueFixed: Boolean,
     var firstOwner: Boolean,
     var sellerInForExchange: Boolean,

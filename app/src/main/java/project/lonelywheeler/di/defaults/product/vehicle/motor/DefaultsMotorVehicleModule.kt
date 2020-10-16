@@ -54,8 +54,8 @@ class DefaultCarAttributesModule {
 
     @DefaultListOfCarPictures
     @Provides
-    fun provideDefaultListOfCarPictures(): List<Bitmap> {
-        return arrayListOf()
+    fun provideDefaultListOfCarPictures(): MutableList<Bitmap> {
+        return mutableListOf()
     }
 
     @DefaultCarBodyType

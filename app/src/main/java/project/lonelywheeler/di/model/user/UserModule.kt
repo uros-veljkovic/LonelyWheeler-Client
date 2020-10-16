@@ -49,8 +49,8 @@ class UserModule {
         @DefaultNullableBitmap picture: Bitmap?,
         @DefaultInt timesSupported: Int,
         @DefaultInt timesReported: Int,
-        @DefaultListOfLong offersLiked: List<Long>,
-        @DefaultListOfLong myOffers: List<Long>
+        @DefaultListOfLong offersLiked: MutableList<Long>,
+        @DefaultListOfLong myOffers: MutableList<Long>
     ): UserAccountInfo {
         return UserAccountInfo(
             username,

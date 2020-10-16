@@ -1,5 +1,6 @@
 package project.lonelywheeler.model.domain.user
 
+import com.google.gson.annotations.SerializedName
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import project.lonelywheeler.db.entity.user.UserEntity
 import javax.inject.Inject
@@ -8,6 +9,7 @@ import javax.inject.Inject
 class User
 @Inject
 constructor(
+    @SerializedName("_id")
     var id: String?,
     val personalInfo: UserPersonalInfo,
     val accountInfo: UserAccountInfo

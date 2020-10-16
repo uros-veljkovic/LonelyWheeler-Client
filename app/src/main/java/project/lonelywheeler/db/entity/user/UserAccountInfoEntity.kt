@@ -6,29 +6,14 @@ import project.lonelywheeler.util.convertToBitmap
 
 class UserAccountInfoEntity(
 
-    @SerializedName("username")
     val username: String,
-
-    @SerializedName("email")
     val email: String,
-
-    @SerializedName("password")
     val password: String,
-
-    @SerializedName("picture")
     val picture: String?,
-
-    @SerializedName("timesSupported")
     val timesSupported: Int,
-
-    @SerializedName("timesReported")
     val timesReported: Int,
-
-    @SerializedName("offersLiked")
-    val offersLiked: List<Long>,
-
-    @SerializedName("myOffers")
-    val myOffers: List<Long>
+    val offersLiked: MutableList<Long>,
+    val myOffers: MutableList<Long>
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

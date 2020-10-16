@@ -6,7 +6,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
-import dagger.hilt.android.components.ApplicationComponent
 import java.util.*
 import javax.inject.Qualifier
 
@@ -65,7 +64,7 @@ class DefaultDataTypeValuesModule {
 
     @DefaultObservableString
     @Provides
-    fun provideDefaultObservableString() : ObservableField<String>{
+    fun provideDefaultObservableString(): ObservableField<String> {
         return ObservableField("")
     }
 
@@ -119,8 +118,8 @@ class DefaultDataTypeValuesModule {
 
     @DefaultListOfLong
     @Provides
-    fun provideDefaultListOfLongs(): List<Long> {
-        return arrayListOf()
+    fun provideDefaultListOfLongs(): MutableList<Long> {
+        return mutableListOf()
     }
 
     @DefaultNullableBitmap

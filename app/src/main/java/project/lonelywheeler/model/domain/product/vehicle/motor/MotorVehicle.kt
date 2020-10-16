@@ -12,6 +12,7 @@ import project.lonelywheeler.model.domain.product.toEntity
 import project.lonelywheeler.util.convertToStringList
 import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 @ActivityRetainedScoped
 class MotorVehicle
@@ -21,7 +22,7 @@ constructor(
     sellerId: String?,
     basicInfo: ProductBasicInfo,
     condition: ObservableField<String>,
-    pictures: List<Bitmap>,
+    pictures: MutableList<Bitmap>,
     valueFixed: Boolean,
     firstOwner: Boolean,
     sellerInForExchange: Boolean,

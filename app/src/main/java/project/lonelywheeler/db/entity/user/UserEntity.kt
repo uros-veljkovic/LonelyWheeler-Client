@@ -10,10 +10,8 @@ constructor(
 
     @SerializedName("_id")
     val id: String?,
-
     @SerializedName("personalInfo")
     val personalInfoEntity: UserPersonalInfoEntity,
-
     @SerializedName("accountInfo")
     val accountInfoEntity: UserAccountInfoEntity
 ) {

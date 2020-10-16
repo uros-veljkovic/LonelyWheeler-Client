@@ -86,6 +86,7 @@
                 android:id="@+id/activityMain_fabMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:shapeAppearance="@style/Widget.LonelyWheeler.SmallComponent.BigCut"
                 app:layout_anchor="@id/activityMain_bottomAppBar"
                 app:layout_anchorGravity="center"
                 app:mainFabAnimation="@{fabTrigger}" />

@@ -5,19 +5,10 @@ import project.lonelywheeler.model.domain.user.UserPersonalInfo
 
 class UserPersonalInfoEntity
 constructor(
-    @SerializedName("firstName")
     val firstName: String,
-
-    @SerializedName("lastName")
     val lastName: String,
-
-    @SerializedName("city")
     val city: String,
-
-    @SerializedName("street")
     val street: String,
-
-    @SerializedName("mobileNumber")
     val mobileNumber: String
 )
 

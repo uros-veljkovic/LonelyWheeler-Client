@@ -13,6 +13,10 @@ constructor(
     private val motorVehicleApi: MotorVehicleApi
 ) {
 
+    suspend fun create(entity: MotorVehicleEntity) : MyResponse<MotorVehicleEntity>{
+        return motorVehicleApi.create(entity)
+    }
+
     suspend fun readAll(): Call<MyResponse<List<MotorVehicleEntity>>> {
         return motorVehicleApi.readAll()
     }

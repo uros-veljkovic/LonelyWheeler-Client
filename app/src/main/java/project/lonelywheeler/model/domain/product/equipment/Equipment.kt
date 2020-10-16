@@ -17,7 +17,7 @@ constructor(
     sellerId: String?,
     basicInfo: ProductBasicInfo,
     condition: ObservableField<String>,
-    pictures: List<Bitmap>,
+    pictures: MutableList<Bitmap>,
     valueFixed: Boolean,
     firstOwner: Boolean,
     sellerInForExchange: Boolean,

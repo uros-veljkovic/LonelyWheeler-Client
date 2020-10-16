@@ -193,6 +193,11 @@
         <item name="shapeAppearance">@style/Widget.LonelyWheeler.SmallComponent.SmallCut</item>
     </style>
 
+    <style name="Widget.LonelyWheeler.Fab.NoCut" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="android:backgroundTint">@color/colorTertiary</item>
+        <item name="shapeAppearance">@style/Widget.LonelyWheeler.SmallComponent.NoCut</item>
+    </style>
+
     <!--    ShapeAppearance BIG CUT-->
     <style name="Widget.LonelyWheeler.SmallComponent.BigCut" parent="ShapeAppearance.MaterialComponents.SmallComponent">
 
@@ -210,6 +215,11 @@
         <item name="cornerSizeBottomLeft">18dp</item>
         <item name="cornerSizeTopRight">18dp</item>
         <item name="cornerSizeTopLeft">18dp</item>
+    </style>
+    <!--    ShapeAppearance NO CUT-->
+
+    <style name="Widget.LonelyWheeler.SmallComponent.NoCut" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
     </style>
 
     <style name="Widget.LonelyWheeler.SmallComponent.ButtonCut" parent="ShapeAppearance.MaterialComponents.SmallComponent">

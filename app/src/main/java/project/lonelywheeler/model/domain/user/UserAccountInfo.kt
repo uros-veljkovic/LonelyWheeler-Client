@@ -17,8 +17,8 @@ constructor(
     var picture: Bitmap?,
     var timesSupported: Int,
     var timesReported: Int,
-    var offersLiked: List<Long>,
-    var myOffers: List<Long>
+    var offersLiked: MutableList<Long>,
+    var myOffers: MutableList<Long>
 )
 
 fun UserAccountInfo.toEntity() : UserAccountInfoEntity {

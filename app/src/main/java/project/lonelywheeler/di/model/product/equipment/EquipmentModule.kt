@@ -29,7 +29,7 @@ class EquipmentModule {
         @DefaultNullableString sellerId: String?,
         basicInfo: ProductBasicInfo,
         @DefaultObservableString condition: ObservableField<String>,
-        @DefaultListOfCarPictures pictures: List<Bitmap>,
+        @DefaultListOfCarPictures pictures: MutableList<Bitmap>,
         @DefaultBoolean valueFixed: Boolean,
         @DefaultBoolean firstOwner: Boolean,
         @DefaultBoolean sellerInForExchange: Boolean,
