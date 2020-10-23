@@ -22,6 +22,7 @@
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/defaultBackgroundColor"
             tools:context=".ui.view.activity.main.MainActivity">
 
             <ProgressBar
@@ -33,6 +34,7 @@
 
             <fragment
                 android:id="@+id/nav_graph_container"
+                android:background="@color/defaultBackgroundColor"
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -52,7 +54,8 @@
                 app:layout_anchor="@id/activityMain_fabHumanPoweredVehicle"
                 app:layout_anchorGravity="top|center_horizontal"
                 app:maxImageSize="20dp"
-                app:miniFabAnimation="@{fabTrigger}" />
+                app:miniFabAnimation="@{fabTrigger}"
+                tools:ignore="ContentDescription" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/activityMain_fabHumanPoweredVehicle"
@@ -66,7 +69,8 @@
                 app:layout_anchor="@id/activityMain_fabEquipment"
                 app:layout_anchorGravity="top|center_horizontal"
                 app:maxImageSize="20dp"
-                app:miniFabAnimation="@{fabTrigger}" />
+                app:miniFabAnimation="@{fabTrigger}"
+                tools:ignore="ContentDescription" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/activityMain_fabEquipment"
@@ -80,7 +84,8 @@
                 app:layout_anchor="@id/activityMain_fabMain"
                 app:layout_anchorGravity="top|center_horizontal"
                 app:maxImageSize="20dp"
-                app:miniFabAnimation="@{fabTrigger}" />
+                app:miniFabAnimation="@{fabTrigger}"
+                tools:ignore="ContentDescription" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/activityMain_fabMain"

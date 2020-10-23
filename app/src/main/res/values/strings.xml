@@ -105,4 +105,9 @@
     <string name="max_speed_placeholder">Max speed</string>
     <string name="horse_power_placeholder">Horse power</string>
     <string name="mileage_placeholder">Mileage</string>
+    <string name="persist_vehicle_title">Save offer</string>
+    <string name="persit_vehicle_message">Are you sure you want to create this offer ?</string>
+    <string name="equipment_type">Equipment type:</string>
+    <string name="error_confirm_password">Passwords do not match.</string>
+    <string name="pedestrian_vehicle_type">Pedestrian vehicle type:</string>
 </resources>

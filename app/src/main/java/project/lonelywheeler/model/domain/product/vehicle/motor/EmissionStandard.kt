@@ -4,21 +4,46 @@ import com.google.gson.annotations.SerializedName
 
 enum class EmissionStandard {
 
-    @SerializedName("euro 1")
-    Euro1,
+    @SerializedName("Euro 1")
+    Euro1{
+        override fun toString(): String {
+            return "Euro 1"
+        }
+    },
 
-    @SerializedName("euro 2")
-    Euro2,
+    @SerializedName("Euro 2")
+    Euro2
+    {
+        override fun toString(): String {
+            return "Euro 2"
+        }
+    },
 
-    @SerializedName("euro 3")
-    Euro3,
+    @SerializedName("Euro 3")
+    Euro3{
+        override fun toString(): String {
+            return "Euro 3"
+        }
+    },
 
-    @SerializedName("euro 4")
-    Euro4,
+    @SerializedName("Euro 4")
+    Euro4{
+        override fun toString(): String {
+            return "Euro 4"
+        }
+    },
 
-    @SerializedName("euro 5")
-    Euro5,
+    @SerializedName("Euro 5")
+    Euro5{
+        override fun toString(): String {
+            return "Euro 5"
+        }
+    },
 
-    @SerializedName("euro 6")
-    Euro6
+    @SerializedName("Euro 6")
+    Euro6{
+        override fun toString(): String {
+            return "Euro 6"
+        }
+    }
 }

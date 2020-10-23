@@ -40,7 +40,7 @@ annotation class DefaultCarDrivetrain
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class DefaultListOfCarPictures
+annotation class DefaultPictureList
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
@@ -52,7 +52,7 @@ class DefaultCarAttributesModule {
         return ObservableField(Condition.Used)
     }
 
-    @DefaultListOfCarPictures
+    @DefaultPictureList
     @Provides
     fun provideDefaultListOfCarPictures(): MutableList<Bitmap> {
         return mutableListOf()

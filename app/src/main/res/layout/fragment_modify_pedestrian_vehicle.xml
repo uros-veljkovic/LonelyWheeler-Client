@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="project.lonelywheeler.ui.viewmodel.main.PedestrianVehicleViewModel" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/fragmentPedestrianVehicle_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.view.activity.main.fragment.ModifyPedestrianVehicleFragment">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/fragmentPedestrianVehicle_productBasicInfo"
+                    app:currentPictureIndex="@{viewModel.currentPictureIndex}"
+                    app:lastPictureIndex="@{viewModel.lastPictureIndex}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:product="@{viewModel.vehicle}"
+                    layout="@layout/product_basic_info" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fragmentPedestrianVehicle_tvProductSpecificInfoPlaceholder"
+                    style="@style/TextAppearance.LonelyWheeler.Title.Product.GeneralInfo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentPedestrianVehicle_productBasicInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/product_specific_info_placeholder" />
+
+                <TextView
+                    android:id="@+id/fragmentPedestrianVehicle_spnrPedestrianVehicleType_placeholder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentPedestrianVehicle_tvProductSpecificInfoPlaceholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/pedestrian_vehicle_type"
+                    android:textColor="@color/hintTextColor" />
+
+
+                <Spinner
+                    android:id="@+id/fragmentPedestrianVehicle_spnrPedestrianVehicleType"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentPedestrianVehicle_spnrPedestrianVehicleType_placeholder"
+                    app:onSelected="@{viewModel.vehicle.pedestrianVehicleType}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="#9F9C9C"
+                    android:dropDownWidth="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:spinnerMode="dialog" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/fragmentPedestrianVehicle_btnConfirm"
+                    style="@style/Widget.LonelyWheeler.Button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/fragmentPedestrianVehicle_btnCancel"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentPedestrianVehicle_spnrPedestrianVehicleType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/confirm" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/fragmentPedestrianVehicle_btnCancel"
+                    style="@style/Widget.LonelyWheeler.Button.TextButton"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/fragmentPedestrianVehicle_btnConfirm"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentPedestrianVehicle_spnrPedestrianVehicleType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:text="@string/cancel" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </FrameLayout>
+</layout>

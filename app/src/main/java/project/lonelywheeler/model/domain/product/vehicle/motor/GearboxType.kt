@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 enum class GearboxType {
 
-    @SerializedName("manual")
+    @SerializedName("Manual")
     Manual,
 
-    @SerializedName("automatic")
+    @SerializedName("Automatic")
     Automatic
 }

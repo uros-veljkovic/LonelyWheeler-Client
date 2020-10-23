@@ -18,6 +18,16 @@
         android:background="@color/defaultBackgroundColor"
         tools:context=".ui.view.activity.signin.SignInActivity">
 
+        <ProgressBar
+            android:id="@+id/activitySignIn_progressBar"
+            android:visibility="gone"
+            android:layout_width="@dimen/progress_bar_dimen"
+            android:layout_height="@dimen/progress_bar_dimen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/activitySignIn_ivLonelyWheelerLogo"
             android:layout_width="120dp"

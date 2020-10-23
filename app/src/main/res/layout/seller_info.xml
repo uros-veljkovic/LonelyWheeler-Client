@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/fragment_preview_motor_vehicle_offer">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fragmentPreviewOffer_tvUsernamePlaceholder"
+        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/username_placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvSellerInfoPlaceholder" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fragmentPreviewOffer_tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvUsernamePlaceholder"
+        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvUsernamePlaceholder"
+        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvUsernamePlaceholder"
+        tools:text="@string/username_example" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fragmentPreviewOffer_tvFirstNamePlaceholder"
+        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/first_name_placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvUsernamePlaceholder" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fragmentPreviewOffer_tvFirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvFirstNamePlaceholder"
+        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvFirstNamePlaceholder"
+        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvFirstNamePlaceholder"
+        tools:text="@string/first_name_example" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fragmentPreviewOffer_tvLastNamePlaceholder"
+        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/last_name_placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvFirstNamePlaceholder" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fragmentPreviewOffer_tvLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvLastNamePlaceholder"
+        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvLastNamePlaceholder"
+        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvLastNamePlaceholder"
+        tools:text="@string/last_name_example" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fragmentPreviewOffer_tvEmailPlaceholder"
+        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email_placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvLastNamePlaceholder" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fragmentPreviewOffer_tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvEmailPlaceholder"
+        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvEmailPlaceholder"
+        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvEmailPlaceholder"
+        tools:text="@string/email_example" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fragmentPreviewOffer_tvTelephonePlaceholder"
+        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/telephone_placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvEmailPlaceholder" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fragmentPreviewOffer_tvTelephone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvTelephonePlaceholder"
+        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvTelephonePlaceholder"
+        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvTelephonePlaceholder"
+        tools:text="@string/telephone_example" />
+</merge>

@@ -8,10 +8,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import project.lonelywheeler.di.defaults.primitives.*
 import project.lonelywheeler.di.defaults.product.vehicle.motor.*
-import project.lonelywheeler.model.domain.product.Condition
 import project.lonelywheeler.model.domain.product.ProductBasicInfo
 import project.lonelywheeler.model.domain.product.vehicle.motor.*
 import java.util.*
+import javax.inject.Qualifier
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
@@ -23,7 +23,7 @@ class MotorVehicleModule {
         @DefaultNullableString sellerId: String?,
         basicInfo: ProductBasicInfo,
         @DefaultObservableString condition: ObservableField<String>,
-        @DefaultListOfCarPictures pictures: MutableList<Bitmap>,
+        @DefaultPictureList pictures: MutableList<Bitmap>,
         @DefaultBoolean valueFixed: Boolean,
         @DefaultBoolean firstOwner: Boolean,
         @DefaultBoolean sellerInForExchange: Boolean,

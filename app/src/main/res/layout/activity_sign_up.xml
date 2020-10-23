@@ -72,8 +72,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:hint="@string/first_name"
-                    app:errorEnabled="true"
                     app:errorContentDescription="Use only alphabet characters"
+                    app:errorEnabled="true"
                     app:startIconDrawable="@drawable/ic_person_round_24">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -95,8 +95,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:hint="@string/last_name"
-                    app:errorEnabled="true"
                     app:errorContentDescription="Use only alphabet characters"
+                    app:errorEnabled="true"
                     app:startIconDrawable="@drawable/ic_person_round_24">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -117,8 +117,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:hint="@string/username"
-                    app:errorEnabled="true"
                     app:errorContentDescription="@string/username_helper_text"
+                    app:errorEnabled="true"
                     app:helperText="@string/username_helper_text"
                     app:startIconDrawable="@drawable/ic_person_round_24">
 
@@ -160,7 +160,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:hint="@string/email"
-                    
+
                     app:errorContentDescription="@string/enter_valid_email"
                     app:errorEnabled="true"
                     app:startIconDrawable="@drawable/ic_email_24">
@@ -169,10 +169,10 @@
                         android:id="@+id/activitySignUp_etEmail"
                         style="@style/Widget.LonelyWheeler.TextInputEditText"
                         android:layout_width="match_parent"
-                        android:autoSizeStepGranularity="2sp"
-                        android:autoSizeMinTextSize="6sp"
-                        android:autoSizeMaxTextSize="12sp"
                         android:layout_height="match_parent"
+                        android:autoSizeMaxTextSize="12sp"
+                        android:autoSizeMinTextSize="6sp"
+                        android:autoSizeStepGranularity="2sp"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:text="@={viewModel.user.accountInfo.email}"
@@ -303,5 +303,15 @@
 
 
         </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/activitySignUp_progressBar"
+            android:layout_width="@dimen/progress_bar_dimen"
+            android:layout_height="@dimen/progress_bar_dimen"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

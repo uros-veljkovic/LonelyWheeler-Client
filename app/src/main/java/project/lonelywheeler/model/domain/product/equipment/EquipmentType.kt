@@ -4,13 +4,25 @@ import com.google.gson.annotations.SerializedName
 
 enum class EquipmentType {
 
-    @SerializedName("MotorVehiclePart")
-    MotorVehiclePart,
+    @SerializedName("Motor vehicle part")
+    MotorVehiclePart{
+        override fun toString(): String {
+            return "Motor vehicle part"
+        }
+    },
 
-    @SerializedName("HumanPoweredVehiclePart")
-    HumanPoweredVehiclePart,
+    @SerializedName("Pedestrian vehicle part")
+    PedestrianVehiclePart{
+        override fun toString(): String {
+            return "Pedestrian vehicle part"
+        }
+    },
 
     @SerializedName("Other")
-    Other
+    Other{
+        override fun toString(): String {
+            return "Other"
+        }
+    },
 
 }

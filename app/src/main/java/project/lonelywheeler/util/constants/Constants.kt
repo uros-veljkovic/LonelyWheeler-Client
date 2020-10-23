@@ -5,6 +5,12 @@ const val RESPONSE_CODE_REQUEST_SUCCESS = 200;
 const val RESPONSE_CODE_REQUEST_FAIL = 201;
 const val RESPONSE_CODE_SERVER_FAIL = 202;
 
+const val RESOLUTION_1080X768 = 786432
+
+const val ENTITY_TYPE_MOTOR_VEHICLE = 1
+const val ENTITY_TYPE_PEDESTRIAN_VEHICLE = 2
+const val ENTITY_TYPE_EQUIPMENT = 3
+
 val REGEX_USERNAME = Regex("^([a-zA-Z])+([\\w]{2,})+$")
 val REGEX_EMAIL = Regex("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")
 val REGEX_FIRST_NAME = Regex("[A-Z][a-z]*")

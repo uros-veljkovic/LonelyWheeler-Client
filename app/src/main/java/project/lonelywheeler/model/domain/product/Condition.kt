@@ -13,7 +13,11 @@ enum class Condition {
     @SerializedName("Repaired")
     Repaired,
 
-    @SerializedName("NeedsRepair")
-    NeedsRepair
+    @SerializedName("Needs repair")
+    NeedsRepair{
+        override fun toString(): String {
+            return "Needs repair"
+        }
+    }
 
 }

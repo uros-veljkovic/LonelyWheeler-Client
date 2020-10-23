@@ -1,0 +1,65 @@
+package project.lonelywheeler.ui.view.activity.main.fragment
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
+import project.lonelywheeler.databinding.FragmentPreviewAllOffersBinding
+import project.lonelywheeler.ui.viewmodel.main.AllOffersViewModel
+import project.lonelywheeler.util.adapter.recyclerview.AllOfferRecViewAdapter
+import project.lonelywheeler.util.decorator.ProductItemDecorator
+
+@AndroidEntryPoint
+class PreviewAllOffersFragment : Fragment(), AllOfferRecViewAdapter.OnOfferItemClickListener {
+
+    private val TAG = "PreviewAllOffers"
+    private val viewModel: AllOffersViewModel by viewModels()
+    private lateinit var binding: FragmentPreviewAllOffersBinding
+    private var entityTypeId: Int? = null;
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        binding = FragmentPreviewAllOffersBinding.inflate(inflater, container, false)
+        initBinding()
+        observeViewModel()
+
+        return binding.root
+    }
+
+    private fun observeViewModel() {
+        entityTypeId = PreviewAllOffersFragmentArgs.fromBundle(requireArguments()).entityId
+        viewModel.read(entityTypeId!!)
+
+        viewModel.response.observe(viewLifecycleOwner, { response ->
+            val entities = response.entity
+            ((binding.fragmentAllOffersRvAllOffers.adapter) as AllOfferRecViewAdapter).setList(
+                entities ?: listOf()
+            )
+            binding.executePendingBindings()
+        })
+    }
+
+    private fun initBinding() {
+        binding.viewModel = viewModel
+        binding.fragmentAllOffersRvAllOffers.addItemDecoration(ProductItemDecorator(8, 16))
+        binding.fragmentAllOffersRvAllOffers.adapter = AllOfferRecViewAdapter(this)
+    }
+
+    override fun onOfferItemClick(position: Int) {
+        val offerID = viewModel.response.value?.entity?.get(position)?._id
+        val bundle = bundleOf("offerId" to offerID)
+        val action =
+            PreviewAllOffersFragmentDirections.actionPreviewAllOffersFragmentToPreviewSingleOfferFragment(
+                offerID!!
+            )
+        findNavController().navigate(action)
+    }
+}

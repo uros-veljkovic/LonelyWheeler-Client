@@ -4,36 +4,49 @@ import com.google.gson.annotations.SerializedName
 
 enum class CarBodyType {
 
-    @SerializedName("coupe")
+    @SerializedName("Coupe")
     Coupe,
 
-    @SerializedName("convertible")
+    @SerializedName("Convertible")
     Convertible,
 
-    @SerializedName("hatchback")
+    @SerializedName("Hatchback")
     Hatchback,
 
-    @SerializedName("minivan")
+    @SerializedName("Minivan")
     Minivan,
 
-    @SerializedName("truck")
+    @SerializedName("Truck")
     Truck,
 
-    @SerializedName("pick up")
-    PickUp,
+    @SerializedName("Pick up")
+    PickUp{
+        override fun toString(): String {
+            return "Pick up"
+        }
+    },
 
-    @SerializedName("sedan")
+    @SerializedName("Sedan")
     Sedan,
 
-    @SerializedName("station wagon")
-    StationWagon,
+    @SerializedName("Station wagon")
+    StationWagon
+    {
+        override fun toString(): String {
+            return "Station wagon"
+        }
+    },
 
-    @SerializedName("sports car")
-    SportsCar,
+    @SerializedName("Sports car")
+    SportsCar{
+        override fun toString(): String {
+            return "Sports car"
+        }
+    },
 
-    @SerializedName("suv")
+    @SerializedName("SUV")
     SUV,
 
-    @SerializedName("van")
+    @SerializedName("Van")
     Van
 }

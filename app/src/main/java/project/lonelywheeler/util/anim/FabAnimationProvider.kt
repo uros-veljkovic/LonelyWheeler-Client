@@ -1,4 +1,4 @@
-package project.lonelywheeler.util
+package project.lonelywheeler.util.anim
 
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils

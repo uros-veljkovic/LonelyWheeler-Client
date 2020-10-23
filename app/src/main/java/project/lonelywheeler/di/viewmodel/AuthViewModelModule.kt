@@ -1,5 +1,6 @@
-package project.lonelywheeler.di.defaults.viewmodel
+package project.lonelywheeler.di.viewmodel
 
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import dagger.Module
 import dagger.Provides

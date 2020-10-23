@@ -137,11 +137,11 @@
 
     <!--    TextInputLayout SEARCH styling-->
     <style name="Widget.LonelyWheeler.TextInputLayout.Search">
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeColor">@color/searchBoxColor</item>
         <item name="hintTextColor">@color/colorOnSecondary</item>
         <item name="android:textColorHint">@color/colorOnSecondary</item>
-        <item name="boxStrokeWidth">1dp</item>
         <item name="boxBackgroundColor">@color/searchBoxColor</item>
-        <item name="boxStrokeColor">@color/colorPrimary</item>
     </style>
 
     <!--        TextInputEditText SEARCH styling-->
@@ -194,8 +194,8 @@
     </style>
 
     <style name="Widget.LonelyWheeler.Fab.NoCut" parent="Widget.MaterialComponents.FloatingActionButton">
-        <item name="android:backgroundTint">@color/colorTertiary</item>
         <item name="shapeAppearance">@style/Widget.LonelyWheeler.SmallComponent.NoCut</item>
+        <item name="backgroundTint">@color/colorPrimary</item>
     </style>
 
     <!--    ShapeAppearance BIG CUT-->
@@ -255,6 +255,12 @@
         <item name="cornerSizeTopRight">30dp</item>
         <item name="cornerSizeBottomLeft">30dp</item>
         <item name="cornerSizeBottomRight">30dp</item>
+    </style>
+
+    <!--    ShapeAppearance Material Dialog-->
+    <style name="Widget.LonelyWheeler.MediumComponent.DialogBox" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerRadius">16dp</item>
     </style>
 
 </resources>

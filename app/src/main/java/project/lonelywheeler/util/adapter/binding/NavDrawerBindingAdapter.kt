@@ -1,16 +1,4 @@
-package project.lonelywheeler.util.binding.adapter
-
-import android.view.View
-import androidx.core.view.GravityCompat
-import androidx.databinding.BindingAdapter
-import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.bottomappbar.BottomAppBar
-import com.google.android.material.navigation.NavigationView
-import com.google.android.material.shape.MaterialShapeDrawable
-import kotlinx.android.synthetic.main.activity_main.*
-import project.lonelywheeler.app.MyApplication
-import project.lonelywheeler.ui.view.activity.main.bottomappbar.adapter.BottomAppBarCutCornersTopEdge
-import project.lonelywheeler.util.FabAnimationProvider
+package project.lonelywheeler.util.adapter.binding
 
 /*@BindingAdapter(value = ["drawerLayout", "navDrawer", "trigger"], requireAll = true)
 fun drawerTrigger(

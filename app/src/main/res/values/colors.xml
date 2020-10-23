@@ -17,5 +17,5 @@
     <color name="colorOnSecondary">@color/textColorPrimary</color>
 
     <color name="colorTertiary">#0376DA</color>
-    <color name="defaultBackgroundColor">#f1f1f1</color>
+    <color name="defaultBackgroundColor">#D3D3D3</color>
 </resources>

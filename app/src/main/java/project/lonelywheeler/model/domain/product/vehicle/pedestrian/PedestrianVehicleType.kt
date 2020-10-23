@@ -3,21 +3,21 @@ package project.lonelywheeler.model.domain.product.vehicle.pedestrian
 import com.google.gson.annotations.SerializedName
 
 enum class PedestrianVehicleType {
-    @SerializedName("bicycle")
+    @SerializedName("Bicycle")
     Bicycle,
 
-    @SerializedName("scooter")
+    @SerializedName("Scooter")
     Scooter,
 
-    @SerializedName("roller skates")
+    @SerializedName("Roller skates")
     RollerSkates,
 
-    @SerializedName("skateboard")
+    @SerializedName("Skateboard")
     Skateboard,
 
-    @SerializedName("skis")
+    @SerializedName("Skis")
     Skis,
 
-    @SerializedName("other")
+    @SerializedName("Other")
     Other
 }

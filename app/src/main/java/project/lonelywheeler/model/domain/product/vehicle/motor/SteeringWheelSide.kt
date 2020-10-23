@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 enum class SteeringWheelSide {
 
-    @SerializedName("left")
+    @SerializedName("Left")
     Left,
 
-    @SerializedName("right")
+    @SerializedName("Right")
     Right
 }

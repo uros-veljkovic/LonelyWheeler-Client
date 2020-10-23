@@ -1,9 +1,8 @@
-package project.lonelywheeler.util.binding.adapter
+package project.lonelywheeler.util.adapter.binding
 
 import android.view.View
 import androidx.databinding.BindingAdapter
-import kotlinx.android.synthetic.main.activity_main.*
-import project.lonelywheeler.util.FabAnimationProvider
+import project.lonelywheeler.util.anim.FabAnimationProvider
 
 
 @BindingAdapter("app:mainFabAnimation")
@@ -27,7 +26,3 @@ fun miniFabAnimation(view: View, fabShouldAppear: Boolean) {
     view.isClickable = fabShouldAppear
 }
 
-class FabBindingAdapter {
-
-
-}

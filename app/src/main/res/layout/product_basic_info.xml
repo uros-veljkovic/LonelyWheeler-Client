@@ -7,6 +7,8 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <variable
             name="product"
             type="project.lonelywheeler.model.domain.product.Product" />
@@ -26,14 +28,48 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnRemovePicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/holo_red_light"
+            android:enabled="@{lastPictureIndex &lt; 0 ? false : true}"
+            android:visibility="@{lastPictureIndex &lt; 0 ? View.GONE : View.VISIBLE}"
+            app:fabSize="mini"
+            android:src="@drawable/ic_clear"
+            app:backgroundTint="@android:color/holo_red_light"
+            app:layout_constraintEnd_toEndOf="@id/ivProductPicture"
+            app:layout_constraintStart_toEndOf="@id/ivProductPicture"
+            app:layout_constraintTop_toTopOf="@id/ivProductPicture"
+            app:layout_constraintBottom_toTopOf="@id/ivProductPicture"
+            app:shapeAppearance="@style/Widget.MaterialComponents.FloatingActionButton"
+            tools:ignore="ContentDescription" />
+
         <com.flaviofaria.kenburnsview.KenBurnsView
             android:id="@+id/ivProductPicture"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_margin="24dp"
+            android:scaleType="fitStart"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/ivNoProductPicture"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="24dp"
+            android:visibility="@{lastPictureIndex &lt; 0 ? View.VISIBLE : View.GONE}"
+            android:scaleType="fitStart"
+            android:src="@drawable/ic_no_photos"
+            app:layout_constraintBottom_toBottomOf="@+id/ivProductPicture"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivProductPicture"
             tools:ignore="ContentDescription" />
 
         <ImageButton
@@ -61,7 +97,7 @@
             app:layout_constraintTop_toTopOf="@id/ivProductPicture"
             tools:ignore="ContentDescription" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        f<com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnAddPicture"
             style="@style/Widget.LonelyWheeler.Fab.NoCut"
             android:layout_width="wrap_content"
@@ -91,7 +127,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:layout_marginBottom="8dp"
             android:hint="@string/product_title"
             app:errorEnabled="true"
             app:hintAnimationEnabled="true"
@@ -115,8 +150,6 @@
             style="@style/Widget.LonelyWheeler.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:hint="@string/brand_placeholder"
             app:errorEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -139,8 +172,6 @@
             style="@style/Widget.LonelyWheeler.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:hint="@string/model_placeholder"
             app:errorEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -163,8 +194,6 @@
             style="@style/Widget.LonelyWheeler.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:hint="@string/year_of_production_placeholder"
             app:errorEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -187,7 +216,7 @@
             style="@style/Widget.LonelyWheeler.TextInputLayout"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:hint="Price in $"
             app:errorEnabled="true"
@@ -302,7 +331,7 @@
             android:buttonTint="@color/colorPrimary"
             android:checkedButton="@id/rbtnSellerInForExchangeNo"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@id/rbtnGroupFirstOwner"
+            app:layout_constraintBottom_toBottomOf="@id/tvSellerInForExchange"
             app:layout_constraintEnd_toEndOf="@+id/rbtnGroupFirstOwner"
             app:layout_constraintTop_toTopOf="@id/tvSellerInForExchange">
 
@@ -330,7 +359,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:layout_marginBottom="8dp"
             android:hint="@string/exterior_color_placeholder"
             app:errorEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -353,8 +381,6 @@
             style="@style/Widget.LonelyWheeler.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:hint="@string/interior_color_placeholder"
             app:errorEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -377,8 +403,6 @@
             style="@style/Widget.LonelyWheeler.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:hint="@string/interior_material_placeholder"
             app:errorEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -396,14 +420,24 @@
                 android:textColor="@color/hintTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
+        <TextView
+            android:id="@+id/tvProductCondition_placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Condition: "
+            android:textColor="@color/hintTextColor"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilProductInteriorMaterial" />
+
         <Spinner
             android:id="@+id/spnrProductCondition"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tvProductCondition_placeholder"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilProductInteriorMaterial"
+            app:layout_constraintTop_toTopOf="@id/tvProductCondition_placeholder"
             app:onSelected="@{product.condition}" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -418,7 +452,7 @@
             android:textColor="@color/hintTextColor"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spnrProductCondition">
+            app:layout_constraintTop_toBottomOf="@id/tvProductCondition_placeholder">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etProductOtherInfo"

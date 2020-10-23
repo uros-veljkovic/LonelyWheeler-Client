@@ -4,21 +4,25 @@ import com.google.gson.annotations.SerializedName
 
 enum class FuelType {
 
-    @SerializedName("gasoline")
+    @SerializedName("Gasoline")
     Gasoline,
 
-    @SerializedName("diesel")
+    @SerializedName("Diesel")
     Diesel,
 
-    @SerializedName("bioDiesel")
-    BioDiesel,
+    @SerializedName("Bio diesel")
+    BioDiesel{
+        override fun toString(): String {
+            return "Bio diesel"
+        }
+    },
 
-    @SerializedName("gas")
+    @SerializedName("Gas")
     Gas,
 
-    @SerializedName("methane")
+    @SerializedName("Methane")
     Methane,
 
-    @SerializedName("other")
+    @SerializedName("Other")
     Other
 }

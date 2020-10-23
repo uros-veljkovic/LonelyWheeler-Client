@@ -5,12 +5,12 @@ import kotlin.reflect.KClass
 
 enum class Drivetrain {
 
-    @SerializedName("awd")
+    @SerializedName("AWD")
     AWD,
 
-    @SerializedName("rwd")
+    @SerializedName("RWD")
     RWD,
 
-    @SerializedName("fwd")
+    @SerializedName("FWD")
     FWD
 }

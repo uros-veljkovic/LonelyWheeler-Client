@@ -10,14 +10,11 @@ import project.lonelywheeler.di.defaults.primitives.DefaultBoolean
 import project.lonelywheeler.di.defaults.primitives.DefaultNullableString
 import project.lonelywheeler.di.defaults.primitives.DefaultObservableString
 import project.lonelywheeler.di.defaults.primitives.DefaultString
-import project.lonelywheeler.di.defaults.product.equipment.DefaultEquipmentType
-import project.lonelywheeler.di.defaults.product.vehicle.motor.DefaultListOfCarPictures
-import project.lonelywheeler.di.defaults.product.vehicle.motor.DefaultProductCondition
-import project.lonelywheeler.model.domain.product.Condition
+import project.lonelywheeler.di.defaults.product.vehicle.motor.DefaultPictureList
 import project.lonelywheeler.model.domain.product.Product
 import project.lonelywheeler.model.domain.product.ProductBasicInfo
 import project.lonelywheeler.model.domain.product.equipment.Equipment
-import project.lonelywheeler.model.domain.product.equipment.EquipmentType
+import javax.inject.Qualifier
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
@@ -29,7 +26,7 @@ class EquipmentModule {
         @DefaultNullableString sellerId: String?,
         basicInfo: ProductBasicInfo,
         @DefaultObservableString condition: ObservableField<String>,
-        @DefaultListOfCarPictures pictures: MutableList<Bitmap>,
+        @DefaultPictureList pictures: MutableList<Bitmap>,
         @DefaultBoolean valueFixed: Boolean,
         @DefaultBoolean firstOwner: Boolean,
         @DefaultBoolean sellerInForExchange: Boolean,
@@ -38,7 +35,7 @@ class EquipmentModule {
         @DefaultString colorInterior: String,
         @DefaultString materialInterior: String,
         @DefaultObservableString equipmentType: ObservableField<String>
-    ): Product {
+    ): Equipment{
         return Equipment(
             id,
             sellerId,

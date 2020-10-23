@@ -1,4 +1,4 @@
-package project.lonelywheeler.util.binding.adapter
+package project.lonelywheeler.util.adapter.binding
 
 import android.view.View
 import android.widget.AdapterView

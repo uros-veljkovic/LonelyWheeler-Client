@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
 
-    tools:context=".ui.view.activity.main.fragment.MyOffersFragment">
+    tools:context=".ui.view.activity.main.fragment.PreviewMyOffersFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myOffersFragment_rvMyOffers"
         android:layout_width="wrap_content"
-        android:layout_gravity="center"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         tools:listitem="@layout/my_offer_item" />
 
 </FrameLayout>

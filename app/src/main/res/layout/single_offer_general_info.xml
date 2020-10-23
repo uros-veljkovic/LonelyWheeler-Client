@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="product"
+            type="project.lonelywheeler.db.entity.product.ProductEntity" />
+
+        <variable
+            name="lastPictureIndex"
+            type="androidx.databinding.ObservableInt" />
+
+        <variable
+            name="currentPictureIndex"
+            type="androidx.databinding.ObservableInt" />
+    </data>
+
+    <merge tools:showIn="@layout/fragment_preview_motor_vehicle_offer">
+
+        <com.flaviofaria.kenburnsview.KenBurnsView
+            android:id="@+id/ivProductPicture"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="24dp"
+            android:scaleType="fitStart"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/ivNoProductPicture"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="24dp"
+            android:scaleType="fitStart"
+            android:src="@drawable/ic_no_photos"
+            android:visibility="@{lastPictureIndex &lt; 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/ivProductPicture"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivProductPicture"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/btnPreviousPicture"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@android:color/transparent"
+            android:clickable="@{currentPictureIndex > 0}"
+            android:src="@{currentPictureIndex > 0 ? @drawable/ic_arrow_ios : @drawable/ic_arrow_ios_grey}"
+            app:layout_constraintBottom_toBottomOf="@id/ivProductPicture"
+            app:layout_constraintStart_toStartOf="@id/ivProductPicture"
+            app:layout_constraintTop_toTopOf="@id/ivProductPicture"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/btnNextPicture"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@android:color/transparent"
+            android:clickable="@{currentPictureIndex &lt; lastPictureIndex}"
+            android:rotation="180"
+            android:src="@{currentPictureIndex &lt; lastPictureIndex? @drawable/ic_arrow_ios : @drawable/ic_arrow_ios_grey}"
+            app:layout_constraintBottom_toBottomOf="@id/ivProductPicture"
+            app:layout_constraintEnd_toEndOf="@id/ivProductPicture"
+            app:layout_constraintTop_toTopOf="@id/ivProductPicture"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductTitle"
+            style="@style/TextAppearance.LonelyWheeler.Title.Product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivProductPicture"
+            tools:text="Opel Insignia 1,5 D" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductPrice"
+            style="@style/TextAppearance.LonelyWheeler.Title.Product.Price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductTitle"
+            tools:text="8.700$" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvGeneralInfoPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Title.Product.GeneralInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="General info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductPrice" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductConditionPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/condition"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvGeneralInfoPlaceholder" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductCondition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvProductConditionPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvProductConditionPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvProductConditionPlaceholder"
+            tools:text="Used" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductBrandPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/brand"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductConditionPlaceholder" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvProductBrandPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvProductBrandPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvProductBrandPlaceholder"
+            tools:text="Opel" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductModelPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/model"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductBrandPlaceholder" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductModel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvProductModelPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvProductModelPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvProductModelPlaceholder"
+            tools:text="Insignia" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductYearOfProductionPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/year_of_production"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductModelPlaceholder" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductYearOfProduction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvProductYearOfProductionPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvProductYearOfProductionPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvProductYearOfProductionPlaceholder"
+            tools:text="2019." />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductFixedValuePlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fixed_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductYearOfProductionPlaceholder" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductFixedValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvProductFixedValuePlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvProductFixedValuePlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvProductFixedValuePlaceholder"
+            tools:text="YES" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductFirstOwnerPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/first_owner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductFixedValuePlaceholder" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductFirstOwner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvProductFirstOwnerPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvProductFirstOwnerPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvProductFirstOwnerPlaceholder"
+            tools:text="YES" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductOwnerInForExchangePlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/owner_in"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductFirstOwnerPlaceholder" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductOwnerInForExchange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvProductOwnerInForExchangePlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvProductOwnerInForExchangePlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvProductOwnerInForExchangePlaceholder"
+            tools:text="NO" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductExteriorColorPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/exterior_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductOwnerInForExchangePlaceholder" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductExteriorColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvProductExteriorColorPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvProductExteriorColorPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvProductExteriorColorPlaceholder"
+            tools:text="Blue" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductInteriorColorPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/interior_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductExteriorColorPlaceholder" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductInteriorColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvProductInteriorColorPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvProductInteriorColorPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvProductInteriorColorPlaceholder"
+            tools:text="Black" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductInteriorMaterialPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/interior_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductInteriorColorPlaceholder" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductInteriorMaterial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvProductInteriorMaterialPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvProductInteriorMaterialPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvProductInteriorMaterialPlaceholder"
+            tools:text="Leather" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductOtherInfoPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/other_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductInteriorMaterialPlaceholder" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductOtherInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:maxLines="50"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductOtherInfoPlaceholder"
+            tools:text="@string/lorem_ipsum" />
+    </merge>
+</layout>

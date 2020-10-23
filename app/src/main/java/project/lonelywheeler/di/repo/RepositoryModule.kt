@@ -1,18 +1,25 @@
 package project.lonelywheeler.di.repo
 
+import android.content.Context
+import android.net.wifi.WifiManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import project.lonelywheeler.app.MyApplication
 import project.lonelywheeler.db.repo.Repository
 import project.lonelywheeler.db.service.EquipmentService
-import project.lonelywheeler.db.service.PedestrianVehicleService
 import project.lonelywheeler.db.service.MotorVehicleService
+import project.lonelywheeler.db.service.PedestrianVehicleService
 import project.lonelywheeler.db.service.UserService
-import project.lonelywheeler.db.service.api.*
+import project.lonelywheeler.db.service.api.EquipmentApi
+import project.lonelywheeler.db.service.api.MotorVehicleApi
+import project.lonelywheeler.db.service.api.PedestrianVehicleApi
+import project.lonelywheeler.db.service.api.UserApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+
 
 @Module
 @InstallIn(ApplicationComponent::class)
@@ -98,12 +105,15 @@ class RepositoryModule {
         return retrofit.create(EquipmentApi::class.java)
     }
 
-    //TODO: umesto baseUrl uneti moju IP adresu (valjda)
+    //TODO: Mozda moze da se desi da se menja IP adresa
     @Singleton
     @Provides
     fun provideRetrofit(): Retrofit {
+
         return Retrofit.Builder()
-            .baseUrl("http://192.168.1.4:3000/")
+                // OVA IP ADRESA SE MENJA U ZAVISNOSTI GDE SI PRIKACEN NA WIFI !!!!
+            .baseUrl("http://192.168.1.4:5050/")
+//            .baseUrl("http://${MyApplication.ip}:5050/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

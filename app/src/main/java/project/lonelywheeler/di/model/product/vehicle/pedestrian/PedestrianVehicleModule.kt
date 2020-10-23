@@ -7,9 +7,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import project.lonelywheeler.di.defaults.primitives.DefaultBoolean
+import project.lonelywheeler.di.defaults.primitives.DefaultNullableString
 import project.lonelywheeler.di.defaults.primitives.DefaultObservableString
 import project.lonelywheeler.di.defaults.primitives.DefaultString
-import project.lonelywheeler.di.defaults.product.vehicle.motor.DefaultListOfCarPictures
+import project.lonelywheeler.di.defaults.product.vehicle.motor.DefaultPictureList
 import project.lonelywheeler.model.domain.product.Product
 import project.lonelywheeler.model.domain.product.ProductBasicInfo
 import project.lonelywheeler.model.domain.product.vehicle.pedestrian.PedestrianVehicle
@@ -20,11 +21,11 @@ class PedestrianVehicleModule {
 
     @Provides
     fun provideHumanPoweredVehicle(
-        id: String?,
-        sellerId: String?,
+        @DefaultNullableString id: String?,
+        @DefaultNullableString sellerId: String?,
         basicInfo: ProductBasicInfo,
         @DefaultObservableString condition: ObservableField<String>,
-        @DefaultListOfCarPictures pictures: MutableList<Bitmap>,
+        @DefaultPictureList pictures: MutableList<Bitmap>,
         @DefaultBoolean valueFixed: Boolean,
         @DefaultBoolean firstOwner: Boolean,
         @DefaultBoolean sellerInForExchange: Boolean,
@@ -34,7 +35,7 @@ class PedestrianVehicleModule {
         @DefaultString materialInterior: String,
         @DefaultObservableString pedestrianVehicleType: ObservableField<String>
 
-    ): Product {
+    ): PedestrianVehicle {
         return PedestrianVehicle(
             id,
             sellerId,

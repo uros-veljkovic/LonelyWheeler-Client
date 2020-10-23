@@ -29,8 +29,8 @@ constructor(
         return userApi.readAll()
     }
 
-    suspend fun read(entity: UserEntity): Call<MyResponse<UserEntity>> {
-        return userApi.read(entity.id!!)
+    suspend fun read(sellerId: String): MyResponse<UserEntity> {
+        return userApi.read(sellerId)
     }
 
     suspend fun update(entity: UserEntity): Call<MyResponse<UserEntity>> {

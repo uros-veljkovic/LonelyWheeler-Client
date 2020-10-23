@@ -3,13 +3,20 @@ package project.lonelywheeler.ui.view.activity.signup
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import bloder.com.blitzcore.enableWhenUsing
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import project.lonelywheeler.R
 import project.lonelywheeler.databinding.ActivitySignUpBinding
 import project.lonelywheeler.ui.view.activity.main.MainActivity
@@ -18,6 +25,8 @@ import project.lonelywheeler.ui.viewmodel.auth.AuthViewModel
 import project.lonelywheeler.util.constants.*
 import project.lonelywheeler.util.validator.FieldValidator
 import project.lonelywheeler.util.validator.matches
+import java.util.*
+import kotlin.concurrent.schedule
 
 @AndroidEntryPoint
 class SignUpActivity : AppCompatActivity() {
@@ -37,66 +46,58 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun initEditTextErrorListeners() {
-        binding.activitySignUpEtFirstName.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus && !binding.activitySignUpEtFirstName.text?.matches(REGEX_FIRST_NAME)!!) {
-                binding.activitySignUpTilFirstName.error = getString(R.string.error_first_name)
-            } else {
-                binding.activitySignUpTilFirstName.error = null
-            }
+
+        binding.apply {
+            activitySignUpEtFirstName.observeErrorFromRegex(
+                activitySignUpTilFirstName,
+                REGEX_FIRST_NAME
+            )
+            activitySignUpEtLastName.observeErrorFromRegex(
+                activitySignUpTilLastName,
+                REGEX_LAST_NAME
+            )
+            activitySignUpEtUsername.observeErrorFromRegex(
+                activitySignUpTilUsername,
+                REGEX_USERNAME
+            )
+            activitySignUpEtEmail.observeErrorFromRegex(
+                activitySignUpTilEmail,
+                REGEX_EMAIL
+            )
+            activitySignUpEtCity.observeErrorFromRegex(
+                activitySignUpTilCity,
+                REGEX_CITY_STREET
+            )
+            activitySignUpEtStreet.observeErrorFromRegex(
+                activitySignUpTilStreet,
+                REGEX_CITY_STREET
+            )
+
         }
 
-        binding.activitySignUpEtLastName.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus && !binding.activitySignUpEtLastName.text?.matches(REGEX_LAST_NAME)!!) {
-                binding.activitySignUpTilLastName.error = getString(R.string.error_last_name)
+        binding.activitySignUpEtConfirmPassword.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && !binding.activitySignUpEtConfirmPassword.equals(binding.activitySignUpEtConfirmPassword)) {
+                binding.activitySignUpTilConfirmPassword.error =
+                    getString(R.string.error_confirm_password)
             } else {
-                binding.activitySignUpTilLastName.error = null
-            }
-        }
-
-        binding.activitySignUpEtUsername.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus && !binding.activitySignUpEtUsername.text?.matches(REGEX_USERNAME)!!) {
-                binding.activitySignUpTilUsername.error = getString(R.string.error_username)
-            } else {
-                binding.activitySignUpTilUsername.error = null
-            }
-        }
-
-        binding.activitySignUpEtEmail.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus && !binding.activitySignUpEtEmail.text?.matches(REGEX_EMAIL)!!) {
-                binding.activitySignUpTilEmail.error = getString(R.string.error_email)
-            } else {
-                binding.activitySignUpTilEmail.error = null
-            }
-        }
-
-        binding.activitySignUpEtCity.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus && !binding.activitySignUpEtCity.text?.matches(REGEX_CITY_STREET)!!) {
-                binding.activitySignUpTilCity.error = getString(R.string.error_city)
-            } else {
-                binding.activitySignUpTilCity.error = null
-            }
-        }
-
-        binding.activitySignUpEtStreet.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus && !binding.activitySignUpEtStreet.text?.matches(REGEX_CITY_STREET)!!) {
-                binding.activitySignUpTilStreet.error = getString(R.string.error_street)
-            } else {
-                binding.activitySignUpTilStreet.error = null
+                binding.activitySignUpTilConfirmPassword.error = null
             }
         }
     }
 
     private fun initSingUpEnabler() {
         binding.activitySignUpBtnSignUp.enableWhenUsing(FieldValidator()) {
-            binding.activitySignUpEtUsername.isValidUsername()
-            binding.activitySignUpEtFirstName.isValidFirstName()
-            binding.activitySignUpEtLastName.isValidLastName()
-            binding.activitySignUpEtEmail.isValidEmail()
-            binding.activitySignUpEtUsername.isNotEmpty()
-            binding.activitySignUpEtFirstName.isNotEmpty()
-            binding.activitySignUpEtLastName.isNotEmpty()
-            binding.activitySignUpEtEmail.isNotEmpty()
-            binding.activitySignUpEtPassword matches binding.activitySignUpEtConfirmPassword
+            binding.apply {
+                activitySignUpEtUsername.isValidUsername()
+                activitySignUpEtFirstName.isValidFirstName()
+                activitySignUpEtLastName.isValidLastName()
+                activitySignUpEtEmail.isValidEmail()
+                activitySignUpEtUsername.isNotEmpty()
+                activitySignUpEtFirstName.isNotEmpty()
+                activitySignUpEtLastName.isNotEmpty()
+                activitySignUpEtEmail.isNotEmpty()
+                activitySignUpEtPassword matches binding.activitySignUpEtConfirmPassword
+            }
         }
     }
 
@@ -105,7 +106,17 @@ class SignUpActivity : AppCompatActivity() {
 
         initOnClickListener()
         initOnIvPictureClickListener()
+        observeProgressBarTrigger()
         observeSignUpResult()
+    }
+
+    private fun observeProgressBarTrigger() {
+        viewModel.progressBarTrigger.observe(this, { triggered: Boolean? ->
+            if (triggered!!)
+                binding.activitySignUpProgressBar.visibility = View.VISIBLE
+            else
+                binding.activitySignUpProgressBar.visibility = View.GONE
+        })
     }
 
     private fun initOnClickListener() {
@@ -119,7 +130,7 @@ class SignUpActivity : AppCompatActivity() {
             if (successfulSignUp!!) {
                 startMainActivity()
             } else {
-                showErrorMessage()
+                showSnackbar(viewModel.authResponse?.message)
             }
         })
     }
@@ -132,22 +143,24 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun showErrorMessage() {
+    private fun showSnackbar(message: String?) {
         Snackbar.make(
             activitySignUp_container,
-            "${viewModel.authResponse?.message}",
+            message ?: "No message",
             Snackbar.LENGTH_LONG
         ).show()
     }
 
     private fun startMainActivity() {
-        Snackbar.make(
-            activitySignUp_container,
-            "${viewModel.authResponse?.message}",
-            Snackbar.LENGTH_LONG
-        ).show()
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        showSnackbar(viewModel.authResponse?.message)
+        Timer().schedule(700) {
+            GlobalScope.launch {
+                withContext(Dispatchers.Main) {
+                    val intent = Intent(this@SignUpActivity, MainActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -160,4 +173,15 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
+}
+
+
+fun TextInputEditText.observeErrorFromRegex(inputLayout: TextInputLayout, regex: Regex) {
+    this.setOnFocusChangeListener { _, hasFocus ->
+        if (!hasFocus && !this.text?.matches(regex)!!) {
+            inputLayout.error = inputLayout.errorContentDescription
+        } else {
+            inputLayout.error = null
+        }
+    }
 }

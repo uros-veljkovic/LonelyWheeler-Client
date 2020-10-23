@@ -1,6 +1,7 @@
 package project.lonelywheeler.ui.viewmodel.auth
 
 import android.util.Log
+import androidx.databinding.ObservableBoolean
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
@@ -19,9 +20,10 @@ import project.lonelywheeler.model.domain.user.toEntity
 class AuthViewModel
 @ViewModelInject
 constructor(
-    private val repository: Repository,
     val user: User,
+    val repository: Repository,
     var authTrigger: MutableLiveData<Boolean>,
+    var progressBarTrigger : MutableLiveData<Boolean>,
     var authResponse: MyResponse<UserEntity>?,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : AuthListener, ViewModel() {
@@ -29,11 +31,13 @@ constructor(
     private val TAG = "AuthViewModel"
 
     fun signUp() {
+        progressBarTrigger.value = true
         val userEntity = user.toEntity()
         repository.signUp(userEntity, this)
     }
 
     fun signIn() {
+        progressBarTrigger.value = true
         val userEntity = user.toEntity()
         CoroutineScope(IO).launch {
             repository.signIn(userEntity, this@AuthViewModel)
@@ -42,23 +46,29 @@ constructor(
 
     override fun onSignUpSuccessful(myResponse: MyResponse<UserEntity>?) {
         logUserID(myResponse)
+        MyApplication.currentUser = user.toEntity()
+        progressBarTrigger.value = false
         authResponse = myResponse
         authTrigger.value = true;
     }
 
     override fun onSignUpFailed(myResponse: MyResponse<UserEntity>?) {
+        logUserID(myResponse)
+        progressBarTrigger.value = false
         authResponse = myResponse
         authTrigger.value = false
     }
 
     override fun onSignInSuccessful(myResponse: MyResponse<UserEntity>?) {
+        MyApplication.currentUser = user.toEntity()
         logUserID(myResponse)
+        progressBarTrigger.value = false
         authResponse = myResponse
         authTrigger.value = true
     }
 
-
     override fun onSignInFailed(myResponse: MyResponse<UserEntity>?) {
+        progressBarTrigger.value = false
         authResponse = myResponse
         authTrigger.value = false
     }

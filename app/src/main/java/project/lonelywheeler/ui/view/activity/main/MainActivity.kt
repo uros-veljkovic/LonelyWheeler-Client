@@ -16,13 +16,24 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.shape.MaterialShapeDrawable
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import project.lonelywheeler.R
 import project.lonelywheeler.databinding.ActivityMainBinding
 import project.lonelywheeler.ui.view.activity.main.bottomappbar.adapter.BottomAppBarCutCornersTopEdge
 import project.lonelywheeler.ui.view.activity.signin.SignInActivity
+import project.lonelywheeler.util.adapter.recyclerview.AllOfferRecViewAdapter
+import project.lonelywheeler.util.constants.ENTITY_TYPE_EQUIPMENT
+import project.lonelywheeler.util.constants.ENTITY_TYPE_MOTOR_VEHICLE
+import project.lonelywheeler.util.constants.ENTITY_TYPE_PEDESTRIAN_VEHICLE
+import java.util.*
+import kotlin.concurrent.schedule
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+    AllOfferRecViewAdapter.OnOfferItemClickListener {
 
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
@@ -37,24 +48,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         configNavigationComponent()
         configBottomAppBar()
         configNavigationDrawer()
-        configBtnClickListener()
+        initOnClickListeners()
 
         binding.fabTrigger = fabTrigger
-        activityMain_fabMain.setOnClickListener { fabTrigger.reverse() }
     }
 
-    private fun configBtnClickListener() {
-        activityMain_fabEquipment.setOnClickListener {
-            fabTrigger.reverse()
-        }
-        activityMain_fabHumanPoweredVehicle.setOnClickListener {
-            fabTrigger.reverse()
+    private fun initOnClickListeners() {
+        binding.apply {
+            activityMainFabEquipment.setOnClickListener {
+                fabTrigger?.reverse()
+                navController navigateWithDelayTo R.id.action_global_modifyEquipmentFragment
+            }
+            activityMainFabHumanPoweredVehicle.setOnClickListener {
+                fabTrigger?.reverse()
+            }
+
+            activityMainFabMotorVehicle.setOnClickListener {
+                fabTrigger?.reverse()
+                navController navigateWithDelayTo R.id.action_global_modifyMotorVehicleFragment
+            }
+
+            activityMainFabMain.setOnClickListener {
+                fabTrigger?.reverse()
+            }
         }
 
-        activityMain_fabMotorVehicle.setOnClickListener {
-            fabTrigger.reverse()
-            navController.navigate(R.id.action_global_updateOfferFragment)
-        }
     }
 
     private fun configNavigationDrawer() {
@@ -74,9 +92,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.previewEntitiesFragment,
+                R.id.previewAllOffersFragment,
                 R.id.previewProfileFragment,
-                R.id.myOffersFragment
+                R.id.myOffersFragment,
+                R.id.modifyMotorVehicleFragment,
+                R.id.modifyEquipmentFragment
             )
         )
 
@@ -123,12 +143,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_home,
-            R.id.nav_pedestrian_vehicles,
-            R.id.nav_equipment,
+            R.id.nav_home -> {
+                startPreviewAllFragmentWith(ENTITY_TYPE_MOTOR_VEHICLE)
+            }
+            R.id.nav_pedestrian_vehicles -> {
+                startPreviewAllFragmentWith(ENTITY_TYPE_PEDESTRIAN_VEHICLE)
+            }
+            R.id.nav_equipment -> {
+                startPreviewAllFragmentWith(ENTITY_TYPE_EQUIPMENT)
+            }
             R.id.nav_all_sellers -> {
-                val entityId = bundleOf("entityId" to item.itemId)
-                navController.navigate(R.id.action_global_previewEntitiesFragment, entityId)
+                Toast.makeText(this, "All sellers fragment !", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_advanced_search -> {
                 Toast.makeText(this, "Advanced search", Toast.LENGTH_SHORT).show()
@@ -138,6 +163,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_logout -> {
                 startActivity(Intent(this, SignInActivity::class.java))
+                finish()
             }
         }
 
@@ -145,5 +171,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    private fun startPreviewAllFragmentWith(entityTypeId: Int) {
+        val entityId = bundleOf("entityId" to entityTypeId)
+        navController.navigate(R.id.action_global_previewAllOffersFragment, entityId)
+    }
+
+    override fun onOfferItemClick(position: Int) {
+        TODO("Not yet implemented")
+    }
+
+}
+
+infix fun NavController.navigateWithDelayTo(actionId: Int) {
+
+    Timer().schedule(1000) {
+        GlobalScope.launch {
+            withContext(Dispatchers.Main) {
+                navigate(actionId)
+            }
+        }
+    }
 }
 
