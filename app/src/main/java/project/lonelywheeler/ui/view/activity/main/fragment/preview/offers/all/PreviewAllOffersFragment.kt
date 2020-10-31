@@ -1,10 +1,9 @@
-package project.lonelywheeler.ui.view.activity.main.fragment
+package project.lonelywheeler.ui.view.activity.main.fragment.preview.offers.all
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,6 +11,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import project.lonelywheeler.databinding.FragmentPreviewAllOffersBinding
 import project.lonelywheeler.ui.viewmodel.main.AllOffersViewModel
 import project.lonelywheeler.util.adapter.recyclerview.AllOfferRecViewAdapter
+import project.lonelywheeler.util.constants.ENTITY_TYPE_EQUIPMENT
+import project.lonelywheeler.util.constants.ENTITY_TYPE_MOTOR_VEHICLE
+import project.lonelywheeler.util.constants.ENTITY_TYPE_PEDESTRIAN_VEHICLE
 import project.lonelywheeler.util.decorator.ProductItemDecorator
 
 @AndroidEntryPoint
@@ -44,6 +46,7 @@ class PreviewAllOffersFragment : Fragment(), AllOfferRecViewAdapter.OnOfferItemC
                 entities ?: listOf()
             )
             binding.executePendingBindings()
+            binding.notifyChange()
         })
     }
 
@@ -54,12 +57,34 @@ class PreviewAllOffersFragment : Fragment(), AllOfferRecViewAdapter.OnOfferItemC
     }
 
     override fun onOfferItemClick(position: Int) {
-        val offerID = viewModel.response.value?.entity?.get(position)?._id
-        val bundle = bundleOf("offerId" to offerID)
-        val action =
-            PreviewAllOffersFragmentDirections.actionPreviewAllOffersFragmentToPreviewSingleOfferFragment(
-                offerID!!
-            )
-        findNavController().navigate(action)
+        val offerId = viewModel.response.value?.entity?.get(position)?._id
+        val sellerId = viewModel.response.value?.entity?.get(position)?.sellerId
+
+        when (entityTypeId) {
+            ENTITY_TYPE_MOTOR_VEHICLE -> {
+                val action =
+                    PreviewAllOffersFragmentDirections.actionPreviewAllOffersFragmentToPreviewMotorVehicleFragment(
+                        offerId!!,
+                        sellerId!!
+                    )
+                findNavController().navigate(action)
+            }
+            ENTITY_TYPE_EQUIPMENT -> {
+                val action =
+                    PreviewAllOffersFragmentDirections.actionPreviewAllOffersFragmentToPreviewEquipmentOfferFragment(
+                        offerId!!,
+                        sellerId!!
+                    )
+                findNavController().navigate(action)
+            }
+            ENTITY_TYPE_PEDESTRIAN_VEHICLE -> {
+                val action =
+                    PreviewAllOffersFragmentDirections.actionPreviewAllOffersFragmentToPreviewPedestrianVehicleOfferFragment(
+                        offerId!!,
+                        sellerId!!
+                    )
+                findNavController().navigate(action)
+            }
+        }
     }
 }
