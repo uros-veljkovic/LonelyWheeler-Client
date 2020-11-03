@@ -3,41 +3,42 @@ package project.lonelywheeler.util.adapter.recyclerview
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import project.lonelywheeler.databinding.ProductItemBinding
-import project.lonelywheeler.db.entity.product.ProductEntity
+import project.lonelywheeler.databinding.OfferItemBigBinding
+import project.lonelywheeler.databinding.OfferItemSmallBinding
+import project.lonelywheeler.db.entity.offfer.OfferEntity
 
 class AllOfferRecViewAdapter(
-    val listener: OnOfferItemClickListener
+    val listener: OnOfferItemClickListener,
 ) :
     RecyclerView.Adapter<AllOfferRecViewAdapter.AllOfferViewHolder>() {
 
-    private var productList: List<ProductEntity> = listOf()
+    private var offerList: List<OfferEntity> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllOfferViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ProductItemBinding.inflate(inflater)
+        val binding = OfferItemSmallBinding.inflate(inflater)
         return AllOfferViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: AllOfferViewHolder, position: Int) {
-        holder.bind(productList[position])
+        holder.bind(offerList[position])
         holder.itemView.setOnClickListener { listener.onOfferItemClick(position) }
     }
 
     override fun getItemCount(): Int {
-        return productList.size
+        return offerList.size
     }
 
-    fun setList(list: List<ProductEntity>) {
-        this.productList = list
+    fun setList(list: List<OfferEntity>) {
+        this.offerList = list
         notifyDataSetChanged()
     }
 
-    inner class AllOfferViewHolder constructor(val binding: ProductItemBinding) :
-        RecyclerView.ViewHolder(binding.root){
+    inner class AllOfferViewHolder constructor(val binding: OfferItemSmallBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(product: ProductEntity) {
-            binding.product = product
+        fun bind(offer: OfferEntity) {
+            binding.offer = offer
             binding.executePendingBindings()
 
         }

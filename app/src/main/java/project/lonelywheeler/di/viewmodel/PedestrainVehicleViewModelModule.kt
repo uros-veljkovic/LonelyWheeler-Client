@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
-import project.lonelywheeler.db.entity.product.vehicle.pedestrian.PedestrianVehicleEntity
+import project.lonelywheeler.db.entity.offfer.vehicle.pedestrian.PedestrianVehicleEntity
 import project.lonelywheeler.db.response.MyResponse
 import javax.inject.Qualifier
 

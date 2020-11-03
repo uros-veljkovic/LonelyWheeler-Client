@@ -5,94 +5,124 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-            name="entity"
-            type="project.lonelywheeler.db.entity.product.vehicle.motor.MotorVehicleEntity" />
+            name="viewModel"
+            type="project.lonelywheeler.ui.viewmodel.main.MotorVehicleViewModel" />
     </data>
 
-    <FrameLayout
+    <ScrollView
+        android:id="@+id/fragmentPreviewOffer_sv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.view.activity.main.fragment.PreviewMotorVehicleOfferFragment">
+        tools:context=".ui.view.activity.main.fragment.preview.offers.single.PreviewMotorVehicleOfferFragment">
 
-        <ScrollView
-            android:id="@+id/fragmentPreviewOffer_sv"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragmentPreviewOffer_clContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/fragmentPreviewOffer_clContainer"
+
+            <ProgressBar
+                android:id="@+id/fragmentPreviewOffer_progressBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <include layout="@layout/single_offer_general_info" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/fragmentPreviewOffer_tvProductSpecificInfoPlaceholder"
-                    style="@style/TextAppearance.LonelyWheeler.Title.Product.GeneralInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:text="Product specific info"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvProductOtherInfo" />
-
-                <include layout="@layout/motor_vehicle_info" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/fragmentPreviewOffer_tvSellerInfoPlaceholder"
-                    style="@style/TextAppearance.LonelyWheeler.Title.Product.GeneralInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:text="@string/seller_info_placeholder"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvCarHasMultimediaPlaceholder" />
-
-                <include layout="@layout/seller_info" />
-
-                <ImageButton
-                    android:id="@+id/fragmentPreviewOffer_btnTelephone"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginBottom="32dp"
-                    android:src="@drawable/ic_phone_button"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvTelephone"
-                    tools:ignore="ContentDescription" />
-
-                <ImageButton
-                    android:id="@+id/fragmentPreviewOffer_btnEmail"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginEnd="32dp"
-                    android:src="@drawable/ic_mail_button"
-                    app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_btnTelephone"
-                    app:layout_constraintRight_toLeftOf="@id/fragmentPreviewOffer_btnTelephone"
-                    app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_btnTelephone"
-                    tools:ignore="ContentDescription" />
-
-                <ImageButton
-                    android:id="@+id/fragmentPreviewOffer_btnMessage"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="32dp"
-                    android:elevation="16dp"
-                    android:src="@drawable/ic_message_button"
-                    app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_btnTelephone"
-                    app:layout_constraintLeft_toRightOf="@id/fragmentPreviewOffer_btnTelephone"
-                    app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_btnTelephone"
-                    tools:ignore="ContentDescription" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:indeterminate="true"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
+            <include
+                android:id="@+id/generalInfo"
+                layout="@layout/single_offer_general_info"
+                app:currentPictureIndex="@{viewModel.currentPictureIndex}"
+                app:lastPictureIndex="@{viewModel.lastPictureIndex}"
+                app:likedOffer="@{viewModel.likeTriggered}"
+                app:product="@{viewModel.responseEntity.entity}" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragmentPreviewOffer_tvProductSpecificInfoPlaceholder"
+                style="@style/TextAppearance.LonelyWheeler.Title.Product.GeneralInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Product specific info"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvProductOtherInfo" />
+
+            <include
+                layout="@layout/motor_vehicle_info"
+                app:vehicle="@{viewModel.responseEntity.entity}" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragmentPreviewOffer_tvSellerInfoPlaceholder"
+                style="@style/TextAppearance.LonelyWheeler.Title.Product.GeneralInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/seller_info_placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCarHasMultimediaPlaceholder" />
+
+            <include
+                layout="@layout/seller_info"
+                app:seller="@{viewModel.responseSeller.entity}" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fragmentPreviewOffer_btnTelephone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="48dp"
+                android:backgroundTint="@color/colorSecondary"
+                android:elevation="16dp"
+                android:src="@drawable/ic_phone_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvTelephone"
+                app:shapeAppearance="@style/Widget.MaterialComponents.FloatingActionButton"
+                tools:ignore="ContentDescription" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fragmentPreviewOffer_btnEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:backgroundTint="@color/emailFabColor"
+                android:elevation="16dp"
+                android:src="@drawable/ic_mail_button"
+                app:backgroundTint="@color/emailFabColor"
+                app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_btnTelephone"
+                app:layout_constraintRight_toLeftOf="@id/fragmentPreviewOffer_btnTelephone"
+                app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_btnTelephone"
+                app:shapeAppearance="@style/Widget.MaterialComponents.FloatingActionButton"
+                tools:ignore="ContentDescription" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fragmentPreviewOffer_btnMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:backgroundTint="@color/smsFabColor"
+                android:backgroundTintMode="src_atop"
+                android:elevation="16dp"
+                android:src="@drawable/ic_message_button"
+                app:backgroundTint="@color/smsFabColor"
+                app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_btnTelephone"
+                app:layout_constraintLeft_toRightOf="@id/fragmentPreviewOffer_btnTelephone"
+                app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_btnTelephone"
+                app:shapeAppearance="@style/Widget.MaterialComponents.FloatingActionButton"
+                tools:ignore="ContentDescription" />
 
 
-    </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </layout>

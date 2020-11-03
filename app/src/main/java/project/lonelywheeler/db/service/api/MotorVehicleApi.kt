@@ -1,7 +1,7 @@
 package project.lonelywheeler.db.service.api
 
-import project.lonelywheeler.db.entity.product.ProductEntity
-import project.lonelywheeler.db.entity.product.vehicle.motor.MotorVehicleEntity
+import project.lonelywheeler.db.entity.offfer.OfferEntity
+import project.lonelywheeler.db.entity.offfer.vehicle.motor.MotorVehicleEntity
 import project.lonelywheeler.db.response.MyResponse
 import retrofit2.Call
 import retrofit2.http.*
@@ -12,7 +12,7 @@ interface MotorVehicleApi {
     suspend fun create(@Body motorVehicleEntity: MotorVehicleEntity): MyResponse<MotorVehicleEntity>
 
     @GET("motor-vehicles/read")
-    suspend fun readAll(): MyResponse<List<ProductEntity>>
+    suspend fun readAll(): MyResponse<List<OfferEntity>>
 
     @GET("motor-vehicles/read/{id}")
     suspend fun read(@Path("id") id: String): MyResponse<MotorVehicleEntity>

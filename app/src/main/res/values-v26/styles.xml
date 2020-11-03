@@ -19,13 +19,13 @@
 
     <!--        TextInputLayout SEARCH styling-->
     <style name="Widget.LonelyWheeler.TextInputLayout.Search">
-        <item name="hintTextAppearance">
-            @style/TextAppearance.LonelyWheeler.TextInputLayout.HintText
-        </item>
         <item name="endIconDrawable">@drawable/ic_search_orange</item>
-        <item name="android:textColorHint">@color/colorOnSecondary</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
         <item name="hintTextColor">@color/colorOnSecondary</item>
-        <item name="boxBackgroundColor">@color/searchBoxColor</item>
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxStrokeColor">@color/hintTextColor</item>
+        <item name="android:textColor">@color/hintTextColor</item>
     </style>
 
     <!--        TextInputEditText SEARCH styling-->

@@ -1,7 +1,7 @@
 package project.lonelywheeler.db.service
 
-import project.lonelywheeler.db.entity.product.ProductEntity
-import project.lonelywheeler.db.entity.product.vehicle.motor.MotorVehicleEntity
+import project.lonelywheeler.db.entity.offfer.OfferEntity
+import project.lonelywheeler.db.entity.offfer.vehicle.motor.MotorVehicleEntity
 import project.lonelywheeler.db.entity.user.UserEntity
 import project.lonelywheeler.db.response.MyResponse
 import project.lonelywheeler.db.service.api.MotorVehicleApi
@@ -18,7 +18,7 @@ constructor(
         return motorVehicleApi.create(entity)
     }
 
-    suspend fun readAll(): MyResponse<List<ProductEntity>> {
+    suspend fun readAll(): MyResponse<List<OfferEntity>> {
         return motorVehicleApi.readAll()
     }
 

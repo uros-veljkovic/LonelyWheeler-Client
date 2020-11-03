@@ -17,6 +17,10 @@ class MyApplication : Application() {
         fun context(): Context {
             return application!!.applicationContext
         }
+
+        val currentUserId by lazy{
+            currentUser!!.id
+        }
     }
 
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="project.lonelywheeler.util.adapter.recyclerview.OfferItemBigRvAdapter" />
+
+        <variable
+            name="viewModel"
+            type="project.lonelywheeler.ui.viewmodel.main.SellerOfferViewModel" />
+    </data>
+
+    <FrameLayout
+        android:foregroundGravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.view.activity.main.fragment.preview.offers.seller.PreviewSellersOffersFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/myOffersFragment_rvMyOffers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:linearLayoutAdapter="@{adapter}"
+            tools:listitem="@layout/offer_item_big" />
+
+    </FrameLayout>
+</layout>

@@ -1,21 +1,12 @@
 package project.lonelywheeler.di.repo
 
-import android.content.Context
-import android.net.wifi.WifiManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import project.lonelywheeler.app.MyApplication
 import project.lonelywheeler.db.repo.Repository
-import project.lonelywheeler.db.service.EquipmentService
-import project.lonelywheeler.db.service.MotorVehicleService
-import project.lonelywheeler.db.service.PedestrianVehicleService
-import project.lonelywheeler.db.service.UserService
-import project.lonelywheeler.db.service.api.EquipmentApi
-import project.lonelywheeler.db.service.api.MotorVehicleApi
-import project.lonelywheeler.db.service.api.PedestrianVehicleApi
-import project.lonelywheeler.db.service.api.UserApi
+import project.lonelywheeler.db.service.*
+import project.lonelywheeler.db.service.api.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -31,20 +22,24 @@ class RepositoryModule {
         userService: UserService,
         motorVehicleService: MotorVehicleService,
         pedestrianVehicleService: PedestrianVehicleService,
-        equipmentService: EquipmentService
+        equipmentService: EquipmentService,
+        favoriteOfferService: FavoriteOfferService,
+        offerService: OfferService,
     ): Repository {
         return Repository(
             userService,
             motorVehicleService,
             pedestrianVehicleService,
-            equipmentService
+            equipmentService,
+            offerService,
+            favoriteOfferService
         )
     }
 
     @Singleton
     @Provides
     fun provideUserService(
-        userApi: UserApi
+        userApi: UserApi,
     ): UserService {
         return UserService(userApi)
     }
@@ -52,7 +47,7 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideUserApi(
-        retrofit: Retrofit
+        retrofit: Retrofit,
     ): UserApi {
         return retrofit.create(UserApi::class.java)
     }
@@ -60,7 +55,7 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideMotorVehicleService(
-        motorVehicleApi: MotorVehicleApi
+        motorVehicleApi: MotorVehicleApi,
     ): MotorVehicleService {
         return MotorVehicleService(motorVehicleApi)
     }
@@ -68,23 +63,24 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideMotorVehicleApi(
-        retrofit: Retrofit
+        retrofit: Retrofit,
     ): MotorVehicleApi {
         return retrofit.create(MotorVehicleApi::class.java)
     }
 
+
     @Singleton
     @Provides
-    fun provideHumanPoweredVehicleService(
-        pedestrianVehicleApi: PedestrianVehicleApi
+    fun providePedestrianPoweredVehicleService(
+        pedestrianVehicleApi: PedestrianVehicleApi,
     ): PedestrianVehicleService {
         return PedestrianVehicleService(pedestrianVehicleApi)
     }
 
     @Singleton
     @Provides
-    fun provideHumanPoweredVehicleApi(
-        retrofit: Retrofit
+    fun providePedestrianPoweredVehicleApi(
+        retrofit: Retrofit,
     ): PedestrianVehicleApi {
         return retrofit.create(PedestrianVehicleApi::class.java)
     }
@@ -92,7 +88,7 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideEquipmentService(
-        equipmentApi: EquipmentApi
+        equipmentApi: EquipmentApi,
     ): EquipmentService {
         return EquipmentService(equipmentApi)
     }
@@ -100,24 +96,53 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideEquipmentApi(
-        retrofit: Retrofit
+        retrofit: Retrofit,
     ): EquipmentApi {
         return retrofit.create(EquipmentApi::class.java)
     }
 
-    //TODO: Mozda moze da se desi da se menja IP adresa
+
+    @Singleton
+    @Provides
+    fun provideFavoriteOfferService(
+        favoriteOfferApi: FavoriteOfferApi,
+    ): FavoriteOfferService {
+        return FavoriteOfferService(favoriteOfferApi)
+    }
+
+    @Singleton
+    @Provides
+    fun provideFavoriteOfferApi(
+        retrofit: Retrofit,
+    ): FavoriteOfferApi {
+        return retrofit.create(FavoriteOfferApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideOfferService(
+        offerApi: OfferApi,
+    ): OfferService {
+        return OfferService(offerApi)
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideOfferApi(
+        retrofit: Retrofit,
+    ): OfferApi {
+        return retrofit.create(OfferApi::class.java)
+    }
+
+
     @Singleton
     @Provides
     fun provideRetrofit(): Retrofit {
-
         return Retrofit.Builder()
-                // OVA IP ADRESA SE MENJA U ZAVISNOSTI GDE SI PRIKACEN NA WIFI !!!!
             .baseUrl("http://192.168.1.4:5050/")
-//            .baseUrl("http://${MyApplication.ip}:5050/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-
-//   "mongodb+srv://urkeev14:JKAr1brliXRVlugt@lonely-wheeler.ehdx9.mongodb.net/lonely-wheeler-db?retryWrites=true&w=majority"
 
 }

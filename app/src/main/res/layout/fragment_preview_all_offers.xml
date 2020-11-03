@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:elevation="1dp"
         android:orientation="vertical"
-        tools:context=".ui.view.activity.main.fragment.PreviewAllOffersFragment">
+        tools:context=".ui.view.activity.main.fragment.preview.offers.all.PreviewAllOffersFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -79,7 +79,7 @@
                 app:layout_constraintTop_toBottomOf="@id/ll1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:spanCount="2"
-                tools:listitem="@layout/product_item" />
+                tools:listitem="@layout/offer_item_small" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

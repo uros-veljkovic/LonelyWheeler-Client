@@ -1,292 +1,346 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="@layout/fragment_preview_motor_vehicle_offer">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="project.lonelywheeler.util.date.MyDateUtils" />
+
+        <variable
+            name="vehicle"
+            type="project.lonelywheeler.db.entity.offfer.vehicle.motor.MotorVehicleEntity" />
+    </data>
+
+    <merge tools:showIn="@layout/fragment_preview_motor_vehicle_offer">
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarBordyTypePlaceholder"
-        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/car_body_type"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvProductSpecificInfoPlaceholder" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarBordyTypePlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/car_body_type"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvProductSpecificInfoPlaceholder" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarBordyType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarBordyTypePlaceholder"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarBordyTypePlaceholder"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarBordyTypePlaceholder"
-        tools:text="SUV" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarBordyType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vehicle.carBodyType}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarBordyTypePlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvCarBordyTypePlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvCarBordyTypePlaceholder"
+            tools:text="SUV" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarMaxSpeedPlaceholder"
-        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/max_speed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvCarBordyTypePlaceholder" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarMaxSpeedPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/max_speed"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCarBordyTypePlaceholder" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarMaxSpeed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarMaxSpeedPlaceholder"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarMaxSpeedPlaceholder"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarMaxSpeedPlaceholder"
-        tools:text="50" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarMaxSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`` + vehicle.maxSpeed}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarMaxSpeedPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvCarMaxSpeedPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvCarMaxSpeedPlaceholder"
+            tools:text="50" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvKmh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:maxLines="50"
-        android:text="@string/km_h"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarMaxSpeed"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarMaxSpeed"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarMaxSpeed" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvKmh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/km_h"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarMaxSpeed"
+            app:layout_constraintStart_toEndOf="@id/tvCarMaxSpeed"
+            app:layout_constraintTop_toTopOf="@id/tvCarMaxSpeed" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarMileagePlaceholder"
-        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/mileage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvCarMaxSpeedPlaceholder" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarMileagePlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mileage"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCarMaxSpeedPlaceholder" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarMileage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="50"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarMileagePlaceholder"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarMileagePlaceholder"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarMileagePlaceholder"
-        tools:text="10.000" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarMileage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`` + vehicle.mileage}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarMileagePlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvCarMileagePlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvCarMileagePlaceholder"
+            tools:text="10.000" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvKm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="@string/km"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarMileage"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarMileage"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarMileage" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvKm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/km"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarMileage"
+            app:layout_constraintStart_toEndOf="@id/tvCarMileage"
+            app:layout_constraintTop_toTopOf="@id/tvCarMileage" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarCubicCapacityPlaceholder"
-        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cubic_capacity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvCarMileagePlaceholder" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarCubicCapacityPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cubic_capacity"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCarMileagePlaceholder" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarCubicCapacity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarCubicCapacityPlaceholder"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarCubicCapacityPlaceholder"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarCubicCapacityPlaceholder"
-        tools:text="1.956" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarCubicCapacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`` + vehicle.cubicCapacity}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarCubicCapacityPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvCarCubicCapacityPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvCarCubicCapacityPlaceholder"
+            tools:text="1.956" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="@string/cc"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarCubicCapacity"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarCubicCapacity"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarCubicCapacity" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/cc"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarCubicCapacity"
+            app:layout_constraintStart_toEndOf="@id/tvCarCubicCapacity"
+            app:layout_constraintTop_toTopOf="@id/tvCarCubicCapacity" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarHorsePowerPlaceholder"
-        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/horse_power"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvCarCubicCapacityPlaceholder" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarHorsePowerPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/horse_power"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCarCubicCapacityPlaceholder" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarHorsePower"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarHorsePowerPlaceholder"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarHorsePowerPlaceholder"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarHorsePowerPlaceholder"
-        tools:text="150" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarHorsePower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`` + vehicle.maxHorsePower}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarHorsePowerPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvCarHorsePowerPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvCarHorsePowerPlaceholder"
+            tools:text="150" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarRegistrationPlaceholder"
-        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/registered_until"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvCarHorsePowerPlaceholder" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarRegistrationPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/registered_until"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCarHorsePowerPlaceholder" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarRegistration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarRegistrationPlaceholder"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarRegistrationPlaceholder"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarRegistrationPlaceholder"
-        tools:text="21.10.2020." />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarRegistration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{MyDateUtils.INSTANCE.createDate(vehicle.registeredUntil)}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarRegistrationPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvCarRegistrationPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvCarRegistrationPlaceholder"
+            tools:text="21.10.2020." />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarFuelTypePlaceholder"
-        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fuel_type"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvCarRegistrationPlaceholder" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarFuelTypePlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fuel_type"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCarRegistrationPlaceholder" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarFuelType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarFuelTypePlaceholder"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarFuelTypePlaceholder"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarFuelTypePlaceholder"
-        tools:text="BioDiesel" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarFuelType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vehicle.fuelType}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarFuelTypePlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvCarFuelTypePlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvCarFuelTypePlaceholder"
+            tools:text="BioDiesel" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarEmissionStandardPlaceholder"
-        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/emission_standard"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvCarFuelTypePlaceholder" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarEmissionStandardPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/emission_standard"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCarFuelTypePlaceholder" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarEmissionStandard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarEmissionStandardPlaceholder"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarEmissionStandardPlaceholder"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarEmissionStandardPlaceholder"
-        tools:text="Euro 5" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarEmissionStandard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vehicle.emissionStandard}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarEmissionStandardPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvCarEmissionStandardPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvCarEmissionStandardPlaceholder"
+            tools:text="Euro 5" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarGearboxTypePlaceholder"
-        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/gearbox_type"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvCarEmissionStandardPlaceholder" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarGearboxTypePlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gearbox_type"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCarEmissionStandardPlaceholder" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarGearboxType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarGearboxTypePlaceholder"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarGearboxTypePlaceholder"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarGearboxTypePlaceholder"
-        tools:text="Manual" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarGearboxType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vehicle.gearboxType}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarGearboxTypePlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvCarGearboxTypePlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvCarGearboxTypePlaceholder"
+            tools:text="Manual" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarSteeringWheelSidePlaceholder"
-        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/steering_wheel_side"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvCarGearboxTypePlaceholder" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarSteeringWheelSidePlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/steering_wheel_side"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCarGearboxTypePlaceholder" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarSteeringWheelSide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarSteeringWheelSidePlaceholder"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarSteeringWheelSidePlaceholder"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarSteeringWheelSidePlaceholder"
-        tools:text="Left" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarSteeringWheelSide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vehicle.steeringWheelSide}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarSteeringWheelSidePlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvCarSteeringWheelSidePlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvCarSteeringWheelSidePlaceholder"
+            tools:text="Left" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarDrivetrainPlaceholder"
-        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/drivetrain"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvCarSteeringWheelSidePlaceholder" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarDrivetrainPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/drivetrain"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCarSteeringWheelSidePlaceholder" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarDrivetrain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarDrivetrainPlaceholder"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarDrivetrainPlaceholder"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarDrivetrainPlaceholder"
-        tools:text="RWD" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarDrivetrain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vehicle.drivetrain}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarDrivetrainPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvCarDrivetrainPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvCarDrivetrainPlaceholder"
+            tools:text="RWD" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarNumberOfDoorsPlaceholder"
-        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/num_of_doors"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvCarDrivetrainPlaceholder" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarNumberOfDoorsPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/num_of_doors"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCarDrivetrainPlaceholder" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarNumberOfDoors"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarNumberOfDoorsPlaceholder"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarNumberOfDoorsPlaceholder"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarNumberOfDoorsPlaceholder"
-        tools:text="5" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarNumberOfDoors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`` + vehicle.numberOfDoors}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarNumberOfDoorsPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvCarNumberOfDoorsPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvCarNumberOfDoorsPlaceholder"
+            tools:text="5" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarNumberOfSeatsPlaceholder"
-        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/num_of_seats"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvCarNumberOfDoorsPlaceholder" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarNumberOfSeatsPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/num_of_seats"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCarNumberOfDoorsPlaceholder" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarNumberOfSeats"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarNumberOfSeatsPlaceholder"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarNumberOfSeatsPlaceholder"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarNumberOfSeatsPlaceholder"
-        tools:text="5" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarNumberOfSeats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`` + vehicle.numberOfSeats}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarNumberOfSeatsPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvCarNumberOfSeatsPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvCarNumberOfSeatsPlaceholder"
+            tools:text="5" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarHasMultimediaPlaceholder"
-        style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/has_multimedia"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvCarNumberOfSeatsPlaceholder" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarHasMultimediaPlaceholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/has_multimedia"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCarNumberOfSeatsPlaceholder" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragmentPreviewOffer_tvCarHasMultimedia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/fragmentPreviewOffer_tvCarHasMultimediaPlaceholder"
-        app:layout_constraintStart_toEndOf="@id/fragmentPreviewOffer_tvCarHasMultimediaPlaceholder"
-        app:layout_constraintTop_toTopOf="@id/fragmentPreviewOffer_tvCarHasMultimediaPlaceholder"
-        tools:text="YES" />
-</merge>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCarHasMultimedia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vehicle.hasMultimedia ? `Yes` : `No`}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCarHasMultimediaPlaceholder"
+            app:layout_constraintStart_toEndOf="@id/tvCarHasMultimediaPlaceholder"
+            app:layout_constraintTop_toTopOf="@id/tvCarHasMultimediaPlaceholder"
+            tools:text="YES" />
+    </merge>
+</layout>

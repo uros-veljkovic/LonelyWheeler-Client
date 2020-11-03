@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="project.lonelywheeler.util.date.MyDateUtils" />
+
+        <variable
+            name="vehicle"
+            type="project.lonelywheeler.db.entity.offfer.vehicle.pedestrian.PedestrianVehicleEntity" />
+    </data>
+
+    <merge tools:showIn="@layout/fragment_preview_pedestrian_vehicle_offer">
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvPedestrianVehicleType_placeholder"
+            style="@style/TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/pedestrian_vehicle_type"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductSpecificInfoPlaceholder" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvPedestrianVehicleType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vehicle.pedestrianVehicleType}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvPedestrianVehicleType_placeholder"
+            app:layout_constraintStart_toEndOf="@id/tvPedestrianVehicleType_placeholder"
+            app:layout_constraintTop_toTopOf="@id/tvPedestrianVehicleType_placeholder"
+            tools:text="Helmet" />
+
+    </merge>
+</layout>

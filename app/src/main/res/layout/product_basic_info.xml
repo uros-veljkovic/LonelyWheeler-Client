@@ -10,8 +10,8 @@
         <import type="android.view.View"/>
 
         <variable
-            name="product"
-            type="project.lonelywheeler.model.domain.product.Product" />
+            name="offer"
+            type="project.lonelywheeler.model.domain.offer.Offer" />
 
         <variable
             name="currentPictureIndex"
@@ -97,7 +97,7 @@
             app:layout_constraintTop_toTopOf="@id/ivProductPicture"
             tools:ignore="ContentDescription" />
 
-        f<com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnAddPicture"
             style="@style/Widget.LonelyWheeler.Fab.NoCut"
             android:layout_width="wrap_content"
@@ -141,7 +141,7 @@
                 android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:maxLines="1"
-                android:text="@={product.basicInfo.title}"
+                android:text="@={offer.basicInfo.title}"
                 android:textColor="@color/hintTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -163,7 +163,7 @@
                 android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:maxLines="1"
-                android:text="@={product.basicInfo.brand}"
+                android:text="@={offer.basicInfo.brand}"
                 android:textColor="@color/hintTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -185,7 +185,7 @@
                 android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:maxLines="1"
-                android:text="@={product.basicInfo.model}"
+                android:text="@={offer.basicInfo.model}"
                 android:textColor="@color/hintTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -207,7 +207,7 @@
                 android:layout_height="match_parent"
                 android:inputType="number"
                 android:maxLines="1"
-                android:text="@={`` + product.basicInfo.yearOfProduction}"
+                android:text="@={`` + offer.basicInfo.yearOfProduction}"
                 android:textColor="@color/hintTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -230,7 +230,7 @@
                 android:layout_height="match_parent"
                 android:inputType="numberDecimal"
                 android:maxLines="1"
-                android:text="@={`` + product.basicInfo.value}"
+                android:text="@={`` + offer.basicInfo.value}"
                 android:textColor="@color/hintTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -260,7 +260,7 @@
                 android:id="@+id/rbtnProductHasFixedPriceYes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{() -> product.setValueFixed(true)}"
+                android:onClick="@{() -> offer.setValueFixed(true)}"
                 android:text="@string/yes"
                 android:textColor="@color/hintTextColor" />
 
@@ -268,7 +268,7 @@
                 android:id="@+id/rbtnProductHasFixedPriceNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{() -> product.setValueFixed(false)}"
+                android:onClick="@{() -> offer.setValueFixed(false)}"
                 android:text="@string/no"
                 android:textColor="@color/hintTextColor" />
         </RadioGroup>
@@ -300,7 +300,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:onClick="@{() -> product.setFirstOwner(true)}"
+                android:onClick="@{() -> offer.setFirstOwner(true)}"
                 android:text="@string/yes"
                 android:textColor="@color/hintTextColor" />
 
@@ -308,7 +308,7 @@
                 android:id="@+id/rbtnProductHasFirstOwnerNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{() -> product.setFirstOwner(false)}"
+                android:onClick="@{() -> offer.setFirstOwner(false)}"
                 android:text="@string/no"
                 android:textColor="@color/hintTextColor" />
         </RadioGroup>
@@ -340,7 +340,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:onClick="@{() -> product.setSellerInForExchange(true)}"
+                android:onClick="@{() -> offer.setSellerInForExchange(true)}"
                 android:text="@string/yes"
                 android:textColor="@color/hintTextColor" />
 
@@ -348,7 +348,7 @@
                 android:id="@+id/rbtnSellerInForExchangeNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{() -> product.setSellerInForExchange(false)}"
+                android:onClick="@{() -> offer.setSellerInForExchange(false)}"
                 android:text="@string/no"
                 android:textColor="@color/hintTextColor" />
         </RadioGroup>
@@ -372,7 +372,7 @@
                 android:layout_height="match_parent"
                 android:inputType="text"
                 android:maxLines="1"
-                android:text="@={product.colorExterior}"
+                android:text="@={offer.colorExterior}"
                 android:textColor="@color/hintTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -394,7 +394,7 @@
                 android:layout_height="match_parent"
                 android:inputType="text"
                 android:maxLines="1"
-                android:text="@={product.colorInterior}"
+                android:text="@={offer.colorInterior}"
                 android:textColor="@color/hintTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -416,7 +416,7 @@
                 android:layout_height="match_parent"
                 android:inputType="text"
                 android:maxLines="1"
-                android:text="@={product.materialInterior}"
+                android:text="@={offer.materialInterior}"
                 android:textColor="@color/hintTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -438,7 +438,7 @@
             app:layout_constraintBottom_toBottomOf="@id/tvProductCondition_placeholder"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvProductCondition_placeholder"
-            app:onSelected="@{product.condition}" />
+            app:onSelected="@{offer.condition}" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilProductOtherInfo"
@@ -461,7 +461,7 @@
                 android:layout_height="match_parent"
                 android:maxLines="50"
                 android:scrollbars="vertical"
-                android:text="@={product.otherInfo}"
+                android:text="@={offer.otherInfo}"
                 android:textColor="@color/hintTextColor"
                 tools:text="@tools:sample/lorem" />
         </com.google.android.material.textfield.TextInputLayout>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="project.lonelywheeler.util.string.MyStringUtils" />
+
+        <import type="project.lonelywheeler.util.date.MyDateUtils" />
+
+        <variable
+            name="offer"
+            type="project.lonelywheeler.db.entity.offfer.OfferEntity" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="32dp">
+
+        <LinearLayout
+            android:id="@+id/clContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill_vertical"
+            android:orientation="vertical">
+
+            <com.flaviofaria.kenburnsview.KenBurnsView
+                android:id="@+id/kbnMyOfferImage"
+                android:layout_width="match_parent"
+                android:layout_height="340dp"
+                app:offerPicture="@{offer.pictures[0]}"
+                tools:src="@mipmap/ic_rolce_foreground" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvMyOfferTitle"
+                style="@style/TextAppearance.LonelyWheeler.Title.Product"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:text="@{offer.basicInfo.title}"
+                tools:text="Opel Inisignia 1.5 D" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvMyOfferYearOfProduction"
+                style="@style/TextAppearance.LonelyWheeler.Title.Product"
+                android:layout_width="wrap_content"
+                android:text="@{`(` + offer.basicInfo.yearOfProduction + `.)`}"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                tools:text="(2015)" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/materialTextView"
+                style="@style/TextAppearance.LonelyWheeler.Title.Product.Price"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="@{MyStringUtils.INSTANCE.getDollarValue(offer.basicInfo.value)}"
+                tools:text="15.000$" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvMyOfferDatePosted_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date_posted"
+                    android:textColor="@color/hintTextColor"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvMyOfferDatePosted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@{MyDateUtils.INSTANCE.createDate(offer.basicInfo.dateModified)}"
+                    android:textColor="@color/hintTextColor"
+                    android:textSize="18sp"
+                    tools:text="21.09.2020." />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -18,4 +18,9 @@
 
     <color name="colorTertiary">#0376DA</color>
     <color name="defaultBackgroundColor">#D3D3D3</color>
+
+    <color name="emailFabColor">#BB001B</color>
+    <color name="smsFabColor">#FBBC05</color>
+    <color name="heart_red">#C5001D</color>
+
 </resources>

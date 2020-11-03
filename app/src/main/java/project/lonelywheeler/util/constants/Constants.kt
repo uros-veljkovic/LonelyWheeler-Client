@@ -1,6 +1,9 @@
 package project.lonelywheeler.util.constants
 
 const val INTENT_REQUEST_CODE_IMAGE = 1;
+const val INTENT_RC_CALL = 2;
+const val INTENT_RC_MESSAGE = 3;
+const val INTENT_RC_MAIL = 4;
 const val RESPONSE_CODE_REQUEST_SUCCESS = 200;
 const val RESPONSE_CODE_REQUEST_FAIL = 201;
 const val RESPONSE_CODE_SERVER_FAIL = 202;

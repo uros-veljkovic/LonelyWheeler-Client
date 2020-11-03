@@ -76,29 +76,29 @@
     <!--   Product title styling-->
     <style name="TextAppearance.LonelyWheeler.Title.Product">
         <item name="android:textColor">@color/hintTextColor</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">26sp</item>
         <item name="android:textStyle">normal</item>
     </style>
 
     <!--   Product general info placeholder styling-->
     <style name="TextAppearance.LonelyWheeler.Title.Product.GeneralInfo">
         <item name="android:textColor">@color/colorTertiary</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textStyle">normal</item>
     </style>
 
     <!--   Product general info placeholder styling-->
     <style name="TextAppearance.LonelyWheeler.Product.GeneralInfo.Placeholder" parent="TextAppearance.LonelyWheeler.Title.Product.GeneralInfo">
         <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/hintTextColor</item>
     </style>
 
     <!--   Product price styling-->
     <style name="TextAppearance.LonelyWheeler.Title.Product.Price">
         <item name="android:textColor">@color/hintTextColor</item>
-        <item name="android:textSize">40sp</item>
+        <item name="android:textSize">50sp</item>
         <item name="android:textStyle">normal</item>
     </style>
 
@@ -138,10 +138,11 @@
     <!--    TextInputLayout SEARCH styling-->
     <style name="Widget.LonelyWheeler.TextInputLayout.Search">
         <item name="boxStrokeWidth">0dp</item>
-        <item name="boxStrokeColor">@color/searchBoxColor</item>
+        <item name="boxStrokeColor">@color/hintTextColor</item>
         <item name="hintTextColor">@color/colorOnSecondary</item>
         <item name="android:textColorHint">@color/colorOnSecondary</item>
-        <item name="boxBackgroundColor">@color/searchBoxColor</item>
+        <item name="boxBackgroundColor">@color/hintTextColor</item>
+        <item name="android:textColor">@color/hintTextColor</item>
     </style>
 
     <!--        TextInputEditText SEARCH styling-->

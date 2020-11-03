@@ -10,14 +10,14 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import project.lonelywheeler.databinding.FragmentPreviewAllOffersBinding
 import project.lonelywheeler.ui.viewmodel.main.AllOffersViewModel
-import project.lonelywheeler.util.adapter.recyclerview.AllOfferRecViewAdapter
+import project.lonelywheeler.util.adapter.recyclerview.OfferItemSmallRvAdapter
 import project.lonelywheeler.util.constants.ENTITY_TYPE_EQUIPMENT
 import project.lonelywheeler.util.constants.ENTITY_TYPE_MOTOR_VEHICLE
 import project.lonelywheeler.util.constants.ENTITY_TYPE_PEDESTRIAN_VEHICLE
 import project.lonelywheeler.util.decorator.ProductItemDecorator
 
 @AndroidEntryPoint
-class PreviewAllOffersFragment : Fragment(), AllOfferRecViewAdapter.OnOfferItemClickListener {
+class PreviewAllOffersFragment : Fragment(), OfferItemSmallRvAdapter.OnOfferItemClickListener {
 
     private val TAG = "PreviewAllOffers"
     private val viewModel: AllOffersViewModel by viewModels()
@@ -26,7 +26,7 @@ class PreviewAllOffersFragment : Fragment(), AllOfferRecViewAdapter.OnOfferItemC
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
 
         binding = FragmentPreviewAllOffersBinding.inflate(inflater, container, false)
@@ -42,7 +42,7 @@ class PreviewAllOffersFragment : Fragment(), AllOfferRecViewAdapter.OnOfferItemC
 
         viewModel.response.observe(viewLifecycleOwner, { response ->
             val entities = response.entity
-            ((binding.fragmentAllOffersRvAllOffers.adapter) as AllOfferRecViewAdapter).setList(
+            ((binding.fragmentAllOffersRvAllOffers.adapter) as OfferItemSmallRvAdapter).setList(
                 entities ?: listOf()
             )
             binding.executePendingBindings()
@@ -53,7 +53,7 @@ class PreviewAllOffersFragment : Fragment(), AllOfferRecViewAdapter.OnOfferItemC
     private fun initBinding() {
         binding.viewModel = viewModel
         binding.fragmentAllOffersRvAllOffers.addItemDecoration(ProductItemDecorator(8, 16))
-        binding.fragmentAllOffersRvAllOffers.adapter = AllOfferRecViewAdapter(this)
+        binding.fragmentAllOffersRvAllOffers.adapter = OfferItemSmallRvAdapter(this)
     }
 
     override fun onOfferItemClick(position: Int) {

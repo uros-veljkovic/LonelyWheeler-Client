@@ -1,14 +1,14 @@
 package project.lonelywheeler.db.service.api
 
-import project.lonelywheeler.db.entity.product.ProductEntity
-import project.lonelywheeler.db.entity.product.vehicle.pedestrian.PedestrianVehicleEntity
+import project.lonelywheeler.db.entity.offfer.OfferEntity
+import project.lonelywheeler.db.entity.offfer.vehicle.pedestrian.PedestrianVehicleEntity
 import project.lonelywheeler.db.response.MyResponse
 import retrofit2.http.*
 
 interface PedestrianVehicleApi {
 
     @GET("pedestrian-vehicles/read")
-    suspend fun readAll(): MyResponse<List<ProductEntity>>
+    suspend fun readAll(): MyResponse<List<OfferEntity>>
 
     @GET("pedestrian-vehicles/read/{id}")
     suspend fun read(@Path("id") id: String): MyResponse<PedestrianVehicleEntity>

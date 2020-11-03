@@ -107,7 +107,21 @@
     <string name="mileage_placeholder">Mileage</string>
     <string name="persist_vehicle_title">Save offer</string>
     <string name="persit_vehicle_message">Are you sure you want to create this offer ?</string>
-    <string name="equipment_type">Equipment type:</string>
+    <string name="equipment_type">Equipment type: </string>
     <string name="error_confirm_password">Passwords do not match.</string>
-    <string name="pedestrian_vehicle_type">Pedestrian vehicle type:</string>
+    <string name="pedestrian_vehicle_type">"Pedestrian vehicle type: "</string>
+    <string name="call_seller">Call seller</string>
+    <string name="call_seller_message">Are you sure you want to call the seller ?</string>
+    <string name="action_unperformable">Action unperformable</string>
+    <string name="action_unperformable_call">"You can not contact this seller because he did not enter his mobile number. "</string>
+    <string name="requres_call_permission">You need to allow call permission to be able to call seller.</string>
+    <string name="requires_sms_permission">You need to verify SMS permission in order to send SMS to seller.</string>
+    <string name="send_sms">Send SMS</string>
+    <string name="send_sms_message">Are you sure you want to send SMS the seller ?</string>
+    <string name="product_specific_info">Product specific info</string>
+    <string name="date_posted">Date posted:</string>
+    <string name="edit_or_save">Edit or Save</string>
+    <string name="edit">Edit</string>
+    <string name="user_picture">User picture</string>
+    <string name="uros_veljkovic">Uros Veljkovic</string>
 </resources>

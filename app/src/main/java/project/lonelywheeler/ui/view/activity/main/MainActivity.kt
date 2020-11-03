@@ -16,11 +16,8 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.shape.MaterialShapeDrawable
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import project.lonelywheeler.R
+import project.lonelywheeler.app.MyApplication
 import project.lonelywheeler.databinding.ActivityMainBinding
 import project.lonelywheeler.ui.view.activity.main.bottomappbar.adapter.BottomAppBarCutCornersTopEdge
 import project.lonelywheeler.ui.view.activity.signin.SignInActivity
@@ -28,8 +25,7 @@ import project.lonelywheeler.util.adapter.recyclerview.AllOfferRecViewAdapter
 import project.lonelywheeler.util.constants.ENTITY_TYPE_EQUIPMENT
 import project.lonelywheeler.util.constants.ENTITY_TYPE_MOTOR_VEHICLE
 import project.lonelywheeler.util.constants.ENTITY_TYPE_PEDESTRIAN_VEHICLE
-import java.util.*
-import kotlin.concurrent.schedule
+import project.lonelywheeler.util.extensions.navigateWithDelayTo
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
@@ -48,12 +44,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         configNavigationComponent()
         configBottomAppBar()
         configNavigationDrawer()
-        initOnClickListeners()
+        initFabClickListeners()
 
         binding.fabTrigger = fabTrigger
     }
 
-    private fun initOnClickListeners() {
+    private fun initFabClickListeners() {
         binding.apply {
             activityMainFabEquipment.setOnClickListener {
                 fabTrigger?.reverse()
@@ -61,6 +57,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             activityMainFabHumanPoweredVehicle.setOnClickListener {
                 fabTrigger?.reverse()
+                navController navigateWithDelayTo R.id.action_global_modifyPedestrianVehicleFragment
             }
 
             activityMainFabMotorVehicle.setOnClickListener {
@@ -94,7 +91,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             setOf(
                 R.id.previewAllOffersFragment,
                 R.id.previewProfileFragment,
-                R.id.myOffersFragment,
+                R.id.previewSellerOffersFragment,
                 R.id.modifyMotorVehicleFragment,
                 R.id.modifyEquipmentFragment
             )
@@ -128,11 +125,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         activityMain_btnMyOffersFragment.setOnClickListener {
-            navController.navigate(R.id.action_global_myOffersFragment)
+            val bundle = bundleOf("sellerId" to MyApplication.currentUserId)
+            navController.navigate(R.id.action_global_sellersOffersFragment, bundle)
         }
 
         activityMain_btnPreviewProfileFragment.setOnClickListener {
-            navController.navigate(R.id.action_global_previewProfileFragment)
+            val bundle = bundleOf("userId" to MyApplication.currentUserId)
+            navController.navigate(R.id.action_global_previewProfileFragment, bundle)
         }
 
     }
@@ -159,16 +158,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Toast.makeText(this, "Advanced search", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_my_offers -> {
-                navController.navigate(R.id.action_global_myOffersFragment)
+                val bundle = bundleOf("sellerId" to MyApplication.currentUserId!!)
+                navController.navigate(R.id.action_global_sellersOffersFragment, bundle)
             }
             R.id.nav_logout -> {
-                startActivity(Intent(this, SignInActivity::class.java))
-                finish()
+                logout()
             }
         }
 
         activityMain_drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun logout() {
+        startActivity(Intent(this, SignInActivity::class.java))
+        finish()
     }
 
     private fun startPreviewAllFragmentWith(entityTypeId: Int) {
@@ -182,14 +186,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 }
 
-infix fun NavController.navigateWithDelayTo(actionId: Int) {
-
-    Timer().schedule(1000) {
-        GlobalScope.launch {
-            withContext(Dispatchers.Main) {
-                navigate(actionId)
-            }
-        }
-    }
-}
 

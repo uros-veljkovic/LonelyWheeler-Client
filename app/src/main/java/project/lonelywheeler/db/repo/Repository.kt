@@ -1,15 +1,14 @@
 package project.lonelywheeler.db.repo
 
-import project.lonelywheeler.db.entity.product.ProductEntity
-import project.lonelywheeler.db.entity.product.equipment.EquipmentEntity
-import project.lonelywheeler.db.entity.product.vehicle.motor.MotorVehicleEntity
-import project.lonelywheeler.db.entity.product.vehicle.pedestrian.PedestrianVehicleEntity
+import project.lonelywheeler.db.entity.liked.LikedOfferEntity
+import project.lonelywheeler.db.entity.offfer.OfferEntity
+import project.lonelywheeler.db.entity.offfer.equipment.EquipmentEntity
+import project.lonelywheeler.db.entity.offfer.vehicle.motor.MotorVehicleEntity
+import project.lonelywheeler.db.entity.offfer.vehicle.pedestrian.PedestrianVehicleEntity
 import project.lonelywheeler.db.entity.user.UserEntity
 import project.lonelywheeler.db.response.MyResponse
-import project.lonelywheeler.db.service.EquipmentService
-import project.lonelywheeler.db.service.MotorVehicleService
-import project.lonelywheeler.db.service.PedestrianVehicleService
-import project.lonelywheeler.db.service.UserService
+import project.lonelywheeler.db.service.*
+import project.lonelywheeler.db.service.api.OfferService
 import project.lonelywheeler.ui.viewmodel.auth.AuthListener
 import project.lonelywheeler.util.constants.ENTITY_TYPE_MOTOR_VEHICLE
 import project.lonelywheeler.util.constants.ENTITY_TYPE_PEDESTRIAN_VEHICLE
@@ -22,6 +21,8 @@ constructor(
     private val motorVehicleService: MotorVehicleService,
     private val pedestrianVehicleService: PedestrianVehicleService,
     private val equipmentService: EquipmentService,
+    private val offerService: OfferService,
+    private val favoriteOfferService: FavoriteOfferService,
 ) {
 
     fun signUp(userEntity: UserEntity, authListener: AuthListener) {
@@ -44,7 +45,11 @@ constructor(
         return pedestrianVehicleService.create(entity)
     }
 
-    suspend fun readAll(entityTypeId: Int): MyResponse<List<ProductEntity>> {
+    suspend fun createOrDelete(entity: LikedOfferEntity): MyResponse<LikedOfferEntity> {
+        return favoriteOfferService.createOrDelete(entity)
+    }
+
+    suspend fun readSpecificTypeOffers(entityTypeId: Int): MyResponse<List<OfferEntity>> {
         return when (entityTypeId) {
             ENTITY_TYPE_MOTOR_VEHICLE -> {
                 motorVehicleService.readAll()
@@ -58,6 +63,10 @@ constructor(
         }
     }
 
+    suspend fun readOffers(sellerId: String): MyResponse<MutableList<OfferEntity>> {
+        return offerService.readAll(sellerId)
+    }
+
     suspend fun readSeller(sellerId: String): MyResponse<UserEntity> {
         return userService.read(sellerId)
     }
@@ -65,6 +74,23 @@ constructor(
     suspend fun readMotorVehicle(offerId: String): MyResponse<MotorVehicleEntity> {
         return motorVehicleService.read(offerId)
     }
+
+    suspend fun readEquipment(offerId: String): MyResponse<EquipmentEntity> {
+        return equipmentService.read(offerId)
+    }
+
+    suspend fun readPedestrianVehicle(offerId: String): MyResponse<PedestrianVehicleEntity> {
+        return pedestrianVehicleService.read(offerId)
+    }
+
+    suspend fun readLikedOffers(userId: String): MyResponse<List<LikedOfferEntity>> {
+        return favoriteOfferService.readAll(userId)
+    }
+
+    suspend fun hasUserLikedOffer(userId: String, offerId: String): MyResponse<Boolean> {
+        return favoriteOfferService.read(userId, offerId)
+    }
+
 
 
 }

@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
-import project.lonelywheeler.db.entity.product.vehicle.motor.MotorVehicleEntity
+import project.lonelywheeler.db.entity.offfer.vehicle.motor.MotorVehicleEntity
 import project.lonelywheeler.db.entity.user.UserEntity
 import project.lonelywheeler.db.response.MyResponse
 import javax.inject.Qualifier
@@ -42,7 +42,7 @@ class MotorVehicleViewModelModule {
     }
 
     @Provides
-    fun provideSellerResponse(): MyResponse<MotorVehicleEntity> {
+    fun provideSellerResponse(): MyResponse<UserEntity> {
         return MyResponse("", null)
     }
 

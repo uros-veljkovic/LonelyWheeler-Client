@@ -25,9 +25,9 @@ class AuthViewModelModule {
         return MutableLiveData()
     }
 
-    @Provides
+/*    @Provides
     fun provideMyResponse(): MyResponse<UserEntity> {
         return MyResponse<UserEntity>("", null)
-    }
+    }*/
 
 }

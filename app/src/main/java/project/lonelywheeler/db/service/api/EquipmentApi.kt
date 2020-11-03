@@ -1,16 +1,15 @@
 package project.lonelywheeler.db.service.api
 
-import project.lonelywheeler.db.entity.product.ProductEntity
-import project.lonelywheeler.db.entity.product.equipment.EquipmentEntity
+import project.lonelywheeler.db.entity.offfer.OfferEntity
+import project.lonelywheeler.db.entity.offfer.equipment.EquipmentEntity
 import project.lonelywheeler.db.response.MyResponse
-import retrofit2.Call
 import retrofit2.http.*
 
 interface EquipmentApi {
 
 
     @GET("equipment/read")
-    suspend fun readAll(): MyResponse<List<ProductEntity>>
+    suspend fun readAll(): MyResponse<List<OfferEntity>>
 
     @GET("equipment/read/{id}")
     suspend fun read(@Path("id") id: String): MyResponse<EquipmentEntity>
