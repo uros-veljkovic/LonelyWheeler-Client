@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.view.activity.main.fragment.search.AdvancedSearchFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/fragmentAdvancedSearch_queryContainer"
+            style="@style/Widget.LonelyWheeler.SmallComponent.BigCut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fragmentAdvancedSearch_conLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/fragmentAdvancedSearch_tvAdvancedSearchPlaceholder"
+                    style="@style/TextAppearance.LonelyWheeler.Title.Product.GeneralInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="@string/advanced_search"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/fragmentAdvancedSearch_tvOfferTypePlaceholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/offer_type"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentAdvancedSearch_tvAdvancedSearchPlaceholder" />
+
+                <Spinner
+                    android:id="@+id/fragmentAdvancedSearch_spnrOfferType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/fragmentAdvancedSearch_tvOfferTypePlaceholder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fragmentAdvancedSearch_tvOfferTypePlaceholder" />
+
+                <TextView
+                    android:id="@+id/fragmentAdvancedSearch_tvBrandPlaceholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/brand_placeholder"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentAdvancedSearch_tvOfferTypePlaceholder" />
+
+                <Spinner
+                    android:id="@+id/fragmentAdvancedSearch_spnrBrand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="@id/fragmentAdvancedSearch_tvBrandPlaceholder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fragmentAdvancedSearch_tvBrandPlaceholder" />
+
+
+                <TextView
+                    android:id="@+id/fragmentAdvancedSearch_tvModelPlaceholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/model_placeholder"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentAdvancedSearch_tvBrandPlaceholder" />
+
+                <Spinner
+                    android:id="@+id/fragmentAdvancedSearch_spnrModel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="@id/fragmentAdvancedSearch_tvModelPlaceholder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fragmentAdvancedSearch_tvModelPlaceholder" />
+
+
+                <TextView
+                    android:id="@+id/fragmentAdvancedSearch_tvPriceRangePlaceholder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="Price range"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentAdvancedSearch_tvModelPlaceholder" />
+
+                <LinearLayout
+                    android:id="@+id/fragmentAdvancedSearch_priceRangeInputFieldContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentAdvancedSearch_tvPriceRangePlaceholder">
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/fragmentAdvancedSearch_tilPriceFrom"
+                        style="@style/Widget.LonelyWheeler.TextInputLayout"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="16dp"
+                        android:hint="@string/min"
+                        app:startIconDrawable="@drawable/ic_dolar">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/fragmentAdvancedSearch_etPriceFrom"
+                            style="@style/Widget.LonelyWheeler.TextInputEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="7"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/fragmentAdvancedSearch_tvPriceToPlaceholder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="-"
+                        android:textSize="24sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/fragmentAdvancedSearch_tilPriceTo"
+                        style="@style/Widget.LonelyWheeler.TextInputLayout"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:hint="@string/max"
+                        app:startIconDrawable="@drawable/ic_dolar">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/fragmentAdvancedSearch_etPriceTo"
+                            style="@style/Widget.LonelyWheeler.TextInputEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="7"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/fragmentAdvancedSearch_btnSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/ic_search_black"
+                    android:text="@string/search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentAdvancedSearch_priceRangeInputFieldContainer" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragmentAdvancedSearch_rvQueriedOffers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragmentAdvancedSearch_queryContainer"
+            tools:itemCount="3"
+            tools:listitem="@layout/offer_item_small" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

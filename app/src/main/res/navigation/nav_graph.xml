@@ -18,38 +18,56 @@
             android:defaultValue="1"
             app:argType="integer" />
         <action
-            android:id="@+id/action_previewEntitiesFragment_to_modifyEquipmentFragment"
-            app:destination="@id/modifyEquipmentFragment" />
-        <action
             android:id="@+id/action_previewAllOffersFragment_to_previewEquipmentOfferFragment"
             app:destination="@id/previewEquipmentOfferFragment" />
         <action
             android:id="@+id/action_previewAllOffersFragment_to_previewPedestrianVehicleOfferFragment"
             app:destination="@id/previewPedestrianVehicleOfferFragment" />
-        <action
-            android:id="@+id/action_previewAllOffersFragment_to_modifyPedestrianVehicleFragment"
-            app:destination="@id/modifyPedestrianVehicleFragment" />
     </fragment>
     <fragment
         android:id="@+id/previewSellerOffersFragment"
-        android:name="project.lonelywheeler.ui.view.activity.main.fragment.preview.offers.seller.PreviewSellersOffersFragment"
+        android:name="project.lonelywheeler.ui.view.activity.main.fragment.preview.seller.PreviewSellersOffersFragment"
         android:label="fragment_my_offers"
         tools:layout="@layout/fragment_preview_seller_offers">
         <action
-            android:id="@+id/action_myOffersFragment_to_previewOfferFragment"
+            android:id="@+id/action_previewSellerOffersFragment_to_previewMotorVehicleOfferFragment"
             app:destination="@id/previewMotorVehicleOfferFragment" />
         <argument
             android:name="sellerId"
             app:argType="string" />
+        <argument
+            android:name="action"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_previewSellerOffersFragment_to_previewPedestrianVehicleOfferFragment"
+            app:destination="@id/previewPedestrianVehicleOfferFragment" />
+        <action
+            android:id="@+id/action_previewSellerOffersFragment_to_previewEquipmentOfferFragment"
+            app:destination="@id/previewEquipmentOfferFragment" />
+        <action
+            android:id="@+id/action_previewSellerOffersFragment_to_modifyEquipmentFragment"
+            app:destination="@id/modifyEquipmentFragment" />
+        <action
+            android:id="@+id/action_previewSellerOffersFragment_to_modifyMotorVehicleFragment"
+            app:destination="@id/modifyMotorVehicleFragment" />
+        <action
+            android:id="@+id/action_previewSellerOffersFragment_to_modifyPedestrianVehicleFragment"
+            app:destination="@id/modifyPedestrianVehicleFragment" />
     </fragment>
     <fragment
-        android:id="@+id/previewProfileFragment"
-        android:name="project.lonelywheeler.ui.view.activity.main.fragment.preview.offers.seller.PreviewSellerProfileFragment"
+        android:id="@+id/previewSellerProfileFragment"
+        android:name="project.lonelywheeler.ui.view.activity.main.fragment.preview.seller.single.PreviewSellerProfileFragment"
         android:label="fragment_preview_profile"
-        tools:layout="@layout/fragment_preview_profile">
+        tools:layout="@layout/fragment_preview_seller_profile">
         <action
             android:id="@+id/action_previewProfileFragment_to_myOffersFragment"
             app:destination="@id/previewSellerOffersFragment" />
+        <argument
+            android:name="sellerId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_previewSellerProfileFragment_to_previewAllSellersFragment"
+            app:destination="@id/previewAllSellersFragment" />
     </fragment>
     <fragment
         android:id="@+id/previewMotorVehicleOfferFragment"
@@ -62,11 +80,6 @@
         <argument
             android:name="offerId"
             app:argType="string" />
-        <action
-            android:id="@+id/action_previewMotorVehicleOfferFragment_to_previewAllOffersFragment"
-            app:destination="@id/previewAllOffersFragment"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true" />
         <argument
             android:name="sellerId"
             app:argType="string" />
@@ -79,13 +92,17 @@
         <action
             android:id="@+id/action_modifyMotorVehicleFragment_to_previewOfferFragment"
             app:destination="@id/previewMotorVehicleOfferFragment" />
+        <action
+            android:id="@+id/action_modifyMotorVehicleFragment_to_previewAllOffersFragment"
+            app:destination="@id/previewAllOffersFragment" />
+        <argument android:name="offerId" />
     </fragment>
     <action
-        android:id="@+id/action_global_sellersOffersFragment"
+        android:id="@+id/action_global_previewSellerOffersFragment"
         app:destination="@id/previewSellerOffersFragment" />
     <action
-        android:id="@+id/action_global_previewProfileFragment"
-        app:destination="@id/previewProfileFragment" />
+        android:id="@+id/action_global_previewSellerProfileFragment"
+        app:destination="@id/previewSellerProfileFragment" />
     <action
         android:id="@+id/action_global_previewAllOffersFragment"
         app:destination="@id/previewAllOffersFragment" />
@@ -98,12 +115,15 @@
         android:label="ModifyEquipmentFragment"
         tools:layout="@layout/fragment_modify_equipment">
         <action
+            android:id="@+id/action_modifyEquipmentFragment_to_previewEquipmentOfferFragment"
+            app:destination="@id/previewEquipmentOfferFragment" />
+        <action
             android:id="@+id/action_modifyEquipmentFragment_to_previewAllOffersFragment"
             app:destination="@id/previewAllOffersFragment" />
+        <argument
+            android:name="offerId"
+            app:argType="string" />
     </fragment>
-    <action
-        android:id="@+id/action_global_modifyEquipmentFragment"
-        app:destination="@id/modifyEquipmentFragment" />
     <fragment
         android:id="@+id/previewEquipmentOfferFragment"
         android:name="project.lonelywheeler.ui.view.activity.main.fragment.preview.offers.single.PreviewEquipmentOfferFragment"
@@ -115,6 +135,9 @@
         <argument
             android:name="sellerId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_previewEquipmentOfferFragment_to_modifyEquipmentFragment"
+            app:destination="@id/modifyEquipmentFragment" />
     </fragment>
     <fragment
         android:id="@+id/previewPedestrianVehicleOfferFragment"
@@ -127,6 +150,9 @@
         <argument
             android:name="sellerId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_previewPedestrianVehicleOfferFragment_to_modifyPedestrianVehicleFragment"
+            app:destination="@id/modifyPedestrianVehicleFragment" />
     </fragment>
     <fragment
         android:id="@+id/modifyPedestrianVehicleFragment"
@@ -134,10 +160,38 @@
         android:label="ModifyPedestrianVehicleFragment"
         tools:layout="@layout/fragment_modify_pedestrian_vehicle">
         <action
+            android:id="@+id/action_modifyPedestrianVehicleFragment_to_previewPedestrianVehicleOfferFragment"
+            app:destination="@id/previewPedestrianVehicleOfferFragment" />
+        <action
             android:id="@+id/action_modifyPedestrianVehicleFragment_to_previewAllOffersFragment"
             app:destination="@id/previewAllOffersFragment" />
+        <argument android:name="offerId" />
     </fragment>
-    <action
-        android:id="@+id/action_global_modifyPedestrianVehicleFragment"
-        app:destination="@id/modifyPedestrianVehicleFragment" />
+    <action android:id="@+id/action_global_modifyPedestrianVehicleFragment" app:destination="@id/modifyPedestrianVehicleFragment" />
+    <action android:id="@+id/action_global_modifyEquipmentFragment" app:destination="@id/modifyEquipmentFragment" />
+    <fragment
+        android:id="@+id/previewAllSellersFragment"
+        android:name="project.lonelywheeler.ui.view.activity.main.fragment.preview.seller.all.PreviewAllSellersFragment"
+        android:label="PreviewAllSellersFragment" >
+        <action
+            android:id="@+id/action_previewAllSellersFragment_to_previewSellerProfileFragment"
+            app:destination="@id/previewSellerProfileFragment" />
+    </fragment>
+    <action android:id="@+id/action_global_previewAllSellersFragment" app:destination="@id/previewAllSellersFragment" />
+    <fragment
+        android:id="@+id/advancedSearchFragment"
+        android:name="project.lonelywheeler.ui.view.activity.main.fragment.search.AdvancedSearchFragment"
+        android:label="fragment_advanced_search"
+        tools:layout="@layout/fragment_advanced_search" >
+        <action
+            android:id="@+id/action_advancedSearchFragment_to_previewPedestrianVehicleOfferFragment"
+            app:destination="@id/previewPedestrianVehicleOfferFragment" />
+        <action
+            android:id="@+id/action_advancedSearchFragment_to_previewEquipmentOfferFragment"
+            app:destination="@id/previewEquipmentOfferFragment" />
+        <action
+            android:id="@+id/action_advancedSearchFragment_to_previewMotorVehicleOfferFragment"
+            app:destination="@id/previewMotorVehicleOfferFragment" />
+    </fragment>
+    <action android:id="@+id/action_global_advancedSearchFragment" app:destination="@id/advancedSearchFragment" />
 </navigation>

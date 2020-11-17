@@ -1,8 +1,7 @@
 package project.lonelywheeler.db.entity.user
 
-import com.google.gson.annotations.SerializedName
-import project.lonelywheeler.model.domain.user.UserAccountInfo
-import project.lonelywheeler.util.convertToBitmap
+import project.lonelywheeler.model.observable.user.UserAccountInfoObservable
+import project.lonelywheeler.util.extensions.convertToBitmap
 
 class UserAccountInfoEntity(
 
@@ -13,7 +12,7 @@ class UserAccountInfoEntity(
     val timesSupported: Int,
     val timesReported: Int,
     val offersLiked: MutableList<Long>,
-    val myOffers: MutableList<Long>
+    val myOffers: MutableList<Long>,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -29,18 +28,19 @@ class UserAccountInfoEntity(
     override fun hashCode(): Int {
         return username.hashCode()
     }
+
+
+    fun toObservable(): UserAccountInfoObservable {
+        return UserAccountInfoObservable().apply {
+            username = this@UserAccountInfoEntity.username
+            email = this@UserAccountInfoEntity.email
+            password = this@UserAccountInfoEntity.password
+            picture = this@UserAccountInfoEntity.picture?.convertToBitmap()
+            timesSupported = this@UserAccountInfoEntity.timesSupported
+            timesReported = this@UserAccountInfoEntity.timesReported
+            offersLiked = this@UserAccountInfoEntity.offersLiked
+            myOffers = this@UserAccountInfoEntity.myOffers
+        }
+    }
 }
 
-fun UserAccountInfoEntity.toPojo(): UserAccountInfo {
-    return UserAccountInfo(
-        username,
-        email,
-        password,
-        password,
-        this.picture?.convertToBitmap(),
-        timesSupported,
-        timesReported,
-        offersLiked,
-        myOffers
-    )
-}

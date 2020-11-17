@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import project.lonelywheeler.R
 import project.lonelywheeler.util.adapter.recyclerview.AllOfferRecViewAdapter
-import project.lonelywheeler.util.convertToBitmap
 
 @BindingAdapter("app:myAdapter")
 fun RecyclerView.setAdapter(rvAdapter: AllOfferRecViewAdapter) {

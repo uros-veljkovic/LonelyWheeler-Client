@@ -25,7 +25,7 @@ constructor(
 
     private val TAG = "UserService"
 
-    suspend fun readAll(): Call<MyResponse<List<UserEntity>>> {
+    suspend fun readAll(): MyResponse<List<UserEntity>> {
         return userApi.readAll()
     }
 
@@ -33,11 +33,11 @@ constructor(
         return userApi.read(sellerId)
     }
 
-    suspend fun update(entity: UserEntity): Call<MyResponse<UserEntity>> {
+    suspend fun update(entity: UserEntity): MyResponse<UserEntity> {
         return userApi.update(entity)
     }
 
-    suspend fun delete(entity: UserEntity): Call<MyResponse<UserEntity>> {
+    suspend fun delete(entity: UserEntity): MyResponse<UserEntity> {
         return userApi.delete(entity.id!!)
     }
 

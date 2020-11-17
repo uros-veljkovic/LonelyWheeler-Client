@@ -13,14 +13,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import project.lonelywheeler.R
 import project.lonelywheeler.databinding.FragmentPreviewPedestrianVehicleOfferBinding
 import project.lonelywheeler.databinding.SingleOfferGeneralInfoBinding
-import project.lonelywheeler.ui.viewmodel.main.PedestrianVehicleViewModel
+import project.lonelywheeler.ui.viewmodel.main.ViewModelPedestrianVehicle
 import project.lonelywheeler.util.constants.INTENT_RC_CALL
 import project.lonelywheeler.util.constants.INTENT_RC_MESSAGE
 import project.lonelywheeler.util.extensions.decrease
@@ -35,7 +31,7 @@ class PreviewPedestrianVehicleOfferFragment : Fragment() {
 
     private val TAG = "PreviewMotorVehicleOffer"
     var binding: FragmentPreviewPedestrianVehicleOfferBinding? = null
-    val viewModel: PedestrianVehicleViewModel by viewModels()
+    val viewModel: ViewModelPedestrianVehicle by viewModels()
     val navArgs: PreviewPedestrianVehicleOfferFragmentArgs by navArgs()
     private lateinit var offerId: String
     private lateinit var sellerId: String
@@ -55,7 +51,7 @@ class PreviewPedestrianVehicleOfferFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
 
         binding =
@@ -84,7 +80,7 @@ class PreviewPedestrianVehicleOfferFragment : Fragment() {
     private fun showConfirmationDialog(
         title: String,
         message: String,
-        callback: () -> Unit
+        callback: () -> Unit,
     ) {
         MaterialAlertDialogBuilder(
             requireContext(),
@@ -109,7 +105,7 @@ class PreviewPedestrianVehicleOfferFragment : Fragment() {
                 showPicture()
             }
             btnLike.setOnClickListener {
-                viewModel.like()
+                viewModel.like(offerId, sellerId)
             }
         }
         binding!!.fragmentPreviewOfferBtnTelephone.setOnClickListener {
@@ -148,7 +144,7 @@ class PreviewPedestrianVehicleOfferFragment : Fragment() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import project.lonelywheeler.databinding.OfferItemBigBinding
 import project.lonelywheeler.databinding.OfferItemSmallBinding
-import project.lonelywheeler.db.entity.offfer.OfferEntity
+import project.lonelywheeler.db.entity.offer.OfferEntity
 
 class AllOfferRecViewAdapter(
     val listener: OnOfferItemClickListener,

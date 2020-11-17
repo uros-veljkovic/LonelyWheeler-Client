@@ -9,7 +9,7 @@
 
         <variable
             name="vehicle"
-            type="project.lonelywheeler.db.entity.offfer.vehicle.pedestrian.PedestrianVehicleEntity" />
+            type="project.lonelywheeler.db.entity.offer.vehicle.pedestrian.PedestrianVehicleEntity" />
     </data>
 
     <merge tools:showIn="@layout/fragment_preview_pedestrian_vehicle_offer">

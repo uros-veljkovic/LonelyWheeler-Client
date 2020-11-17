@@ -24,12 +24,12 @@ fun <E : Enum<*>> Spinner.populateFrom(myenum: KClass<E>) {
 }
 
 @BindingAdapter("app:onSelected")
-fun <T : Enum<*>> Spinner.onSelectedListener(field: ObservableField<String>) {
+fun <T : Enum<*>> Spinner.onSelectedListener(field: String) {
     this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, p3: Long) {
             if (parent != null) {
                 val value = parent.getItemAtPosition(position) as String
-                field.set(value)
+                field
             }
         }
 

@@ -15,14 +15,14 @@ import kotlinx.coroutines.withContext
 import project.lonelywheeler.databinding.ActivitySignInBinding
 import project.lonelywheeler.ui.view.activity.main.MainActivity
 import project.lonelywheeler.ui.view.activity.signup.SignUpActivity
-import project.lonelywheeler.ui.viewmodel.auth.AuthViewModel
+import project.lonelywheeler.ui.viewmodel.auth.ViewModelAuth
 import java.util.*
 import kotlin.concurrent.schedule
 
 @AndroidEntryPoint
 class SignInActivity : AppCompatActivity() {
 
-    private val viewModel: AuthViewModel by viewModels()
+    private val viewModel: ViewModelAuth by viewModels()
     lateinit var binding: ActivitySignInBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

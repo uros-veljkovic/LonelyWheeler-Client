@@ -6,7 +6,6 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 
-
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
@@ -39,6 +38,10 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    viewBinding {
+        enabled = true
     }
 }
 
@@ -98,10 +101,19 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     //  Blitz form validator
-    implementation 'bloder.com:blitz:0.0.1'
+    def blitz_validator_version = "0.0.1"
+    implementation "bloder.com:blitz:$blitz_validator_version"
 
     // Easy permissions
-    implementation 'pub.devrel:easypermissions:3.0.0'
+    def easy_permissions_version = "3.0.0"
+    implementation "pub.devrel:easypermissions:$easy_permissions_version"
 
+    //Glide
+    def glide_version = "4.11.0"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+    //Image Compressor
+    implementation 'id.zelory:compressor:3.0.0'
 
 }

@@ -102,14 +102,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:gravity="center"
-                app:backgroundTint="@color/colorPrimary"
+                android:backgroundTint="@color/colorPrimary"
                 app:contentInsetEnd="16dp"
                 app:contentInsetStart="16dp"
                 app:fabAlignmentMode="center"
                 app:fabAnimationMode="scale"
                 app:fabCradleMargin="15dp"
                 app:fabCradleVerticalOffset="8dp"
-                app:hideOnScroll="true"
+                app:hideOnScroll="false"
                 app:layout_anchorGravity="center">
 
                 <LinearLayout
@@ -118,7 +118,7 @@
                     android:weightSum="5">
 
                     <ImageButton
-                        android:id="@+id/activityMain_ibtnNavDrawer"
+                        android:id="@+id/activityMain_btnNavDrawer"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -127,7 +127,7 @@
                         app:srcCompat="@drawable/ic_burger" />
 
                     <ImageButton
-                        android:id="@+id/activityMain_ibtnAllSellers"
+                        android:id="@+id/activityMain_btnAdvancedSearch"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -143,7 +143,7 @@
                         android:clickable="false" />
 
                     <ImageButton
-                        android:id="@+id/activityMain_btnMyOffersFragment"
+                        android:id="@+id/activityMain_btnFavorites"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -152,7 +152,7 @@
                         app:srcCompat="@drawable/ic_heart_black" />
 
                     <ImageButton
-                        android:id="@+id/activityMain_btnPreviewProfileFragment"
+                        android:id="@+id/activityMain_btnPreviewProfile"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

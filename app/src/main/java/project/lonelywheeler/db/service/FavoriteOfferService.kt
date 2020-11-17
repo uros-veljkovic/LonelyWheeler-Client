@@ -1,6 +1,7 @@
 package project.lonelywheeler.db.service
 
 import project.lonelywheeler.db.entity.liked.LikedOfferEntity
+import project.lonelywheeler.db.entity.offer.OfferEntity
 import project.lonelywheeler.db.response.MyResponse
 import project.lonelywheeler.db.service.api.FavoriteOfferApi
 import javax.inject.Inject
@@ -19,7 +20,7 @@ constructor(
         return favoriteOfferApi.read(userId, offerId)
     }
 
-    suspend fun readAll(userId: String): MyResponse<List<LikedOfferEntity>> {
+    suspend fun readAll(userId: String): MyResponse<MutableList<OfferEntity>> {
         return favoriteOfferApi.readAll(userId)
     }
 }

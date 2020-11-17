@@ -12,16 +12,16 @@ import retrofit2.http.*
 interface UserApi {
 
     @GET("users/read")
-    suspend fun readAll(): Call<MyResponse<List<UserEntity>>>
+    suspend fun readAll(): MyResponse<List<UserEntity>>
 
     @GET("users/read/{id}")
     suspend fun read(@Path("id") id: String): MyResponse<UserEntity>
 
     @PATCH("users/update")
-    suspend fun update(@Body userEntity: UserEntity): Call<MyResponse<UserEntity>>
+    suspend fun update(@Body userEntity: UserEntity): MyResponse<UserEntity>
 
     @DELETE("users/delete/{id}")
-    suspend fun delete(@Path("id") id: String): Call<MyResponse<UserEntity>>
+    suspend fun delete(@Path("id") id: String): MyResponse<UserEntity>
 
     @POST("users/sign-in")
     fun signInUser(@Body userEntity: UserEntity): Call<MyResponse<UserEntity>>

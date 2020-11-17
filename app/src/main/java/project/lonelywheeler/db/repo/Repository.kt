@@ -1,10 +1,10 @@
 package project.lonelywheeler.db.repo
 
 import project.lonelywheeler.db.entity.liked.LikedOfferEntity
-import project.lonelywheeler.db.entity.offfer.OfferEntity
-import project.lonelywheeler.db.entity.offfer.equipment.EquipmentEntity
-import project.lonelywheeler.db.entity.offfer.vehicle.motor.MotorVehicleEntity
-import project.lonelywheeler.db.entity.offfer.vehicle.pedestrian.PedestrianVehicleEntity
+import project.lonelywheeler.db.entity.offer.OfferEntity
+import project.lonelywheeler.db.entity.offer.equipment.EquipmentEntity
+import project.lonelywheeler.db.entity.offer.vehicle.motor.MotorVehicleEntity
+import project.lonelywheeler.db.entity.offer.vehicle.pedestrian.PedestrianVehicleEntity
 import project.lonelywheeler.db.entity.user.UserEntity
 import project.lonelywheeler.db.response.MyResponse
 import project.lonelywheeler.db.service.*
@@ -33,15 +33,15 @@ constructor(
         userService.signInUser(userEntity, authListener)
     }
 
-    suspend fun create(entity: MotorVehicleEntity): MyResponse<MotorVehicleEntity> {
-        return motorVehicleService.create(entity)
+    suspend fun createOrUpdate(entity: MotorVehicleEntity): MyResponse<MotorVehicleEntity> {
+        return motorVehicleService.createOrUpdate(entity)
     }
 
-    suspend fun create(entity: EquipmentEntity): MyResponse<EquipmentEntity> {
+    suspend fun createOrUpdate(entity: EquipmentEntity): MyResponse<EquipmentEntity> {
         return equipmentService.create(entity)
     }
 
-    suspend fun create(entity: PedestrianVehicleEntity): MyResponse<PedestrianVehicleEntity> {
+    suspend fun createOrUpdate(entity: PedestrianVehicleEntity): MyResponse<PedestrianVehicleEntity> {
         return pedestrianVehicleService.create(entity)
     }
 
@@ -49,7 +49,7 @@ constructor(
         return favoriteOfferService.createOrDelete(entity)
     }
 
-    suspend fun readSpecificTypeOffers(entityTypeId: Int): MyResponse<List<OfferEntity>> {
+    suspend fun readOffersByType(entityTypeId: Int): MyResponse<List<OfferEntity>> {
         return when (entityTypeId) {
             ENTITY_TYPE_MOTOR_VEHICLE -> {
                 motorVehicleService.readAll()
@@ -63,7 +63,7 @@ constructor(
         }
     }
 
-    suspend fun readOffers(sellerId: String): MyResponse<MutableList<OfferEntity>> {
+    suspend fun readOffersFromSeller(sellerId: String): MyResponse<MutableList<OfferEntity>> {
         return offerService.readAll(sellerId)
     }
 
@@ -83,7 +83,7 @@ constructor(
         return pedestrianVehicleService.read(offerId)
     }
 
-    suspend fun readLikedOffers(userId: String): MyResponse<List<LikedOfferEntity>> {
+    suspend fun readFavorites(userId: String): MyResponse<MutableList<OfferEntity>> {
         return favoriteOfferService.readAll(userId)
     }
 
@@ -91,6 +91,20 @@ constructor(
         return favoriteOfferService.read(userId, offerId)
     }
 
+    suspend fun readUsers(): MyResponse<List<UserEntity>> {
+        return userService.readAll()
+    }
 
+    suspend fun deleteMotorVehicle(entity: OfferEntity) {
+        motorVehicleService.delete(entity._id!!)
+    }
+
+    suspend fun deletePedestrianVehicle(entity: OfferEntity) {
+        pedestrianVehicleService.delete(entity._id!!)
+    }
+
+    suspend fun deleteEquipment(entity: OfferEntity) {
+        equipmentService.delete(entity._id!!)
+    }
 
 }

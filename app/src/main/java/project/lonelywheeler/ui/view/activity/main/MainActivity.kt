@@ -3,7 +3,6 @@ package project.lonelywheeler.ui.view.activity.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.view.GravityCompat
@@ -22,9 +21,7 @@ import project.lonelywheeler.databinding.ActivityMainBinding
 import project.lonelywheeler.ui.view.activity.main.bottomappbar.adapter.BottomAppBarCutCornersTopEdge
 import project.lonelywheeler.ui.view.activity.signin.SignInActivity
 import project.lonelywheeler.util.adapter.recyclerview.AllOfferRecViewAdapter
-import project.lonelywheeler.util.constants.ENTITY_TYPE_EQUIPMENT
-import project.lonelywheeler.util.constants.ENTITY_TYPE_MOTOR_VEHICLE
-import project.lonelywheeler.util.constants.ENTITY_TYPE_PEDESTRIAN_VEHICLE
+import project.lonelywheeler.util.constants.*
 import project.lonelywheeler.util.extensions.navigateWithDelayTo
 
 @AndroidEntryPoint
@@ -50,19 +47,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun initFabClickListeners() {
+        val bundle = bundleOf("offerId" to NO_OFFER_ID)
         binding.apply {
             activityMainFabEquipment.setOnClickListener {
                 fabTrigger?.reverse()
-                navController navigateWithDelayTo R.id.action_global_modifyEquipmentFragment
+                navController.navigateWithDelayTo(R.id.action_global_modifyEquipmentFragment, bundle)
             }
             activityMainFabHumanPoweredVehicle.setOnClickListener {
                 fabTrigger?.reverse()
-                navController navigateWithDelayTo R.id.action_global_modifyPedestrianVehicleFragment
+                navController.navigateWithDelayTo(R.id.action_global_modifyPedestrianVehicleFragment, bundle)
             }
 
             activityMainFabMotorVehicle.setOnClickListener {
                 fabTrigger?.reverse()
-                navController navigateWithDelayTo R.id.action_global_modifyMotorVehicleFragment
+                navController.navigateWithDelayTo(R.id.action_global_modifyMotorVehicleFragment, bundle)
             }
 
             activityMainFabMain.setOnClickListener {
@@ -90,10 +88,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.previewAllOffersFragment,
-                R.id.previewProfileFragment,
+                R.id.previewAllSellersFragment,
+                R.id.previewSellerProfileFragment,
                 R.id.previewSellerOffersFragment,
                 R.id.modifyMotorVehicleFragment,
-                R.id.modifyEquipmentFragment
+                R.id.modifyEquipmentFragment,
+                R.id.modifyPedestrianVehicleFragment,
+                R.id.advancedSearchFragment
             )
         )
 
@@ -116,7 +117,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun configBottomAppBarOnClick() {
-        activityMain_ibtnNavDrawer.setOnClickListener {
+        activityMain_btnNavDrawer.setOnClickListener {
             if (binding.activityMainDrawerLayout.isDrawerOpen(GravityCompat.START)) {
                 binding.activityMainDrawerLayout.closeDrawer(navDrawer)
             } else {
@@ -124,14 +125,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
-        activityMain_btnMyOffersFragment.setOnClickListener {
-            val bundle = bundleOf("sellerId" to MyApplication.currentUserId)
-            navController.navigate(R.id.action_global_sellersOffersFragment, bundle)
+        activityMain_btnFavorites.setOnClickListener {
+            val bundle = bundleOf(
+                "sellerId" to MyApplication.getCurrentUserID(),
+                "action" to ACTION_READ_FAVORITES
+            )
+            navController.navigate(R.id.action_global_previewSellerOffersFragment, bundle)
         }
 
-        activityMain_btnPreviewProfileFragment.setOnClickListener {
-            val bundle = bundleOf("userId" to MyApplication.currentUserId)
-            navController.navigate(R.id.action_global_previewProfileFragment, bundle)
+        activityMain_btnPreviewProfile.setOnClickListener {
+            val bundle = bundleOf("sellerId" to MyApplication.getCurrentUserID())
+            navController.navigate(R.id.action_global_previewSellerProfileFragment, bundle)
         }
 
     }
@@ -152,16 +156,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startPreviewAllFragmentWith(ENTITY_TYPE_EQUIPMENT)
             }
             R.id.nav_all_sellers -> {
-                Toast.makeText(this, "All sellers fragment !", Toast.LENGTH_SHORT).show()
+                navController.navigate(R.id.action_global_previewAllSellersFragment)
             }
             R.id.nav_advanced_search -> {
-                Toast.makeText(this, "Advanced search", Toast.LENGTH_SHORT).show()
+                navController.navigate(R.id.action_global_advancedSearchFragment)
             }
             R.id.nav_my_offers -> {
-                val bundle = bundleOf("sellerId" to MyApplication.currentUserId!!)
-                navController.navigate(R.id.action_global_sellersOffersFragment, bundle)
+                val bundle = bundleOf(
+                    "sellerId" to MyApplication.getCurrentUserID(),
+                    "action" to ACTION_READ_PERSONAL_OFFERS
+                )
+                navController.navigate(R.id.action_global_previewSellerOffersFragment, bundle)
             }
             R.id.nav_logout -> {
+                MyApplication.currentUser = null
                 logout()
             }
         }

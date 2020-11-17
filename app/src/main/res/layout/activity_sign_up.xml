@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="project.lonelywheeler.ui.viewmodel.auth.AuthViewModel" />
+            type="project.lonelywheeler.ui.viewmodel.auth.ViewModelAuth" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -83,7 +83,7 @@
                         android:layout_height="match_parent"
                         android:inputType="textPersonName"
                         android:maxLines="1"
-                        android:text="@={viewModel.user.personalInfo.firstName}" />
+                        android:text="@={viewModel.user.personalInfoObservable.firstName}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,7 +106,7 @@
                         android:layout_height="match_parent"
                         android:inputType="textPersonName"
                         android:maxLines="1"
-                        android:text="@={viewModel.user.personalInfo.lastName}" />
+                        android:text="@={viewModel.user.personalInfoObservable.lastName}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -128,7 +128,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:maxLines="1"
-                        android:text="@={viewModel.user.accountInfo.username}" />
+                        android:text="@={viewModel.user.accountInfoObservable.username}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -149,7 +149,7 @@
                         android:layout_height="match_parent"
                         android:inputType="phone"
                         android:maxLines="1"
-                        android:text="@={viewModel.user.personalInfo.mobileNumber}" />
+                        android:text="@={viewModel.user.personalInfoObservable.mobileNumber}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -175,7 +175,7 @@
                         android:autoSizeStepGranularity="2sp"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
-                        android:text="@={viewModel.user.accountInfo.email}"
+                        android:text="@={viewModel.user.accountInfoObservable.email}"
                         tools:targetApi="o" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -196,7 +196,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:inputType="textPassword"
-                        android:text="@={viewModel.user.accountInfo.password}" />
+                        android:text="@={viewModel.user.accountInfoObservable.password}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -219,7 +219,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:inputType="textPassword"
-                        android:text="@={viewModel.user.accountInfo.confirmPassword}" />
+                        android:text="@={viewModel.user.accountInfoObservable.confirmPassword}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -238,7 +238,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:maxLines="1"
-                        android:text="@={viewModel.user.personalInfo.city}" />
+                        android:text="@={viewModel.user.personalInfoObservable.city}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -257,7 +257,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:maxLines="1"
-                        android:text="@={viewModel.user.personalInfo.street}" />
+                        android:text="@={viewModel.user.personalInfoObservable.street}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -282,7 +282,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:text="@string/sign_in"
-                    app:layout_constraintBottom_toTopOf="@id/activitySignUp_btnSignUp"
+                    app:layout_constraintBottom_toTopOf="@id/fragmentPreviewProfile_btnPreviewOffers"
                     app:layout_constraintEnd_toEndOf="parent" />
 
 
@@ -293,7 +293,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="32dp"
-                    android:enabled="@{viewModel.user.accountInfo.password == viewModel.user.accountInfo.confirmPassword ? true : false}"
+                    android:enabled="@{viewModel.user.accountInfoObservable.password == viewModel.user.accountInfoObservable.confirmPassword ? true : false}"
                     android:onClick="@{() -> viewModel.signUp()}"
                     android:text="@string/sign_up"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -309,8 +309,8 @@
             android:layout_width="@dimen/progress_bar_dimen"
             android:layout_height="@dimen/progress_bar_dimen"
             android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

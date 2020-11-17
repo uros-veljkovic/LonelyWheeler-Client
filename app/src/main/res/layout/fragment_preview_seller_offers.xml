@@ -12,14 +12,14 @@
 
         <variable
             name="viewModel"
-            type="project.lonelywheeler.ui.viewmodel.main.SellerOfferViewModel" />
+            type="project.lonelywheeler.ui.viewmodel.main.ViewModelPersonalOffers" />
     </data>
 
     <FrameLayout
         android:foregroundGravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.view.activity.main.fragment.preview.offers.seller.PreviewSellersOffersFragment">
+        tools:context=".ui.view.activity.main.fragment.preview.seller.PreviewSellersOffersFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myOffersFragment_rvMyOffers"

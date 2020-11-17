@@ -1,6 +1,7 @@
 package project.lonelywheeler.db.service.api
 
 import project.lonelywheeler.db.entity.liked.LikedOfferEntity
+import project.lonelywheeler.db.entity.offer.OfferEntity
 import project.lonelywheeler.db.response.MyResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -32,8 +33,7 @@ interface FavoriteOfferApi {
     @GET("liked-offer/readAll")
     suspend fun readAll(
         @Query("userId") userId: String,
-    ): MyResponse<List<LikedOfferEntity>>
-
+    ): MyResponse<MutableList<OfferEntity>>
 
 
     /**

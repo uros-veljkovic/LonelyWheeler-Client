@@ -9,7 +9,7 @@
 
         <variable
             name="equipment"
-            type="project.lonelywheeler.db.entity.offfer.equipment.EquipmentEntity" />
+            type="project.lonelywheeler.db.entity.offer.equipment.EquipmentEntity" />
     </data>
 
     <merge tools:showIn="@layout/fragment_preview_equipment_offer">

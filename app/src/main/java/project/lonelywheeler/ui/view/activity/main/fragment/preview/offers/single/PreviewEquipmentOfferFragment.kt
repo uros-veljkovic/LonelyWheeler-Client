@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import project.lonelywheeler.R
 import project.lonelywheeler.databinding.FragmentPreviewEquipmentOfferBinding
 import project.lonelywheeler.databinding.SingleOfferGeneralInfoBinding
-import project.lonelywheeler.ui.viewmodel.main.EquipmentViewModel
+import project.lonelywheeler.ui.viewmodel.main.ViewModelEquipment
 import project.lonelywheeler.util.constants.INTENT_RC_CALL
 import project.lonelywheeler.util.constants.INTENT_RC_MESSAGE
 import project.lonelywheeler.util.extensions.decrease
@@ -30,7 +30,7 @@ class PreviewEquipmentOfferFragment : Fragment() {
 
     private val TAG = "PreviewMotorVehicleOffer"
     var binding: FragmentPreviewEquipmentOfferBinding? = null
-    val viewModel: EquipmentViewModel by viewModels()
+    val viewModel: ViewModelEquipment by viewModels()
     val navArgs: PreviewEquipmentOfferFragmentArgs by navArgs()
     private lateinit var offerId: String
     private lateinit var sellerId: String
@@ -104,7 +104,7 @@ class PreviewEquipmentOfferFragment : Fragment() {
                 showPicture()
             }
             btnLike.setOnClickListener {
-                viewModel.triggerLike()
+                viewModel.like(offerId, sellerId)
             }
         }
         binding!!.fragmentPreviewOfferBtnTelephone.setOnClickListener {

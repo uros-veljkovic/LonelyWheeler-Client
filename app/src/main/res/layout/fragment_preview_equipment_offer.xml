@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="project.lonelywheeler.ui.viewmodel.main.EquipmentViewModel" />
+            type="project.lonelywheeler.ui.viewmodel.main.ViewModelEquipment" />
     </data>
 
     <ScrollView

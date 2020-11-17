@@ -12,7 +12,7 @@
 
         <variable
             name="offer"
-            type="project.lonelywheeler.db.entity.offfer.OfferEntity" />
+            type="project.lonelywheeler.db.entity.offer.OfferEntity" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -28,7 +28,7 @@
             <ImageView
                 android:id="@+id/offerItem_ivUserImage"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="130dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -38,9 +38,10 @@
 
             <TextView
                 android:id="@+id/offerItem_tvProductTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:textAlignment="center"
                 android:text="@{offer.basicInfo.title}"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -53,13 +54,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@{`` + offer.basicInfo.value + `$`}"
+                android:text="@{MyStringUtils.INSTANCE.getDollarValue(offer.basicInfo.value)}"
                 android:textColor="@color/colorPrimary"
                 android:textSize="22sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/offerItem_tvProductTitle"
-                tools:text="50.000$" />
+                tools:text="$50.000" />
 
             <TextView
                 android:id="@+id/yearOfProduction_placeholder"

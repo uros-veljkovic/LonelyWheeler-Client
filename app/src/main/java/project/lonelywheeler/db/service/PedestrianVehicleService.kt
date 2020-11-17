@@ -1,7 +1,7 @@
 package project.lonelywheeler.db.service
 
-import project.lonelywheeler.db.entity.offfer.OfferEntity
-import project.lonelywheeler.db.entity.offfer.vehicle.pedestrian.PedestrianVehicleEntity
+import project.lonelywheeler.db.entity.offer.OfferEntity
+import project.lonelywheeler.db.entity.offer.vehicle.pedestrian.PedestrianVehicleEntity
 import project.lonelywheeler.db.response.MyResponse
 import project.lonelywheeler.db.service.api.PedestrianVehicleApi
 import javax.inject.Inject
@@ -28,8 +28,8 @@ constructor(
         return pedestrianVehicleApi.update(entity)
     }
 
-    suspend fun delete(entity: PedestrianVehicleEntity): MyResponse<PedestrianVehicleEntity> {
-        return pedestrianVehicleApi.delete(entity._id!!)
+    suspend fun delete(_id: String): MyResponse<PedestrianVehicleEntity> {
+        return pedestrianVehicleApi.delete(_id)
     }
 
 }

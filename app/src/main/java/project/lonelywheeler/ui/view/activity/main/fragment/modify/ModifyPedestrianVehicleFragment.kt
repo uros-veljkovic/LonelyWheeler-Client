@@ -5,40 +5,45 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import project.lonelywheeler.R
 import project.lonelywheeler.databinding.FragmentModifyPedestrianVehicleBinding
-import project.lonelywheeler.db.entity.offfer.vehicle.pedestrian.PedestrianVehicleEntity
-import project.lonelywheeler.db.entity.offfer.vehicle.pedestrian.toPojo
+import project.lonelywheeler.db.entity.offer.vehicle.pedestrian.PedestrianVehicleEntity
 import project.lonelywheeler.db.response.MyResponse
+import project.lonelywheeler.db.response.entityExistInDatabase
+import project.lonelywheeler.db.response.hasMessage
 import project.lonelywheeler.model.domain.offer.Condition
 import project.lonelywheeler.model.domain.offer.equipment.EquipmentType
-import project.lonelywheeler.ui.viewmodel.main.PedestrianVehicleViewModel
+import project.lonelywheeler.ui.viewmodel.main.ViewModelPedestrianVehicle
 import project.lonelywheeler.util.adapter.binding.populateFrom
+import project.lonelywheeler.util.compressTo
 import project.lonelywheeler.util.constants.INTENT_REQUEST_CODE_IMAGE
 import project.lonelywheeler.util.constants.RESOLUTION_1080X768
-import project.lonelywheeler.util.extensions.compressTo
 import project.lonelywheeler.util.extensions.decrease
 import project.lonelywheeler.util.extensions.generateImage
 import project.lonelywheeler.util.extensions.increase
 
 @AndroidEntryPoint
 class ModifyPedestrianVehicleFragment : Fragment() {
+
     private val TAG = "ModifyPedestrianVehicleFragment"
-    val viewModel: PedestrianVehicleViewModel by viewModels()
+    val viewModel: ViewModelPedestrianVehicle by viewModels()
     lateinit var binding: FragmentModifyPedestrianVehicleBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
 
         binding = FragmentModifyPedestrianVehicleBinding.inflate(inflater, container, false)
@@ -71,9 +76,9 @@ class ModifyPedestrianVehicleFragment : Fragment() {
                     } else {
                         displayImage(pictures[viewModel.getIndexOfCurrentPicture() - 1])
                     }
+                    pictures.removeAt(viewModel.getIndexOfCurrentPicture())
                     viewModel.currentPictureIndex.decrease()
                     viewModel.lastPictureIndex.decrease()
-                    pictures.removeAt(viewModel.getIndexOfCurrentPicture())
 
                 } else {
                     displayImage(pictures[viewModel.getIndexOfCurrentPicture() + 1])
@@ -131,14 +136,35 @@ class ModifyPedestrianVehicleFragment : Fragment() {
 
     private fun observeServerResponse() {
         viewModel.responseEntity.observe(viewLifecycleOwner, { response ->
-            if (!response.entity?._id.isNullOrEmpty()) {
-                showMessageFrom(response)
-                viewModel.vehicle = response.entity?.toPojo()!!
-                binding.notifyChange()
-            } else {
-                showMessageFrom(response)
+            response.entity?.let {
+                if (response.entityExistInDatabase()) {
+                    showMessage(response)
+                    goToMainFragment()
+                } else {
+                    updateUi(response)
+                }
             }
         })
+    }
+
+    private fun updateUi(response: MyResponse<PedestrianVehicleEntity>) {
+        if (response.entityExistInDatabase())
+            showMessage(response)
+        viewModel.vehicle = response.entity?.toObservable()!!
+        binding.notifyChange()
+        binding.executePendingBindings()
+    }
+
+    private fun showMessage(response: MyResponse<PedestrianVehicleEntity>) {
+//        binding.fragmentMotorvehicleProgressBar.visibility = View.GONE
+        if (response.hasMessage())
+            showMessageFrom(response)
+    }
+
+    private fun goToMainFragment() {
+        Handler(Looper.getMainLooper()).postDelayed({
+            findNavController().navigate(R.id.action_global_previewAllOffersFragment)
+        }, 2)
     }
 
     private fun showMessageFrom(response: MyResponse<PedestrianVehicleEntity>) {
@@ -162,11 +188,15 @@ class ModifyPedestrianVehicleFragment : Fragment() {
     }
 
     private fun displayImage(bitmap: Bitmap?) {
-        binding.fragmentPedestrianVehicleProductBasicInfo.ivProductPicture.setImageDrawable(
+        Glide.with(this)
+            .asBitmap()
+            .load(bitmap)
+            .into(binding.fragmentPedestrianVehicleProductBasicInfo.ivProductPicture)
+        /*binding.fragmentPedestrianVehicleProductBasicInfo.ivProductPicture.setImageDrawable(
             bitmap?.toDrawable(
                 resources
             )
-        )
+        )*/
         binding.notifyChange()
     }
 

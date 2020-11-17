@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="project.lonelywheeler.ui.viewmodel.main.EquipmentViewModel" />
+            type="project.lonelywheeler.ui.viewmodel.main.ViewModelEquipment" />
     </data>
 
     <ScrollView
@@ -23,17 +23,17 @@
             android:layout_height="wrap_content">
 
             <include
-                android:id="@+id/fragmentMotorVehicle_productBasicInfo"
+                android:id="@+id/fragmentEquipment_productBasicInfo"
                 layout="@layout/product_basic_info"
                 app:currentPictureIndex="@{viewModel.currentPictureIndex}"
                 app:lastPictureIndex="@{viewModel.lastPictureIndex}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:offer="@{viewModel.equipment}" />
+                app:offer="@{viewModel.equipmentObservable}" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/fragmentMotorVehicle_tvProductSpecificInfoPlaceholder"
+                android:id="@+id/fragmentEquipment_tvProductSpecificInfoPlaceholder"
                 style="@style/TextAppearance.LonelyWheeler.Title.Product.GeneralInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,10 +41,10 @@
                 android:text="@string/product_specific_info_placeholder"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_productBasicInfo" />
+                app:layout_constraintTop_toBottomOf="@id/fragmentEquipment_productBasicInfo" />
 
             <TextView
-                android:id="@+id/fragmentMotorVehicle_spnrEquipmentType_placeholder"
+                android:id="@+id/fragmentEquipment_spnrEquipmentType_placeholder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -52,11 +52,11 @@
                 android:textColor="@color/hintTextColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_tvProductSpecificInfoPlaceholder" />
+                app:layout_constraintTop_toBottomOf="@id/fragmentEquipment_tvProductSpecificInfoPlaceholder" />
 
 
             <Spinner
-                android:id="@+id/fragmentMotorVehicle_spnrEquipmentType"
+                android:id="@+id/fragmentEquipment_spnrEquipmentType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -69,11 +69,10 @@
                 android:spinnerMode="dialog"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrEquipmentType_placeholder"
-                app:onSelected="@{viewModel.equipment.equipmentType}" />
+                app:layout_constraintTop_toBottomOf="@id/fragmentEquipment_spnrEquipmentType_placeholder" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/fragmentMotorVehicle_btnConfirm"
+                android:id="@+id/fragmentEquipment_btnConfirm"
                 style="@style/Widget.LonelyWheeler.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,21 +84,21 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/fragmentMotorVehicle_btnCancel"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrEquipmentType" />
+                app:layout_constraintStart_toEndOf="@+id/fragmentEquipment_btnCancel"
+                app:layout_constraintTop_toBottomOf="@id/fragmentEquipment_spnrEquipmentType" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/fragmentMotorVehicle_btnCancel"
+                android:id="@+id/fragmentEquipment_btnCancel"
                 style="@style/Widget.LonelyWheeler.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:text="@string/cancel"
-                app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_btnConfirm"
-                app:layout_constraintEnd_toStartOf="@+id/fragmentMotorVehicle_btnConfirm"
+                app:layout_constraintBottom_toBottomOf="@id/fragmentEquipment_btnConfirm"
+                app:layout_constraintEnd_toStartOf="@+id/fragmentEquipment_btnConfirm"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_btnConfirm" />
+                app:layout_constraintTop_toTopOf="@id/fragmentEquipment_btnConfirm" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

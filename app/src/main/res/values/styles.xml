@@ -181,6 +181,17 @@
         <item name="android:textColor">@color/colorTertiary</item>
     </style>
 
+    <!--    Icon-only Button styling-->
+    <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
     <!--    Fab styling (size NORMAL)-->
     <style name="Widget.LonelyWheeler.Fab.Normal" parent="Widget.MaterialComponents.FloatingActionButton">
         <item name="srcCompat">@drawable/ic_add</item>

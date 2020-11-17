@@ -11,386 +11,395 @@
             type="project.lonelywheeler.ui.viewmodel.main.MotorVehicleViewModel" />
     </data>
 
-    <ScrollView
-        android:id="@+id/fragmentMotorVehicle_container"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.view.activity.main.fragment.modify.ModifyMotorVehicleFragment"
-        tools:ignore="UselessParent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:id="@+id/fragmentMotorvehicle_progressBar"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ScrollView
+            android:id="@+id/fragmentMotorVehicle_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".ui.view.activity.main.fragment.modify.ModifyMotorVehicleFragment"
+            tools:ignore="UselessParent">
 
-            <include
-                android:id="@+id/fragmentMotorVehicle_productBasicInfo"
-                layout="@layout/product_basic_info"
-                app:currentPictureIndex="@{viewModel.currentPictureIndex}"
-                app:lastPictureIndex="@{viewModel.lastPictureIndex}"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:offer="@{viewModel.motorVehicle}" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/fragmentMotorVehicle_tvProductSpecificInfoPlaceholder"
-                style="@style/TextAppearance.LonelyWheeler.Title.Product.GeneralInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="@string/product_specific_info_placeholder"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_productBasicInfo" />
+                <include
+                    android:id="@+id/fragmentMotorVehicle_productBasicInfo"
+                    layout="@layout/product_basic_info"
+                    app:currentPictureIndex="@{viewModel.currentPictureIndex}"
+                    app:lastPictureIndex="@{viewModel.lastPictureIndex}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:offer="@{viewModel.motorVehicle}" />
 
-            <TextView
-                android:id="@+id/fragmentMotorVehicle_spnrCarBodyType_placeholder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:text="Body type: "
-                android:textColor="@color/hintTextColor"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_tvProductSpecificInfoPlaceholder" />
-
-            <Spinner
-                android:id="@+id/fragmentMotorVehicle_spnrCarBodyType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarBodyType_placeholder"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarBodyType_placeholder"
-                app:onSelected="@{viewModel.motorVehicle.carBodyType}" />
-
-            <TextView
-                android:id="@+id/fragmentMotorVehicle_spnrCarEmissionStandard_placeholder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Emission standard: "
-                android:textColor="@color/hintTextColor"
-                app:layout_constraintStart_toStartOf="@id/fragmentMotorVehicle_spnrCarBodyType_placeholder"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrCarBodyType_placeholder" />
-
-            <Spinner
-                android:id="@+id/fragmentMotorVehicle_spnrCarEmissionStandard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarEmissionStandard_placeholder"
-                app:layout_constraintEnd_toEndOf="@+id/fragmentMotorVehicle_spnrCarBodyType"
-                app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarEmissionStandard_placeholder"
-                app:onSelected="@{viewModel.motorVehicle.emissionStandard}" />
-
-            <TextView
-                android:id="@+id/fragmentMotorVehicle_spnrCarFuelType_placeholder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Fuel type: "
-                android:textColor="@color/hintTextColor"
-                app:layout_constraintStart_toStartOf="@id/fragmentMotorVehicle_spnrCarEmissionStandard_placeholder"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrCarEmissionStandard_placeholder" />
-
-            <Spinner
-                android:id="@+id/fragmentMotorVehicle_spnrCarFuelType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarFuelType_placeholder"
-                app:layout_constraintEnd_toEndOf="@id/fragmentMotorVehicle_spnrCarEmissionStandard"
-                app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarFuelType_placeholder"
-                app:onSelected="@{viewModel.motorVehicle.fuelType}" />
-
-
-            <TextView
-                android:id="@+id/fragmentMotorVehicle_spnrCarGearbox_placeholder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Gearbox type: "
-                android:textColor="@color/hintTextColor"
-                app:layout_constraintStart_toStartOf="@id/fragmentMotorVehicle_spnrCarFuelType_placeholder"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrCarFuelType_placeholder" />
-
-            <Spinner
-                android:id="@+id/fragmentMotorVehicle_spnrCarGearbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarGearbox_placeholder"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarGearbox_placeholder"
-                app:onSelected="@{viewModel.motorVehicle.gearboxType}" />
-
-            <TextView
-                android:id="@+id/fragmentMotorVehicle_spnrCarSteeringWheelType_placeholder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Steering wheel side: "
-                android:textColor="@color/hintTextColor"
-                app:layout_constraintStart_toStartOf="@id/fragmentMotorVehicle_spnrCarGearbox_placeholder"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrCarGearbox_placeholder" />
-
-            <Spinner
-                android:id="@+id/fragmentMotorVehicle_spnrCarSteeringWheelType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarSteeringWheelType_placeholder"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarSteeringWheelType_placeholder"
-                app:onSelected="@{viewModel.motorVehicle.steeringWheelSide}" />
-
-            <TextView
-                android:id="@+id/fragmentMotorVehicle_spnrCarDrivetrain_placeholder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Drivetrain: "
-                android:textColor="@color/hintTextColor"
-                app:layout_constraintStart_toStartOf="@id/fragmentMotorVehicle_spnrCarSteeringWheelType_placeholder"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrCarSteeringWheelType_placeholder" />
-
-            <Spinner
-                android:id="@+id/fragmentMotorVehicle_spnrCarDrivetrain"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarDrivetrain_placeholder"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarDrivetrain_placeholder"
-                app:onSelected="@{viewModel.motorVehicle.drivetrain}" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fragmentMotorVehicle_tilCarMaxSpeed"
-                style="@style/Widget.LonelyWheeler.TextInputLayout"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="8dp"
-                android:hint="@string/max_speed_placeholder"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrCarDrivetrain">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fragmentMotorVehicle_etCarMaxSpeed"
-                    style="@style/Widget.LonelyWheeler.TextInputEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="number"
-                    android:maxLines="1"
-                    android:text="@={`` + viewModel.motorVehicle.maxSpeed}"
-                    android:textColor="@color/hintTextColor" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fragmentMotorVehicle_tilCarHorsePower"
-                style="@style/Widget.LonelyWheeler.TextInputLayout"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                android:hint="@string/horse_power_placeholder"
-                app:errorEnabled="true"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_tilCarMaxSpeed">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fragmentMotorVehicle_etCarHorsePower"
-                    style="@style/Widget.LonelyWheeler.TextInputEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="number"
-                    android:maxLines="1"
-                    android:text="@={`` + viewModel.motorVehicle.maxHorsePower}"
-                    android:textColor="@color/hintTextColor" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fragmentMotorVehicle_tilCarMileage"
-                style="@style/Widget.LonelyWheeler.TextInputLayout"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:hint="@string/mileage_placeholder"
-                app:errorEnabled="true"
-                app:layout_constraintBottom_toTopOf="@id/fragmentMotorVehicle_tilCarHorsePower"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_tilCarMaxSpeed">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fragmentMotorVehicle_etCarMileage"
-                    style="@style/Widget.LonelyWheeler.TextInputEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="numberDecimal"
-                    android:maxLines="1"
-                    android:text="@={`` + viewModel.motorVehicle.mileage}"
-                    android:textColor="@color/hintTextColor" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/fragmentMotorVehicle_tvNumberOfPlaceholder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="64dp"
-                android:text="@string/number_of"
-                android:textColor="@color/hintTextColor"
-                app:layout_constraintStart_toStartOf="@id/fragmentMotorVehicle_tilCarHorsePower"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_tilCarHorsePower" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/fragmentMotorVehicle_tvDoorsPlaceholder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="@string/doors"
-                android:textColor="@color/hintTextColor"
-                app:layout_constraintBottom_toTopOf="@id/fragmentMotorVehicle_tilNumberOfDoors"
-                app:layout_constraintEnd_toEndOf="@+id/fragmentMotorVehicle_tilNumberOfDoors"
-                app:layout_constraintStart_toStartOf="@+id/fragmentMotorVehicle_tilNumberOfDoors" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fragmentMotorVehicle_tilNumberOfDoors"
-                style="@style/Widget.LonelyWheeler.TextInputLayout"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                app:errorEnabled="true"
-                app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_tvNumberOfPlaceholder"
-                app:layout_constraintStart_toEndOf="@id/fragmentMotorVehicle_tvNumberOfPlaceholder"
-                app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_tvNumberOfPlaceholder">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fragmentMotorVehicle_etNumberOfDoors"
-                    style="@style/Widget.LonelyWheeler.TextInputEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:maxLines="1"
-                    android:text="@={`` + viewModel.motorVehicle.numberOfDoors}"
-                    android:textAlignment="center"
-                    android:textColor="@color/hintTextColor" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/fragmentMotorVehicle_tvSeetsPlaceholder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="@string/seats_placeholder"
-                android:textAlignment="center"
-                android:textColor="@color/hintTextColor"
-                app:layout_constraintBottom_toTopOf="@id/fragmentMotorVehicle_tilNumberOfSeats"
-                app:layout_constraintEnd_toEndOf="@+id/fragmentMotorVehicle_tilNumberOfSeats"
-                app:layout_constraintStart_toStartOf="@+id/fragmentMotorVehicle_tilNumberOfSeats" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fragmentMotorVehicle_tilNumberOfSeats"
-                style="@style/Widget.LonelyWheeler.TextInputLayout"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                app:errorEnabled="true"
-                app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_tilNumberOfDoors"
-                app:layout_constraintStart_toEndOf="@id/fragmentMotorVehicle_tilNumberOfDoors"
-                app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_tilNumberOfDoors">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fragmentMotorVehicle_etNumberOfSeats"
-                    style="@style/Widget.LonelyWheeler.TextInputEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:maxLines="1"
-                    android:text="@={`` + viewModel.motorVehicle.numberOfSeats}"
-                    android:textAlignment="center"
-                    android:textColor="@color/hintTextColor" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/fragmentMotorVehicle_tvCarHasMultimedia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="48dp"
-                android:text="@string/has_multimedia"
-                android:textColor="@color/hintTextColor"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_tvNumberOfPlaceholder" />
-
-            <RadioGroup
-                android:id="@+id/fragmentMotorVehicle_rbtnGroupCarHasMultimedia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:buttonTint="@color/colorPrimary"
-                android:checkedButton="@id/fragmentMotorVehicle_rbtnGroupCarHasMultimediaNo"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_tvCarHasMultimedia"
-                app:layout_constraintStart_toEndOf="@+id/fragmentMotorVehicle_tvCarHasMultimedia"
-                app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_tvCarHasMultimedia">
-
-                <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/fragmentMotorVehicle_rbtnGroupCarHasMultimediaYes"
-                    android:layout_width="match_parent"
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fragmentMotorVehicle_tvProductSpecificInfoPlaceholder"
+                    style="@style/TextAppearance.LonelyWheeler.Title.Product.GeneralInfo"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:onClick="@{() -> viewModel.motorVehicle.setHasMultimedia(true)}"
-                    android:text="@string/yes"
-                    android:textColor="@color/hintTextColor" />
+                    android:layout_marginTop="32dp"
+                    android:text="@string/product_specific_info_placeholder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_productBasicInfo" />
 
-                <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/fragmentMotorVehicle_rbtnGroupCarHasMultimediaNo"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/fragmentMotorVehicle_spnrCarBodyType_placeholder"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="@{() -> viewModel.motorVehicle.setHasMultimedia(false)}"
-                    android:text="@string/no"
-                    android:textColor="@color/hintTextColor" />
-            </RadioGroup>
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/body_type"
+                    android:textColor="@color/hintTextColor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_tvProductSpecificInfoPlaceholder" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/fragmentMotorVehicle_btnConfirm"
-                style="@style/Widget.LonelyWheeler.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="32dp"
-                android:paddingHorizontal="16dp"
-                android:text="@string/confirm"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/fragmentMotorVehicle_btnCancel"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_rbtnGroupCarHasMultimedia" />
+                <Spinner
+                    android:id="@+id/fragmentMotorVehicle_spnrCarBodyType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarBodyType_placeholder"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarBodyType_placeholder"
+                    />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/fragmentMotorVehicle_btnCancel"
-                style="@style/Widget.LonelyWheeler.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
-                android:text="@string/cancel"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/fragmentMotorVehicle_btnConfirm"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragmentMotorVehicle_rbtnGroupCarHasMultimedia" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/fragmentMotorVehicle_spnrCarEmissionStandard_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Emission standard: "
+                    android:textColor="@color/hintTextColor"
+                    app:layout_constraintStart_toStartOf="@id/fragmentMotorVehicle_spnrCarBodyType_placeholder"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrCarBodyType_placeholder" />
 
-    </ScrollView>
+                <Spinner
+                    android:id="@+id/fragmentMotorVehicle_spnrCarEmissionStandard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarEmissionStandard_placeholder"
+                    app:layout_constraintEnd_toEndOf="@+id/fragmentMotorVehicle_spnrCarBodyType"
+                    app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarEmissionStandard_placeholder" />
+
+                <TextView
+                    android:id="@+id/fragmentMotorVehicle_spnrCarFuelType_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Fuel type: "
+                    android:textColor="@color/hintTextColor"
+                    app:layout_constraintStart_toStartOf="@id/fragmentMotorVehicle_spnrCarEmissionStandard_placeholder"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrCarEmissionStandard_placeholder" />
+
+                <Spinner
+                    android:id="@+id/fragmentMotorVehicle_spnrCarFuelType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarFuelType_placeholder"
+                    app:layout_constraintEnd_toEndOf="@id/fragmentMotorVehicle_spnrCarEmissionStandard"
+                    app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarFuelType_placeholder" />
+
+
+                <TextView
+                    android:id="@+id/fragmentMotorVehicle_spnrCarGearbox_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Gearbox type: "
+                    android:textColor="@color/hintTextColor"
+                    app:layout_constraintStart_toStartOf="@id/fragmentMotorVehicle_spnrCarFuelType_placeholder"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrCarFuelType_placeholder" />
+
+                <Spinner
+                    android:id="@+id/fragmentMotorVehicle_spnrCarGearbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarGearbox_placeholder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarGearbox_placeholder" />
+
+                <TextView
+                    android:id="@+id/fragmentMotorVehicle_spnrCarSteeringWheelType_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Steering wheel side: "
+                    android:textColor="@color/hintTextColor"
+                    app:layout_constraintStart_toStartOf="@id/fragmentMotorVehicle_spnrCarGearbox_placeholder"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrCarGearbox_placeholder" />
+
+                <Spinner
+                    android:id="@+id/fragmentMotorVehicle_spnrCarSteeringWheelType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarSteeringWheelType_placeholder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarSteeringWheelType_placeholder"
+                    />
+
+                <TextView
+                    android:id="@+id/fragmentMotorVehicle_spnrCarDrivetrain_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Drivetrain: "
+                    android:textColor="@color/hintTextColor"
+                    app:layout_constraintStart_toStartOf="@id/fragmentMotorVehicle_spnrCarSteeringWheelType_placeholder"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrCarSteeringWheelType_placeholder" />
+
+                <Spinner
+                    android:id="@+id/fragmentMotorVehicle_spnrCarDrivetrain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarDrivetrain_placeholder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarDrivetrain_placeholder"
+                    />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fragmentMotorVehicle_tilCarMaxSpeed"
+                    style="@style/Widget.LonelyWheeler.TextInputLayout"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="8dp"
+                    android:hint="@string/max_speed_placeholder"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrCarDrivetrain">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragmentMotorVehicle_etCarMaxSpeed"
+                        style="@style/Widget.LonelyWheeler.TextInputEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:text="@={`` + viewModel.motorVehicle.maxSpeed}"
+                        android:textColor="@color/hintTextColor" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fragmentMotorVehicle_tilCarHorsePower"
+                    style="@style/Widget.LonelyWheeler.TextInputLayout"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:hint="@string/horse_power_placeholder"
+                    app:errorEnabled="true"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_tilCarMaxSpeed">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragmentMotorVehicle_etCarHorsePower"
+                        style="@style/Widget.LonelyWheeler.TextInputEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:text="@={`` + viewModel.motorVehicle.maxHorsePower}"
+                        android:textColor="@color/hintTextColor" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fragmentMotorVehicle_tilCarMileage"
+                    style="@style/Widget.LonelyWheeler.TextInputLayout"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:hint="@string/mileage_placeholder"
+                    app:errorEnabled="true"
+                    app:layout_constraintBottom_toTopOf="@id/fragmentMotorVehicle_tilCarHorsePower"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_tilCarMaxSpeed">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragmentMotorVehicle_etCarMileage"
+                        style="@style/Widget.LonelyWheeler.TextInputEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"
+                        android:text="@={`` + viewModel.motorVehicle.mileage}"
+                        android:textColor="@color/hintTextColor" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fragmentMotorVehicle_tvNumberOfPlaceholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="64dp"
+                    android:text="@string/number_of"
+                    android:textColor="@color/hintTextColor"
+                    app:layout_constraintStart_toStartOf="@id/fragmentMotorVehicle_tilCarHorsePower"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_tilCarHorsePower" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fragmentMotorVehicle_tvDoorsPlaceholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/doors"
+                    android:textColor="@color/hintTextColor"
+                    app:layout_constraintBottom_toTopOf="@id/fragmentMotorVehicle_tilNumberOfDoors"
+                    app:layout_constraintEnd_toEndOf="@+id/fragmentMotorVehicle_tilNumberOfDoors"
+                    app:layout_constraintStart_toStartOf="@+id/fragmentMotorVehicle_tilNumberOfDoors" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fragmentMotorVehicle_tilNumberOfDoors"
+                    style="@style/Widget.LonelyWheeler.TextInputLayout"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="8dp"
+                    app:errorEnabled="true"
+                    app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_tvNumberOfPlaceholder"
+                    app:layout_constraintStart_toEndOf="@id/fragmentMotorVehicle_tvNumberOfPlaceholder"
+                    app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_tvNumberOfPlaceholder">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragmentMotorVehicle_etNumberOfDoors"
+                        style="@style/Widget.LonelyWheeler.TextInputEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:maxLines="1"
+                        android:text="@={`` + viewModel.motorVehicle.numberOfDoors}"
+                        android:textAlignment="center"
+                        android:textColor="@color/hintTextColor" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fragmentMotorVehicle_tvSeetsPlaceholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/seats_placeholder"
+                    android:textAlignment="center"
+                    android:textColor="@color/hintTextColor"
+                    app:layout_constraintBottom_toTopOf="@id/fragmentMotorVehicle_tilNumberOfSeats"
+                    app:layout_constraintEnd_toEndOf="@+id/fragmentMotorVehicle_tilNumberOfSeats"
+                    app:layout_constraintStart_toStartOf="@+id/fragmentMotorVehicle_tilNumberOfSeats" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fragmentMotorVehicle_tilNumberOfSeats"
+                    style="@style/Widget.LonelyWheeler.TextInputLayout"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    app:errorEnabled="true"
+                    app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_tilNumberOfDoors"
+                    app:layout_constraintStart_toEndOf="@id/fragmentMotorVehicle_tilNumberOfDoors"
+                    app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_tilNumberOfDoors">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragmentMotorVehicle_etNumberOfSeats"
+                        style="@style/Widget.LonelyWheeler.TextInputEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:maxLines="1"
+                        android:text="@={`` + viewModel.motorVehicle.numberOfSeats}"
+                        android:textAlignment="center"
+                        android:textColor="@color/hintTextColor" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fragmentMotorVehicle_tvCarHasMultimedia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="48dp"
+                    android:text="@string/has_multimedia"
+                    android:textColor="@color/hintTextColor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_tvNumberOfPlaceholder" />
+
+                <RadioGroup
+                    android:id="@+id/fragmentMotorVehicle_rbtnGroupCarHasMultimedia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:buttonTint="@color/colorPrimary"
+                    android:checkedButton="@id/fragmentMotorVehicle_rbtnGroupCarHasMultimediaNo"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_tvCarHasMultimedia"
+                    app:layout_constraintStart_toEndOf="@+id/fragmentMotorVehicle_tvCarHasMultimedia"
+                    app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_tvCarHasMultimedia">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/fragmentMotorVehicle_rbtnGroupCarHasMultimediaYes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:onClick="@{() -> viewModel.motorVehicle.setHasMultimedia(true)}"
+                        android:text="@string/yes"
+                        android:textColor="@color/hintTextColor" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/fragmentMotorVehicle_rbtnGroupCarHasMultimediaNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{() -> viewModel.motorVehicle.setHasMultimedia(false)}"
+                        android:text="@string/no"
+                        android:textColor="@color/hintTextColor" />
+                </RadioGroup>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/fragmentMotorVehicle_btnConfirm"
+                    style="@style/Widget.LonelyWheeler.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/confirm"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/fragmentMotorVehicle_btnCancel"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_rbtnGroupCarHasMultimedia" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/fragmentMotorVehicle_btnCancel"
+                    style="@style/Widget.LonelyWheeler.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:text="@string/cancel"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/fragmentMotorVehicle_btnConfirm"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragmentMotorVehicle_rbtnGroupCarHasMultimedia" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+    </RelativeLayout>
+
+
 </layout>

@@ -72,21 +72,27 @@ class PreviewMotorVehicleOfferFragment : Fragment() {
                 } else {
                     viewModel.resetIndexes()
                 }
+                refreshView()
             }
+
         })
 
         viewModel.responseSeller.observe(viewLifecycleOwner, { seller ->
             seller.entity?.id?.let {
-                binding?.let {
-                    it.viewModel = viewModel
-                    it.fragmentPreviewOfferProgressBar.visibility = View.GONE
-                    it.executePendingBindings()
-                    it.notifyChange()
-                }
+                refreshView()
             }
         })
 
 
+    }
+
+    private fun refreshView() {
+        binding?.let {
+            it.viewModel = viewModel
+            it.fragmentPreviewOfferProgressBar.visibility = View.GONE
+            it.executePendingBindings()
+            it.notifyChange()
+        }
     }
 
     private fun showInformativeDialog(
@@ -130,7 +136,7 @@ class PreviewMotorVehicleOfferFragment : Fragment() {
                 showPicture()
             }
             btnLike.setOnClickListener {
-                viewModel.like()
+                viewModel.like(offerId, sellerId)
             }
         }
         binding!!.fragmentPreviewOfferBtnTelephone.setOnClickListener {

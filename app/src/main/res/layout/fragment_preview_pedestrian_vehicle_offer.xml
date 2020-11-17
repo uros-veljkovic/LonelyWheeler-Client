@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="project.lonelywheeler.ui.viewmodel.main.PedestrianVehicleViewModel" />
+            type="project.lonelywheeler.ui.viewmodel.main.ViewModelPedestrianVehicle" />
     </data>
 
     <ScrollView

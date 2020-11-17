@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="project.lonelywheeler.ui.viewmodel.main.PedestrianVehicleViewModel" />
+            type="project.lonelywheeler.ui.viewmodel.main.ViewModelPedestrianVehicle" />
     </data>
 
     <ScrollView
@@ -69,8 +69,7 @@
                 android:spinnerMode="dialog"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragmentPedestrianVehicle_spnrPedestrianVehicleType_placeholder"
-                app:onSelected="@{viewModel.vehicle.pedestrianVehicleType}" />
+                app:layout_constraintTop_toBottomOf="@id/fragmentPedestrianVehicle_spnrPedestrianVehicleType_placeholder" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/fragmentPedestrianVehicle_btnConfirm"

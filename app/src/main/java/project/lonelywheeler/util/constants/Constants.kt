@@ -4,6 +4,7 @@ const val INTENT_REQUEST_CODE_IMAGE = 1;
 const val INTENT_RC_CALL = 2;
 const val INTENT_RC_MESSAGE = 3;
 const val INTENT_RC_MAIL = 4;
+const val DEFAULT_RESPONSE_CODE = -1
 const val RESPONSE_CODE_REQUEST_SUCCESS = 200;
 const val RESPONSE_CODE_REQUEST_FAIL = 201;
 const val RESPONSE_CODE_SERVER_FAIL = 202;
@@ -13,6 +14,12 @@ const val RESOLUTION_1080X768 = 786432
 const val ENTITY_TYPE_MOTOR_VEHICLE = 1
 const val ENTITY_TYPE_PEDESTRIAN_VEHICLE = 2
 const val ENTITY_TYPE_EQUIPMENT = 3
+
+const val NO_OFFER_ID = ""
+
+const val ACTION_READ_FAVORITES = "ACTION_READ_FAVORITES"
+const val ACTION_READ_PERSONAL_OFFERS = "ACTION_READ_PERSONAL_OFFERS"
+const val DEFAULT_RESPONSE_MESSAGE = ""
 
 val REGEX_USERNAME = Regex("^([a-zA-Z])+([\\w]{2,})+$")
 val REGEX_EMAIL = Regex("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")

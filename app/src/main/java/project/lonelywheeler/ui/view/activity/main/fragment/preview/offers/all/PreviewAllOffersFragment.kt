@@ -1,6 +1,8 @@
 package project.lonelywheeler.ui.view.activity.main.fragment.preview.offers.all
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,20 +11,29 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import project.lonelywheeler.databinding.FragmentPreviewAllOffersBinding
-import project.lonelywheeler.ui.viewmodel.main.AllOffersViewModel
+import project.lonelywheeler.db.entity.offer.OfferEntity
+import project.lonelywheeler.ui.viewmodel.main.ViewModelOffers
 import project.lonelywheeler.util.adapter.recyclerview.OfferItemSmallRvAdapter
 import project.lonelywheeler.util.constants.ENTITY_TYPE_EQUIPMENT
 import project.lonelywheeler.util.constants.ENTITY_TYPE_MOTOR_VEHICLE
 import project.lonelywheeler.util.constants.ENTITY_TYPE_PEDESTRIAN_VEHICLE
-import project.lonelywheeler.util.decorator.ProductItemDecorator
+import project.lonelywheeler.util.decorator.SmallItemDecorator
+import kotlin.properties.Delegates
+
 
 @AndroidEntryPoint
 class PreviewAllOffersFragment : Fragment(), OfferItemSmallRvAdapter.OnOfferItemClickListener {
 
-    private val TAG = "PreviewAllOffers"
-    private val viewModel: AllOffersViewModel by viewModels()
+    private val viewModel: ViewModelOffers by viewModels()
     private lateinit var binding: FragmentPreviewAllOffersBinding
-    private var entityTypeId: Int? = null;
+    private var entityTypeId by Delegates.notNull<Int>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        entityTypeId = PreviewAllOffersFragmentArgs.fromBundle(requireArguments()).entityId
+        viewModel.read(entityTypeId)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,22 +48,18 @@ class PreviewAllOffersFragment : Fragment(), OfferItemSmallRvAdapter.OnOfferItem
     }
 
     private fun observeViewModel() {
-        entityTypeId = PreviewAllOffersFragmentArgs.fromBundle(requireArguments()).entityId
-        viewModel.read(entityTypeId!!)
-
         viewModel.response.observe(viewLifecycleOwner, { response ->
             val entities = response.entity
             ((binding.fragmentAllOffersRvAllOffers.adapter) as OfferItemSmallRvAdapter).setList(
-                entities ?: listOf()
+                entities?.toMutableList() ?: mutableListOf()
             )
             binding.executePendingBindings()
-            binding.notifyChange()
         })
     }
 
     private fun initBinding() {
         binding.viewModel = viewModel
-        binding.fragmentAllOffersRvAllOffers.addItemDecoration(ProductItemDecorator(8, 16))
+        binding.fragmentAllOffersRvAllOffers.addItemDecoration(SmallItemDecorator(8, 16))
         binding.fragmentAllOffersRvAllOffers.adapter = OfferItemSmallRvAdapter(this)
     }
 
@@ -86,5 +93,36 @@ class PreviewAllOffersFragment : Fragment(), OfferItemSmallRvAdapter.OnOfferItem
                 findNavController().navigate(action)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        binding.fragmentAllOffersEtSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                filter(s.toString())
+            }
+        })
+    }
+
+    private fun filter(text: String) {
+        val adapter = binding.fragmentAllOffersRvAllOffers.adapter as OfferItemSmallRvAdapter
+        val filteredOfferList: MutableList<OfferEntity> = mutableListOf()
+
+        if (text.isEmpty()) {
+            adapter.setList(adapter.getFullList().toMutableList())
+            return
+        }
+
+        for (offer in adapter.getFullList()) {
+            if (offer.basicInfo.brand.contains(text)
+                || offer.basicInfo.model!!.contains(text)
+            ) {
+                filteredOfferList.add(offer)
+            }
+        }
+        adapter.filterPreviewedList(filteredOfferList)
     }
 }

@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="project.lonelywheeler.ui.viewmodel.auth.AuthViewModel" />
+            type="project.lonelywheeler.ui.viewmodel.auth.ViewModelAuth" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,7 +68,7 @@
                 android:layout_height="match_parent"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:text="@={viewModel.user.accountInfo.email}" />
+                android:text="@={viewModel.user.accountInfoObservable.email}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"
-                android:text="@={viewModel.user.accountInfo.password}" />
+                android:text="@={viewModel.user.accountInfoObservable.password}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,7 +98,7 @@
             android:id="@+id/activitySignIn_tvAlreadyHaveAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:text="@string/dont_have_account"
             app:layout_constraintBottom_toTopOf="@id/activitySignIn_btnSignIn"
             app:layout_constraintEnd_toStartOf="@+id/activitySignIn_tvSignUp"

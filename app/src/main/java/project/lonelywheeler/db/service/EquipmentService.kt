@@ -1,7 +1,7 @@
 package project.lonelywheeler.db.service
 
-import project.lonelywheeler.db.entity.offfer.OfferEntity
-import project.lonelywheeler.db.entity.offfer.equipment.EquipmentEntity
+import project.lonelywheeler.db.entity.offer.OfferEntity
+import project.lonelywheeler.db.entity.offer.equipment.EquipmentEntity
 import project.lonelywheeler.db.response.MyResponse
 import project.lonelywheeler.db.service.api.EquipmentApi
 import javax.inject.Inject
@@ -9,7 +9,7 @@ import javax.inject.Inject
 class EquipmentService
 @Inject
 constructor(
-    private val equipmentApi: EquipmentApi
+    private val equipmentApi: EquipmentApi,
 ) {
 
     suspend fun create(entity: EquipmentEntity): MyResponse<EquipmentEntity> {
@@ -28,8 +28,8 @@ constructor(
         return equipmentApi.update(entity)
     }
 
-    suspend fun delete(entity: EquipmentEntity): MyResponse<EquipmentEntity> {
-        return equipmentApi.delete(entity._id!!)
+    suspend fun delete(_id: String): MyResponse<EquipmentEntity> {
+        return equipmentApi.delete(_id)
     }
 
 

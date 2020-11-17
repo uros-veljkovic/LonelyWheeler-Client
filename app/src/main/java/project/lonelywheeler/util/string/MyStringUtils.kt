@@ -5,8 +5,6 @@ import android.graphics.drawable.BitmapDrawable
 import android.util.Base64
 import androidx.core.graphics.drawable.toDrawable
 import project.lonelywheeler.app.MyApplication
-import java.text.NumberFormat
-import java.util.*
 
 object MyStringUtils {
 
@@ -17,10 +15,29 @@ object MyStringUtils {
     }
 
     fun getDollarValue(value: Double): String {
-        val format = NumberFormat.getCurrencyInstance()
-        format.maximumFractionDigits = 0
-        format.currency = Currency.getInstance("USD")
+        var price = value.toInt()
+        val priceArray: MutableList<String> = mutableListOf()
+//        if (price / 1000 >= 1) {
+            while (true) {
+                if (price / 1000 > 0) {
+                    price /= 1000
+                    priceArray.add(0, ".000")
+                    continue
+                } else {
+                    priceArray.add(0, "$${price}")
+                    break
+                }
+            }
+//        } else {
+//            return "$$price"
+//        }
 
-        return format.format(value)
+        val bulider = StringBuilder()
+        priceArray.forEach { item ->
+            bulider.append(item)
+        }
+
+
+        return bulider.toString()
     }
 }

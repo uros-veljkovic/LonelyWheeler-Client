@@ -1,7 +1,7 @@
 package project.lonelywheeler.db.service.api
 
-import project.lonelywheeler.db.entity.offfer.OfferEntity
-import project.lonelywheeler.db.entity.offfer.equipment.EquipmentEntity
+import project.lonelywheeler.db.entity.offer.OfferEntity
+import project.lonelywheeler.db.entity.offer.equipment.EquipmentEntity
 import project.lonelywheeler.db.response.MyResponse
 import retrofit2.http.*
 

@@ -21,7 +21,7 @@ import project.lonelywheeler.R
 import project.lonelywheeler.databinding.ActivitySignUpBinding
 import project.lonelywheeler.ui.view.activity.main.MainActivity
 import project.lonelywheeler.ui.view.activity.signin.SignInActivity
-import project.lonelywheeler.ui.viewmodel.auth.AuthViewModel
+import project.lonelywheeler.ui.viewmodel.auth.ViewModelAuth
 import project.lonelywheeler.util.constants.*
 import project.lonelywheeler.util.validator.FieldValidator
 import project.lonelywheeler.util.validator.matches
@@ -31,7 +31,7 @@ import kotlin.concurrent.schedule
 @AndroidEntryPoint
 class SignUpActivity : AppCompatActivity() {
 
-    private val viewModel: AuthViewModel by viewModels()
+    private val viewModel: ViewModelAuth by viewModels()
     lateinit var binding: ActivitySignUpBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -167,7 +167,7 @@ class SignUpActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == INTENT_REQUEST_CODE_IMAGE) {
             binding.activitySignUpSivPicture.setImageURI(data?.data) // handle chosen image
-            viewModel.user.accountInfo.picture =
+            viewModel.user.accountInfoObservable.picture =
                 binding.activitySignUpSivPicture.drawable.toBitmap()
         }
     }

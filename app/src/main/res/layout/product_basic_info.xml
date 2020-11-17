@@ -7,11 +7,11 @@
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="offer"
-            type="project.lonelywheeler.model.domain.offer.Offer" />
+            type="project.lonelywheeler.model.observable.offer.OfferObservable" />
 
         <variable
             name="currentPictureIndex"
@@ -34,20 +34,20 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/holo_red_light"
             android:enabled="@{lastPictureIndex &lt; 0 ? false : true}"
-            android:visibility="@{lastPictureIndex &lt; 0 ? View.GONE : View.VISIBLE}"
-            app:fabSize="mini"
             android:src="@drawable/ic_clear"
+            android:visibility="@{lastPictureIndex &lt; 0 ? View.GONE : View.VISIBLE}"
             app:backgroundTint="@android:color/holo_red_light"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@id/ivProductPicture"
             app:layout_constraintEnd_toEndOf="@id/ivProductPicture"
             app:layout_constraintStart_toEndOf="@id/ivProductPicture"
             app:layout_constraintTop_toTopOf="@id/ivProductPicture"
-            app:layout_constraintBottom_toTopOf="@id/ivProductPicture"
             app:shapeAppearance="@style/Widget.MaterialComponents.FloatingActionButton"
             tools:ignore="ContentDescription" />
 
         <com.flaviofaria.kenburnsview.KenBurnsView
             android:id="@+id/ivProductPicture"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="24dp"
             android:scaleType="fitStart"
@@ -62,13 +62,14 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="24dp"
-            android:visibility="@{lastPictureIndex &lt; 0 ? View.VISIBLE : View.GONE}"
             android:scaleType="fitStart"
             android:src="@drawable/ic_no_photos"
+            android:visibility="@{lastPictureIndex &lt; 0 ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@+id/ivProductPicture"
-            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/ivProductPicture"
             tools:ignore="ContentDescription" />
 
@@ -438,7 +439,7 @@
             app:layout_constraintBottom_toBottomOf="@id/tvProductCondition_placeholder"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvProductCondition_placeholder"
-            app:onSelected="@{offer.condition}" />
+            />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilProductOtherInfo"
