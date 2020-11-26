@@ -8,11 +8,11 @@ import project.lonelywheeler.db.entity.offer.OfferEntity
 
 class OfferItemSmallRvAdapter(
     val listener: OnOfferItemClickListener,
+    private var fullOfferList: MutableList<OfferEntity> = mutableListOf()
 ) :
     RecyclerView.Adapter<OfferItemSmallRvAdapter.OfferItemSmallViewHolder>() {
 
     private var previewedOfferList: MutableList<OfferEntity> = mutableListOf()
-    private var fullOfferList: MutableList<OfferEntity> = mutableListOf()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfferItemSmallViewHolder {

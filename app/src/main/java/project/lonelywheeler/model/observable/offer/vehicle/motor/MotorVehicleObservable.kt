@@ -6,10 +6,10 @@ import com.google.gson.Gson
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import project.lonelywheeler.BR
 import project.lonelywheeler.db.entity.offer.vehicle.motor.MotorVehicleEntity
-import project.lonelywheeler.model.domain.offer.Condition
-import project.lonelywheeler.model.observable.offer.OfferObservable
-import project.lonelywheeler.model.domain.offer.vehicle.motor.*
+import project.lonelywheeler.model.enums.offer.Condition
+import project.lonelywheeler.model.enums.offer.vehicle.motor.*
 import project.lonelywheeler.model.observable.offer.OfferBasicInfoObservable
+import project.lonelywheeler.model.observable.offer.OfferObservable
 import project.lonelywheeler.util.convertToStringList
 import java.util.*
 import javax.inject.Inject
@@ -23,7 +23,7 @@ constructor() : OfferObservable() {
         id: String?,
         sellerId: String?,
         basicInfo: OfferBasicInfoObservable,
-        condition: String,
+        condition: Condition,
         pictures: MutableList<Bitmap>,
         valueFixed: Boolean,
         firstOwner: Boolean,
@@ -32,12 +32,12 @@ constructor() : OfferObservable() {
         colorExterior: String,
         colorInterior: String,
         materialInterior: String,
-        carBodyType: String,
-        fuelType: String,
-        emissionStandard: String,
-        gearboxType: String,
-        steeringWheelSide: String,
-        drivetrain: String,
+        carBodyType: CarBodyType,
+        fuelType: FuelType,
+        emissionStandard: EmissionStandard,
+        gearboxType: GearboxType,
+        steeringWheelSide: SteeringWheelSide,
+        drivetrain: Drivetrain,
         maxSpeed: Int,
         maxHorsePower: Int,
         mileage: Int,
@@ -50,7 +50,7 @@ constructor() : OfferObservable() {
         this.id = id
         this.sellerId = sellerId
         this.basicInfo = basicInfo
-        this.condition = Condition.valueOf(condition)
+        this.condition = condition
         this.pictures = pictures
         this.valueFixed = valueFixed
         this.firstOwner = firstOwner
@@ -76,42 +76,42 @@ constructor() : OfferObservable() {
     }
 
     @get:Bindable
-    var carBodyType: String = CarBodyType.Coupe.name
+    var carBodyType: CarBodyType = CarBodyType.SUV
         set(value) {
             field = value
             notifyPropertyChanged(BR.carBodyType)
         }
 
     @get:Bindable
-    var fuelType: String = FuelType.Diesel.name
+    var fuelType: FuelType = FuelType.Diesel
         set(value) {
             field = value
             notifyPropertyChanged(BR.fuelType)
         }
 
     @get:Bindable
-    var emissionStandard: String = EmissionStandard.Euro3.name
+    var emissionStandard: EmissionStandard = EmissionStandard.Euro3
         set(value) {
             field = value
             notifyPropertyChanged(BR.emissionStandard)
         }
 
     @get:Bindable
-    var gearboxType: String = GearboxType.Manual.name
+    var gearboxType: GearboxType = GearboxType.Manual
         set(value) {
             field = value
             notifyPropertyChanged(BR.gearboxType)
         }
 
     @get:Bindable
-    var steeringWheelSide: String = SteeringWheelSide.Left.name
+    var steeringWheelSide: SteeringWheelSide = SteeringWheelSide.Left
         set(value) {
             field = value
             notifyPropertyChanged(BR.steeringWheelSide)
         }
 
     @get:Bindable
-    var drivetrain: String = Drivetrain.FWD.name
+    var drivetrain: Drivetrain = Drivetrain.FWD
         set(value) {
             field = value
             notifyPropertyChanged(BR.drivetrain)
@@ -173,6 +173,11 @@ constructor() : OfferObservable() {
             notifyPropertyChanged(BR.hasMultimedia)
         }
 
+/*    fun addPicture(bitmap: Bitmap) {
+        pictures.add(bitmap)
+        notifyPropertyChanged(BR.pictures)
+    }*/
+
 
     override fun toString(): String {
         return Gson().toJson(this)
@@ -192,12 +197,12 @@ constructor() : OfferObservable() {
             colorExterior,
             colorInterior,
             materialInterior,
-            carBodyType,
-            fuelType,
-            emissionStandard,
-            gearboxType,
-            steeringWheelSide,
-            drivetrain,
+            carBodyType.name,
+            fuelType.name,
+            emissionStandard.name,
+            gearboxType.name,
+            steeringWheelSide.name,
+            drivetrain.name,
             maxSpeed,
             maxHorsePower,
             mileage,

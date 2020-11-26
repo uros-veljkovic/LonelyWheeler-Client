@@ -7,6 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import project.lonelywheeler.app.MyApplication
+import project.lonelywheeler.db.entity.liked.LikedSellerEntity
 import project.lonelywheeler.db.entity.user.UserEntity
 import project.lonelywheeler.db.repo.Repository
 import project.lonelywheeler.db.response.MyResponse
@@ -16,6 +17,7 @@ class ViewModelProfile
 constructor(
     val repository: Repository,
     var responseUser: MutableLiveData<MyResponse<UserEntity>>,
+    var responseLiking: MutableLiveData<MyResponse<LikedSellerEntity>>
 ) : ViewModel() {
 
     fun loadSeller(sellerId: String) {
@@ -29,5 +31,14 @@ constructor(
             }
         }
     }
+
+    fun loadIfSellerLikedOrDisliked(sellerId: String, userId: String){
+
+    }
+
+    fun loadLikingNumber(sellerId: String){
+
+    }
+
 
 }

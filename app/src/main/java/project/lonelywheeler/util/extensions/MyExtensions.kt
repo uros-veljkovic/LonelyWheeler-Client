@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.annotation.RequiresApi
 import androidx.databinding.Observable
 import androidx.databinding.ObservableBoolean
@@ -18,6 +19,7 @@ import kotlinx.coroutines.withContext
 import project.lonelywheeler.app.MyApplication
 import java.util.*
 import kotlin.concurrent.schedule
+
 
 inline fun <R> ObservableField<R>.observe(crossinline callback: (R) -> Unit) {
     this.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {

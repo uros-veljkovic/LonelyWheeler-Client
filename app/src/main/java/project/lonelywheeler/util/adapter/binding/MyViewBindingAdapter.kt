@@ -18,13 +18,13 @@ fun View.shouldDisplayToHost(userID: String?) {
     }
 }
 
-@BindingAdapter("app:shouldDisplayToGuest")
-fun View.shouldDisplayToGuest(userID: String?) {
+@BindingAdapter("app:shouldNotDisplayToHost")
+fun View.shouldNotDisplayToHost(userID: String?) {
     userID?.let {
-        visibility = if (userID != MyApplication.getCurrentUserID()) {
-            VISIBLE
-        } else {
+        visibility = if (userID == MyApplication.getCurrentUserID()) {
             GONE
+        } else {
+            VISIBLE
         }
     }
 }

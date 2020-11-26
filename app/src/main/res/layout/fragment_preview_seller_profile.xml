@@ -6,9 +6,14 @@
 
     <data>
 
+        <import type="project.lonelywheeler.app.MyApplication" />
+
+        <import type="android.view.View" />
+
         <variable
             name="userEntity"
             type="project.lonelywheeler.db.entity.user.UserEntity" />
+
     </data>
 
     <ScrollView
@@ -59,7 +64,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="32dp"
-                android:text="@{userEntity.personalInfoEntity.firstName + ` ` + userEntity.personalInfoEntity.lastName}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fragmentPreviewProfile_ivUserPicture"
@@ -171,8 +175,8 @@
                 style="@style/Widget.LonelyWheeler.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
                 android:layout_marginBottom="8dp"
+                android:enabled="false"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragmentPreviewProfile_tilStreet"
@@ -205,7 +209,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragmentPreviewProfile_tilCity"
-                app:shouldDisableTo="@{userEntity.id}" />
+                app:shouldNotDisplayToHost="@{userEntity.id}" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/fragmentPreviewProfile_tvLikes"
@@ -233,7 +237,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/fragmentPreviewProfile_btnLike"
                 app:layout_constraintTop_toBottomOf="@id/fragmentPreviewProfile_tilCity"
-                app:shouldDisableTo="@{userEntity.id}" />
+                app:shouldNotDisplayToHost="@{userEntity.id}" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/fragmentPreviewProfile_tvDislikes"
@@ -258,7 +262,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/fragmentPreviewProfile_btnDislike"
                 app:layout_constraintStart_toStartOf="@id/fragmentPreviewProfile_btnLike"
-                app:layout_constraintTop_toBottomOf="@+id/fragmentPreviewProfile_tvLikes" />
+                app:layout_constraintTop_toBottomOf="@+id/fragmentPreviewProfile_tvLikes"
+                app:shouldNotDisplayToHost="@{userEntity.id}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

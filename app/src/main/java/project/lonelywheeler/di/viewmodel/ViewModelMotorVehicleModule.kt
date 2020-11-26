@@ -13,7 +13,7 @@ import javax.inject.Qualifier
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class MyResponseListMotorVehicle
+annotation class MyResponseMotorVehicle
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
@@ -23,7 +23,7 @@ annotation class SellerResponse
 @InstallIn(ActivityRetainedComponent::class)
 class ViewModelMotorVehicleModule {
 
-    @MyResponseListMotorVehicle
+    @MyResponseMotorVehicle
     @Provides
     fun provideMotorVehicleResponseMutableLiveData(response: MyResponse<MotorVehicleEntity>):
             MutableLiveData<MyResponse<MotorVehicleEntity>> {
@@ -36,18 +36,6 @@ class ViewModelMotorVehicleModule {
             MutableLiveData<MyResponse<UserEntity>> {
         return MutableLiveData(response)
     }
-
-    /*Bound multiple times MyResponse<MotorVehicleEntity
-    @Provides
-    fun provideMotorVehicleResponse(): MyResponse<MotorVehicleEntity> {
-        return MyResponse(-1, "", null)
-    }*/
-
-    /*Bound multiple times MyResponse<UserEntity>
-    @Provides
-    fun provideSellerResponse(): MyResponse<UserEntity> {
-        return MyResponse(-1, "", null)
-    }*/
 
     @Provides
     fun provideMotorVehicleMLD(vehicle: MotorVehicleObservable): MutableLiveData<MotorVehicleObservable> {

@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/previewSellerOffersFragment"
-        android:name="project.lonelywheeler.ui.view.activity.main.fragment.preview.seller.PreviewSellersOffersFragment"
+        android:name="project.lonelywheeler.ui.view.activity.main.fragment.preview.seller.offers.PreviewSellersOffersFragment"
         android:label="fragment_my_offers"
         tools:layout="@layout/fragment_preview_seller_offers">
         <action

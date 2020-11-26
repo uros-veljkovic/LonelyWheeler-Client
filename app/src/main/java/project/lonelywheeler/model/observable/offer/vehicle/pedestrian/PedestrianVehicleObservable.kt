@@ -4,7 +4,7 @@ import androidx.databinding.Bindable
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import project.lonelywheeler.BR
 import project.lonelywheeler.db.entity.offer.vehicle.pedestrian.PedestrianVehicleEntity
-import project.lonelywheeler.model.domain.offer.vehicle.pedestrian.PedestrianVehicleType
+import project.lonelywheeler.model.enums.offer.vehicle.pedestrian.PedestrianVehicleType
 import project.lonelywheeler.model.observable.offer.OfferObservable
 import project.lonelywheeler.util.convertToStringList
 import javax.inject.Inject

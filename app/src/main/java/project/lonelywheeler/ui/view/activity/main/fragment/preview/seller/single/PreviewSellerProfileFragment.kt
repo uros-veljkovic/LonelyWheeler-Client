@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
+import project.lonelywheeler.app.MyApplication
 import project.lonelywheeler.databinding.FragmentPreviewSellerProfileBinding
 import project.lonelywheeler.ui.viewmodel.main.ViewModelProfile
 import project.lonelywheeler.util.adapter.binding.setMySingleSrc
@@ -22,7 +23,7 @@ class PreviewSellerProfileFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
 
         binding = FragmentPreviewSellerProfileBinding.inflate(inflater)
@@ -32,6 +33,11 @@ class PreviewSellerProfileFragment : Fragment() {
     }
 
     private fun observeViewModel() {
+        observeSellerData()
+        observeLikingData()
+    }
+
+    private fun observeSellerData() {
         viewModel.loadSeller(sellerId)
         viewModel.responseUser.observe(viewLifecycleOwner, { response ->
             response.entity?.let { entity ->
@@ -42,6 +48,33 @@ class PreviewSellerProfileFragment : Fragment() {
                 binding.notifyChange()
             }
         })
+    }
 
+    private fun observeLikingData() {
+        val userId = MyApplication.getCurrentUserID()
+        viewModel.loadIfSellerLikedOrDisliked(sellerId, userId)
+        viewModel.responseLiking.observe(viewLifecycleOwner, { response ->
+            response.entity?.let {
+
+            }
+        })
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        init()
+    }
+
+    fun init() {
+        onClickListeners()
+    }
+
+    fun onClickListeners() {
+        binding.apply {
+            fragmentPreviewProfileBtnLike
+            fragmentPreviewProfileBtnDislike
+            fragmentPreviewProfileBtnPreviewOffers
+        }
     }
 }

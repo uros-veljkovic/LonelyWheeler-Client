@@ -1,8 +1,9 @@
 package project.lonelywheeler.db.entity.liked
 
-data class LikedOfferEntity
+data class SellerLikingCountEntity
 constructor(
     val userId: String,
-    val offerId: String,
-    val entityType: String
-)
+    val likes: Int,
+    val dislikes: Int,
+) {
+}

@@ -8,18 +8,21 @@
 
         <variable
             name="viewModel"
-            type="project.lonelywheeler.ui.viewmodel.main.MotorVehicleViewModel" />
+            type="project.lonelywheeler.ui.viewmodel.main.ViewModelMotorVehicle" />
+
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ProgressBar
             android:id="@+id/fragmentMotorvehicle_progressBar"
-            android:visibility="gone"
-            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
         <ScrollView
             android:id="@+id/fragmentMotorVehicle_container"
             android:layout_width="match_parent"
@@ -69,10 +72,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
+                    android:spinnerMode="dialog"
                     app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarBodyType_placeholder"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarBodyType_placeholder"
-                    />
+                    app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarBodyType_placeholder" />
 
                 <TextView
                     android:id="@+id/fragmentMotorVehicle_spnrCarEmissionStandard_placeholder"
@@ -89,6 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
+                    android:spinnerMode="dialog"
                     app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarEmissionStandard_placeholder"
                     app:layout_constraintEnd_toEndOf="@+id/fragmentMotorVehicle_spnrCarBodyType"
                     app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarEmissionStandard_placeholder" />
@@ -108,6 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
+                    android:spinnerMode="dialog"
                     app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarFuelType_placeholder"
                     app:layout_constraintEnd_toEndOf="@id/fragmentMotorVehicle_spnrCarEmissionStandard"
                     app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarFuelType_placeholder" />
@@ -128,6 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
+                    android:spinnerMode="dialog"
                     app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarGearbox_placeholder"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarGearbox_placeholder" />
@@ -146,10 +152,10 @@
                     android:id="@+id/fragmentMotorVehicle_spnrCarSteeringWheelType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:spinnerMode="dialog"
                     app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarSteeringWheelType_placeholder"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarSteeringWheelType_placeholder"
-                    />
+                    app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarSteeringWheelType_placeholder" />
 
                 <TextView
                     android:id="@+id/fragmentMotorVehicle_spnrCarDrivetrain_placeholder"
@@ -165,10 +171,10 @@
                     android:id="@+id/fragmentMotorVehicle_spnrCarDrivetrain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:spinnerMode="dialog"
                     app:layout_constraintBottom_toBottomOf="@id/fragmentMotorVehicle_spnrCarDrivetrain_placeholder"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarDrivetrain_placeholder"
-                    />
+                    app:layout_constraintTop_toTopOf="@id/fragmentMotorVehicle_spnrCarDrivetrain_placeholder" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/fragmentMotorVehicle_tilCarMaxSpeed"

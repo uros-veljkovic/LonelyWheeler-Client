@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -51,10 +49,12 @@
             android:layout_height="0dp"
             android:layout_margin="24dp"
             android:scaleType="fitStart"
+            app:index="@{currentPictureIndex}"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:pictures="@{offer.pictures}"
             tools:ignore="ContentDescription" />
 
         <ImageView
@@ -436,10 +436,10 @@
             android:id="@+id/spnrProductCondition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
             app:layout_constraintBottom_toBottomOf="@id/tvProductCondition_placeholder"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvProductCondition_placeholder"
-            />
+            app:layout_constraintTop_toTopOf="@id/tvProductCondition_placeholder" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilProductOtherInfo"

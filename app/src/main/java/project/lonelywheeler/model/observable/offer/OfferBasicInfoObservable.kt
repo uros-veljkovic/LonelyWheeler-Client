@@ -16,7 +16,7 @@ constructor() : BaseObservable() {
 
     constructor(
         title: String,
-        value: Double,
+        value: Int,
         dateModified: Date,
         model: String,
         brand: String,
@@ -38,7 +38,7 @@ constructor() : BaseObservable() {
         }
 
     @get: Bindable
-    var value: Double = 0.0
+    var value: Int = 0
         set(value) {
             field = value
             notifyPropertyChanged(BR.value)

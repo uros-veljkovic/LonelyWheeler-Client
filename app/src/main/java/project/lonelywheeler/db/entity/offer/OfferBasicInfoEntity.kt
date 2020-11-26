@@ -6,7 +6,7 @@ import java.util.*
 class OfferBasicInfoEntity
 constructor(
     val title: String,
-    val value: Double,
+    val value: Int,
     val dateModified: Long,
     val model: String?,
     val brand: String,

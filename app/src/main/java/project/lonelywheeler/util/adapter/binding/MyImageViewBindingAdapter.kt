@@ -1,6 +1,6 @@
 package project.lonelywheeler.util.adapter.binding
 
-import android.graphics.drawable.BitmapDrawable
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.core.graphics.drawable.toDrawable
@@ -9,22 +9,22 @@ import androidx.databinding.ObservableInt
 import com.bumptech.glide.Glide
 import project.lonelywheeler.R
 import project.lonelywheeler.util.extensions.convertToBitmap
-import project.lonelywheeler.util.string.MyStringUtils
 
 
-object ImageViewUtil {
+@BindingAdapter("app:pictures", "app:index")
+fun ImageView.setPictures(pictures: MutableList<Bitmap>, index: ObservableInt) {
+    var bitmap: Bitmap? = null
 
-    fun showIfExist(
-        pictures: MutableList<String>,
-        currentPictureIndex: ObservableInt,
-    ): BitmapDrawable? {
-        if (pictures.isNullOrEmpty() || currentPictureIndex.get() < 0)
-            return null
-        else {
-            return MyStringUtils.convertToBitmap(pictures[currentPictureIndex.get()])
-        }
+    if (index.get() >= 0 && pictures.size > 0) {
+        bitmap = pictures[index.get()]
     }
 
+    Glide.with(this.context)
+        .load(bitmap)
+        .centerCrop()
+        .placeholder(null)
+        .into(this)
+    this.refreshDrawableState()
 }
 
 @BindingAdapter("app:mySrc")
@@ -41,18 +41,6 @@ fun ImageView.setMySrc(list: MutableList<String>) {
         .centerCrop()
         .placeholder(R.drawable.ic_no_photos)
         .into(this)
-
-// MyWay
-/*    if (list.size != 0) {
-        val drawable = list[0].convertToBitmap().toDrawable(resources)
-        this.setImageDrawable(drawable)
-        this.refreshDrawableState()
-    } else {
-        this.setImageDrawable(
-            ContextCompat.getDrawable(this.context, R.drawable.ic_no_photos)
-        )
-        this.setPadding(64, 64, 64, 64)
-    }*/
 }
 
 @BindingAdapter("app:mySingleSrc")
@@ -65,18 +53,5 @@ fun ImageView.setMySingleSrc(picture: String?) {
         .centerCrop()
         .placeholder(R.drawable.ic_no_photos)
         .into(this)
-
-    /*
-    var drawable: Drawable? = null
-
-    if (!picture.isNullOrEmpty()) {
-        drawable = picture.convertToBitmap().toDrawable(resources)
-    } else {
-        drawable = ContextCompat.getDrawable(this.context, R.drawable.ic_no_photos)
-        this.setPadding(64, 64, 64, 64)
-    }
-    this.setImageDrawable(drawable)
-    this.refreshDrawableState()
-*/
 
 }

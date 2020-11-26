@@ -2,8 +2,8 @@ package project.lonelywheeler.db.entity.offer.equipment
 
 import project.lonelywheeler.db.entity.offer.OfferBasicInfoEntity
 import project.lonelywheeler.db.entity.offer.OfferEntity
+import project.lonelywheeler.model.enums.offer.equipment.EquipmentType
 import project.lonelywheeler.model.observable.offer.equipment.EquipmentObservable
-import project.lonelywheeler.model.domain.offer.equipment.EquipmentType
 import project.lonelywheeler.util.extensions.convertToBitmapList
 
 class EquipmentEntity
@@ -38,14 +38,14 @@ constructor(
 ) {
     override fun toObservable(): EquipmentObservable {
         val basicInfoObservable = basicInfo.toObservable()
-        val equipmentTypeEnum = EquipmentType.valueOf(equipmentType)
+        val equipmentTypeEnum = equipmentType
         val pictureList = pictures.convertToBitmapList()
 
         return EquipmentObservable().apply {
             id = _id
             sellerId = sellerId
             basicInfo = basicInfoObservable
-            equipmentType = equipmentTypeEnum
+            equipmentType = EquipmentType.valueOf(equipmentTypeEnum)
             colorExterior = colorExterior
             colorInterior = colorInterior
             materialInterior = materialInterior

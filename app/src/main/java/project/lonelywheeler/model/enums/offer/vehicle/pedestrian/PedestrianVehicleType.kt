@@ -1,6 +1,7 @@
-package project.lonelywheeler.model.domain.offer.vehicle.pedestrian
+package project.lonelywheeler.model.enums.offer.vehicle.pedestrian
 
 import com.google.gson.annotations.SerializedName
+import project.lonelywheeler.util.extensions.toCamelCase
 
 enum class PedestrianVehicleType {
     @SerializedName("Bicycle")
@@ -19,5 +20,11 @@ enum class PedestrianVehicleType {
     Skis,
 
     @SerializedName("Other")
-    Other
+    Other;
+
+    companion object {
+        fun toEnum(s: String): PedestrianVehicleType {
+            return PedestrianVehicleType.valueOf(s.toCamelCase())
+        }
+    }
 }

@@ -6,7 +6,7 @@ import androidx.databinding.Bindable
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import project.lonelywheeler.BR
 import project.lonelywheeler.db.entity.offer.OfferEntity
-import project.lonelywheeler.model.domain.offer.Condition
+import project.lonelywheeler.model.enums.offer.Condition
 import project.lonelywheeler.util.convertToStringList
 import javax.inject.Inject
 
@@ -98,6 +98,12 @@ constructor() : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.materialInterior)
         }
+
+
+    fun addPicture(bitmap: Bitmap) {
+        pictures.add(bitmap)
+        notifyPropertyChanged(BR.pictures)
+    }
 
     open fun toEntity(): OfferEntity {
         return OfferEntity(id,

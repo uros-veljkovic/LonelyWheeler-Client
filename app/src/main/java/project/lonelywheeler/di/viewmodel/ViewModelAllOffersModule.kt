@@ -20,13 +20,13 @@ class ViewModelAllOffersModule {
     @MyResponseListOffer
     @Provides
     fun provideMotorVehicleResponseMutableLiveData(
-        @MyResponseListMotorVehicle
+        @MyResponseMotorVehicle
         response: MyResponse<List<OfferEntity>>,
     ): MutableLiveData<MyResponse<List<OfferEntity>>> {
         return MutableLiveData(response)
     }
 
-    @MyResponseListMotorVehicle
+    @MyResponseMotorVehicle
     @Provides
     fun provideMotorVehicleResponse(
         list: List<OfferEntity>,

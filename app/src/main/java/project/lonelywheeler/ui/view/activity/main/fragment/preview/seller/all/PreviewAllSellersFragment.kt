@@ -1,11 +1,13 @@
 package project.lonelywheeler.ui.view.activity.main.fragment.preview.seller.all
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import project.lonelywheeler.databinding.FragmentPreviewAllSellersBinding
@@ -18,7 +20,7 @@ import project.lonelywheeler.util.decorator.SmallItemDecorator
 class PreviewAllSellersFragment : Fragment(), UserItemSmallRvAdapter.OnOfferItemClickListener {
 
     private lateinit var binding: FragmentPreviewAllSellersBinding
-    private val viewModel: ViewModelSellers by viewModels()
+    private val viewModel: ViewModelSellers by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +37,6 @@ class PreviewAllSellersFragment : Fragment(), UserItemSmallRvAdapter.OnOfferItem
     }
 
     private fun initViewModel() {
-        viewModel.read()
         binding.viewModel = viewModel
     }
 
@@ -62,8 +63,41 @@ class PreviewAllSellersFragment : Fragment(), UserItemSmallRvAdapter.OnOfferItem
         val userEntity = viewModel.getItem(position)
         val userId = userEntity.id
 
-        val action = PreviewAllSellersFragmentDirections.actionPreviewAllSellersFragmentToPreviewSellerProfileFragment(userId!!)
+        val action =
+            PreviewAllSellersFragmentDirections.actionPreviewAllSellersFragmentToPreviewSellerProfileFragment(
+                userId!!)
         findNavController().navigate(action)
     }
 
+    override fun onResume() {
+        super.onResume()
+        observeSellerSearch()
+    }
+
+    private fun observeSellerSearch() {
+        binding.fragmentAllOffersEtSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                filterUsers(s.toString())
+            }
+        })
+    }
+
+    private fun filterUsers(text: String) {
+        val adapter = binding.fragmentAllUsersRecViewUsers.adapter as UserItemSmallRvAdapter
+        val filteredOfferList: MutableList<UserEntity> = mutableListOf()
+
+        if (text.isEmpty()) {
+            adapter.setList(adapter.getFullList().toMutableList())
+            return
+        }
+
+        for (user in adapter.getFullList()) {
+            if (user.accountInfoEntity.username.contains(text, true)) {
+                filteredOfferList.add(user)
+            }
+        }
+        adapter.filterDisplayedList(filteredOfferList)
+    }
 }

@@ -16,7 +16,7 @@ import project.lonelywheeler.db.entity.offer.equipment.EquipmentEntity
 import project.lonelywheeler.db.entity.user.UserEntity
 import project.lonelywheeler.db.repo.Repository
 import project.lonelywheeler.db.response.MyResponse
-import project.lonelywheeler.di.viewmodel.EquipmentResponse
+import project.lonelywheeler.di.viewmodel.MyResponseEquipment
 import project.lonelywheeler.di.viewmodel.SellerResponse
 import project.lonelywheeler.model.observable.offer.equipment.EquipmentObservable
 import project.lonelywheeler.util.compressTo
@@ -26,90 +26,68 @@ import project.lonelywheeler.util.extensions.increase
 import project.lonelywheeler.util.string.MyStringUtils
 
 
-//TODO: Kreiraj ViewModelEquipmentModule.kt kako bi injectovao sve zavisnosti
 class ViewModelEquipment
 @ViewModelInject
 constructor(
-    var equipmentObservable: EquipmentObservable,
+    var equipment: EquipmentObservable,
     val repository: Repository,
-    @EquipmentResponse
-    val responseEntity: MutableLiveData<MyResponse<EquipmentEntity>>,
+    @MyResponseEquipment
+    var responseEntity: MutableLiveData<MyResponse<EquipmentEntity>>,
     @SellerResponse
-    val responseSeller: MutableLiveData<MyResponse<UserEntity>>,
+    var responseSeller: MutableLiveData<MyResponse<UserEntity>>,
 ) : ViewModel() {
 
-    private val TAG = "EquipmentViewModel"
+    var likeTriggered: ObservableBoolean = ObservableBoolean(false)
+
     var currentPictureIndex: ObservableInt = ObservableInt(-1)
     var lastPictureIndex: ObservableInt = ObservableInt(-1)
-    var likeTriggered: ObservableBoolean = ObservableBoolean(false)
-    var displayedPicture: MutableLiveData<Bitmap?> = MutableLiveData(null)
 
     fun persist() {
-        equipmentObservable.sellerId = MyApplication.currentUser?.id
+        if (equipment.sellerId.isNullOrEmpty()) {
+            equipment.sellerId = MyApplication.currentUser?.id
+        }
         CoroutineScope(Dispatchers.IO).launch {
             responseEntity.postValue(
-                repository.createOrUpdate(equipmentObservable.toEntity())
+                repository.createOrUpdate(equipment.toEntity())
             )
         }
     }
 
-    fun readOffer(offerId: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            responseEntity.postValue(
-                repository.readEquipment(offerId)
-            )
-        }
+    suspend fun readOffer(offerId: String) {
+//        CoroutineScope(Dispatchers.IO).async {
+        responseEntity.postValue(
+            repository.readEquipment(offerId)
+        )
+//        }
     }
 
-
-    fun readSeller(sellerId: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            responseSeller.postValue(
-                repository.readSeller(sellerId)
-            )
-        }
+    suspend fun readSeller(sellerId: String) {
+        responseSeller.postValue(
+            repository.readSeller(sellerId)
+        )
     }
 
-    fun isNewVehicle(): Boolean {
-        return equipmentObservable.id.isNullOrEmpty()
-    }
 
     fun getIndexOfCurrentPicture(): Int {
         return currentPictureIndex.get()
     }
 
 
-    fun getCurrentPicture(): Bitmap? =
-        if (getIndexOfCurrentPicture() == -1 || getIndexOfCurrentPicture() > equipmentObservable.pictures.size - 1)
-            null
-        else
-            equipmentObservable.pictures[getIndexOfCurrentPicture()]
-
     fun removePicture() {
-        equipmentObservable.pictures.also { pictures ->
-            if (pictures.lastIndex == getIndexOfCurrentPicture()) { //0
-                if (pictures.size == 1) {
-                    displayedPicture.value = null
-                } else {
-                    displayedPicture.value = pictures[getIndexOfCurrentPicture() - 1]
-                }
-                pictures.removeAt(getIndexOfCurrentPicture()) // 0
+        equipment.pictures.apply {
+            if (lastPictureIndex.get() == currentPictureIndex.get()) { //0
+
                 currentPictureIndex.decrease()
                 lastPictureIndex.decrease()
+                removeLast() // 0
+                currentPictureIndex.notifyChange()
             } else {
-                displayedPicture.value = pictures[getIndexOfCurrentPicture() + 1]
+                removeAt(currentPictureIndex.get())
                 lastPictureIndex.decrease()
-                pictures.removeAt(getIndexOfCurrentPicture()) // 0
             }
         }
 
     }
-
-    fun resetIndexes() {
-        currentPictureIndex.set(-1)
-        lastPictureIndex.set(-1)
-    }
-
 
     fun getCurrentPictureFromEntity(): BitmapDrawable? {
         return responseEntity.value?.entity?.pictures?.get(getIndexOfCurrentPicture())
@@ -120,37 +98,30 @@ constructor(
             }
     }
 
+
+    fun getMobileNumber(): String =
+        responseSeller.value!!.entity!!.personalInfoEntity.mobileNumber
+
+
     fun nextPicture() {
         currentPictureIndex.increase()
-        displayedPicture.value = getCurrentPicture()
     }
 
     fun previousPicture() {
         currentPictureIndex.decrease()
-        displayedPicture.value = getCurrentPicture()
     }
 
-    fun attachPicture(picture: Bitmap) {
-        equipmentObservable.pictures.also { pictures ->
-            if (isNewVehicle()) {
-                pictures.add(picture.compressTo(RESOLUTION_1080X768))
-            } else {
-                pictures.add(picture)
-            }
-            val lastIndex = pictures.lastIndex
-            displayedPicture.value = pictures[lastIndex]
+    fun attach(picture: Bitmap) {
+        equipment.addPicture(picture.compressTo(RESOLUTION_1080X768))
 
-            currentPictureIndex.set(lastIndex)
-            lastPictureIndex.set(lastIndex)
-        }
+        val lastIndex = equipment.pictures.lastIndex
 
+        currentPictureIndex.set(lastIndex)
+        lastPictureIndex.set(lastIndex)
     }
 
     fun sellerHasMobileNumber(): Boolean =
         responseSeller.value?.entity?.personalInfoEntity?.mobileNumber.isNullOrEmpty()
-
-    fun getMobileNumber(): String =
-        responseSeller.value!!.entity!!.personalInfoEntity.mobileNumber
 
     fun like(offerId: String, sellerId: String) {
         val likedOffer = LikedOfferEntity(
@@ -164,18 +135,38 @@ constructor(
         likeTriggered.changeValue()
     }
 
-    fun readIfOfferLiked(offerId: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            likeTriggered.set(
-                repository.hasUserLikedOffer(
-                    MyApplication.getCurrentUserID(),
-                    offerId
-                ).entity!!
-            )
-        }
+    suspend fun readIfOfferLiked(offerId: String) {
+        likeTriggered.set(
+            repository.hasUserLikedOffer(
+                MyApplication.getCurrentUserID(),
+                offerId
+            ).entity!!
+        )
     }
 
-    fun setUp() {
+    fun reset() {
+        equipment = EquipmentObservable()
+        resetIndexes()
+        resetResponses()
+    }
+
+    fun update() {
+        equipment = responseEntity.value?.entity?.toObservable() ?: EquipmentObservable()
+        if (equipment.pictures.size >= 0) {
+            currentPictureIndex.set(0)
+            lastPictureIndex.set(equipment.pictures.lastIndex)
+        } else {
+            resetIndexes()
+        }
+        equipment.notifyChange()
+    }
+
+    private fun resetResponses() {
+        responseEntity = MutableLiveData()
+        responseSeller = MutableLiveData()
+    }
+
+    fun resetIndexes() {
         currentPictureIndex.set(-1)
         lastPictureIndex.set(-1)
     }

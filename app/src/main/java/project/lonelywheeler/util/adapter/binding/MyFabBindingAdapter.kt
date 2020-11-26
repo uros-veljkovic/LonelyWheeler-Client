@@ -2,27 +2,28 @@ package project.lonelywheeler.util.adapter.binding
 
 import android.view.View
 import androidx.databinding.BindingAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import project.lonelywheeler.util.anim.FabAnimationProvider
 
 
 @BindingAdapter("app:mainFabAnimation")
-fun mainFabAnimation(view: View, fabShouldOpen: Boolean) {
+fun FloatingActionButton.mainFabAnimation(fabShouldOpen: Boolean) {
     if (fabShouldOpen)
-        view.startAnimation(FabAnimationProvider.rotateOpen)
+        startAnimation(FabAnimationProvider.rotateOpen)
     else {
-        view.startAnimation(FabAnimationProvider.rotateClose)
+        startAnimation(FabAnimationProvider.rotateClose)
     }
 }
 
 @BindingAdapter("app:miniFabAnimation")
-fun miniFabAnimation(view: View, fabShouldAppear: Boolean) {
+fun FloatingActionButton.miniFabAnimation(fabShouldAppear: Boolean) {
     if (fabShouldAppear) {
-        view.visibility = View.VISIBLE
-        view.startAnimation(FabAnimationProvider.fromBottom)
+        visibility = View.VISIBLE
+        startAnimation(FabAnimationProvider.fromBottom)
     } else {
-        view.startAnimation(FabAnimationProvider.toBottom)
-        view.visibility = View.GONE
+        startAnimation(FabAnimationProvider.toBottom)
+        visibility = View.GONE
     }
-    view.isClickable = fabShouldAppear
+    isClickable = fabShouldAppear
 }
 

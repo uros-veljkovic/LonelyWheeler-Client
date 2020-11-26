@@ -7,9 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import project.lonelywheeler.databinding.FragmentPreviewAllOffersBinding
 import project.lonelywheeler.db.entity.offer.OfferEntity
 import project.lonelywheeler.ui.viewmodel.main.ViewModelOffers
@@ -24,7 +28,7 @@ import kotlin.properties.Delegates
 @AndroidEntryPoint
 class PreviewAllOffersFragment : Fragment(), OfferItemSmallRvAdapter.OnOfferItemClickListener {
 
-    private val viewModel: ViewModelOffers by viewModels()
+    private val viewModel: ViewModelOffers by activityViewModels()
     private lateinit var binding: FragmentPreviewAllOffersBinding
     private var entityTypeId by Delegates.notNull<Int>()
 
@@ -32,7 +36,9 @@ class PreviewAllOffersFragment : Fragment(), OfferItemSmallRvAdapter.OnOfferItem
         super.onCreate(savedInstanceState)
 
         entityTypeId = PreviewAllOffersFragmentArgs.fromBundle(requireArguments()).entityId
-        viewModel.read(entityTypeId)
+/*        CoroutineScope(IO).launch{
+            viewModel.read(entityTypeId)
+        }*/
     }
 
     override fun onCreateView(
@@ -53,14 +59,15 @@ class PreviewAllOffersFragment : Fragment(), OfferItemSmallRvAdapter.OnOfferItem
             ((binding.fragmentAllOffersRvAllOffers.adapter) as OfferItemSmallRvAdapter).setList(
                 entities?.toMutableList() ?: mutableListOf()
             )
-            binding.executePendingBindings()
         })
     }
 
     private fun initBinding() {
         binding.viewModel = viewModel
         binding.fragmentAllOffersRvAllOffers.addItemDecoration(SmallItemDecorator(8, 16))
-        binding.fragmentAllOffersRvAllOffers.adapter = OfferItemSmallRvAdapter(this)
+        binding.fragmentAllOffersRvAllOffers.adapter =
+            OfferItemSmallRvAdapter(this, viewModel.getOffers().toMutableList())
+
     }
 
     override fun onOfferItemClick(position: Int) {
@@ -117,8 +124,8 @@ class PreviewAllOffersFragment : Fragment(), OfferItemSmallRvAdapter.OnOfferItem
         }
 
         for (offer in adapter.getFullList()) {
-            if (offer.basicInfo.brand.contains(text)
-                || offer.basicInfo.model!!.contains(text)
+            if (offer.basicInfo.brand.contains(text, true)
+                || offer.basicInfo.model!!.contains(text, true)
             ) {
                 filteredOfferList.add(offer)
             }

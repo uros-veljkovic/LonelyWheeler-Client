@@ -40,7 +40,6 @@ constructor(
     }
 
     override fun onSignUpSuccessful(myResponse: MyResponse<UserEntity>?) {
-        logUserID(myResponse)
         MyApplication.currentUser = myResponse!!.entity
         progressBarTrigger.value = false
         authResponse = myResponse
@@ -48,7 +47,6 @@ constructor(
     }
 
     override fun onSignUpFailed(myResponse: MyResponse<UserEntity>?) {
-        logUserID(myResponse)
         progressBarTrigger.value = false
         authResponse = myResponse
         authTrigger.value = false
@@ -56,7 +54,6 @@ constructor(
 
     override fun onSignInSuccessful(myResponse: MyResponse<UserEntity>?) {
         MyApplication.currentUser = myResponse!!.entity
-        logUserID(myResponse)
         progressBarTrigger.value = false
         authResponse = myResponse
         authTrigger.value = true
@@ -68,10 +65,5 @@ constructor(
         authTrigger.value = false
     }
 
-    private fun logUserID(myResponse: MyResponse<UserEntity>?) {
-        MyApplication.currentUser = myResponse?.entity
-        Log.d(TAG,
-            "onSignInSuccessful:\nUSER EMAIL: ${MyApplication.currentUser?.accountInfoEntity!!.email}")
-    }
 
 }

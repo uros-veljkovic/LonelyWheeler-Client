@@ -1,6 +1,7 @@
-package project.lonelywheeler.model.domain.offer.vehicle.motor
+package project.lonelywheeler.model.enums.offer.vehicle.motor
 
 import com.google.gson.annotations.SerializedName
+import project.lonelywheeler.util.extensions.toCamelCase
 
 enum class CarBodyType {
 
@@ -20,33 +21,26 @@ enum class CarBodyType {
     Truck,
 
     @SerializedName("Pick up")
-    PickUp{
-        override fun toString(): String {
-            return "Pick up"
-        }
-    },
+    PickUp,
 
     @SerializedName("Sedan")
     Sedan,
 
     @SerializedName("Station wagon")
-    StationWagon
-    {
-        override fun toString(): String {
-            return "Station wagon"
-        }
-    },
+    StationWagon,
 
     @SerializedName("Sports car")
-    SportsCar{
-        override fun toString(): String {
-            return "Sports car"
-        }
-    },
+    SportsCar,
 
     @SerializedName("SUV")
     SUV,
 
     @SerializedName("Van")
-    Van
+    Van;
+
+    companion object {
+        fun valueOfSerialized(s: String): CarBodyType {
+            return CarBodyType.valueOf(s.toCamelCase())
+        }
+    }
 }

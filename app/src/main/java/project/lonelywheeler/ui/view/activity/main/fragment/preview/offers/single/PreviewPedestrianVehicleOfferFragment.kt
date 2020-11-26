@@ -13,6 +13,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 import project.lonelywheeler.R
 import project.lonelywheeler.databinding.FragmentPreviewPedestrianVehicleOfferBinding
 import project.lonelywheeler.databinding.SingleOfferGeneralInfoBinding
@@ -43,10 +46,11 @@ class PreviewPedestrianVehicleOfferFragment : Fragment() {
         offerId = navArgs.offerId
         sellerId = navArgs.sellerId
 
-        viewModel.readOffer(offerId)
-        viewModel.readSeller(sellerId)
-        viewModel.readIfOfferLiked(offerId)
-
+        CoroutineScope(IO).launch {
+            viewModel.readOffer(offerId)
+            viewModel.readSeller(sellerId)
+            viewModel.readIfOfferLiked(offerId)
+        }
     }
 
     override fun onCreateView(
@@ -73,7 +77,7 @@ class PreviewPedestrianVehicleOfferFragment : Fragment() {
         )
             .setTitle(title)
             .setMessage(message)
-            .setNeutralButton(resources.getString(R.string.ok)) { _, _ -> }
+            .setNeutralButton(resources.getString(R.string.no)) { _, _ -> }
             .show()
     }
 
@@ -90,7 +94,7 @@ class PreviewPedestrianVehicleOfferFragment : Fragment() {
             .setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
                 callback.invoke()
             }
-            .setNeutralButton(resources.getString(R.string.ok)) { _, _ -> }
+            .setNeutralButton(resources.getString(R.string.no)) { _, _ -> }
             .show()
     }
 

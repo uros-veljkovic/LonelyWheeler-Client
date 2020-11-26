@@ -3,6 +3,7 @@ package project.lonelywheeler.ui.view.activity.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.view.GravityCompat
@@ -15,18 +16,32 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.shape.MaterialShapeDrawable
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import project.lonelywheeler.R
 import project.lonelywheeler.app.MyApplication
 import project.lonelywheeler.databinding.ActivityMainBinding
 import project.lonelywheeler.ui.view.activity.main.bottomappbar.adapter.BottomAppBarCutCornersTopEdge
 import project.lonelywheeler.ui.view.activity.signin.SignInActivity
+import project.lonelywheeler.ui.viewmodel.main.ViewModelOffers
+import project.lonelywheeler.ui.viewmodel.main.ViewModelSellers
 import project.lonelywheeler.util.adapter.recyclerview.AllOfferRecViewAdapter
 import project.lonelywheeler.util.constants.*
 import project.lonelywheeler.util.extensions.navigateWithDelayTo
 
 @AndroidEntryPoint
+/*
+* TODO: Load all offers from the beginning of the MainActivity.kt lifecycle
+*       into 3 different lists. Then, when a user navigates to different offer category
+*       just change the list in adapter.
+* */
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     AllOfferRecViewAdapter.OnOfferItemClickListener {
+
+    private val viewModelAllOffers: ViewModelOffers by viewModels()
+    private val viewModelAllSellers: ViewModelSellers by viewModels()
 
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
@@ -38,12 +53,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        configNavigationComponent()
-        configBottomAppBar()
-        configNavigationDrawer()
+        initViewModels()
         initFabClickListeners()
+        configureUI()
 
         binding.fabTrigger = fabTrigger
+    }
+
+    private fun initViewModels() {
+        CoroutineScope(IO).launch {
+            launch { viewModelAllOffers.read(ENTITY_TYPE_MOTOR_VEHICLE) }
+            launch { viewModelAllSellers.read() }
+        }
     }
 
     private fun initFabClickListeners() {
@@ -51,16 +72,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.apply {
             activityMainFabEquipment.setOnClickListener {
                 fabTrigger?.reverse()
-                navController.navigateWithDelayTo(R.id.action_global_modifyEquipmentFragment, bundle)
+                navController.navigateWithDelayTo(R.id.action_global_modifyEquipmentFragment,
+                    bundle)
             }
             activityMainFabHumanPoweredVehicle.setOnClickListener {
                 fabTrigger?.reverse()
-                navController.navigateWithDelayTo(R.id.action_global_modifyPedestrianVehicleFragment, bundle)
+                navController.navigateWithDelayTo(R.id.action_global_modifyPedestrianVehicleFragment,
+                    bundle)
             }
 
             activityMainFabMotorVehicle.setOnClickListener {
                 fabTrigger?.reverse()
-                navController.navigateWithDelayTo(R.id.action_global_modifyMotorVehicleFragment, bundle)
+                navController.navigateWithDelayTo(R.id.action_global_modifyMotorVehicleFragment,
+                    bundle)
             }
 
             activityMainFabMain.setOnClickListener {
@@ -70,18 +94,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
-    private fun configNavigationDrawer() {
+    private fun configureUI() {
+        configureNavigationComponent()
+        configureBottomAppBar()
+        configureNavigationDrawer()
+    }
+
+
+    private fun configureNavigationDrawer() {
         navDrawer.setNavigationItemSelectedListener(this)
     }
 
 
-    private fun configNavigationComponent() {
+    private fun configureNavigationComponent() {
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_graph_container) as NavHostFragment
         navController = navHostFragment.navController
     }
 
-    private fun configBottomAppBar() {
+    private fun configureBottomAppBar() {
         configBottomAppBarAppearance()
         configBottomAppBarOnClick()
 
@@ -147,13 +178,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> {
-                startPreviewAllFragmentWith(ENTITY_TYPE_MOTOR_VEHICLE)
+                loadAndShowOffers(ENTITY_TYPE_MOTOR_VEHICLE)
             }
             R.id.nav_pedestrian_vehicles -> {
-                startPreviewAllFragmentWith(ENTITY_TYPE_PEDESTRIAN_VEHICLE)
+                loadAndShowOffers(ENTITY_TYPE_PEDESTRIAN_VEHICLE)
             }
             R.id.nav_equipment -> {
-                startPreviewAllFragmentWith(ENTITY_TYPE_EQUIPMENT)
+                loadAndShowOffers(ENTITY_TYPE_EQUIPMENT)
             }
             R.id.nav_all_sellers -> {
                 navController.navigate(R.id.action_global_previewAllSellersFragment)
@@ -176,6 +207,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         activityMain_drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun loadAndShowOffers(entityTypeId: Int) {
+        CoroutineScope(IO).launch {
+            viewModelAllOffers.read(entityTypeId)
+        }
+        GlobalScope.launch {
+            startPreviewAllFragmentWith(entityTypeId)
+        }
     }
 
     private fun logout() {

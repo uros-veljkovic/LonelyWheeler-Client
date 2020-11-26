@@ -1,7 +1,7 @@
 package project.lonelywheeler.db.entity.offer
 
 import com.google.gson.GsonBuilder
-import project.lonelywheeler.model.domain.offer.Condition
+import project.lonelywheeler.model.enums.offer.Condition
 import project.lonelywheeler.model.observable.offer.OfferObservable
 import project.lonelywheeler.util.extensions.convertToBitmapList
 

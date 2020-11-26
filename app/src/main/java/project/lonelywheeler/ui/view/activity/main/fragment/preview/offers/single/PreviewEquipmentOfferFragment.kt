@@ -12,6 +12,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import project.lonelywheeler.R
 import project.lonelywheeler.databinding.FragmentPreviewEquipmentOfferBinding
 import project.lonelywheeler.databinding.SingleOfferGeneralInfoBinding
@@ -41,17 +44,17 @@ class PreviewEquipmentOfferFragment : Fragment() {
 
         offerId = navArgs.offerId
         sellerId = navArgs.sellerId
-
-        viewModel.readOffer(offerId)
-        viewModel.readSeller(sellerId)
-        viewModel.readIfOfferLiked(offerId)
-
+        CoroutineScope(Dispatchers.IO).launch {
+            viewModel.readOffer(offerId)
+            viewModel.readSeller(sellerId)
+            viewModel.readIfOfferLiked(offerId)
+        }
 
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
 
         binding = FragmentPreviewEquipmentOfferBinding.inflate(layoutInflater, container, false)
@@ -79,7 +82,7 @@ class PreviewEquipmentOfferFragment : Fragment() {
     private fun showConfirmationDialog(
         title: String,
         message: String,
-        callback: () -> Unit
+        callback: () -> Unit,
     ) {
         MaterialAlertDialogBuilder(
             requireContext(),
@@ -143,7 +146,7 @@ class PreviewEquipmentOfferFragment : Fragment() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 

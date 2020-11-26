@@ -30,7 +30,7 @@
             android:id="@+id/tvPedestrianVehicleType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{vehicle.pedestrianVehicleType}"
+            android:text="@{vehicle.pedestrianVehicleType.toString()}"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/tvPedestrianVehicleType_placeholder"
             app:layout_constraintStart_toEndOf="@id/tvPedestrianVehicleType_placeholder"

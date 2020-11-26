@@ -30,7 +30,7 @@
             android:id="@+id/tvEquipmentType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{equipment.equipmentType}"
+            android:text="@{equipment.equipmentType.toString()}"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/tvEquipmentType_placeholder"
             app:layout_constraintStart_toEndOf="@id/tvEquipmentType_placeholder"

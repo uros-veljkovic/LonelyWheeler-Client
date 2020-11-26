@@ -1,5 +1,7 @@
 package project.lonelywheeler.db.service.api
 
+import project.lonelywheeler.db.entity.liked.LikedSellerEntity
+import project.lonelywheeler.db.entity.liked.SellerLikingCountEntity
 import project.lonelywheeler.db.entity.user.UserEntity
 import project.lonelywheeler.db.response.MyResponse
 import retrofit2.Call
@@ -16,6 +18,15 @@ interface UserApi {
 
     @GET("users/read/{id}")
     suspend fun read(@Path("id") id: String): MyResponse<UserEntity>
+
+    @GET("users/{userLikingId}/likedOrDisliked/{userLikedId}")
+    suspend fun isLikedOrDisliked(
+        @Path("userLikingId") userLikingId: String,
+        @Path("userLikedId") userLikedId: String,
+    ): MyResponse<LikedSellerEntity>
+
+    @GET("users/countLiking/{userId}")
+    suspend fun countLikings(@Path("userId") userId: String): MyResponse<SellerLikingCountEntity>
 
     @PATCH("users/update")
     suspend fun update(@Body userEntity: UserEntity): MyResponse<UserEntity>

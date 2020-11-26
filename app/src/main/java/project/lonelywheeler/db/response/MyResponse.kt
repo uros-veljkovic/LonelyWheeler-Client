@@ -17,8 +17,8 @@ fun <T: OfferEntity> MyResponse<T>.hasMessage(): Boolean {
     return this.message.isNotEmpty()
 }
 
-fun <T: OfferEntity> MyResponse<T>.entityExistInDatabase(): Boolean {
-    return entity!!._id!!.isNotEmpty()
+fun <T: OfferEntity> MyResponse<T>.isInDatabase(): Boolean {
+    return entity?._id?.isNotEmpty()?:false
 }
 
 fun <T: Any> MyResponse<T>.isEmpty(): Boolean {

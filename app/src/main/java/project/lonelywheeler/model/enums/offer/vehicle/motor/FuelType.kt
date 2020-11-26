@@ -1,6 +1,7 @@
-package project.lonelywheeler.model.domain.offer.vehicle.motor
+package project.lonelywheeler.model.enums.offer.vehicle.motor
 
 import com.google.gson.annotations.SerializedName
+import project.lonelywheeler.util.extensions.toCamelCase
 
 enum class FuelType {
 
@@ -24,5 +25,11 @@ enum class FuelType {
     Methane,
 
     @SerializedName("Other")
-    Other
+    Other;
+
+    companion object {
+        fun valueOfSerialized(s: String): FuelType {
+            return FuelType.valueOf(s.toCamelCase())
+        }
+    }
 }

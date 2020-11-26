@@ -48,12 +48,11 @@ constructor(
                 call: Call<MyResponse<UserEntity>>,
                 response: Response<MyResponse<UserEntity>>
             ) {
-                when (response.code()) {
+                when (response.body()!!.responseCode) {
                     RESPONSE_CODE_REQUEST_SUCCESS -> {
                         authListener.onSignInSuccessful(response.body())
                     }
-                    RESPONSE_CODE_REQUEST_FAIL,
-                    RESPONSE_CODE_SERVER_FAIL -> {
+                    else -> {
                         authListener.onSignInFailed(response.body())
                     }
                 }
@@ -73,12 +72,11 @@ constructor(
                 call: Call<MyResponse<UserEntity>>,
                 response: Response<MyResponse<UserEntity>>
             ) {
-                when (response.code()) {
+                when (response.body()!!.responseCode) {
                     RESPONSE_CODE_REQUEST_SUCCESS -> {
                         authListener.onSignUpSuccessful(response.body())
                     }
-                    RESPONSE_CODE_REQUEST_FAIL,
-                    RESPONSE_CODE_SERVER_FAIL -> {
+                    else -> {
                         authListener.onSignUpFailed(response.body())
                     }
                 }

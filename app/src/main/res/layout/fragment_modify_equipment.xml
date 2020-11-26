@@ -30,7 +30,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:offer="@{viewModel.equipmentObservable}" />
+                app:offer="@{viewModel.equipment}" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/fragmentEquipment_tvProductSpecificInfoPlaceholder"

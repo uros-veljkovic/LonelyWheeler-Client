@@ -3,8 +3,8 @@ package project.lonelywheeler.db.entity.offer.vehicle.pedestrian
 import com.google.gson.GsonBuilder
 import project.lonelywheeler.db.entity.offer.OfferBasicInfoEntity
 import project.lonelywheeler.db.entity.offer.OfferEntity
-import project.lonelywheeler.model.domain.offer.Condition
-import project.lonelywheeler.model.domain.offer.vehicle.pedestrian.PedestrianVehicleType
+import project.lonelywheeler.model.enums.offer.Condition
+import project.lonelywheeler.model.enums.offer.vehicle.pedestrian.PedestrianVehicleType
 import project.lonelywheeler.model.observable.offer.vehicle.pedestrian.PedestrianVehicleObservable
 import project.lonelywheeler.util.extensions.convertToBitmapList
 

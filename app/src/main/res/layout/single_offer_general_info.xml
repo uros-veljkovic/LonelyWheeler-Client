@@ -10,7 +10,6 @@
 
         <import type="project.lonelywheeler.util.string.MyStringUtils" />
 
-        <import type="project.lonelywheeler.util.adapter.binding.ImageViewUtil" />
 
         <variable
             name="product"
@@ -150,7 +149,7 @@
             android:id="@+id/tvProductCondition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{product.condition}"
+            android:text="@{product.condition.toString()}"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/tvProductConditionPlaceholder"
             app:layout_constraintStart_toEndOf="@id/tvProductConditionPlaceholder"

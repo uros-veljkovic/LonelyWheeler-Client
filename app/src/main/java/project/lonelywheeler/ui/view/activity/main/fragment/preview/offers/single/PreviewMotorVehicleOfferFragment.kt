@@ -8,14 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import project.lonelywheeler.R
 import project.lonelywheeler.databinding.FragmentPreviewMotorVehicleOfferBinding
 import project.lonelywheeler.databinding.SingleOfferGeneralInfoBinding
-import project.lonelywheeler.ui.viewmodel.main.MotorVehicleViewModel
+import project.lonelywheeler.ui.viewmodel.main.ViewModelMotorVehicle
 import project.lonelywheeler.util.constants.INTENT_RC_CALL
 import project.lonelywheeler.util.constants.INTENT_RC_MESSAGE
 import project.lonelywheeler.util.extensions.decrease
@@ -30,7 +35,7 @@ class PreviewMotorVehicleOfferFragment : Fragment() {
 
     private val TAG = "PreviewMotorVehicleOffer"
     private var binding: FragmentPreviewMotorVehicleOfferBinding? = null
-    private val viewModel: MotorVehicleViewModel by viewModels()
+    private val viewModel: ViewModelMotorVehicle by viewModels()
     private val navArgs: PreviewMotorVehicleOfferFragmentArgs by navArgs()
     private lateinit var offerId: String
     private lateinit var sellerId: String
@@ -41,15 +46,17 @@ class PreviewMotorVehicleOfferFragment : Fragment() {
         offerId = navArgs.offerId
         sellerId = navArgs.sellerId
 
-        viewModel.readOffer(offerId)
-        viewModel.readSeller(sellerId)
-        viewModel.readIfOfferLiked(offerId)
+        CoroutineScope(IO).launch {
+            viewModel.readOffer(offerId)
+            viewModel.readSeller(sellerId)
+            viewModel.readIfOfferLiked(offerId)
+        }
 
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
 
         binding = FragmentPreviewMotorVehicleOfferBinding.inflate(layoutInflater, container, false)
@@ -111,7 +118,7 @@ class PreviewMotorVehicleOfferFragment : Fragment() {
     private fun showConfirmationDialog(
         title: String,
         message: String,
-        callback: () -> Unit
+        callback: () -> Unit,
     ) {
         MaterialAlertDialogBuilder(
             requireContext(),
@@ -174,7 +181,7 @@ class PreviewMotorVehicleOfferFragment : Fragment() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
