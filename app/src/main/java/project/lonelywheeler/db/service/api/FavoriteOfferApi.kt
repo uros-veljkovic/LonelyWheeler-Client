@@ -1,6 +1,6 @@
 package project.lonelywheeler.db.service.api
 
-import project.lonelywheeler.db.entity.liked.LikedOfferEntity
+import project.lonelywheeler.db.entity.liked.UserLikingOfferEntity
 import project.lonelywheeler.db.entity.offer.OfferEntity
 import project.lonelywheeler.db.response.MyResponse
 import retrofit2.http.Body
@@ -20,7 +20,7 @@ interface FavoriteOfferApi {
      * @return created or deleted entity
      */
     @POST("liked-offer/createOrDelete")
-    suspend fun createOrDelete(@Body likedOfferEntity: LikedOfferEntity): MyResponse<LikedOfferEntity>
+    suspend fun createOrDelete(@Body likedOfferEntity: UserLikingOfferEntity): MyResponse<UserLikingOfferEntity>
 
 
 

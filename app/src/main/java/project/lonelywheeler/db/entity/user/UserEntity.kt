@@ -26,7 +26,7 @@ constructor(
         return UserObservable().apply {
             id = this@UserEntity.id
             personalInfoObservable = this@UserEntity.personalInfoEntity.toObservable()
-            accountInfoObservable = accountInfoEntity.toObservable()
+            accountInfoObservable = this@UserEntity.accountInfoEntity.toObservable()
         }
     }
 

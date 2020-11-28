@@ -22,7 +22,6 @@ import project.lonelywheeler.R
 import project.lonelywheeler.databinding.FragmentModifyPedestrianVehicleBinding
 import project.lonelywheeler.db.entity.offer.vehicle.pedestrian.PedestrianVehicleEntity
 import project.lonelywheeler.db.response.MyResponse
-import project.lonelywheeler.db.response.hasMessage
 import project.lonelywheeler.db.response.isInDatabase
 import project.lonelywheeler.model.enums.offer.Condition
 import project.lonelywheeler.model.enums.offer.vehicle.pedestrian.PedestrianVehicleType

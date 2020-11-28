@@ -64,8 +64,8 @@ class PreviewAllSellersFragment : Fragment(), UserItemSmallRvAdapter.OnOfferItem
         val userId = userEntity.id
 
         val action =
-            PreviewAllSellersFragmentDirections.actionPreviewAllSellersFragmentToPreviewSellerProfileFragment(
-                userId!!)
+            PreviewAllSellersFragmentDirections
+                .actionPreviewAllSellersFragmentToPreviewSellerProfileFragment(userId!!)
         findNavController().navigate(action)
     }
 

@@ -11,7 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import project.lonelywheeler.app.MyApplication
-import project.lonelywheeler.db.entity.liked.LikedOfferEntity
+import project.lonelywheeler.db.entity.liked.UserLikingOfferEntity
 import project.lonelywheeler.db.entity.offer.equipment.EquipmentEntity
 import project.lonelywheeler.db.entity.user.UserEntity
 import project.lonelywheeler.db.repo.Repository
@@ -124,7 +124,7 @@ constructor(
         responseSeller.value?.entity?.personalInfoEntity?.mobileNumber.isNullOrEmpty()
 
     fun like(offerId: String, sellerId: String) {
-        val likedOffer = LikedOfferEntity(
+        val likedOffer = UserLikingOfferEntity(
             MyApplication.getCurrentUserID(),
             offerId,
             sellerId

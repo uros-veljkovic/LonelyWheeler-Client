@@ -5,20 +5,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 import project.lonelywheeler.app.MyApplication
 import project.lonelywheeler.databinding.FragmentPreviewSellerProfileBinding
+import project.lonelywheeler.model.observable.liked.SellerRateCounterObservable
+import project.lonelywheeler.model.observable.liked.UserLikingSellerObservable
+import project.lonelywheeler.model.observable.user.UserObservable
 import project.lonelywheeler.ui.viewmodel.main.ViewModelProfile
-import project.lonelywheeler.util.adapter.binding.setMySingleSrc
 
 @AndroidEntryPoint
 class PreviewSellerProfileFragment : Fragment() {
 
-    private val viewModel: ViewModelProfile by viewModels()
+    private val TAG = "PreviewSellerProfileFragment"
+    private val viewModel: ViewModelProfile by activityViewModels()
     private val navArgs: PreviewSellerProfileFragmentArgs by navArgs()
     private val sellerId: String by lazy { navArgs.sellerId }
+    private val userId: String by lazy { MyApplication.getCurrentUserID() }
     private lateinit var binding: FragmentPreviewSellerProfileBinding
 
     override fun onCreateView(
@@ -27,37 +34,49 @@ class PreviewSellerProfileFragment : Fragment() {
     ): View? {
 
         binding = FragmentPreviewSellerProfileBinding.inflate(inflater)
+        binding.viewModel = viewModel
 
-        observeViewModel()
+        initViewModel()
+        observeServerResponse()
         return binding.root
     }
 
-    private fun observeViewModel() {
-        observeSellerData()
-        observeLikingData()
+    private fun initViewModel() {
+        CoroutineScope(IO).launch {
+            launch {
+                viewModel.loadSeller(sellerId)
+            }
+            launch {
+                viewModel.loadLiking(userId, sellerId)
+            }
+            launch {
+                viewModel.loadRateCounter(sellerId)
+            }
+        }
+
     }
 
-    private fun observeSellerData() {
-        viewModel.loadSeller(sellerId)
-        viewModel.responseUser.observe(viewLifecycleOwner, { response ->
-            response.entity?.let { entity ->
-                binding.userEntity = entity
-                binding.fragmentPreviewProfileIvUserPicture.setMySingleSrc(entity.accountInfoEntity.picture)
-                binding.fragmentPreviewProfileIvUserPicture.refreshDrawableState()
-                binding.executePendingBindings()
-                binding.notifyChange()
-            }
+    private fun observeServerResponse() {
+        viewModel.responseLikingEntity.observe(viewLifecycleOwner, { response ->
+            viewModel.liking = response
+                .entity?.toObservable()
+                ?: UserLikingSellerObservable()
+            binding.invalidateAll()
         })
-    }
+        viewModel.responseUserEntity.observe(viewLifecycleOwner, { response ->
+            viewModel.userObservable = response
+                .entity?.toObservable()
+                ?: UserObservable()
+            binding.invalidateAll()
 
-    private fun observeLikingData() {
-        val userId = MyApplication.getCurrentUserID()
-        viewModel.loadIfSellerLikedOrDisliked(sellerId, userId)
-        viewModel.responseLiking.observe(viewLifecycleOwner, { response ->
-            response.entity?.let {
-
-            }
         })
+        viewModel.responseRateCounterEntity.observe(viewLifecycleOwner, { response ->
+            viewModel.rateCounter = response
+                .entity?.toObservable()
+                ?: SellerRateCounterObservable()
+            binding.invalidateAll()
+        })
+
     }
 
     override fun onResume() {
@@ -72,9 +91,12 @@ class PreviewSellerProfileFragment : Fragment() {
 
     fun onClickListeners() {
         binding.apply {
-            fragmentPreviewProfileBtnLike
-            fragmentPreviewProfileBtnDislike
-            fragmentPreviewProfileBtnPreviewOffers
+            fragmentPreviewProfileBtnLike.setOnClickListener {
+                viewModel!!.like(sellerId)
+            }
+            fragmentPreviewProfileBtnDislike.setOnClickListener {
+                viewModel!!.dislike(sellerId)
+            }
         }
     }
 }

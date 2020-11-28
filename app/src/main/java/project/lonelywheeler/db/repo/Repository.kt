@@ -1,6 +1,8 @@
 package project.lonelywheeler.db.repo
 
-import project.lonelywheeler.db.entity.liked.LikedOfferEntity
+import project.lonelywheeler.db.entity.liked.SellerRateCounterEntity
+import project.lonelywheeler.db.entity.liked.UserLikingOfferEntity
+import project.lonelywheeler.db.entity.liked.UserLikingSellerEntity
 import project.lonelywheeler.db.entity.offer.OfferEntity
 import project.lonelywheeler.db.entity.offer.equipment.EquipmentEntity
 import project.lonelywheeler.db.entity.offer.vehicle.motor.MotorVehicleEntity
@@ -45,7 +47,7 @@ constructor(
         return pedestrianVehicleService.create(entity)
     }
 
-    suspend fun createOrDelete(entity: LikedOfferEntity): MyResponse<LikedOfferEntity> {
+    suspend fun createOrDelete(entity: UserLikingOfferEntity): MyResponse<UserLikingOfferEntity> {
         return favoriteOfferService.createOrDelete(entity)
     }
 
@@ -71,6 +73,10 @@ constructor(
         return userService.read(sellerId)
     }
 
+    suspend fun readUsers(): MyResponse<List<UserEntity>> {
+        return userService.readAll()
+    }
+
     suspend fun readMotorVehicle(offerId: String): MyResponse<MotorVehicleEntity> {
         return motorVehicleService.read(offerId)
     }
@@ -91,8 +97,23 @@ constructor(
         return favoriteOfferService.read(userId, offerId)
     }
 
-    suspend fun readUsers(): MyResponse<List<UserEntity>> {
-        return userService.readAll()
+    suspend fun readIsLikedOrDisliked(
+        userLikingId: String,
+        userLikedId: String,
+    ): MyResponse<UserLikingSellerEntity> {
+        return userService.readIsLikedOrDisliked(userLikingId, userLikedId)
+    }
+
+    suspend fun readRateCounter(userID: String): MyResponse<SellerRateCounterEntity> {
+        return userService.readRateCounter(userID)
+    }
+
+    suspend fun like(entity: UserLikingSellerEntity) {
+        userService.like(entity)
+    }
+
+    suspend fun dislike(entity: UserLikingSellerEntity) {
+        userService.dislike(entity)
     }
 
     suspend fun deleteMotorVehicle(entity: OfferEntity) {

@@ -38,3 +38,13 @@ fun View.shouldBeDisabledTo(userID: String?) {
         }
     }
 }
+
+@BindingAdapter("app:notClickableByHost")
+fun View.setClickableToHost(userID: String?) {
+    isClickable = (userID != MyApplication.getCurrentUserID())
+}
+
+@BindingAdapter("app:notEnabledToHost")
+fun View.setEnabledToHost(userID: String?) {
+    isEnabled = (userID != MyApplication.getCurrentUserID())
+}

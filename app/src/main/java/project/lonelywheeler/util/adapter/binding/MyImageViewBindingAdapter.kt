@@ -2,6 +2,7 @@ package project.lonelywheeler.util.adapter.binding
 
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.widget.Button
 import android.widget.ImageView
 import androidx.core.graphics.drawable.toDrawable
 import androidx.databinding.BindingAdapter
@@ -42,6 +43,18 @@ fun ImageView.setMySrc(list: MutableList<String>) {
         .placeholder(R.drawable.ic_no_photos)
         .into(this)
 }
+
+@BindingAdapter("app:srcBitmap")
+fun ImageView.setSrcBitmap(bitmap: Bitmap?) {
+    Glide.with(this.context)
+        .load(bitmap)
+        .centerCrop()
+        .placeholder(R.drawable.ic_no_photos)
+        .into(this)
+
+    this.refreshDrawableState()
+}
+
 
 @BindingAdapter("app:mySingleSrc")
 fun ImageView.setMySingleSrc(picture: String?) {

@@ -11,8 +11,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="userEntity"
-            type="project.lonelywheeler.db.entity.user.UserEntity" />
+            name="viewModel"
+            type="project.lonelywheeler.ui.viewmodel.main.ViewModelProfile" />
 
     </data>
 
@@ -40,7 +40,7 @@
                 app:layout_constraintEnd_toEndOf="@id/fragmentPreviewOffer_tvGeneralInfoPlaceholder"
                 app:layout_constraintStart_toStartOf="@id/fragmentPreviewOffer_tvGeneralInfoPlaceholder"
                 app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvGeneralInfoPlaceholder"
-                app:shouldDisplayToHost="@{userEntity.id}" />
+                app:shouldDisplayToHost="@{viewModel.userObservable.id}" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/fragmentPreviewProfile_ivUserPicture"
@@ -51,8 +51,8 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:mySingleSrc="@{userEntity.accountInfoEntity.picture}"
                 app:shapeAppearance="@style/ShapeAppearance.LonelyWheeler.UserPicture"
+                app:srcBitmap="@{viewModel.userObservable.accountInfoObservable.picture}"
 
                 />
 
@@ -64,6 +64,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="32dp"
+                android:text="@{viewModel.userObservable.personalInfoObservable.firstName + ` ` + viewModel.userObservable.personalInfoObservable.lastName}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fragmentPreviewProfile_ivUserPicture"
@@ -100,7 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:maxLines="1"
-                    android:text="@{userEntity.accountInfoEntity.username}" />
+                    android:text="@{viewModel.userObservable.accountInfoObservable.username}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,7 +123,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:maxLines="1"
-                    android:text="@{userEntity.accountInfoEntity.email}" />
+                    android:text="@{viewModel.userObservable.accountInfoObservable.email}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,7 +145,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:maxLines="1"
-                    android:text="@{userEntity.personalInfoEntity.mobileNumber}" />
+                    android:text="@{viewModel.userObservable.personalInfoObservable.mobileNumber}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -166,7 +167,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:maxLines="1"
-                    android:text="@{userEntity.personalInfoEntity.street}" />
+                    android:text="@{viewModel.userObservable.personalInfoObservable.street}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -189,7 +190,7 @@
                     android:layout_height="match_parent"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:text="@{userEntity.personalInfoEntity.city}" />
+                    android:text="@{viewModel.userObservable.personalInfoObservable.city}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -205,16 +206,19 @@
                 android:contentDescription="@string/good_seller_indicator"
                 android:focusable="true"
                 android:src="@drawable/ic_like"
+                android:tint="@{viewModel.liking.liked ? @color/colorSecondary : @color/hintTextColor}"
                 app:layout_constraintEnd_toStartOf="@+id/fragmentPreviewProfile_btnDislike"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragmentPreviewProfile_tilCity"
-                app:shouldNotDisplayToHost="@{userEntity.id}" />
+                app:notClickableByHost="@{viewModel.userObservable.id}"
+                app:notEnabledToHost="@{viewModel.userObservable.id}" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/fragmentPreviewProfile_tvLikes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{`` + viewModel.rateCounter.likes}"
                 android:textColor="@color/hintTextColor"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="@id/fragmentPreviewProfile_btnLike"
@@ -233,16 +237,19 @@
                 android:contentDescription="@string/bad_seller_indicator"
                 android:focusable="true"
                 android:src="@drawable/ic_dislike"
+                android:tint="@{viewModel.liking.disliked ? @color/heart_red : @color/hintTextColor}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/fragmentPreviewProfile_btnLike"
                 app:layout_constraintTop_toBottomOf="@id/fragmentPreviewProfile_tilCity"
-                app:shouldNotDisplayToHost="@{userEntity.id}" />
+                app:notClickableByHost="@{viewModel.userObservable.id}"
+                app:notEnabledToHost="@{viewModel.userObservable.id}" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/fragmentPreviewProfile_tvDislikes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{`` + viewModel.rateCounter.dislikes}"
                 android:textColor="@color/hintTextColor"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="@id/fragmentPreviewProfile_btnDislike"
@@ -262,8 +269,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/fragmentPreviewProfile_btnDislike"
                 app:layout_constraintStart_toStartOf="@id/fragmentPreviewProfile_btnLike"
-                app:layout_constraintTop_toBottomOf="@+id/fragmentPreviewProfile_tvLikes"
-                app:shouldNotDisplayToHost="@{userEntity.id}" />
+                app:layout_constraintTop_toBottomOf="@+id/fragmentPreviewProfile_tvLikes" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

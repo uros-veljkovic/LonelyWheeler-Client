@@ -12,11 +12,11 @@ constructor(
 ) {
     fun toObservable(): UserPersonalInfoObservable {
         return UserPersonalInfoObservable().apply {
-            firstName = firstName.trim()
-            lastName = lastName.trim()
-            city = city.trim()
-            street = street.trim()
-            mobileNumber = mobileNumber.trim()
+            this.firstName = this@UserPersonalInfoEntity.firstName.trim()
+            lastName = this@UserPersonalInfoEntity.lastName.trim()
+            city = this@UserPersonalInfoEntity.city.trim()
+            street = this@UserPersonalInfoEntity.street.trim()
+            mobileNumber = this@UserPersonalInfoEntity.mobileNumber.trim()
         }
     }
 }

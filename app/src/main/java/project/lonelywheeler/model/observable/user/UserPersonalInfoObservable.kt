@@ -23,31 +23,35 @@ constructor() : BaseObservable() {
     var firstName: String = ""
         set(value) {
             field = value
-            notifyPropertyChanged(BR.numberOfSeats)
+            notifyPropertyChanged(BR.firstName)
         }
+
     @get:Bindable
     var lastName: String = ""
         set(value) {
             field = value
-            notifyPropertyChanged(BR.numberOfSeats)
+            notifyPropertyChanged(BR.lastName)
         }
+
     @get:Bindable
     var city: String = ""
         set(value) {
             field = value
-            notifyPropertyChanged(BR.numberOfSeats)
+            notifyPropertyChanged(BR.city)
         }
+
     @get:Bindable
     var street: String = ""
         set(value) {
             field = value
-            notifyPropertyChanged(BR.numberOfSeats)
+            notifyPropertyChanged(BR.street)
         }
+
     @get:Bindable
     var mobileNumber: String = ""
         set(value) {
             field = value
-            notifyPropertyChanged(BR.numberOfSeats)
+            notifyPropertyChanged(BR.mobileNumber)
         }
 
     fun toEntity(): UserPersonalInfoEntity {

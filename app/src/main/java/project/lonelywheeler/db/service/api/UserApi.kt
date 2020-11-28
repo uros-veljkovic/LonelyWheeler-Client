@@ -1,7 +1,7 @@
 package project.lonelywheeler.db.service.api
 
-import project.lonelywheeler.db.entity.liked.LikedSellerEntity
-import project.lonelywheeler.db.entity.liked.SellerLikingCountEntity
+import project.lonelywheeler.db.entity.liked.SellerRateCounterEntity
+import project.lonelywheeler.db.entity.liked.UserLikingSellerEntity
 import project.lonelywheeler.db.entity.user.UserEntity
 import project.lonelywheeler.db.response.MyResponse
 import retrofit2.Call
@@ -19,14 +19,22 @@ interface UserApi {
     @GET("users/read/{id}")
     suspend fun read(@Path("id") id: String): MyResponse<UserEntity>
 
-    @GET("users/{userLikingId}/likedOrDisliked/{userLikedId}")
-    suspend fun isLikedOrDisliked(
-        @Path("userLikingId") userLikingId: String,
-        @Path("userLikedId") userLikedId: String,
-    ): MyResponse<LikedSellerEntity>
+    @GET("users/{userID}/likedOrDisliked/{sellerID}")
+    suspend fun readIsLikedOrDisliked(
+        @Path("userID") userID: String,
+        @Path("sellerID") sellerID: String,
+    ): MyResponse<UserLikingSellerEntity>
 
-    @GET("users/countLiking/{userId}")
-    suspend fun countLikings(@Path("userId") userId: String): MyResponse<SellerLikingCountEntity>
+    @GET("users/{userID}/rateCounter")
+    suspend fun readRateCounter(
+        @Path("userID") userID: String,
+    ): MyResponse<SellerRateCounterEntity>
+
+    @POST("users/like")
+    suspend fun like(@Body likingEntity: UserLikingSellerEntity): MyResponse<UserLikingSellerEntity>
+
+    @POST("users/dislike")
+    suspend fun dislike(@Body likingEntity: UserLikingSellerEntity): MyResponse<UserLikingSellerEntity>
 
     @PATCH("users/update")
     suspend fun update(@Body userEntity: UserEntity): MyResponse<UserEntity>

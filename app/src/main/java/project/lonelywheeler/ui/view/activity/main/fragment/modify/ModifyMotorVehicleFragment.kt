@@ -28,7 +28,6 @@ import project.lonelywheeler.app.MyApplication
 import project.lonelywheeler.databinding.FragmentModifyMotorVehicleBinding
 import project.lonelywheeler.db.entity.offer.vehicle.motor.MotorVehicleEntity
 import project.lonelywheeler.db.response.MyResponse
-import project.lonelywheeler.db.response.hasMessage
 import project.lonelywheeler.db.response.isInDatabase
 import project.lonelywheeler.model.enums.offer.Condition
 import project.lonelywheeler.model.enums.offer.vehicle.motor.*

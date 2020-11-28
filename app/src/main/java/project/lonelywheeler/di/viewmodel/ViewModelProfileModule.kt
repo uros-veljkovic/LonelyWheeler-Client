@@ -1,18 +1,11 @@
 package project.lonelywheeler.di.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
-import project.lonelywheeler.db.entity.liked.LikedSellerEntity
-import project.lonelywheeler.db.entity.user.UserEntity
-import project.lonelywheeler.db.response.MyResponse
-import javax.inject.Qualifier
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class SellerProfileEntity
+import project.lonelywheeler.model.observable.liked.UserLikingSellerObservable
+import project.lonelywheeler.model.observable.liked.SellerRateCounterObservable
 
 
 @Module
@@ -20,19 +13,13 @@ annotation class SellerProfileEntity
 class ViewModelProfileModule {
 
     @Provides
-    fun provideMLiveDataResponseUserEntity(): MutableLiveData<MyResponse<UserEntity>> {
-        return MutableLiveData()
+    fun provideSellerLikingCountObservable(): SellerRateCounterObservable {
+        return SellerRateCounterObservable()
     }
 
     @Provides
-    fun provideMLiveDataResponseLikedSellerEntity(): MutableLiveData<MyResponse<LikedSellerEntity>> {
-        return MutableLiveData()
-    }
-
-    @SellerProfileEntity
-    @Provides
-    fun provideMyResponseUserEntity(): MyResponse<UserEntity> {
-        return MyResponse(-1, "", null)
+    fun provideLikedSellerObservable(): UserLikingSellerObservable {
+        return UserLikingSellerObservable()
     }
 
 }

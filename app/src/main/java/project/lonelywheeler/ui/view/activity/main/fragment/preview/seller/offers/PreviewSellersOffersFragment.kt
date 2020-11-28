@@ -20,7 +20,6 @@ import project.lonelywheeler.databinding.FragmentPreviewSellerOffersBinding
 import project.lonelywheeler.db.entity.offer.equipment.EquipmentEntity
 import project.lonelywheeler.db.entity.offer.vehicle.motor.MotorVehicleEntity
 import project.lonelywheeler.db.entity.offer.vehicle.pedestrian.PedestrianVehicleEntity
-import project.lonelywheeler.ui.view.activity.main.fragment.preview.seller.PreviewSellersOffersFragmentDirections
 import project.lonelywheeler.ui.viewmodel.main.ViewModelEquipment
 import project.lonelywheeler.ui.viewmodel.main.ViewModelMotorVehicle
 import project.lonelywheeler.ui.viewmodel.main.ViewModelPedestrianVehicle
