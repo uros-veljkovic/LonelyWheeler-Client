@@ -35,17 +35,17 @@ import project.lonelywheeler.util.extensions.navigateWithDelayTo
 /*
 * TODO: Load all offers from the beginning of the MainActivity.kt lifecycle
 *       into 3 different lists. Then, when a user navigates to different offer category
-*       just change the list in adapter.
+*       just change the list in adapter.M
 * */
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     AllOfferRecViewAdapter.OnOfferItemClickListener {
 
     private val viewModelAllOffers: ViewModelOffers by viewModels()
-    private val viewModelAllSellers: ViewModelSellers by viewModels()
 
+    private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
-    private lateinit var binding: ActivityMainBinding
+
     private var fabTrigger: ObservableBoolean = ObservableBoolean(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,18 +53,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initViewModels()
         initFabClickListeners()
         configureUI()
 
         binding.fabTrigger = fabTrigger
-    }
-
-    private fun initViewModels() {
-        CoroutineScope(IO).launch {
-            launch { viewModelAllOffers.read(ENTITY_TYPE_MOTOR_VEHICLE) }
-            launch { viewModelAllSellers.read() }
-        }
     }
 
     private fun initFabClickListeners() {
@@ -218,7 +210,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    private fun logout() {
+    fun logout() {
         startActivity(Intent(this, SignInActivity::class.java))
         finish()
     }

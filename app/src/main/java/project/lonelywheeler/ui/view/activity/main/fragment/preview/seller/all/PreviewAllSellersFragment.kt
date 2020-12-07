@@ -14,7 +14,7 @@ import project.lonelywheeler.databinding.FragmentPreviewAllSellersBinding
 import project.lonelywheeler.db.entity.user.UserEntity
 import project.lonelywheeler.ui.viewmodel.main.ViewModelSellers
 import project.lonelywheeler.util.adapter.recyclerview.UserItemSmallRvAdapter
-import project.lonelywheeler.util.decorator.SmallItemDecorator
+import project.lonelywheeler.util.decorator.ItemDecoratorSmallGridLayout
 
 @AndroidEntryPoint
 class PreviewAllSellersFragment : Fragment(), UserItemSmallRvAdapter.OnOfferItemClickListener {
@@ -42,7 +42,7 @@ class PreviewAllSellersFragment : Fragment(), UserItemSmallRvAdapter.OnOfferItem
 
     private fun initRecyclerView() {
         val adapter = UserItemSmallRvAdapter(this)
-        val decorator = SmallItemDecorator(8, 16)
+        val decorator = ItemDecoratorSmallGridLayout(8, 16)
         binding.fragmentAllUsersRecViewUsers.apply {
             this.adapter = adapter
             addItemDecoration(decorator)

@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.util.Base64
 import androidx.core.graphics.drawable.toDrawable
 import project.lonelywheeler.app.MyApplication
+import project.lonelywheeler.util.extensions.removeFirst
 
 object MyStringUtils {
 
@@ -18,16 +19,16 @@ object MyStringUtils {
         var price = value.toInt()
         val priceArray: MutableList<String> = mutableListOf()
 //        if (price / 1000 >= 1) {
-            while (true) {
-                if (price / 1000 > 0) {
-                    price /= 1000
-                    priceArray.add(0, ".000")
-                    continue
-                } else {
-                    priceArray.add(0, "$${price}")
-                    break
-                }
+        while (true) {
+            if (price / 1000 > 0) {
+                price /= 1000
+                priceArray.add(0, ".000")
+                continue
+            } else {
+                priceArray.add(0, "$${price}")
+                break
             }
+        }
 //        } else {
 //            return "$$price"
 //        }
@@ -39,5 +40,15 @@ object MyStringUtils {
 
 
         return bulider.toString()
+    }
+
+    fun valueOf(value: Int): String {
+        val stringValue = value.toString()
+
+        while (stringValue.startsWith("0") && stringValue.length > 1) {
+            stringValue.removeFirst()
+        }
+
+        return value.toString()
     }
 }

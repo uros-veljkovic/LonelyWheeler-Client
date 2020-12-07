@@ -43,12 +43,10 @@ constructor(
     var lastPictureIndex: ObservableInt = ObservableInt(-1)
 
     fun persist() {
-        if (motorVehicle.sellerId.isNullOrEmpty()) {
-            motorVehicle.sellerId = MyApplication.currentUser?.id
-        }
         CoroutineScope(Dispatchers.IO).launch {
+            val entity = motorVehicle.toEntity()
             responseEntity.postValue(
-                repository.createOrUpdate(motorVehicle.toEntity())
+                repository.createOrUpdate(entity)
             )
         }
     }
@@ -143,9 +141,13 @@ constructor(
 
 
     fun reset() {
-        motorVehicle = MotorVehicleObservable()
+        resetObservable()
         resetIndexes()
         resetResponses()
+    }
+
+    fun resetObservable() {
+        motorVehicle = MotorVehicleObservable()
     }
 
     fun update() {

@@ -185,8 +185,10 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="8dp"
                     android:hint="@string/max_speed_placeholder"
+                    android:textAlignment="textEnd"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrCarDrivetrain">
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_spnrCarDrivetrain"
+                    app:startIconDrawable="@drawable/ic_speed">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/fragmentMotorVehicle_etCarMaxSpeed"
@@ -208,9 +210,11 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
                     android:hint="@string/horse_power_placeholder"
+                    android:textAlignment="textEnd"
                     app:errorEnabled="true"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_tilCarMaxSpeed">
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMotorVehicle_tilCarMaxSpeed"
+                    app:startIconDrawable="@drawable/ic_fire">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/fragmentMotorVehicle_etCarHorsePower"
@@ -232,6 +236,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
                     android:hint="@string/mileage_placeholder"
+                    android:textAlignment="textEnd"
                     app:errorEnabled="true"
                     app:layout_constraintBottom_toTopOf="@id/fragmentMotorVehicle_tilCarHorsePower"
                     app:layout_constraintEnd_toEndOf="parent"

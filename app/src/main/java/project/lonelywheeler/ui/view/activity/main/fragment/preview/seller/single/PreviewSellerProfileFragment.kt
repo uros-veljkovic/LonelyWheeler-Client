@@ -7,15 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
+import project.lonelywheeler.R
 import project.lonelywheeler.app.MyApplication
 import project.lonelywheeler.databinding.FragmentPreviewSellerProfileBinding
 import project.lonelywheeler.model.observable.liked.SellerRateCounterObservable
 import project.lonelywheeler.model.observable.liked.UserLikingSellerObservable
 import project.lonelywheeler.model.observable.user.UserObservable
+import project.lonelywheeler.ui.view.activity.main.MainActivity
 import project.lonelywheeler.ui.viewmodel.main.ViewModelProfile
 
 @AndroidEntryPoint
@@ -96,6 +99,16 @@ class PreviewSellerProfileFragment : Fragment() {
             }
             fragmentPreviewProfileBtnDislike.setOnClickListener {
                 viewModel!!.dislike(sellerId)
+            }
+            fragmentPreviewProfileBtnDeleteProfile.setOnClickListener {
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(resources.getString(R.string.delete_account))
+                    .setMessage(resources.getString(R.string.delete_account_message))
+                    .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
+                        viewModel!!.deleteProfile()
+                        (activity as MainActivity).logout()
+                    }.setNegativeButton(resources.getString(R.string.no)) { dialog, which -> }
+                    .show()
             }
         }
     }

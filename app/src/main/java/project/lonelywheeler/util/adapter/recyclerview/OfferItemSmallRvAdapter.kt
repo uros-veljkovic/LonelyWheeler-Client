@@ -3,12 +3,14 @@ package project.lonelywheeler.util.adapter.recyclerview
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import project.lonelywheeler.app.MyApplication
 import project.lonelywheeler.databinding.OfferItemSmallBinding
 import project.lonelywheeler.db.entity.offer.OfferEntity
 
+
 class OfferItemSmallRvAdapter(
     val listener: OnOfferItemClickListener,
-    private var fullOfferList: MutableList<OfferEntity> = mutableListOf()
+    private var fullOfferList: MutableList<OfferEntity> = mutableListOf(),
 ) :
     RecyclerView.Adapter<OfferItemSmallRvAdapter.OfferItemSmallViewHolder>() {
 
@@ -53,6 +55,7 @@ class OfferItemSmallRvAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(offer: OfferEntity) {
+
             binding.offer = offer
         }
     }

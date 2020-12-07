@@ -97,8 +97,8 @@ constructor(
         return userApi.update(entity)
     }
 
-    suspend fun delete(entity: UserEntity): MyResponse<UserEntity> {
-        return userApi.delete(entity.id!!)
+    suspend fun delete(id: String): MyResponse<UserEntity> {
+        return userApi.delete(id)
     }
 
     suspend fun like(entity: UserLikingSellerEntity) {

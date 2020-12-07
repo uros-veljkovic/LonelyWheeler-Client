@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -34,27 +33,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:contentDescription="@string/edit_or_save"
-                android:drawableEnd="@drawable/ic_edit"
+                android:drawableStart="@drawable/ic_edit"
                 android:drawableTint="@color/colorOnPrimary"
                 android:text="@string/edit"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@id/fragmentPreviewOffer_tvGeneralInfoPlaceholder"
                 app:layout_constraintStart_toStartOf="@id/fragmentPreviewOffer_tvGeneralInfoPlaceholder"
-                app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvGeneralInfoPlaceholder"
-                app:shouldDisplayToHost="@{viewModel.userObservable.id}" />
+                app:layout_constraintTop_toBottomOf="@id/fragmentPreviewOffer_tvGeneralInfoPlaceholder" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/fragmentPreviewProfile_ivUserPicture"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="32dp"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.LonelyWheeler.UserPicture"
                 android:contentDescription="@string/user_picture"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearance="@style/ShapeAppearance.LonelyWheeler.UserPicture"
-                app:srcBitmap="@{viewModel.userObservable.accountInfoObservable.picture}"
-
-                />
+                app:srcBitmap="@{viewModel.userObservable.accountInfoObservable.picture}" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/fragmentPreviewProfile_ivUserFullName"
@@ -263,13 +260,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="32dp"
                 android:layout_marginBottom="48dp"
                 android:text="@string/preview_offers"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/fragmentPreviewProfile_btnDislike"
                 app:layout_constraintStart_toStartOf="@id/fragmentPreviewProfile_btnLike"
                 app:layout_constraintTop_toBottomOf="@+id/fragmentPreviewProfile_tvLikes" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fragmentPreviewProfile_btnDeleteProfile"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="32dp"
+                android:text="@string/delete_account"
+                android:textColor="@color/heart_red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragmentPreviewProfile_btnPreviewOffers"
+                app:shouldDisplayToHost="@{viewModel.userObservable.id}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

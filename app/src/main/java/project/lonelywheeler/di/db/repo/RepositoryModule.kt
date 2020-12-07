@@ -25,6 +25,7 @@ class RepositoryModule {
         equipmentService: EquipmentService,
         favoriteOfferService: FavoriteOfferService,
         offerService: OfferService,
+        queryService: QueryService,
     ): Repository {
         return Repository(
             userService,
@@ -32,7 +33,8 @@ class RepositoryModule {
             pedestrianVehicleService,
             equipmentService,
             offerService,
-            favoriteOfferService
+            favoriteOfferService,
+            queryService
         )
     }
 
@@ -133,6 +135,23 @@ class RepositoryModule {
         retrofit: Retrofit,
     ): OfferApi {
         return retrofit.create(OfferApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideQueryService(
+        queryApi: QueryApi,
+    ): QueryService {
+        return QueryService(queryApi)
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideQueryApi(
+        retrofit: Retrofit,
+    ): QueryApi {
+        return retrofit.create(QueryApi::class.java)
     }
 
     @Singleton

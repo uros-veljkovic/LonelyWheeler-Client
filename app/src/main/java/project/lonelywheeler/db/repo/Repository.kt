@@ -7,10 +7,10 @@ import project.lonelywheeler.db.entity.offer.OfferEntity
 import project.lonelywheeler.db.entity.offer.equipment.EquipmentEntity
 import project.lonelywheeler.db.entity.offer.vehicle.motor.MotorVehicleEntity
 import project.lonelywheeler.db.entity.offer.vehicle.pedestrian.PedestrianVehicleEntity
+import project.lonelywheeler.db.entity.query.QueryEntity
 import project.lonelywheeler.db.entity.user.UserEntity
 import project.lonelywheeler.db.response.MyResponse
 import project.lonelywheeler.db.service.*
-import project.lonelywheeler.db.service.api.OfferService
 import project.lonelywheeler.ui.viewmodel.auth.AuthListener
 import project.lonelywheeler.util.constants.ENTITY_TYPE_MOTOR_VEHICLE
 import project.lonelywheeler.util.constants.ENTITY_TYPE_PEDESTRIAN_VEHICLE
@@ -25,6 +25,7 @@ constructor(
     private val equipmentService: EquipmentService,
     private val offerService: OfferService,
     private val favoriteOfferService: FavoriteOfferService,
+    private val queryService: QueryService,
 ) {
 
     fun signUp(userEntity: UserEntity, authListener: AuthListener) {
@@ -126,6 +127,14 @@ constructor(
 
     suspend fun deleteEquipment(entity: OfferEntity) {
         equipmentService.delete(entity._id!!)
+    }
+
+    suspend fun query(queryEntity: QueryEntity): MyResponse<MutableList<OfferEntity>> {
+        return queryService.makeQuery(queryEntity)
+    }
+
+    suspend fun deleteUserProfile(id: String) {
+        userService.delete(id)
     }
 
 }

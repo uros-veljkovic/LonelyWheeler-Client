@@ -24,6 +24,9 @@ const val ACTION_READ_FAVORITES = "ACTION_READ_FAVORITES"
 const val ACTION_READ_PERSONAL_OFFERS = "ACTION_READ_PERSONAL_OFFERS"
 const val DEFAULT_RESPONSE_MESSAGE = ""
 
+const val SIGN_BIGGER_THEN = 1
+const val SIGN_LESS_THEN = 2
+
 val REGEX_USERNAME = Regex("^([a-zA-Z])+([\\w]{2,})+$")
 val REGEX_EMAIL = Regex("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")
 val REGEX_FIRST_NAME = Regex("[A-Z][a-z]*")

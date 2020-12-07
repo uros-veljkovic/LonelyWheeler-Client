@@ -43,3 +43,8 @@ fun String.toCamelCase(): String {
             word.capitalize()
         }.joinToString("")
 }
+
+fun String.removeFirst(): String {
+    return this.removeRange(0, 1)
+}
+

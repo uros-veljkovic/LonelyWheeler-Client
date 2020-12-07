@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -131,7 +132,6 @@ class ModifyMotorVehicleFragment : Fragment() {
                     Ako je stigao odgovor sa servera i ponuda do tada nije postojala
                     znaci da smo kreirali ponudu i da se vracamo na fragment allOffers
                 */
-                //TODO: Osmisli logiku
                 if (action equals ACTION_CREATING_OFFER && response.isInDatabase()) {
                     resetUI()
                     showMessage(response)
@@ -144,7 +144,7 @@ class ModifyMotorVehicleFragment : Fragment() {
 
     }
 
-    infix fun Any?.equals(value: Any?) : Boolean{
+    infix fun Any?.equals(value: Any?): Boolean {
         return this == value
     }
 
@@ -161,6 +161,7 @@ class ModifyMotorVehicleFragment : Fragment() {
         observeActionTriggered()
         observeSpinners()
     }
+
     private fun initOnClickListeners() {
         binding.fragmentMotorVehicleProductBasicInfo.apply {
             btnAddPicture.setOnClickListener {
@@ -250,13 +251,17 @@ class ModifyMotorVehicleFragment : Fragment() {
                 }.setNegativeButton(resources.getString(R.string.no)) { dialog, which -> }
                 .show()
         }
+        binding.fragmentMotorVehicleBtnCancel.setOnClickListener {
+            Log.d(TAG, "MOTOR VEHICLE\n: ${viewModel.motorVehicle}")
+        }
 
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK &&
-            requestCode == INTENT_REQUEST_CODE_IMAGE) {
+            requestCode == INTENT_REQUEST_CODE_IMAGE
+        ) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
 
                 val picture = data!!.getBitmap()

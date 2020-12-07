@@ -5,6 +5,7 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import project.lonelywheeler.BR
+import project.lonelywheeler.app.MyApplication
 import project.lonelywheeler.db.entity.offer.OfferEntity
 import project.lonelywheeler.model.enums.offer.Condition
 import project.lonelywheeler.util.convertToStringList
@@ -16,14 +17,14 @@ open class OfferObservable
 constructor() : BaseObservable() {
 
     @get: Bindable
-    var id: String? = null
+    var id: String? = ""
         set(value) {
             field = value
             notifyPropertyChanged(BR.id)
         }
 
     @get: Bindable
-    var sellerId: String? = null
+    var sellerId: String? = MyApplication.getCurrentUserID()
         set(value) {
             field = value
             notifyPropertyChanged(BR.sellerId)

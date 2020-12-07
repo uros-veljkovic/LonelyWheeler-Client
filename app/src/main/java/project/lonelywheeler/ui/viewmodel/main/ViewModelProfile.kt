@@ -69,4 +69,10 @@ constructor(
         }
     }
 
+    fun deleteProfile() {
+        CoroutineScope(IO).launch {
+            repository.deleteUserProfile(MyApplication.getCurrentUserID())
+        }
+    }
+
 }

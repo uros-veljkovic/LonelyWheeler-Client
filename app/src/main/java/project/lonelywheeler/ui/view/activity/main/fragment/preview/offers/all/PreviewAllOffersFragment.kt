@@ -10,10 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import project.lonelywheeler.databinding.FragmentPreviewAllOffersBinding
 import project.lonelywheeler.db.entity.offer.OfferEntity
 import project.lonelywheeler.ui.viewmodel.main.ViewModelOffers
@@ -21,7 +17,7 @@ import project.lonelywheeler.util.adapter.recyclerview.OfferItemSmallRvAdapter
 import project.lonelywheeler.util.constants.ENTITY_TYPE_EQUIPMENT
 import project.lonelywheeler.util.constants.ENTITY_TYPE_MOTOR_VEHICLE
 import project.lonelywheeler.util.constants.ENTITY_TYPE_PEDESTRIAN_VEHICLE
-import project.lonelywheeler.util.decorator.SmallItemDecorator
+import project.lonelywheeler.util.decorator.ItemDecoratorSmallGridLayout
 import kotlin.properties.Delegates
 
 
@@ -64,7 +60,7 @@ class PreviewAllOffersFragment : Fragment(), OfferItemSmallRvAdapter.OnOfferItem
 
     private fun initBinding() {
         binding.viewModel = viewModel
-        binding.fragmentAllOffersRvAllOffers.addItemDecoration(SmallItemDecorator(8, 16))
+        binding.fragmentAllOffersRvAllOffers.addItemDecoration(ItemDecoratorSmallGridLayout(8, 16))
         binding.fragmentAllOffersRvAllOffers.adapter =
             OfferItemSmallRvAdapter(this, viewModel.getOffers().toMutableList())
 

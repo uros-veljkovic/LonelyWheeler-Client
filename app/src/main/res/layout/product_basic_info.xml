@@ -133,7 +133,8 @@
             app:hintAnimationEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvProductGeneralInfoPlaceholder">
+            app:layout_constraintTop_toBottomOf="@id/tvProductGeneralInfoPlaceholder"
+            app:startIconDrawable="@drawable/ic_title">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etProductTitle"
@@ -155,7 +156,8 @@
             app:errorEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilProductTitle">
+            app:layout_constraintTop_toBottomOf="@id/tilProductTitle"
+            app:startIconDrawable="@drawable/ic_brand">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etProductBrand"
@@ -177,7 +179,8 @@
             app:errorEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilProductBrand">
+            app:layout_constraintTop_toBottomOf="@id/tilProductBrand"
+            app:startIconDrawable="@drawable/ic_model">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etProductModel"
@@ -199,7 +202,8 @@
             app:errorEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilProductModel">
+            app:layout_constraintTop_toBottomOf="@id/tilProductModel"
+            app:startIconDrawable="@drawable/ic_calendar">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etProductYearOfProduction"
@@ -219,10 +223,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
-            android:hint="Price in $"
+            android:textAlignment="textEnd"
+            android:hint="@string/price"
             app:errorEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilProductYearOfProduction">
+            app:layout_constraintTop_toBottomOf="@id/tilProductYearOfProduction"
+            app:startIconDrawable="@drawable/ic_dolar">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etProductPrice"
@@ -364,7 +370,8 @@
             app:errorEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSellerInForExchange">
+            app:layout_constraintTop_toBottomOf="@id/tvSellerInForExchange"
+            app:startIconDrawable="@drawable/ic_brush">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etProductExteriorColor"
@@ -386,7 +393,8 @@
             app:errorEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilProductExteriorColor">
+            app:layout_constraintTop_toBottomOf="@id/tilProductExteriorColor"
+            app:startIconDrawable="@drawable/ic_brush">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etProductInteriorColor"
@@ -408,7 +416,8 @@
             app:errorEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilProductInteriorColor">
+            app:layout_constraintTop_toBottomOf="@id/tilProductInteriorColor"
+            app:startIconDrawable="@drawable/ic_brush">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etProductInteriorMaterial"
@@ -447,13 +456,14 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginTop="16dp"
-            android:hint="@string/other_info"
+            android:hint="@string/other_info_placeholder"
             android:isScrollContainer="true"
             android:nestedScrollingEnabled="true"
             android:textColor="@color/hintTextColor"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvProductCondition_placeholder">
+            app:layout_constraintTop_toBottomOf="@id/tvProductCondition_placeholder"
+            app:startIconDrawable="@drawable/ic_info">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etProductOtherInfo"
@@ -463,8 +473,7 @@
                 android:maxLines="50"
                 android:scrollbars="vertical"
                 android:text="@={offer.otherInfo}"
-                android:textColor="@color/hintTextColor"
-                tools:text="@tools:sample/lorem" />
+                android:textColor="@color/hintTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

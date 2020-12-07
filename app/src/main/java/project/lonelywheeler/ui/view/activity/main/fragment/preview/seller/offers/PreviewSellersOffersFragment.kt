@@ -26,7 +26,7 @@ import project.lonelywheeler.ui.viewmodel.main.ViewModelPedestrianVehicle
 import project.lonelywheeler.ui.viewmodel.main.ViewModelPersonalOffers
 import project.lonelywheeler.util.adapter.recyclerview.OfferItemBigRvAdapter
 import project.lonelywheeler.util.constants.ACTION_READ_FAVORITES
-import project.lonelywheeler.util.decorator.SmallItemDecorator
+import project.lonelywheeler.util.decorator.ItemDecoratorBigGridLayout
 
 @AndroidEntryPoint
 class PreviewSellersOffersFragment : Fragment(), OfferItemBigRvAdapter.OnMyOfferItemClickListener {
@@ -80,7 +80,7 @@ class PreviewSellersOffersFragment : Fragment(), OfferItemBigRvAdapter.OnMyOffer
 
     private fun observeLoadingOffers() {
         viewModel.offers.observe(viewLifecycleOwner, { offers ->
-            binding.myOffersFragmentRvMyOffers.addItemDecoration(SmallItemDecorator(16, 16))
+            binding.myOffersFragmentRvMyOffers.addItemDecoration(ItemDecoratorBigGridLayout(16, 16))
             binding.myOffersFragmentRvMyOffers.layoutManager = LinearLayoutManager(this.context)
             binding.adapter!!.setList(offers.entity!!)
             binding.executePendingBindings()

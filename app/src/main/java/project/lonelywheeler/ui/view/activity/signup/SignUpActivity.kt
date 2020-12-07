@@ -9,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import bloder.com.blitzcore.enableWhenUsing
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.coroutines.Dispatchers
@@ -24,6 +22,7 @@ import project.lonelywheeler.ui.view.activity.signin.SignInActivity
 import project.lonelywheeler.ui.viewmodel.auth.ViewModelAuth
 import project.lonelywheeler.util.compressTo
 import project.lonelywheeler.util.constants.*
+import project.lonelywheeler.util.extensions.observeErrorFromRegex
 import project.lonelywheeler.util.validator.FieldValidator
 import project.lonelywheeler.util.validator.matches
 import java.util.*
@@ -89,10 +88,10 @@ class SignUpActivity : AppCompatActivity() {
     private fun initSingUpEnabler() {
         binding.activitySignUpBtnSignUp.enableWhenUsing(FieldValidator()) {
             binding.apply {
-                activitySignUpEtUsername.isValidUsername()
-                activitySignUpEtFirstName.isValidFirstName()
-                activitySignUpEtLastName.isValidLastName()
-                activitySignUpEtEmail.isValidEmail()
+                activitySignUpEtUsername.validateFrom(REGEX_USERNAME)
+                activitySignUpEtFirstName.validateFrom(REGEX_FIRST_NAME)
+                activitySignUpEtLastName.validateFrom(REGEX_LAST_NAME)
+                activitySignUpEtEmail.validateFrom(REGEX_EMAIL)
                 activitySignUpEtUsername.isNotEmpty()
                 activitySignUpEtFirstName.isNotEmpty()
                 activitySignUpEtLastName.isNotEmpty()
@@ -174,15 +173,4 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
-}
-
-
-fun TextInputEditText.observeErrorFromRegex(inputLayout: TextInputLayout, regex: Regex) {
-    this.setOnFocusChangeListener { _, hasFocus ->
-        if (!hasFocus && !this.text?.matches(regex)!!) {
-            inputLayout.error = inputLayout.errorContentDescription
-        } else {
-            inputLayout.error = null
-        }
-    }
 }

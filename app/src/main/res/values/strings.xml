@@ -97,7 +97,7 @@
     <string name="product_title">Title</string>
     <string name="brand_placeholder">Brand</string>
     <string name="model_placeholder">Model</string>
-    <string name="year_of_production_placeholder">Year of production</string>
+    <string name="year_of_production_placeholder">"Year \n\n of \n\n production</string>
     <string name="exterior_color_placeholder">Exterior color</string>
     <string name="interior_color_placeholder">Interior color</string>
     <string name="interior_material_placeholder">Interior material</string>
@@ -133,4 +133,13 @@
     <string name="delete_offer_title">Delete offer ?</string>
     <string name="delete_offer_message">Do you really want to delete this offer ?</string>
     <string name="body_type">Body type:</string>
+    <string name="delete_account">Delete account</string>
+    <string name="searching_for">I am searching for:</string>
+    <string name="dash">-</string>
+    <string name="error_year">Invalid year input</string>
+    <string name="error_price">Invalid price</string>
+    <string name="max_offer_age">Maximum\noffer age\n(in days)</string>
+    <string name="price">Price</string>
+    <string name="other_info_placeholder">Other info</string>
+    <string name="delete_account_message">Are you sure you want to delete your account ?</string>
 </resources>
