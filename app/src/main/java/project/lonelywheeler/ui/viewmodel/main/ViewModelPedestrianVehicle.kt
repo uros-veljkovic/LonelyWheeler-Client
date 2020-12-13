@@ -18,6 +18,7 @@ import project.lonelywheeler.db.repo.Repository
 import project.lonelywheeler.db.response.MyResponse
 import project.lonelywheeler.di.viewmodel.PedestrianVehicleResponse
 import project.lonelywheeler.di.viewmodel.SellerResponse
+import project.lonelywheeler.model.observable.offer.vehicle.motor.MotorVehicleObservable
 import project.lonelywheeler.model.observable.offer.vehicle.pedestrian.PedestrianVehicleObservable
 import project.lonelywheeler.util.compressTo
 import project.lonelywheeler.util.constants.RESOLUTION_1080X768
@@ -45,25 +46,32 @@ constructor(
     var lastPictureIndex: ObservableInt = ObservableInt(-1)
 
     fun persist() {
-        vehicle.sellerId = MyApplication.currentUser?.id
         CoroutineScope(Dispatchers.IO).launch {
+            val entity = vehicle.toEntity()
             responseEntity.postValue(
-                repository.createOrUpdate(vehicle.toEntity())
+                repository.createOrUpdate(entity)
             )
         }
     }
 
     suspend fun readOffer(offerId: String) {
-//        CoroutineScope(Dispatchers.IO).async {
         responseEntity.postValue(
             repository.readPedestrianVehicle(offerId)
         )
-//        }
     }
 
     suspend fun readSeller(sellerId: String) {
         responseSeller.postValue(
             repository.readSeller(sellerId)
+        )
+    }
+
+    suspend fun readIfOfferLiked(offerId: String) {
+        likeTriggered.set(
+            repository.hasUserLikedOffer(
+                MyApplication.getCurrentUserID(),
+                offerId
+            ).entity!!
         )
     }
 
@@ -97,7 +105,6 @@ constructor(
                 )
             }
     }
-
 
     fun getMobileNumber(): String =
         responseSeller.value!!.entity!!.personalInfoEntity.mobileNumber
@@ -135,19 +142,17 @@ constructor(
         likeTriggered.changeValue()
     }
 
-    suspend fun readIfOfferLiked(offerId: String) {
-        likeTriggered.set(
-            repository.hasUserLikedOffer(
-                MyApplication.getCurrentUserID(),
-                offerId
-            ).entity!!
-        )
-    }
+
+
 
     fun reset() {
-        vehicle = PedestrianVehicleObservable()
+        resetObservable()
         resetIndexes()
         resetResponses()
+    }
+
+    fun resetObservable() {
+        vehicle = PedestrianVehicleObservable()
     }
 
     fun update() {
@@ -169,5 +174,4 @@ constructor(
     fun resetIndexes() {
         currentPictureIndex.set(-1)
         lastPictureIndex.set(-1)
-    }
-}
+    }}

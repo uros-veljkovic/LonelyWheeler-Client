@@ -14,7 +14,8 @@
     <ScrollView
         android:id="@+id/fragmentPreviewOffer_sv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.view.activity.main.fragment.preview.offers.single.PreviewPedestrianVehicleOfferFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clContainer"

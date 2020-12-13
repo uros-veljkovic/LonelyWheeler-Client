@@ -9,9 +9,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import project.lonelywheeler.R
 import project.lonelywheeler.databinding.FragmentPreviewAllOffersBinding
 import project.lonelywheeler.db.entity.offer.OfferEntity
+import project.lonelywheeler.db.response.MyResponse
 import project.lonelywheeler.ui.viewmodel.main.ViewModelOffers
 import project.lonelywheeler.util.adapter.recyclerview.OfferItemSmallRvAdapter
 import project.lonelywheeler.util.constants.ENTITY_TYPE_EQUIPMENT
@@ -32,9 +35,6 @@ class PreviewAllOffersFragment : Fragment(), OfferItemSmallRvAdapter.OnOfferItem
         super.onCreate(savedInstanceState)
 
         entityTypeId = PreviewAllOffersFragmentArgs.fromBundle(requireArguments()).entityId
-/*        CoroutineScope(IO).launch{
-            viewModel.read(entityTypeId)
-        }*/
     }
 
     override fun onCreateView(
@@ -45,33 +45,70 @@ class PreviewAllOffersFragment : Fragment(), OfferItemSmallRvAdapter.OnOfferItem
         binding = FragmentPreviewAllOffersBinding.inflate(inflater, container, false)
         initBinding()
         observeViewModel()
-
+        initOnClickListeners()
         return binding.root
     }
 
     private fun observeViewModel() {
-        viewModel.response.observe(viewLifecycleOwner, { response ->
-            val entities = response.entity
-            ((binding.fragmentAllOffersRvAllOffers.adapter) as OfferItemSmallRvAdapter).setList(
-                entities?.toMutableList() ?: mutableListOf()
-            )
+        viewModel.responseMotorVehicle.observe(viewLifecycleOwner, { response ->
+            setIfDemanded(ENTITY_TYPE_MOTOR_VEHICLE, response)
         })
+        viewModel.responsePedestrianVehicle.observe(viewLifecycleOwner, { response ->
+            setIfDemanded(ENTITY_TYPE_PEDESTRIAN_VEHICLE, response)
+        })
+        viewModel.responseEquipment.observe(viewLifecycleOwner, { response ->
+            setIfDemanded(ENTITY_TYPE_EQUIPMENT, response)
+        })
+    }
+
+    private fun setIfDemanded(demandedType: Int, response: MyResponse<List<OfferEntity>>) {
+        if (demandedType == entityTypeId)
+            ((binding.fragmentAllOffersRvAllOffers.adapter) as OfferItemSmallRvAdapter).setList(
+                response.entity?.toMutableList() ?: mutableListOf()
+            )
     }
 
     private fun initBinding() {
         binding.viewModel = viewModel
         binding.fragmentAllOffersRvAllOffers.addItemDecoration(ItemDecoratorSmallGridLayout(8, 16))
         binding.fragmentAllOffersRvAllOffers.adapter =
-            OfferItemSmallRvAdapter(this, viewModel.getOffers().toMutableList())
+            OfferItemSmallRvAdapter(this,
+                viewModel.getOffers(entityTypeId)?.toMutableList() ?: mutableListOf())
 
     }
 
+    private fun initOnClickListeners() {
+        val sortBy = resources.getStringArray(R.array.sort_by)
+        var checkedItem = 0
+
+        binding.fragmentAllOffersBtnSort.setOnClickListener {
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle(resources.getString(R.string.sort_by))
+                .setNeutralButton(resources.getString(R.string.cancel)) { dialog, _ ->
+                }
+                .setPositiveButton(resources.getString(R.string.confirm)) { dialog, itemSelectedIndex ->
+                    sortItems(checkedItem)
+                }
+                .setSingleChoiceItems(sortBy, checkedItem) { dialog, itemSelectedIndex ->
+                    checkedItem = itemSelectedIndex
+                }
+                .show()
+        }
+    }
+
+    private fun sortItems(itemSelectedIndex: Int) {
+        val adapter = binding.fragmentAllOffersRvAllOffers.adapter as OfferItemSmallRvAdapter
+        adapter.sortBy(itemSelectedIndex)
+    }
+
     override fun onOfferItemClick(position: Int) {
-        val offerId = viewModel.response.value?.entity?.get(position)?._id
-        val sellerId = viewModel.response.value?.entity?.get(position)?.sellerId
+        val offerId = viewModel.responseMotorVehicle.value?.entity?.get(position)?._id
+        val sellerId = viewModel.responseMotorVehicle.value?.entity?.get(position)?.sellerId
 
         when (entityTypeId) {
             ENTITY_TYPE_MOTOR_VEHICLE -> {
+                val offerId = viewModel.responseMotorVehicle.value?.entity?.get(position)?._id
+                val sellerId = viewModel.responseMotorVehicle.value?.entity?.get(position)?.sellerId
                 val action =
                     PreviewAllOffersFragmentDirections.actionPreviewAllOffersFragmentToPreviewMotorVehicleFragment(
                         offerId!!,
@@ -80,6 +117,8 @@ class PreviewAllOffersFragment : Fragment(), OfferItemSmallRvAdapter.OnOfferItem
                 findNavController().navigate(action)
             }
             ENTITY_TYPE_EQUIPMENT -> {
+                val offerId = viewModel.responseEquipment.value?.entity?.get(position)?._id
+                val sellerId = viewModel.responseEquipment.value?.entity?.get(position)?.sellerId
                 val action =
                     PreviewAllOffersFragmentDirections.actionPreviewAllOffersFragmentToPreviewEquipmentOfferFragment(
                         offerId!!,
@@ -88,6 +127,8 @@ class PreviewAllOffersFragment : Fragment(), OfferItemSmallRvAdapter.OnOfferItem
                 findNavController().navigate(action)
             }
             ENTITY_TYPE_PEDESTRIAN_VEHICLE -> {
+                val offerId = viewModel.responsePedestrianVehicle.value?.entity?.get(position)?._id
+                val sellerId = viewModel.responsePedestrianVehicle.value?.entity?.get(position)?.sellerId
                 val action =
                     PreviewAllOffersFragmentDirections.actionPreviewAllOffersFragmentToPreviewPedestrianVehicleOfferFragment(
                         offerId!!,

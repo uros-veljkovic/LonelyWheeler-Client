@@ -24,25 +24,28 @@
             android:id="@+id/nav_advanced_search"
             android:icon="@drawable/ic_drawer_advanced_search"
             android:title="@string/advanced_search" />
+        <item
+            android:visible="false"
+            android:id="@+id/invisible1"
+            android:enabled="false"
+            android:title=""/>
+        <item
+            android:visible="false"
+            android:id="@+id/invisible2"
+            android:enabled="false"
+            android:title=""/>
+        <item
+            android:visible="false"
+            android:id="@+id/invisible3"
+            android:enabled="false"
+            android:title=""/>
+        <item
+            android:visible="false"
+            android:id="@+id/invisible4"
+            android:enabled="false"
+            android:title=""/>
     </group>
-
-    <group
-        android:checkableBehavior="single"
-        android:enabled="false"
-        android:visible="false">
-        <item
-            android:id="@+id/empty1"
-            android:title="empty1" />
-        <item
-            android:id="@+id/empty2"
-            android:title="empty1" />
-        <item
-            android:id="@+id/empty3"
-            android:title="empty1" />
-        <item
-            android:id="@+id/empty4"
-            android:title="empty1" />
-    </group>
+    
 
     <item android:title="@string/action">
         <menu>

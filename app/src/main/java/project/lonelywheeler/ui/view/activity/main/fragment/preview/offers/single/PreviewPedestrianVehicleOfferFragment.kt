@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,6 +65,37 @@ class PreviewPedestrianVehicleOfferFragment : Fragment() {
         initOnClickListeners()
 
         return binding!!.root
+    }
+
+    private fun initViewModel() {
+        binding!!.progressBar.visibility = View.VISIBLE
+        viewModel.responseEntity.observe(viewLifecycleOwner, { offer ->
+            offer.entity?.let { entity ->
+                if (!entity.pictures.isNullOrEmpty()) {
+                    viewModel.currentPictureIndex.set(0)
+                    viewModel.lastPictureIndex.set(entity.pictures.lastIndex)
+                } else {
+                    viewModel.resetIndexes()
+                }
+                refreshView()
+            }
+        })
+
+        viewModel.responseSeller.observe(viewLifecycleOwner, { seller ->
+            seller.entity?.id?.let {
+                refreshView()
+            }
+        })
+    }
+
+    private fun refreshView() {
+        binding?.let {
+            it.viewModel = viewModel
+            it.progressBar.visibility = View.GONE
+            it.generalInfo.ivProductPicture.refreshDrawableState()
+            it.executePendingBindings()
+            it.notifyChange()
+        }
     }
 
     private fun showInformativeDialog(
@@ -203,31 +233,6 @@ class PreviewPedestrianVehicleOfferFragment : Fragment() {
         }
     }
 
-    private fun initViewModel() {
-        binding!!.progressBar.visibility = View.VISIBLE
-        viewModel.responseEntity.observe(viewLifecycleOwner, { offer ->
-            offer.entity?.let { entity ->
-                if (!entity.pictures.isNullOrEmpty()) {
-                    viewModel.currentPictureIndex.set(0)
-                    viewModel.lastPictureIndex.set(entity.pictures.lastIndex)
-                } else {
-                    viewModel.resetIndexes()
-                }
-            }
-        })
-
-        viewModel.responseSeller.observe(viewLifecycleOwner, { seller ->
-            seller.entity?.id?.let {
-                Log.d(TAG, "initViewModel: SELLER \n ${seller.entity}")
-                binding?.let {
-                    it.viewModel = viewModel
-                    it.progressBar.visibility = View.GONE
-                    it.executePendingBindings()
-                    it.notifyChange()
-                }
-            }
-        })
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

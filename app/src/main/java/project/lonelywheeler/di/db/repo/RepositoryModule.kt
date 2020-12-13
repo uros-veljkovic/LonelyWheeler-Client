@@ -158,8 +158,8 @@ class RepositoryModule {
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://192.168.1.4:5050/")
-//            .baseUrl("https://lonely-wheeler.herokuapp.com/")
+//            .baseUrl("http://192.168.1.4:5050/")
+            .baseUrl("https://lonely-wheeler.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

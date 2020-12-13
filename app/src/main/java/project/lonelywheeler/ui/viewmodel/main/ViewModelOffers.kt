@@ -3,13 +3,15 @@ package project.lonelywheeler.ui.viewmodel.main
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import project.lonelywheeler.db.entity.offer.OfferEntity
 import project.lonelywheeler.db.repo.Repository
 import project.lonelywheeler.db.response.MyResponse
+import project.lonelywheeler.util.constants.ENTITY_TYPE_EQUIPMENT
 import project.lonelywheeler.util.constants.ENTITY_TYPE_MOTOR_VEHICLE
-import project.lonelywheeler.util.constants.NO_ENTITY_TYPE
+import project.lonelywheeler.util.constants.ENTITY_TYPE_PEDESTRIAN_VEHICLE
 
 class ViewModelOffers
 @ViewModelInject
@@ -20,24 +22,38 @@ constructor(
     val repository: Repository,
 ) : ViewModel() {
 
-    val response: MutableLiveData<MyResponse<List<OfferEntity>>> = MutableLiveData()
-    var entityTypeId = NO_ENTITY_TYPE
+    val responseMotorVehicle: MutableLiveData<MyResponse<List<OfferEntity>>> = MutableLiveData()
+    val responseEquipment: MutableLiveData<MyResponse<List<OfferEntity>>> = MutableLiveData()
+    val responsePedestrianVehicle: MutableLiveData<MyResponse<List<OfferEntity>>> =
+        MutableLiveData()
 
     init {
-        viewModelScope.launch {
-            read(ENTITY_TYPE_MOTOR_VEHICLE)
+        read(ENTITY_TYPE_MOTOR_VEHICLE, responseMotorVehicle)
+        read(ENTITY_TYPE_EQUIPMENT, responseEquipment)
+        read(ENTITY_TYPE_PEDESTRIAN_VEHICLE, responsePedestrianVehicle)
+    }
+
+    fun read(entityTypeId: Int, list: MutableLiveData<MyResponse<List<OfferEntity>>>) {
+        CoroutineScope(IO).launch {
+            list.postValue(
+                repository.readOffersByType(entityTypeId)
+            )
         }
     }
 
-    suspend fun read(entityTypeId: Int) {
-        response.postValue(
-            repository.readOffersByType(entityTypeId)
-        )
-        this.entityTypeId = entityTypeId
+    fun getOffers(entityTypeId: Int): List<OfferEntity>? {
+        return when (entityTypeId) {
+            ENTITY_TYPE_MOTOR_VEHICLE -> {
+                responseMotorVehicle.value?.entity
+            }
+            ENTITY_TYPE_EQUIPMENT -> {
+                responseMotorVehicle.value?.entity
+            }
+            else -> {
+                responsePedestrianVehicle.value?.entity
+            }
+        }
     }
 
-    fun getOffers(): List<OfferEntity> {
-        return response.value?.entity ?: mutableListOf()
-    }
 
 }

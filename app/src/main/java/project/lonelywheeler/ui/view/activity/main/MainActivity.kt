@@ -26,21 +26,13 @@ import project.lonelywheeler.databinding.ActivityMainBinding
 import project.lonelywheeler.ui.view.activity.main.bottomappbar.adapter.BottomAppBarCutCornersTopEdge
 import project.lonelywheeler.ui.view.activity.signin.SignInActivity
 import project.lonelywheeler.ui.viewmodel.main.ViewModelOffers
-import project.lonelywheeler.ui.viewmodel.main.ViewModelSellers
 import project.lonelywheeler.util.adapter.recyclerview.AllOfferRecViewAdapter
 import project.lonelywheeler.util.constants.*
 import project.lonelywheeler.util.extensions.navigateWithDelayTo
 
 @AndroidEntryPoint
-/*
-* TODO: Load all offers from the beginning of the MainActivity.kt lifecycle
-*       into 3 different lists. Then, when a user navigates to different offer category
-*       just change the list in adapter.M
-* */
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     AllOfferRecViewAdapter.OnOfferItemClickListener {
-
-    private val viewModelAllOffers: ViewModelOffers by viewModels()
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -202,9 +194,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun loadAndShowOffers(entityTypeId: Int) {
-        CoroutineScope(IO).launch {
-            viewModelAllOffers.read(entityTypeId)
-        }
         GlobalScope.launch {
             startPreviewAllFragmentWith(entityTypeId)
         }
